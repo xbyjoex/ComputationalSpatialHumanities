@@ -1,0 +1,659 @@
+name,created,description,formats
+"Stadtbezirksbudget, Stadt Leipzig",2026-05-05 19:03:52.384629,Der Datensatz enthält die folgenden Informationen über aus dem Stadtbezirksbudget geförderte Projekte und Vorschläge seit 2023. Mit der Einführung von Stadtbezirksbudgets möchte die Stadt Leipzig Partizipation und Mitwirkung der Bürgerschaft weiter stärken. Jeder Stadtbezirksbeirat verfügt über ein eigenes Budget in Höhe von 55.000 Euro pro Jahr. Damit können Ideen und Vorhaben vor Ort direkt unterstützt werden. Das Stadtbezirksbudget unterliegt der Jährlichkeit. Anträge können online vom 01. November des Vorjahres bis zum 31. August des Haushaltsjahres unter http://www.leipzig.de/stadtbezirksbudget gestellt werden. Die zehn Stadtbezirksbeiräte entscheiden in der Regel in ihren monatlich stattfindenden Sitzungen über die vorliegenden Anträge. In den Datensatz gehen monatlich alle beschlossenen Anträge zum Stadtbezirksbudget ein. In dem Datensatz sind nur die Stadtbezirke ohne die Gebiete der 14 eingemeindeten Ortschaften enthalten. Für die eingemeindeten Ortschaften stehen anstatt des Stadtbezirksbudget – Brauchtumsmittel zur Verfügung. Mehr Informationen hierzu unter http://www.leipzig.de/ortschaftsrat.,WFS
+Geo-Koordinaten der Haltestellen Schulfahrplan Fahrbibliothek,2015-04-28 13:30:30.218090,"geografische Lage der Haltestellen der Fahrbibliothek an Leipziger Schulen, Koordinaten nach Gauß-Krüger, in Dezimalgrad und UTM (gülzig für das 1. Halbjahr 2026)",CSV
+Geo-Koordinaten der Haltestellen Fahrbibliothek,2015-04-28 13:23:16.849156,"geografische Lage der Haltestellen der Fahrbibliothek, Koordinaten in UTM33 und ETRS89",CSV
+"Luftreinhalteplan-Prognose Straße 2025, Stadt Leipzig",2026-04-29 19:03:11.365463,"Die Daten zeigen die Jahresmittelwerte der Gesamtbelastung mit Feinstaub (PM10) und Stickstoffdioxid prognostiziert für das Jahr 2025 in einer Höhe von 1,5 Meter über Grund. Die Konzentration an der Straße gilt für den Bereich vorhandener Randbebauung. Ohne Randbebauung bezieht sich die Konzentrationen auf einen Abstand von 11 Meter von der Straßenmitte. Die Daten visualisieren den Stand der Luftqualität unter Berücksichtigung der Maßnahmen des Luftreinhalteplans der Stadt Leipzig sowie weiterer Maßnahmen entsprechend dem Nationalen Luftreinhalteprogramm der Bundesregierung interpoliert auf das Jahr 2025.","CSV, GEOJSON, GPKG, WFS"
+Oberbürgermeisterwahlen (kleinräumig),2026-04-30 19:03:16.136401,Kleinräumige Wahlergebnisse der Oberbürgermeisterwahlen in den Ortsteilen und Stadtbezirken.,"CSV, JSON"
+Namensvorschläge Straßenbenennungen,2026-04-02 11:34:30.723007,Liste der Namensvorschläge für Straßenbenennungen mit Informationen zu Lebensdaten der Personen und Informationen zu den Urhebern der Namensvorschläge.,"CSV, XLSX"
+Ergebnisse Oberbürgermeisterwahl seit 1994 (Ortsteile),2026-01-14 07:46:24.821075,"Harmonisiertie Wahlergebnisse der Oberbürgermeisterwahlen in Leipzig seit 1994 auf Ebene der Ortsteile.  
+'Partei_ID_StatAmtLE' beinhaltet eine vom Amt für Wahlen und Statistik festgelegte wahlübergreifende Partei-ID. Das Parteienverzeichnis kann unterfolgender URL aufgerufen werden: https://opendata.leipzig.de/dataset/parteienverzeichnis-statamtleipzig   
+'Parteiname_harmonisiert_vx_y' beinhaltet die zur Partei-ID zugehörige Kurzbezeichnung der Partei in Version x.y.",CSV
+"Dauerzählstellen Radverkehr- Gesamtanzahl der Fahrräder pro Tag der letzten 2 Jahre, Stadt Leipzig",2024-07-17 11:15:25.509386,Gesamtanzahl der erfassten Fahrräder an den Dauerzählstellen Radverkehr im Stadtgebiet Leipzig. Im Datensatz werden die Zählungen pro Tag aggregiert und für die letzten 2 Jahre bis einschließlich Gestern vorgehalten.,"CSV, GEOJSON, GPKG, WFS"
+"Dauerzählstellen Radverkehr - Gesamtanzahl der Fahrräder pro Stunde der letzten 31 Tage, Stadt Leipzig",2024-07-17 11:15:25.727869,Gesamtanzahl der erfassten Fahrräder an den Dauerzählstellen Radverkehr im Stadtgebiet Leipzig. Im Datensatz werden die Zählungen pro Stunde und für die letzten 31 Tage bis einschließlich Gestern vorgehalten.,"CSV, GEOJSON, WFS"
+"Dauerzählstellen Radverkehr - Standorte, Stadt Leipzig",2024-07-17 11:15:25.250727,Standorte der Radverkehr Dauererzählstellen im Stadtgebiet Leipzig.,"CSV, GEOJSON, GPKG, WFS"
+"Luftqualität - Jahresmittelwerte NO2-Passivsammler, Stadt Leipzig",2026-04-29 19:03:11.639286,Die Daten zeigen die Jahresmittelwerte der Gesamtbelastung mit Stickstoffdioxid (NO2) in den Jahren 2021 bis 2023 an verschiedenen Messorten in Leipzig.,"CSV, GEOJSON, GPKG, WFS"
+"Luftqualität - Monatsmittelwerte NO2-Passivsammler, Stadt Leipzig",2026-04-29 19:03:11.105482,Die Daten zeigen die Monatsmittelwert der Gesamtbelastung mit Stickstoffdioxid (NO2) in den Jahren 2021 bis 2023 an verschiedenen Messorten in Leipzig.,"CSV, GEOJSON, GPKG, WFS"
+"Luftqualität - Luftreinhaltemaßnahmen, Stadt Leipzig",2026-04-29 19:03:10.418241,In dem Datensatz sind die raumbezogenen Maßnahmen aus dem Luftreinhalteplan der Stadt Leipzig (Fortschreibung 2018) enthalten. Die Maßnahmen sind in der interaktiven Karte zu den Modelldaten zur Luftqualität der Stadt Leipzig visualisiert.,"CSV, GEOJSON, GPKG, WFS"
+Fahrplan der Fahrbibliothek für Schulen,2015-04-28 15:23:57.410773,"Fahrplan und Haltestellen der Fahrbibliothek an Leipziger Schulen, Januar bis August 2023",CSV
+Geo-Koordinaten der Bibliotheken,2015-03-02 15:29:05.889745,"geografische Lage der Städtischen Bibliotheken, Koordinaten nach UTM33 und ETRS89",CSV
+Kontaktdaten und Öffnungszeiten der Bibliotheken,2015-03-02 13:58:17.228386,"Tabelle der Städtischen Bibliotheken mit Adresse, Telefon, E-Mail, Website, Öffnungszeiten",CSV
+Ankünfte und Übernachtungen (Quartalszahlen),2023-09-26 12:20:00.126388,"Daten zu den Ankünften, Übernachtungen und der Aufenthaltsdauer in den Beherbergungsbetrieben.","CSV, JSON"
+Ankünfte und Übernachtungen (Jahreszahlen),2023-09-26 12:19:53.057291,"Daten zu den Ankünften, Übernachtungen und der Aufenthaltsdauer in den Beherbergungsbetrieben.","CSV, JSON"
+Fahrplan der Fahrbibliothek,2015-04-28 15:13:08.936628,"Fahrplan der Fahrbibliothek, Haltestellen und Standzeiten für A-Woche und B-Woche, 1. Halbjahr 2026",CSV
+A-Wochen und B-Wochen für Fahrplan Fahrbibliothek,2015-04-28 15:18:19.996176,"Wochenplanung A-Wochen und B-Wochen für den Fahrplan der Fahrbibliothek, 1. Halbjahr 2026",CSV
+"Park+Ride Anlagen Standorte, Stadt Leipzig",2024-02-08 09:46:23.219687,Die Standorte der P+R Anlagen in und um Leipzig mit statischen Informationen.,"CSV, GEOJSON, GPKG, WFS"
+"Historische Belegung (letzten 30 Tage) Park+Ride Anlagen, Stadt Leipzig",2024-02-08 09:46:22.698234,Zeitreihe zu den Park+Ride Anlagen mit Belegungsinformationen der letzten 30 Tage alle 15 Minuten in der Stadt Leipzig.,"CSV, GEOJSON, GPKG, WFS"
+"Aktuelle Belegung Park+Ride Anlagen, Stadt Leipzig",2024-06-06 09:48:09.561063,Die Daten enthalten die aktuellen Belegungsinformationen der Park+Ride Anlagen in Leipzig mit Echtzeitinformationen. Die Aktualisierung erfolgt alle 5 Minuten.,"CSV, GEOJSON, GPKG, WFS"
+"Bodenrichtwerte 2023, Stadt Leipzig",2023-10-27 10:49:29.704196,"Der Gutachterausschuss in der Stadt Leipzig hat am 02.03.2023 die zonalen Bodenrichtwerte zum Stichtag 01.01.2023 für die Stadt Leipzig beschlossen. Bodenrichtwerte sind durchschnittliche Lagewerte für den Boden unter Berücksichtigung der unterschiedlichen Entwicklungszustände angegeben pro Quadratmeter Grundstücksfläche. Bodenrichtwertzonen umfassen Gebiete, die nach Art und Maß der Nutzung weitgehend übereinstimmen. Die wertbeeinflussenden Merkmale des Bodenrichtwertgrundstücks sind dargestellt. Die Ermittlung der Bodenrichtwerte erfolgt gemäß der Regelungen der ImmoWertV. Dieser Datensatz enthält die Polygone der Bodenrichtwerte für das Gebiet der Stadt Leipzig mit den Ebenen ""Bodenrichtwertgrundstück"", ""Bodenrichtwertzone"",""Lagequalität"", ""Entwicklungsmaßnahme"" und ""Sanierungsgebiet"".","CSV, GEOJSON, PDF, WMS"
+"Bodenrichtwerte 2024, Stadt Leipzig",2024-06-06 07:55:49.131032,"Der Gutachterausschuss in der Stadt Leipzig hat am 29.02.2024 die zonalen Bodenrichtwerte zum Stichtag 01.01.2024 für die Stadt Leipzig beschlossen. Bodenrichtwerte sind durchschnittliche Lagewerte für den Boden unter Berücksichtigung der unterschiedlichen Entwicklungszustände angegeben pro Quadratmeter Grundstücksfläche. Bodenrichtwertzonen umfassen Gebiete, die nach Art und Maß der Nutzung weitgehend übereinstimmen. Die wertbeeinflussenden Merkmale des Bodenrichtwertgrundstücks sind dargestellt. Die Ermittlung der Bodenrichtwerte erfolgt gemäß der Regelungen der ImmoWertV. Dieser Datensatz enthält die Polygone der Bodenrichtwerte für das Gebiet der Stadt Leipzig mit den Ebenen ""Bodenrichtwertgrundstück"", ""Bodenrichtwertzone"",""Lagequalität"", ""Entwicklungsmaßnahme"" und ""Sanierungsgebiet"".","CSV, GEOJSON, WMS"
+"Bodenrichtwerte 2022, Stadt Leipzig",2023-10-27 10:49:30.199045,"Der Gutachterausschuss in der Stadt Leipzig hat am 02.03.2022 die zonalen Bodenrichtwerte zum Stichtag 01.01.2022 für die Stadt Leipzig beschlossen. Bodenrichtwerte sind durchschnittliche Lagewerte für den Boden unter Berücksichtigung der unterschiedlichen Entwicklungszustände angegeben pro Quadratmeter Grundstücksfläche. Bodenrichtwertzonen umfassen Gebiete, die nach Art und Maß der Nutzung weitgehend übereinstimmen. Die wertbeeinflussenden Merkmale des Bodenrichtwertgrundstücks sind dargestellt. Die Ermittlung der Bodenrichtwerte erfolgt gemäß der Regelungen der ImmoWertV. Dieser Datensatz enthält die Polygone der Bodenrichtwerte für das Gebiet der Stadt Leipzig mit den Ebenen ""Bodenrichtwertgrundstück"", ""Bodenrichtwertzone"",""Lagequalität"", ""Entwicklungsmaßnahme"" und ""Sanierungsgebiet"".","CSV, GEOJSON, WMS"
+Arbeitslose (Quartalszahlen),2023-09-26 12:19:59.269536,Daten zu den Arbeitslosen in der Stadt Leipzig gegliedert u.a. nach Rechstkreis und Altersgruppen.,"CSV, JSON"
+Wanderungen (Melderegisterdaten) (Quartalszahlen),2023-09-26 12:19:57.879506,Daten zu den Zuzügen und Fortzügen von und nach der Stadt Leipzig nach Geschlecht und Staatsangehörigkeit.,"CSV, JSON"
+Geborene und Gestorbene (Melderegisterdaten) (Quartalszahlen),2023-09-26 12:19:57.387687,Daten zu den Geburten und Sterbefällen nach Geschlecht.,"CSV, JSON"
+Einwohner (Quartalszahlen),2023-09-26 12:19:56.839347,Daten zur Bevölkerung (Einwohner mit Hauptwohnsitz) nach Geschlecht und Staatsangehörigkeit.,"CSV, JSON"
+Arbeitslose (Jahreszahlen),2023-09-26 12:19:50.372589,Daten zu den Arbeitslosen in der Stadt Leipzig gegliedert u.a. nach Rechstkreis und Altersgruppen.,"CSV, JSON"
+Wanderungen (Melderegisterdaten) (Jahreszahlen),2023-09-26 12:19:39.097723,Daten zu den Zuzügen und Fortzügen von und nach der Stadt Leipzig nach Geschlecht und Staatsangehörigkeit.,"CSV, JSON"
+Geborene und Gestorbene (Melderegisterdaten) (Jahreszahlen),2023-09-26 12:19:38.368951,Daten zu den Geburten und Sterbefällen nach Geschlecht.,"CSV, JSON"
+Einwohner (Jahreszahlen),2023-09-26 12:19:37.073697,Daten zur Bevölkerung (Einwohner mit Hauptwohnsitz) nach Geschlecht und Staatsangehörigkeit.,"CSV, JSON"
+Kraftfahrzeugbestand (Jahreszahlen),2023-09-26 12:19:29.753168,"Daten zu den zugelassenen Kraftfahrzeugen, aufgegliedert in Personenkraftwagen, Nutzfahrzeuge, Krafträder und Kraftfahrzeuganhänger.","CSV, JSON"
+Frühjahrsputztermine,2025-01-22 13:08:37.360683,Liste der zu veröffentlichenden Frühjahrsputz-Termine,CSV
+Digitale Stadtgrundkarte Leipzig (DSGK),2026-03-25 18:59:27.641675,"Die Digitale Stadtgrundkarte Leipzig (DSGK) im Maßstab 1:1.000 ist die detaillierteste Basiskarte des Stadtgebiets für Arbeitsbereiche von 1:250 bis 1:2.500. Sie umfasst rund 50 Objektklassen mit etwa 2,5 Millionen Objekten zu Gebäuden, Infrastruktur, Verkehr, Vegetation, Gewässern und Relief. Mehrere kartographische Modelle stehen zur Verfügung, darunter farbige Flächenfüllungen, hell- und dunkelgrau sowie Schraffuren. Kartenauszüge sind als PDF und GeoTIFF erhältlich und es können auch WMS-, WMTS- oder Kartenbild-Dienste genutzt werden; zukünftig sind WFS- und Vector-Tile-Dienste geplant. Vektorbasierte Datenauszüge stehen als DWG, DXF, Shapefile, GeoPackage und GeoJSON bereit; für Shapefile und GeoPackage wird zusätzlich eine QGIS-Projektdatei mit Layerstruktur bereitgestellt.","DWG, DXF, GEOJSON, GPKG, SHP, WMS"
+Unternehmen (Jahreszahlen),2023-09-26 12:19:50.613185,"Daten zu den bei der der Industrie- und Handelskammer zu Leipzig registrierten Firmen, gegliedert nach den Wirtschaftsabteilungen der Klassifikation der Wirtschaftszweige (WZ 2008).","CSV, JSON"
+Wohnungsnotfälle  (Jahreszahlen),2023-09-26 12:19:41.170789,Daten zu betreuten Wohnungsnotfällen des Sozialdienstes Wohnungsnotfallhilfe.,"CSV, JSON"
+Oberbürgermeisterwahlen - 2. Wahlgang,2026-03-03 18:57:11.699687,"Ergebnisse des 2. Wahlgangs der Oberbürgermeisterwahlen (Wahlbeteiligung, Stimmenanteile der Bewerber) seit 1994 in Leipzig","CSV, JSON"
+Oberbürgermeisterwahlen - 1. Wahlgang,2026-02-27 18:56:41.984276,"Ergebnisse des 1. Wahlgangs der Oberbürgermeisterwahlen (Wahlbeteiligung, Stimmenanteile der Bewerber) seit 1994 in Leipzig","CSV, JSON"
+Landtagswahlen,2023-09-26 12:20:00.706557,"Ergebnisse der Landtagswahlen (Wahlbeteiligung, Stimmenanteile der Parteien) seit 1990 in Leipzig","CSV, JSON"
+Bundestagswahlen,2023-09-26 12:20:00.497894,"Ergebnisse der Bundestagswahlen (Wahlbeteiligung, Stimmenanteile der Parteien) seit 1990 in Leipzig","CSV, JSON"
+Landtagswahlen - Erststimmenergebnis,2026-03-03 18:57:10.891692,Erststimmenergebnisse und Wahlbeteiligung bei Landtagswahlen seit 1990 in Leipzig,"CSV, JSON"
+Bundestagswahlen - Erststimmenergebnis,2026-03-03 18:57:10.213740,Erststimmenergebnisse und Wahlbeteiligung bei Bundestagswahlen seit 1990 in Leipzig,"CSV, JSON"
+Ergebnisse Europawahl seit 1994 (Wahlbezirke),2026-01-14 07:46:25.175865,"Harmonisiertie Wahlergebnisse der Europawahlen in Leipzig seit 1994 auf Ebene der Wahlbezirke.  
+'Partei_ID_StatAmtLE' beinhaltet eine vom Amt für Wahlen und Statistik festgelegte wahlübergreifende Partei-ID. Das Parteienverzeichnis kann unterfolgender URL aufgerufen werden: https://opendata.leipzig.de/dataset/parteienverzeichnis-statamtleipzig  
+'Parteiname_harmonisiert_vx_y' beinhaltet die zur Partei-ID zugehörige Kurzbezeichnung der Partei in Version x.y.",CSV
+Ergebnisse Europawahl seit 2004 (Ortsteile),2026-01-14 07:46:25.809996,"Harmonisiertie Wahlergebnisse der Europawahlen in Leipzig seit 2004 auf Ebene der Ortsteile.  
+'Partei_ID_StatAmtLE' beinhaltet eine vom Amt für Wahlen und Statistik festgelegte wahlübergreifende Partei-ID. Das Parteienverzeichnis kann unterfolgender URL aufgerufen werden: https://opendata.leipzig.de/dataset/parteienverzeichnis-statamtleipzig   
+'Parteiname_harmonisiert_vx_y' beinhaltet die zur Partei-ID zugehörige Kurzbezeichnung der Partei in Version x.y.",CSV
+Ergebnisse Oberbürgermeisterwahl seit 1994 (Wahlbezirke),2026-01-14 07:46:23.550610,"Harmonisiertie Wahlergebnisse der Oberbürgermeisterwahlen in Leipzig seit 1994 auf Ebene der Wahlbezirke.  
+'Partei_ID_StatAmtLE' beinhaltet eine vom Amt für Wahlen und Statistik festgelegte wahlübergreifende Partei-ID. Das Parteienverzeichnis kann unterfolgender URL aufgerufen werden: https://opendata.leipzig.de/dataset/parteienverzeichnis-statamtleipzig  
+'Parteiname_harmonisiert_vx_y' beinhaltet die zur Partei-ID zugehörige Kurzbezeichnung der Partei in Version x.y.",CSV
+Ergebnisse Stadtratswahl seit 1994 (Wahlbezirke),2026-01-14 07:46:17.198579,"Harmonisiertie Wahlergebnisse der Stadtratswahlen in Leipzig seit 1994 auf Ebene der Wahlbezirke.  
+'Partei_ID_StatAmtLE' beinhaltet eine vom Amt für Wahlen und Statistik festgelegte wahlübergreifende Partei-ID. Das Parteienverzeichnis kann unterfolgender URL aufgerufen werden: https://opendata.leipzig.de/dataset/parteienverzeichnis-statamtleipzig  
+'Parteiname_harmonisiert_vx_y' beinhaltet die zur Partei-ID zugehörige Kurzbezeichnung der Partei in Version x.y.",CSV
+Ergebnisse Stadtratswahl seit 1999 (Ortsteile),2026-01-14 07:46:17.426462,"Harmonisiertie Wahlergebnisse der Stadtratswahlen in Leipzig seit 1999 auf Ebene der Ortsteile.  
+'Partei_ID_StatAmtLE' beinhaltet eine vom Amt für Wahlen und Statistik festgelegte wahlübergreifende Partei-ID. Das Parteienverzeichnis kann unterfolgender URL aufgerufen werden: https://opendata.leipzig.de/dataset/parteienverzeichnis-statamtleipzig   
+'Parteiname_harmonisiert_vx_y' beinhaltet die zur Partei-ID zugehörige Kurzbezeichnung der Partei in Version x.y.",CSV
+Ergebnisse Landtagswahl seit 1994 (Wahlbezirke),2026-01-14 07:46:16.631538,"Harmonisiertie Wahlergebnisse der Landtagswahlen in Leipzig seit 1994 auf Ebene der Wahlbezirke.  
+'Partei_ID_StatAmtLE' beinhaltet eine vom Amt für Wahlen und Statistik festgelegte wahlübergreifende Partei-ID. Das Parteienverzeichnis kann unterfolgender URL aufgerufen werden: https://opendata.leipzig.de/dataset/parteienverzeichnis-statamtleipzig  
+'Parteiname_harmonisiert_vx_y' beinhaltet die zur Partei-ID zugehörige Kurzbezeichnung der Partei in Version x.y.",CSV
+Ergebnisse Landtagswahl seit 1994 (Ortsteile),2026-01-14 07:46:16.980153,"Harmonisiertie Wahlergebnisse der Landtagswahlen in Leipzig seit 1994 auf Ebene der Ortsteile.  
+'Partei_ID_StatAmtLE' beinhaltet eine vom Amt für Wahlen und Statistik festgelegte wahlübergreifende Partei-ID. Das Parteienverzeichnis kann unterfolgender URL aufgerufen werden: https://opendata.leipzig.de/dataset/parteienverzeichnis-statamtleipzig   
+'Parteiname_harmonisiert_vx_y' beinhaltet die zur Partei-ID zugehörige Kurzbezeichnung der Partei in Version x.y.",CSV
+Ergebnisse Bundestagswahl seit 1994 (Wahlbezirke),2026-01-14 07:46:16.012823,"Harmonisiertie Wahlergebnisse der Bundestagswahlen in Leipzig seit 1994 auf Ebene der Wahlbezirke.  
+'Partei_ID_StatAmtLE' beinhaltet eine vom Amt für Wahlen und Statistik festgelegte wahlübergreifende Partei-ID. Das Parteienverzeichnis kann unterfolgender URL aufgerufen werden: https://opendata.leipzig.de/dataset/parteienverzeichnis-statamtleipzig  
+'Parteiname_harmonisiert_vx_y' beinhaltet die zur Partei-ID zugehörige Kurzbezeichnung der Partei in Version x.y.",CSV
+Ergebnisse Bundestagswahl seit 1994 (Ortsteile),2026-01-14 07:46:16.331292,"Harmonisiertie Wahlergebnisse der Bundestagswahlen in Leipzig seit 1994 auf Ebene der Ortsteile.  
+'Partei_ID_StatAmtLE' beinhaltet eine vom Amt für Wahlen und Statistik festgelegte wahlübergreifende Partei-ID. Das Parteienverzeichnis kann unterfolgender URL aufgerufen werden: https://opendata.leipzig.de/dataset/parteienverzeichnis-statamtleipzig   
+'Parteiname_harmonisiert_vx_y' beinhaltet die zur Partei-ID zugehörige Kurzbezeichnung der Partei in Version x.y.",CSV
+Parteienverzeichnis StatAmtLeipzig,2025-11-17 12:48:31.477820,"Parteienverzeichnis des Amtes für Statistik und Wahlen Leipzig: Dieses Verzeichnis beinhaltet die seit 1994 in Leipzig in Bundestags-, Landtags-, Oberbürgermeister-, Stadtrats- und Europawahlen angetretenen Parteien. Das Verzeichnis beinhaltet die Namen, unter denen Parteien angetreten sind, eine wahlübergreifende Partei-ID und die Parteikurzbezeichnungen und -namen, unter denen die Parteien zuletzt angetreten sind.  Die Partei-ID wurde vom Amt für Statistik und Wahlen festgelegt und ist lediglich für Wahldaten gültig, die vom Amt für Statistik und Wahlen der Stadt Leipzig veröffentlicht werden.",CSV
+Standorte Defibrillatoren,2026-02-23 15:13:38.732135,Standorte der Defibrillatoren in der Stadtverwaltung Leipzig (bürogenutzte Verwaltungsobjekte) ,CSV
+Besucherstatistik Städtische Bibliotheken,2026-02-23 08:28:31.242385,"Anzahl von Besuchern, Entleihungen und virtuellen Besuchern der Leipziger Städtischen Bibliotheken",CSV
+Ausbaugewerbe (Quartalszahlen),2023-09-26 12:19:59.915335,"Daten zu den Betrieben, tätigen Personen, Umsatz, Arbeitstunden und Bruttoentgeltsumme im Ausbaugewerbe.","CSV, JSON"
+Bauhauptgewerbe (Quartalszahlen),2023-09-26 12:19:59.684928,"Daten zu den Betrieben, tätigen Personen, Umsatz, Arbeitstunden und Bruttoentgeltsumme im Hoch- und Tiefbau.","CSV, JSON"
+Verarbeitendes Gewerbe (Quartalszahlen),2023-09-26 12:19:59.478564,"Daten zu den Betrieben, tätigen Personen, Umsatz, Arbeitstunden und Bruttoentgeltsumme im Verarbeitenden Gewerbe.","CSV, JSON"
+Beschäftigte (Quartalszahlen),2023-09-26 12:19:59.070892,Daten zu den Sozialversicherungspflichtig Beschäftigten in den Wirtschaftsabteilungen nach der Klassifikation der Wirtschaftszweige (WZ 2008) am Arbeitsort und am Wohnort Leipzig.,"CSV, JSON"
+Grundsicherung für Arbeitssuchende (Quartalszahlen),2023-09-26 12:19:58.377874,"Daten zu Empfängern von Sozialleistungen, Bedarfsgemeinschaften und Leistungen.","CSV, JSON"
+Steuereinnahmen (Quartalszahlen),2023-09-26 12:19:56.609080,"Daten zu den Steuereinnahmen der Stadt Leipzig: Grundsteuer Gewerbesteuer, Einkommensteuer, Umsatzsteuer, Vergnügungsteuer, Hundesteuer, Zweitwohnungssteuer.","CSV, JSON"
+Abfallentsorgung (Quartalszahlen),2023-09-26 12:19:56.291511,Daten zur Abfallentsorgung durch die Stadtreinigung Leipzig: Anzahl der Abfallbehälter und entsorgte Abfallmengen,"CSV, JSON"
+Bäder (Quartalszahlen),2023-09-26 12:19:56.014357,Daten zu den Besuchern in Hallen- und Freibädern.,"CSV, JSON"
+Zoo Leipzig (Quartalszahlen),2023-09-26 12:19:55.694129,Daten zu Besuchern und zum Tierbestand im Zoo Leipzig.,"CSV, JSON"
+Theater (Quartalszahlen),2023-09-26 12:19:55.312505,Daten zu Besuchern von Veranstaltungen in den Leipziger (Musik-)Theatern und Kabaretts.,"CSV, JSON"
+Museen (Quartalszahlen),2023-09-26 12:19:55.019345,Daten zu Besuchern in den Leiziger Museen.,"CSV, JSON"
+Luftverkehr (Quartalszahlen),2023-09-26 12:19:54.668513,Daten zum Flugverkehr am Flughafen Leipzig-Halle (Passagier- Frachtflüge).,"CSV, JSON"
+Verkehrsunfälle (Quartalszahlen),2023-09-26 12:19:54.197044,Daten zu Personenschäden und Ursachen bei Straßenverkehrsunfällen.,"CSV, JSON"
+Ausbaugewerbe (Jahreszahlen),2023-09-26 12:19:52.214728,"Daten zu den Betrieben, tätigen Personen, Umsatz, Arbeitstunden und Bruttoentgeltsumme im Ausbaugewerbe.","CSV, JSON"
+Bauhauptgewerbe (Jahreszahlen),2023-09-26 12:19:51.946005,"Daten zu den Betrieben, tätigen Personen, Umsatz, Arbeitstunden und Bruttoentgeltsumme im Hoch- und Tiefbau.","CSV, JSON"
+Verarbeitendes Gewerbe (Jahreszahlen),2023-09-26 12:19:51.740040,"Daten zu den Betrieben, tätigen Personen, Umsatz, Arbeitstunden und Bruttoentgeltsumme im Verarbeitenden Gewerbe.","CSV, JSON"
+Beschäftigte (Jahreszahlen),2023-09-26 12:19:49.910417,Daten zu den Sozialversicherungspflichtig Beschäftigten in den Wirtschaftsabteilungen nach der Klassifikation der Wirtschaftszweige (WZ 2008) am Arbeitsort und am Wohnort Leipzig.,"CSV, JSON"
+Grundsicherung für Arbeitssuchende (Jahreszahlen),2023-09-26 12:19:44.188253,"Daten zu Empfängern von Sozialleistungen, Bedarfsgemeinschaften und Leistungen.","CSV, JSON"
+Steuereinnahmen (Jahreszahlen),2023-09-26 12:19:35.932580,"Daten zu den Steuereinnahmen der Stadt Leipzig: Grundsteuer Gewerbesteuer, Einkommensteuer, Umsatzsteuer, Vergnügungsteuer, Hundesteuer, Zweitwohnungssteuer.","CSV, JSON"
+Abfallentsorgung (Jahreszahlen),2023-09-26 12:19:33.684668,Daten zur Abfallentsorgung durch die Stadtreinigung Leipzig: Anzahl der Abfallbehälter und entsorgte Abfallmengen,"CSV, JSON"
+Bäder (Jahreszahlen),2023-09-26 12:19:32.088063,Daten zu den Besuchern in Hallen- und Freibädern.,"CSV, JSON"
+Zoo Leipzig (Jahreszahlen),2023-09-26 12:19:31.781836,Daten zu Besuchern und zum Tierbestand im Zoo Leipzig.,"CSV, JSON"
+Theater (Jahreszahlen),2023-09-26 12:19:31.275170,Daten zu Besuchern von Veranstaltungen in den Leipziger (Musik-)Theatern und Kabaretts.,"CSV, JSON"
+Museen (Jahreszahlen),2023-09-26 12:19:31.030871,Daten zu Besuchern in den Leiziger Museen.,"CSV, JSON"
+Luftverkehr (Jahreszahlen),2023-09-26 12:19:30.727766,Daten zum Flugverkehr am Flughafen Leipzig-Halle (Passagier- Frachtflüge).,"CSV, JSON"
+Verkehrsunfälle (Jahreszahlen),2023-09-26 12:19:30.106912,Daten zu Personenschäden und Ursachen bei Straßenverkehrsunfällen.,"CSV, JSON"
+Repräsentative Wahlstatistik Bundestagswahlen - Zweitstimmen (seit 2002),2026-02-04 07:17:28.712788,"Ergebnisse der repräsentativen Wahlstatistik für die Bundestagswahlen in Leipzig seit 2002: Zweitstimmen nach Geschlecht für verschiedene Altersgruppen. Die repräsentative Wahlstatistik wurde in der Bundesrepublik Deutschland seit 1953 bei allen Bundestagswahlen mit Ausnahme der Wahljahre 1994 und 1998, und bei den meisten Landtags- und Kommunalwahlen erhoben. Für die repräsentative Wahlstatistik werden einige der Wahlbezirke als repräsentative Wahlbezirke ausgewählt. In diesen Wahlbezirken erhalten die Wählerinnen und Wähler Stimmzettel, auf denen ihr Geschlecht und ihre Altersgruppe gekennzeichnet ist. Dies ermöglicht eine Schätzung der Wahlbeteiligung und der Zweitstimmenergebnisse nach Alter und Geschlecht. Das Wahlgeheimnis ist trotz der gekennzeichneten Stimmzettel gewährleistet.
+      
+'Partei_ID_StatAmtLE' beinhaltet eine vom Amt für Wahlen und Statistik festgelegte wahlübergreifende Partei-ID. Das Parteienverzeichnis kann unterfolgender URL aufgerufen werden: https://opendata.leipzig.de/dataset/parteienverzeichnis-statamtleipzig. 'Parteiname_harmonisiert_vx_y' beinhaltet die zur Partei-ID zugehörige Kurzbezeichnung der Partei in Version x.y.
+
+Die Geschlechtsangabe 'männlich' beinhaltet seit Wahlen ab 2019 auch Wählende mit dem Geschlechtseinträgen 'divers' und 'ohne Angabe'.",CSV
+Oberbürgermeisterwahl 2020 Repräsentative Nachwahlbefragung,2026-02-04 07:43:56.454422,"Repräsentative Nachwahlbefragung zur Oberbürgermeisterwahl in Leipzig 2020 zur Ermittlung des Abstimmungsverhaltens nach Alter und Geschlecht. Da zur Oberbürgermeisterwahl 2020 keine repräsentative Wahlstatistik erhoben wurde, gab es beim 1. Wahlgang eine repräsentative Nachwahlbefragung.  In 15 repräsentativen Wahlbezirken wurden Wählerinnen und Wähler nach der Stimmabgabe um das Ausfüllen eines kurzen Fragebogens gebeten. Die Teilnahme war freiwillig und anonym. In dem kurzen Fragebogen wurde nach der aktuellen Wahlentscheidung, dem Wahlverhalten sowie nach Alter, Geschlecht, Bildungsabschluss und einigen weiteren Angaben gefragt.",CSV
+Repräsentative Wahlstatistik Europawahlen - Wahlbeteiligung (seit 2009),2026-02-04 07:17:30.490276,"Ergebnisse der repräsentativen Wahlstatistik (RWS) für die Europawahlen in Leipzig seit 2009: Wahlbeteiligung nach Geschlecht für verschiedene Altersgruppen. Die repräsentative Wahlstatistik wurde in der Bundesrepublik Deutschland seit 1953 bei allen Bundestagswahlen mit Ausnahme der Wahljahre 1994 und 1998, und bei den meisten Landtags- und Kommunalwahlen erhoben. Für die repräsentative Wahlstatistik werden einige der Wahlbezirke als repräsentative Wahlbezirke ausgewählt. In diesen Wahlbezirken erhalten die Wählerinnen und Wähler Stimmzettel, auf denen ihr Geschlecht und ihre Altersgruppe gekennzeichnet ist. Dies ermöglicht eine Schätzung der Wahlbeteiligung und der Zweitstimmenergebnisse nach Alter und Geschlecht. Das Wahlgeheimnis ist trotz der gekennzeichneten Stimmzettel gewährleistet.
+      
+Die Spalte 'Wahlbeteiligung' gibt die Wahlbeteiligung in der jeweiligen Gruppe in den repräsenativen Wahlbezirken an. Da die Wahlbeteiligung für den Briefwähler nicht ermittelt werden kann, wird für die Wahlbeteiligung angenommen, dass alle wähler, die Briefwahlunterlagen beantragt haben, auch tatsächlich abgestimmt habe. Erfahrungsgemäß beträgt die Wahlbeteiligung unter Wählern, die Briefwahlunterlagen beantragt haben, etwa 96 Prozent.
+
+Für die skalierte Wahlbeteiligung in der Spalte 'Wahlbeteiligung_skaliert' wird die 'Wahlbeteiligung' um einen Faktor korrigiert, um die Wahlbeteiligung der repräsentativen Wahlstatistik an die Wahlbeteiligung in Leipzig anzugleichen (Korrektur-Faktor: 'Wahlbeteiligung Leipzig'/'Wahlbeteiligung RWS'). Daher entspricht 'Wahlbeteiligung_skaliert' für alle Wähler der RWS der tatsächlichen Wahlbeteiligung in Leipzig.
+
+Die Geschlechtsangabe 'männlich' beinhaltet seit Wahlen ab 2019 auch Wählende mit dem Geschlechtseinträgen 'divers' und 'ohne Angabe'.",CSV
+Repräsentative Wahlstatistik Europawahlen - Stimmen (seit 1994),2026-02-04 07:17:30.748528,"Ergebnisse der repräsentativen Wahlstatistik für die Europawahlen in Leipzig seit 1994: Stimmen nach Geschlecht für verschiedene Altersgruppen. Die repräsentative Wahlstatistik wurde in der Bundesrepublik Deutschland seit 1953 bei allen Bundestagswahlen mit Ausnahme der Wahljahre 1994 und 1998, und bei den meisten Landtags- und Kommunalwahlen erhoben. Für die repräsentative Wahlstatistik werden einige der Wahlbezirke als repräsentative Wahlbezirke ausgewählt. In diesen Wahlbezirken erhalten die Wählerinnen und Wähler Stimmzettel, auf denen ihr Geschlecht und ihre Altersgruppe gekennzeichnet ist. Dies ermöglicht eine Schätzung der Wahlbeteiligung und der Zweitstimmenergebnisse nach Alter und Geschlecht. Das Wahlgeheimnis ist trotz der gekennzeichneten Stimmzettel gewährleistet.
+      
+'Partei_ID_StatAmtLE' beinhaltet eine vom Amt für Wahlen und Statistik festgelegte wahlübergreifende Partei-ID. Das Parteienverzeichnis kann unterfolgender URL aufgerufen werden: https://opendata.leipzig.de/dataset/parteienverzeichnis-statamtleipzig. 'Parteiname_harmonisiert_vx_y' beinhaltet die zur Partei-ID zugehörige Kurzbezeichnung der Partei in Version x.y.
+
+Die Geschlechtsangabe 'männlich' beinhaltet seit Wahlen ab 2019 auch Wählende mit dem Geschlechtseinträgen 'divers' und 'ohne Angabe'.",CSV
+Repräsentative Wahlstatistik Oberbürgermeisterwahlen - Wahlbeteiligung (seit 2005),2026-02-04 07:17:29.683923,"Ergebnisse der repräsentativen Wahlstatistik (RWS) für die Oberbürgermeisterwahlen in Leipzig seit 2005: Wahlbeteiligung nach Geschlecht für verschiedene Altersgruppen. Die repräsentative Wahlstatistik wurde in der Bundesrepublik Deutschland seit 1953 bei allen Bundestagswahlen mit Ausnahme der Wahljahre 1994 und 1998, und bei den meisten Landtags- und Kommunalwahlen erhoben. Für die repräsentative Wahlstatistik werden einige der Wahlbezirke als repräsentative Wahlbezirke ausgewählt. In diesen Wahlbezirken erhalten die Wählerinnen und Wähler Stimmzettel, auf denen ihr Geschlecht und ihre Altersgruppe gekennzeichnet ist. Dies ermöglicht eine Schätzung der Wahlbeteiligung und der Zweitstimmenergebnisse nach Alter und Geschlecht. Das Wahlgeheimnis ist trotz der gekennzeichneten Stimmzettel gewährleistet.
+      
+Die Spalte 'Wahlbeteiligung' gibt die Wahlbeteiligung in der jeweiligen Gruppe in den repräsenativen Wahlbezirken an. Da die Wahlbeteiligung für den Briefwähler nicht ermittelt werden kann, wird für die Wahlbeteiligung angenommen, dass alle wähler, die Briefwahlunterlagen beantragt haben, auch tatsächlich abgestimmt habe. Erfahrungsgemäß beträgt die Wahlbeteiligung unter Wählern, die Briefwahlunterlagen beantragt haben, etwa 96 Prozent.
+
+Für die skalierte Wahlbeteiligung in der Spalte 'Wahlbeteiligung_skaliert' wird die 'Wahlbeteiligung' um einen Faktor korrigiert, um die Wahlbeteiligung der repräsentativen Wahlstatistik an die Wahlbeteiligung in Leipzig anzugleichen (Korrektur-Faktor: 'Wahlbeteiligung Leipzig'/'Wahlbeteiligung RWS'). Daher entspricht 'Wahlbeteiligung_skaliert' für alle Wähler der RWS der tatsächlichen Wahlbeteiligung in Leipzig.
+
+Die Geschlechtsangabe 'männlich' beinhaltet seit Wahlen ab 2019 auch Wählende mit dem Geschlechtseinträgen 'divers' und 'ohne Angabe'.",CSV
+Repräsentative Wahlstatistik Oberbürgermeisterwahlen - Stimmen (seit 1998),2026-02-04 07:17:30.128649,"Ergebnisse der repräsentativen Wahlstatistik für die Oberbürgermeisterwahlen in Leipzig seit 1998: Stimmen nach Geschlecht für verschiedene Altersgruppen. Die repräsentative Wahlstatistik wurde in der Bundesrepublik Deutschland seit 1953 bei allen Bundestagswahlen mit Ausnahme der Wahljahre 1994 und 1998, und bei den meisten Landtags- und Kommunalwahlen erhoben. Für die repräsentative Wahlstatistik werden einige der Wahlbezirke als repräsentative Wahlbezirke ausgewählt. In diesen Wahlbezirken erhalten die Wählerinnen und Wähler Stimmzettel, auf denen ihr Geschlecht und ihre Altersgruppe gekennzeichnet ist. Dies ermöglicht eine Schätzung der Wahlbeteiligung und der Zweitstimmenergebnisse nach Alter und Geschlecht. Das Wahlgeheimnis ist trotz der gekennzeichneten Stimmzettel gewährleistet.
+      
+'Partei_ID_StatAmtLE' beinhaltet eine vom Amt für Wahlen und Statistik festgelegte wahlübergreifende Partei-ID. Das Parteienverzeichnis kann unterfolgender URL aufgerufen werden: https://opendata.leipzig.de/dataset/parteienverzeichnis-statamtleipzig. 'Parteiname_harmonisiert_vx_y' beinhaltet die zur Partei-ID zugehörige Kurzbezeichnung der Partei in Version x.y.
+
+Die Geschlechtsangabe 'männlich' beinhaltet seit Wahlen ab 2019 auch Wählende mit dem Geschlechtseinträgen 'divers' und 'ohne Angabe'.",CSV
+Repräsentative Wahlstatistik Landtagswahlen - Wahlbeteiligung (seit 2004),2026-02-04 07:17:28.954668,"Ergebnisse der repräsentativen Wahlstatistik (RWS) für die Landtagswahlen in Leipzig seit 2004: Wahlbeteiligung nach Geschlecht für verschiedene Altersgruppen. Die repräsentative Wahlstatistik wurde in der Bundesrepublik Deutschland seit 1953 bei allen Bundestagswahlen mit Ausnahme der Wahljahre 1994 und 1998, und bei den meisten Landtags- und Kommunalwahlen erhoben. Für die repräsentative Wahlstatistik werden einige der Wahlbezirke als repräsentative Wahlbezirke ausgewählt. In diesen Wahlbezirken erhalten die Wählerinnen und Wähler Stimmzettel, auf denen ihr Geschlecht und ihre Altersgruppe gekennzeichnet ist. Dies ermöglicht eine Schätzung der Wahlbeteiligung und der Zweitstimmenergebnisse nach Alter und Geschlecht. Das Wahlgeheimnis ist trotz der gekennzeichneten Stimmzettel gewährleistet.
+      
+Die Spalte 'Wahlbeteiligung' gibt die Wahlbeteiligung in der jeweiligen Gruppe in den repräsenativen Wahlbezirken an. Da die Wahlbeteiligung für den Briefwähler nicht ermittelt werden kann, wird für die Wahlbeteiligung angenommen, dass alle wähler, die Briefwahlunterlagen beantragt haben, auch tatsächlich abgestimmt habe. Erfahrungsgemäß beträgt die Wahlbeteiligung unter Wählern, die Briefwahlunterlagen beantragt haben, etwa 96 Prozent.
+
+Für die skalierte Wahlbeteiligung in der Spalte 'Wahlbeteiligung_skaliert' wird die 'Wahlbeteiligung' um einen Faktor korrigiert, um die Wahlbeteiligung der repräsentativen Wahlstatistik an die Wahlbeteiligung in Leipzig anzugleichen (Korrektur-Faktor: 'Wahlbeteiligung Leipzig'/'Wahlbeteiligung RWS'). Daher entspricht 'Wahlbeteiligung_skaliert' für alle Wähler der RWS der tatsächlichen Wahlbeteiligung in Leipzig.
+
+Die Geschlechtsangabe 'männlich' beinhaltet seit Wahlen ab 2019 auch Wählende mit dem Geschlechtseinträgen 'divers' und 'ohne Angabe'.",CSV
+Repräsentative Wahlstatistik Landtagswahlen - Zweitstimmen (seit 1994),2026-02-04 07:17:29.204744,"Ergebnisse der repräsentativen Wahlstatistik für die Landtagswahlen in Leipzig seit 1994: Zweitstimmen nach Geschlecht für verschiedene Altersgruppen. Die repräsentative Wahlstatistik wurde in der Bundesrepublik Deutschland seit 1953 bei allen Bundestagswahlen mit Ausnahme der Wahljahre 1994 und 1998, und bei den meisten Landtags- und Kommunalwahlen erhoben. Für die repräsentative Wahlstatistik werden einige der Wahlbezirke als repräsentative Wahlbezirke ausgewählt. In diesen Wahlbezirken erhalten die Wählerinnen und Wähler Stimmzettel, auf denen ihr Geschlecht und ihre Altersgruppe gekennzeichnet ist. Dies ermöglicht eine Schätzung der Wahlbeteiligung und der Zweitstimmenergebnisse nach Alter und Geschlecht. Das Wahlgeheimnis ist trotz der gekennzeichneten Stimmzettel gewährleistet.
+      
+'Partei_ID_StatAmtLE' beinhaltet eine vom Amt für Wahlen und Statistik festgelegte wahlübergreifende Partei-ID. Das Parteienverzeichnis kann unterfolgender URL aufgerufen werden: https://opendata.leipzig.de/dataset/parteienverzeichnis-statamtleipzig. 'Parteiname_harmonisiert_vx_y' beinhaltet die zur Partei-ID zugehörige Kurzbezeichnung der Partei in Version x.y.
+
+Die Geschlechtsangabe 'männlich' beinhaltet seit Wahlen ab 2019 auch Wählende mit dem Geschlechtseinträgen 'divers' und 'ohne Angabe'.",CSV
+Repräsentative Wahlstatistik Bundestagswahlen - Wahlbeteiligung (seit 2002),2026-02-04 07:17:28.478943,"Ergebnisse der repräsentativen Wahlstatistik (RWS) für die Bundestagswahlen in Leipzig seit 2002: Wahlbeteiligung nach Geschlecht für verschiedene Altersgruppen. Die repräsentative Wahlstatistik wurde in der Bundesrepublik Deutschland seit 1953 bei allen Bundestagswahlen mit Ausnahme der Wahljahre 1994 und 1998, und bei den meisten Landtags- und Kommunalwahlen erhoben. Für die repräsentative Wahlstatistik werden einige der Wahlbezirke als repräsentative Wahlbezirke ausgewählt. In diesen Wahlbezirken erhalten die Wählerinnen und Wähler Stimmzettel, auf denen ihr Geschlecht und ihre Altersgruppe gekennzeichnet ist. Dies ermöglicht eine Schätzung der Wahlbeteiligung und der Zweitstimmenergebnisse nach Alter und Geschlecht. Das Wahlgeheimnis ist trotz der gekennzeichneten Stimmzettel gewährleistet.
+      
+Die Spalte 'Wahlbeteiligung' gibt die Wahlbeteiligung in der jeweiligen Gruppe in den repräsenativen Wahlbezirken an. Da die Wahlbeteiligung für den Briefwähler nicht ermittelt werden kann, wird für die Wahlbeteiligung angenommen, dass alle wähler, die Briefwahlunterlagen beantragt haben, auch tatsächlich abgestimmt habe. Erfahrungsgemäß beträgt die Wahlbeteiligung unter Wählern, die Briefwahlunterlagen beantragt haben, etwa 96 Prozent.
+
+Für die skalierte Wahlbeteiligung in der Spalte 'Wahlbeteiligung_skaliert' wird die 'Wahlbeteiligung' um einen Faktor korrigiert, um die Wahlbeteiligung der repräsentativen Wahlstatistik an die Wahlbeteiligung in Leipzig anzugleichen (Korrektur-Faktor: 'Wahlbeteiligung Leipzig'/'Wahlbeteiligung RWS'). Daher entspricht 'Wahlbeteiligung_skaliert' für alle Wähler der RWS der tatsächlichen Wahlbeteiligung in Leipzig.
+
+Die Geschlechtsangabe 'männlich' beinhaltet seit Wahlen ab 2019 auch Wählende mit dem Geschlechtseinträgen 'divers' und 'ohne Angabe'.",CSV
+Flächennutzungsplan der Stadt Leipzig,2025-07-12 08:27:23.234657,Der Flächennutzungsplan (vorbereitender Bauleitplan) gibt den Rahmen für die städtebauliche Entwicklung für das gesamte Stadtgebiet für einen Zeitraum von ca. zehn bis fünfzehn Jahre vor. Der Flächennutzungsplan erhielt zuletzt nach einigen Änderungen seine Wirksamkeit am 24.07.2021 durch Neubekanntmachung des gesamten Planwerkes.," WMS, WMS"
+"Öffentliche Toiletten, Stadt Leipzig",2024-04-11 12:08:39.964174,Die Standorte der öffentlichen Toiletten in der Stadt Leipzig. Die Daten werden vom Referent und Koordinator für öffentliche Sanitäranlagen der Stadt Leipzig erstellt.,CSV
+"Luftbild 2024 (20 cm Bodenauflösung), Stadt Leipzig",2025-07-12 08:27:21.158267,Das Digitale TrueOrthophoto der Stadt Leipzig von 2024 in 20 cm Auflösung.,"WMS, WMTS"
+Inklusiv unterrichtete Schüler/-innen nach Förderschwerpunkt (Jahreszahlen),2024-04-24 15:12:08.953154,Daten zu inklusiv unterrichteten Schüler/-innen nach Förderschwerpunkt,"CSV, JSON"
+Berufsbildende Schulen (Jahreszahlen),2023-09-26 12:19:46.629725,"Daten zu Berufsschulen, Berufsbildenden Förderschulen, Beruflichen Gymnasien, Berufsfachschulen, Fachoberschulen und Fachschulen in Leipzig; zu jeder Schulart ist die Zahl der Schüler und Lehrer angegeben.","CSV, JSON"
+Allgemeinbildende Schulen (Jahreszahlen),2023-09-26 12:19:46.183886,"Daten zu den Grundschulen, Oberschulen, Gymnasien, Förderschulen, Freien Waldorfschulen, Gemeinschaftsschulen, Schulen der besonderen Art und Schulen des zweiten Bildungsweges in Leipzig; zu jeder Schulart ist die Zahl der Einrichtungen, Klassen, Schüler und Lehrer angegeben.","CSV, JSON"
+Wanderungen (Amtliche Daten) (Quartalszahlen),2023-09-26 12:19:57.635259,Daten zu den Zuzügen und Fortzügen von und nach der Stadt Leipzig nach Geschlecht und Staatsangehörigkeit.,"CSV, JSON"
+Geborene und Gestorbene (Amtliche Daten) (Quartalszahlen),2023-09-26 12:19:57.126473,Daten zu den Geburten und Sterbefällen nach Geschlecht.,"CSV, JSON"
+Wanderungen (Amtliche Daten) (Jahreszahlen),2023-09-26 12:19:38.830029,Daten zu den Zuzügen und Fortzügen von und nach der Stadt Leipzig nach Geschlecht und Staatsangehörigkeit.,"CSV, JSON"
+Geborene und Gestorbene (Amtliche Daten) (Jahreszahlen),2023-09-26 12:19:38.125538,Daten zu den Geburten und Sterbefällen nach Geschlecht.,"CSV, JSON"
+Vornamenstatistik 2025,2026-01-09 10:22:29.209744,,CSV
+Liegenschaften,2026-01-08 10:19:47.530172,Liegenschaftscontrolling: Relevante und aktuelle Kennzahlen aus dem Liegenschaftsmanagement der Stadt Leipzig.,JSON
+LeipzigGiesst gegossene Liter Jahresstatistik 2025,2026-01-05 20:54:45.551366,"Gegossene Liter pro Straßenbaum, wie sie durch die Nutzer in app.LeipzigGiesst.de eingetragen wurden, aufsummiert im Zeitraum von 1. März 2025 bis 30. September 2025. Es werden die Daten des Baumkatasters für die Identifikation des jeweiligen Baums verwendet (aber auch Baum-Daten von OpenStreetMap.org)",CSV
+Personalkennzahlen der Stadtverwaltung Leipzig,2025-02-12 12:34:10.130364,Übersicht über wichtige Personalkennzahlen der Stadtverwaltung Leipzig inklusive Übersicht über die Anzahl der Auszubildenden und Studierenden für die Jahre 2022 bis 2024,CSV
+Anzahl betreute Kinder im Hort/Betreuungsangebot nach Schulen seit 2021/22,2026-01-02 14:34:54.507689,"Der Datensatz enthält die Anzahl an betreuten Kindern im Hort/Betreuungsangebot (BTA) je Grundschulen bzw. Förderschule, Schule der besonderen Art nach §63d, Gemeinschaftsschule, Waldorfschule und je Schuljahr in Leipzig seit dem Schuljahr 2021/22 mit Angabe von Schulart, Schulträger, Name der Schule,  sowie Schul_ID und Stala_ID.
+Quelle: Amt für Jugend und Familie, Amt für Schule der Stadt Leipzig, monatliche Kita/BTA-Belegungsstatistik jeweils für Oktober
+",CSV
+Inklusion - Anzahl Schüler/-innen mit sonderpäd. Förderbedarf an allgemeinbild. Regelschulen seit 2021/22,2026-01-02 13:57:57.950755,"Der Datensatz enthält die Anzahl an Schüler/-innen mit sonderpädagogischem Förderbedarf je Schule und je Schuljahr an allgemeinbildenden Regelschulen in Leipzig seit dem Schuljahr 2021/22 mit Angabe von Schulart, Schulträger, Name der Schule,  sowie Schul_ID und Stala_ID (ohne Förderschulen).
+Quelle: Schulstatistik des statistischen Landesamtes des Freistaates Sachsen; Stichtag 2024/25: 2. Oktober 2024",CSV
+Schüler/-innen mit Migrationshintergrund an allgemeinbildenden Schulen in Leipzig seit 2021/22,2026-01-02 12:22:50.804217,"Der Datensatz enthält die Anzahl und den Anteil der Schüler/-innen mit Migrationshintergrund an allen Schüler/-innen je Schule und Schuljahr seit dem Schuljahr 2021/22 mit Angabe von Schulart, Schulträger, Name der Schule sowie Schülerzahl, Schul_ID und Stala_ID.
+Quelle: Schulstatistik des statistischen Landesamtes des Freistaates Sachsen; Stichtag 2024/25: 2. Oktober 2024",CSV
+Schülerzahlen allgemeinbildende Schulen Leipzig seit 2021/22,2026-01-02 11:32:33.687057,"Schülerzahlen an allgemeinbildenden Schulen in Leipzig je Schule und Schuljahr seit dem Schuljahr 2021/22 mit Angabe von Schulart, Schulträger, Name der Schule, sowie Schul_ID und Stala_ID.
+Quelle: Schulstatistik des statistischen Landesamtes des Freistaates Sachsen; Stichtag 2024/25: 2. Oktober 2024",CSV
+Übersicht allgemeinbildende Schulen in Leipzig mit Adressen Schuljahr 2024/25,2026-01-02 11:12:17.153850,"Der Datensatz enthält eine Übersicht über alle allgemeinbildenden Schulen in Leipzig im Schuljahr 2024/25 mit Angabe von Schulart, Schulträger, Name der Schule, Adresse, Ortsteil, Stadtbezirk, gemeinsamer Schulbezirk (Grundschulen, falls zutreffend) sowie Schul_ID und Stala_ID",CSV
+Stadtbezirksbeiräte_Sitzungen,2025-12-18 14:18:05.130479,"Statistik zu den Sitzungen der Stadtbezirksbeiräte seit 2022.
+
+Stammdaten: SBB, Datum, Jahr.
+Teilnahme: Mitglieder (max. 11), Gäste, Verwaltungsmitarbeiter (TN_VW).
+Inhalte: Anzahl Anträge, Anfragen, Vorlagen, SBBudget-Themen, Sonderthemen.
+Formalia: Sitzungsart (Präsenz/Hybrid/Video), Dauer (Min.), Beschlussfähigkeit, Patenbesuch.","CSV, XLSX"
+Stadtbezirksbudget,2024-12-17 09:52:42.503031,"Der Datensatz enthält die folgenden Informationen über aus dem Stadtbezirksbudget geförderte Projekte und Vorschläge von 2023 - 2025:
+
+- Fortlaufende Nummer (Nr.)
+- Beschlussnummer (Identifikationsnummer des Antrags);
+- Antragsteller (natürliche Personen bzw. Personengesellschaften wurden anonymisiert);
+- Kurzbeschreibung des Vorhabens;
+- Antragsart (Projektantrag oder Vorschlag);
+- Betrag in EUR (geförderte Summe durch den Stadtbezirksbeirat);
+- Stadtbezirksbeirat, der die Maßnahme/Projekt gefördert hat;
+- Ortsteil (Ortsteil, in dem das Projekt oder die Maßnahme umgesetzt wird);
+- Straße und Hausnummer (Adresse des Orts, an dem das Projekt oder die Maßnahme umgesetzt wird);
+- Koordinaten (Geokoordinaten des Orts, an dem das Projekt oder die Maßnahme umgesetzt wird. Referenzsystem ETRS_UTM_1989_Zone_33N)
+- Jahr","CSV, XLSX"
+"3D-Stadtmodell LoD2, Stadt Leipzig",2025-05-22 09:22:04.239933,"Die 3D-Gebäudedaten (LoD2, ohne Texturen) bilden die Grundlage für das 3D-Stadtmodell der Stadt Leipzig. Der Datensatz steht für das gesamte Stadtgebiet jeweils im CityGML-, Shapefile- und DXF-Format zur Verfügung. In den entsprechenden ZIP-Dateien befinden sich die 3D-Gebäudedaten aufgegliedert nach Ortsteilen (Kommunale Gebietsgliederung). Für die räumliche Zuordnung kann die Übersichtskarte (Übersicht_3D-Gebäude.pdf) genutzt werden. Des Weiteren ist eine Attributbeschreibung für die Formate CityGML und Shapefile hinterlegt. Weiterführende Informationen zu dem 3D-Stadtmodell Leipzig: https://www.leipzig.de/bauen-und-wohnen/bauen/geodaten-und-karten/3d-stadtmodell","CITYGML, DXF, SHP"
+"Baumkataster, Stadt Leipzig",2023-10-27 10:49:29.232975,"Das Baumkataster enthält Baumstandorte im öffentlichen Straßenraum und Bäume auf Liegenschaften der Stadt Leipzig (Parks und Grünanlagen, Friedhöfe, Kleingartenvereine, Wald, an Gewässern, Sportanlagen, Schulen und Kindereinrichtungen). Die Bestandsdatenerfassung der Baumstandorte ist noch nicht abgeschlossen.","CSV, GEOJSON, GPKG, WFS"
+"Kindertageseinrichtungen, Stadt Leipzig",2025-05-22 09:22:03.498255,"Datensatz über die Kindertageseinrichtungen für die Frühkindliche Bildung, Betreuung und Erziehung. Aussagen über Trägerschaft Kontaktinformationen (Leitung, Telefon, E-Mail) zu Einrichtung und Träger Aussagen über Kapazitäten je Einrichtung","CSV, GEOJSON, GPKG, WFS"
+"Luftbild 2022 (20 cm Bodenauflösung), Stadt Leipzig",2025-05-22 09:22:03.151016,Das Luftbild der Stadt Leipzig aus dem Jahr 2022 mit einer Bodenauflösung von 20cm.,"WMS, WMTS"
+"Digitale Stadtkarte 1:25.000, Stadt Leipzig",2023-09-29 17:31:30.671149,"Die Digitale Stadtkarte 1:25000 beinhaltet die Themen Straßen- und Schienennetz, die Gewässer, Siedlungsflächen, sowie siedlungsfreie Flächen und Beschriftungen, wie Straßennamen und Hausnummern. Sie bilden die Grundlage für den amtlichen Stadtplan der Stadt Leipzig. Die Standardausgabe erfolgt im Maßstab 1:21.000. Die Abgabe der Daten erfolgt vornehmlich in den Rasterformaten PDF (mit Schreibschutz), TIF (georeferenziert) und JPG.",WMS
+"Digitale Stadtkarte 1:5.000, Stadt Leipzig",2023-10-27 11:14:48.092934,"Die Digitale Stadtkarte im Maßstab 1:5.000 dient als Kartengrundlage zur Erfassung zahlreicher Fachdaten. Sie beinhaltet Objekte der Deutschen Grundkarte, bestehend aus Gebäuden, Straßen, Straßennamen, Wege, Gewässer und Topographie. Die Abgabe der Daten ist in den Formaten DXF, PDF (mit Schreibschutz), TIF (georeferenziert), JPG oder als Shape-File möglich.",WMS
+"Straßennetz, Stadt Leipzig",2023-10-27 10:49:28.601003,"Das Straßennetz der Stadt Leipzig. Der Datensatz beinhaltet die Straßennamen, Von- und Bis-Abschnitte, Stadtbezirke der Abschnitte, die Zugehörigkeit zum klassifizierten Netz (Bundes-, Staats-, Kreisstraße), die Straßenart (Ortsstraße, Feldweg usw.), die Erschließung (Haupt-, Neben-, Anliegernetz), den Baulastträger und die Länge in Meter. Die Daten werden direkt aus dem System abgerufen und sind daher stets aktuell.","CSV, GEOJSON, GPKG, WFS"
+"Verkehrszeichen, Stadt Leipzig",2024-04-11 12:08:39.481681,Verkehrszeichen der Stadt Leipzig,"CSV, GEOJSON, WFS"
+"Verkehrsraumeinschränkungen (Polygone), Stadt Leipzig",2024-04-10 12:36:32.854952,Daten der aktuellen Verkehrsraumeinschränkungen der Stadt Leipzig als Polygone.,"CSV, GEOJSON, WFS"
+"Verkehrsraumeinschränkungen (Punkte), Stadt Leipzig",2024-04-11 12:08:38.648018,Daten der aktuellen Verkehrsraumeinschränkungen der Stadt Leipzig als Punktdatensatz.,"CSV, GEOJSON, WFS"
+Horte,2025-05-22 09:21:59.362600,"Datensatz über die Kindertageseinrichtungen für die Hortbetreuung. Aussagen über Trägerschaft Kontaktinformationen (Leitung, Telefon, E-Mail) zu Einrichtung und Träger Aussagen über Kapazitäten je Einrichtung.","CSV, GEOJSON, GPKG, WFS"
+Knotenpunkte Straßennetz,2023-10-27 10:49:28.295183,Die Knotenpunkte des Straßennetzes Leipzig. Es werden die Knotenpunkt-Nummern als Attribut ausgegeben.,"CSV, GEOJSON, GPKG, WFS"
+Bruttoinlandsprodukt und Bruttowertschöpfung (Jahreszahlen),2023-09-26 12:19:51.265971,Daten zum Bruttoinlandsprodukt und zur Bruttowertschöpfung nach Wirtschaftszweigen.,"CSV, JSON"
+Gäste nach Herkunftsländern (Jahreszahlen),2023-09-26 12:19:50.825335,Daten zu den Herkunftsländern der Gäste in den Beherbergungsbetrieben.,"CSV, JSON"
+Wohnberechtigte Einwohner nach Alter (Jahreszahlen),2023-09-26 12:19:37.673741,Daten zur Altersstruktur der Leipziger Bevölkerung.,"CSV, JSON"
+Leipziger Weihnachtsmarkt 2025 - Stände in 2D,2025-12-16 13:57:31.722053,Dieser Datensatz enthält Geo- und Sachdaten der Marktstände sowie der Hilfsflächen des Leipziger Weihnachtsmarktes 2025 in 2D. In den Sachdaten sind Händlerinformationen (wie z.B. das angebotene Sortiment) aufgeführt.,SHP
+Messen und Ausstellungen (Jahreszahlen),2023-09-26 12:19:51.055067,"Daten zu den Besuchern und Ausstellern auf Messen, Ausstellungen und Kongressen.","CSV, JSON"
+Baufertigstellungen (Jahreszahlen),2023-09-26 12:19:49.685413,"Daten zu den Baufertigstellungen mit Einteilung in Neubauten, Wohn- und Nicht-Wohngebäude.","CSV, JSON"
+Eheschließungen und Ehescheidungen (Jahreszahlen),2023-09-26 12:19:38.597381,Daten zu Eheschließungen und -scheidungen.,"CSV, JSON"
+Einwohner nach Alter (Jahreszahlen),2023-09-26 12:19:37.380909,Daten zur Altersstruktur der Leipziger Bevölkerung (5-Jahres-Altersgruppen).,"CSV, JSON"
+Realsteuervergleich (Jahreszahlen),2023-09-26 12:19:36.171582,"Daten zu den Steuereinnahmen der Stadt Leipzig: Grundsteuer Gewerbesteuer, Einkommensteuer, Umsatzsteuer, Vergnügungsteuer, Hundesteuer, Zweitwohnungssteuer.","CSV, JSON"
+Wasserhygiene (Jahreszahlen),2023-09-26 12:19:33.195376,Daten von amtlichen Probeentnahmen aus dem Trinkwasser und aus Badegwässern.,"CSV, JSON"
+Immissionen (Jahreszahlen),2023-09-26 12:19:32.963119,"Daten zu den Immissionen von Schwefeldioxid, Stickstoffmonoxid, Stickstoffdioxid, Ozon, Benzol und Feinstaub.","CSV, JSON"
+Personennahverkehr (Jahreszahlen),2023-09-26 12:19:30.441722,"Daten zu den Fahrzeugen, Streckenlängen und zum Fahrgastaufkommen in den Bussen und Straßenbahnen der Leipziger Verkehrsbetriebe.","CSV, JSON"
+Straßennetz (Jahreszahlen),2023-09-26 12:19:29.206144,"Daten zur Streckenlänge der Leipziger Straßennetzes,  aufgegliedert in Autobahnen, Bundesstraßen, Staatsstraßen, Kreisstraßen und Gemeindestraßen.","CSV, JSON"
+Geografische Lage (Jahreszahlen),2023-09-26 12:19:28.326156,"Daten zur Flächenausdehnung, zur Höhenlage des Leipziger Stadtgebiets.","CSV, JSON"
+Baugenehmigungen (Quartalszahlen),2023-09-26 12:19:58.789431,"Daten zu den erteilten Baugenehmigungen  mit Einteilung in Neubauten, Wohn- und Nicht-Wohngebäude.","CSV, JSON"
+Baugenehmigungen (Jahreszahlen),2023-09-26 12:19:49.429578,"Daten zu den erteilten Baugenehmigungen  mit Einteilung in Neubauten, Wohn- und Nicht-Wohngebäude.","CSV, JSON"
+Kommunale Bügerumfrage 2024 - Personengewichtung,2025-11-03 09:32:23.065696,"Ergebnisse der Kommunalen Bürgerumfrage Leipzig 2024 - Auswertung nach Personengewichtung, ohne haushaltsbezogene Fragen","CSV, XLSX"
+Stadtratswahlen (kleinräumig),2025-11-10 18:45:32.805649,Kleinräumige Wahlergebnisse der Stadtratswahlen in den Ortsteilen und Stadtbezirken.,"CSV, JSON"
+"Bevölkerungsvorausschätzung (Jahreszahlen, kleinräumig)",2025-11-10 18:45:32.394691,Kleinräumige Daten auf Ortsteil- und Stadtbezirksebene zur Bevölkerungsvorausschätzung,"CSV, JSON"
+"Wohnungsmieten (Jahreszahlen, kleinräumig)",2025-11-10 18:45:31.991284,"Kleinräumige Daten auf Ortsteil- und Stadtbezirksebene zu Wohnungsmieten (Grundmiete, Gesamtmiete, Mietbelastung - Umfragedaten)","CSV, JSON"
+"Zufriedenheitsfaktoren (Jahreszahlen, kleinräumig)",2025-11-10 18:45:31.816224,Kleinräumige Daten auf Ortsteil- und Stadtbezirksebene zur Zufriedenheit der Bevölkerung (Umfragedaten),"CSV, JSON"
+"Wohnsituation (Jahreszahlen, kleinräumig)",2025-11-10 18:45:31.472376,"Kleinräumige Daten auf Ortsteil- und Stadtbezirksebene zur  Wohnsituation (Anteil Wohneigentum, Wohndauer, Umzugsabsichten - Umfragedaten)","CSV, JSON"
+"Schul- und Berufsabschlüsse (Jahreszahlen, kleinräumig)",2025-11-10 18:45:31.300249,Kleinräumige Daten auf Ortsteil- und Stadtbezirksebene zu Schul- und Berufsabschlüssen der Leipziger Einwohner (Umfragedaten),"CSV, JSON"
+"Nettoeinkommen (Jahreszahlen, kleinräumig)",2025-11-10 18:45:30.934545,Kleinräumige Daten auf Ortsteil- und Stadtbezirksebene zu persönlichen und Haushaltsnettoeinkommmen (Umfragedaten),"CSV, JSON"
+"Bruttomonatsentgelte (Jahreszahlen, kleinräumig)",2025-11-10 18:45:30.340766,"Kleinräumige Daten auf Ortsteil- und Stadtbezirksebene zu den Bruttomonatsentgelten der sozialversicherungspflichtig Vollzeitbeschäftigten nach Geschlecht, Alter, Staatsangehörigkeit, Qualifikation und Wirtschaftszweigen","CSV, JSON"
+"Kindertagesbetreuung (Kapazitäten) (Jahreszahlen, kleinräumig)",2025-11-10 18:45:30.021732,Kleinräumige Daten auf Ortsteil- und Stadtbezirksebene zur Kindertagesbetreuung (Kapazitäten),"CSV, JSON"
+"Kinderspielplätze (Jahreszahlen, kleinräumig)",2025-11-10 18:45:29.757101,Kleinräumige Daten auf Ortsteil- und Stadtbezirksebene zu Kinderspielplätzen,"CSV, JSON"
+"Lebensunterhalt (Jahreszahlen, kleinräumig)",2025-11-10 18:45:29.291964,Kleinräumige Daten auf Ortsteil- und Stadtbezirksebene zu den Quellen des Lebensunterhalts der Haushalte (Umfragedaten),"CSV, JSON"
+"Wanderungen (Jahreszahlen, kleinräumig)",2025-11-10 18:45:28.917358,"Kleinräumige Wanderungsdaten auf Ortsteil- und Stadtbezirksebene, darunter innerstädtitsche und außerstädtische Zu- und Wegzüge.","CSV, JSON"
+"Handwerksbetriebe (Jahreszahlen, kleinräumig)",2025-11-10 18:45:28.529610,Kleinräumige Daten auf Ortsteil- und Stadtbezirksebene zu den Handwerksbetrieben nach Gebwerbegruppen.,"CSV, JSON"
+"Alten- und Pflegeheime (Jahreszahlen, kleinräumig)",2025-11-10 18:45:27.722761,Kleinräumige Daten auf Ortsteil- und Stadtbezirksebene zu Alten- und Pflegeheimen,"CSV, JSON"
+Kommunale Bügerumfrage 2024 - Haushaltsgewichtung,2025-11-03 10:13:23.404147,"Ergebnisse der Kommunalen Bürgerumfrage 2024 - Haushaltsgewichtung, ohne personenbezogene Fragen","CSV, XLSX"
+"Einwohner mit Migrationshintergrund (Jahreszahlen, kleinräumig)",2023-09-26 12:20:14.610509,Kleinräumige Daten auf Ortsteil- und Stadtbezirksebene zum Migrationshintergrund der Leipziger Bevölkerung.,"CSV, JSON"
+Eignungsüberprüfung Fahrerlaubnis,2025-07-28 13:04:58.564690,"Durchgeführte Eigungsüberprüfungen der Fahrerlaubnisbehörde der Stadt Leipzig, nach Jahren.",CSV
+Erteilte verkehrsrechtliche Genehmigungen und Ausnahmegenehmigungen gemäß § 46 StVO,2025-10-21 05:02:29.299328,,CSV
+Kfz-Zulassung,2025-10-22 05:26:43.764816,Kennzahlen der Kfz-Zulassungsbehörde Leipzig,CSV
+Untersagung des Führens von fahrerlaubnisfreien Fahrzeugen,2025-10-21 04:44:46.093168,Unter bestimmten Voraussetzungen kann die Fahrerlaubnisbehörde das Führen von fahrerlaubnisfreien Fahrzeugen untersagen (zum Beispiel Fahrrad und E-Tretroller).,CSV
+Entzug Fahrererlaubnis,2025-10-21 04:36:15.608266,Unter bestimmten Voraussetzungen werden Fahrerlaubnisse durch die auch Fahrerlaubnisbehörde entzogen. Mit der Entziehung der Fahrerlaubnis erlischt die Berechtigung zum Führen von Kraftfahrzeugen. Siehe hierzu auch § 3 StVG.,CSV
+Kommunale Gebietsgliederung Leipzig: Adressen,2023-04-11 16:02:01.249301,"Verzeichnis aller aktuellen Adressdaten (Straßenschlüssel, Straßenname, Hausnummer, Statistischer Bezirk, Ortsteil) der Stadt Leipzig. Die Daten werden wöchentlich aktualisiert.",CSV
+Beherbergungskapazität (Jahreszahlen),2023-09-26 12:19:52.862000,Daten zu den Gästebetten und der Bettenauslastung in den Beherbergungsbetrieben.,"CSV, JSON"
+Vergabearten,2025-08-19 10:19:22.408464,Anzahl der durchgeführten Vergaben nach entsprechender Art ab einem Auftragswert von 25.000 Euro ohne Umsatzsteuer.,CSV
+Vergabeverfahren,2025-08-19 15:16:28.699846,"Durchgeführte Vergabeverfahren ab erreichen der Wertgrenzen für entsprechende Informationspflichten, d.h. Liefer- und Dienstleistungen ab 50.000 Euro ohne Umsatzsteuer und Bauleistungen ab 75.000 Euro ohne Umsatzsteuer.",CSV
+Erteilung/Verlängerung von Fahrerlaubnissen zur Fahrgastbeförderung,2025-07-28 13:27:12.342937,Anzahl der Erteilten/Verlängerten Fahrerlaubnissen zur Fahrgastbeförderung,CSV
+Ausgegebene Führerscheine,2025-07-28 12:50:58.075481,"Anzahl der ausgegebenen Führerscheine durch die Fahrerlaubnisbehörde der Stadt Leipzig, nach Jahren.",CSV
+Bruttomonatsentgelte (Jahreszahlen),2023-09-26 12:19:53.909446,"Daten der Bundeagentur für Arbeit zu den Bruttomonatsentgelten der sozialversicherungspflichtig Vollzeitbeschäftigten nach Geschlecht, Alter, Staatsangehörigkeit, Qualifikation und Wirtschaftszweigen","CSV, JSON"
+Travel-API Leipzig,2022-07-08 07:41:45.922609,"Die Leipzig Tourismus und Marketing GmbH stellt Daten zu folgenden reisebezogenen Themen in und um Leipzig unter einer offenen Lizenz zur Verfügung:
+
+* Gastgeber 
+* Veranstaltungen
+* Gastronomie
+* Touren & Wege
+* Ausflugsziele, POIs
+* redaktionelle Artikel
+
+Der Zugriff erfolgt nach einmaliger Anmeldung über die Plattform [open.destination.one](https://open.destination.one). Es gelten die [Nutzungsbestimmungen](https://open.destination.one/nutzungsbedingungen/) des Plattformbetreibers:
+
+* Der Datenabrufer stellt sicher, dass die Daten nur so verwendet werden, dass Sie der Lizenz [Creative Commons Namensnennung (CC-BY)](http://dcat-ap.de/def/licenses/cc-by) entsprechen.
+* Unabhängig von der CC-Lizenzierung ist folgender Quell-Hinweis bei jedem Datensatz (gilt auch für Datenübersichten u. ä.) anzubringen: powered by open.destination.one (inkl. Back-Link).
+
+
+
+
+",HTML
+Finanzhaushalt der Stadt Leipzig 2025/2026,2025-06-25 14:27:45.819825,"Der Finanzhaushalt konzentriert sich auf die Geldflüsse der Stadt. Er zeigt, wie Investitionen finanziert werden und wie die Liquidität geplant ist. Der Fokus liegt auf den Zeitpunkten, zu denen Geldzuflüsse und -abflüsse stattfinden.
+
+Er umfasst Mittelzuflüsse, wie Kredite und Rücklagen, sowie Mittelabflüsse, wie Investitionen und die Tilgung von Schulden. Der Finanzhaushalt stellt dar, wie die Stadt ihre finanziellen Mittel verwaltet.
+
+Der Finanzhaushalt wird in einer Übersicht dargestellt, die die Finanzierungsquellen und -verwendungen aufzeigt, oft in Form einer Cashflow-Rechnung.
+
+Der Finanzhaushalt betrachtet die Geldströme und die Finanzierung von Investitionen.
+",XLSX
+Ergebnishaushalt der Stadt Leipzig 2025/2026,2025-06-25 14:09:21.070986,"Der Ergebnishaushalt dient dazu, die wirtschaftliche Lage der Stadt darzustellen. Er zeigt, ob die Einnahmen die Ausgaben übersteigen oder nicht, und gibt Auskunft über die Erträge und Aufwendungen der Verwaltung.
+
+Er beinhaltet die Einnahmen, wie Steuern und Gebühren, sowie die Ausgaben, etwa für Dienstleistungen und Personal, die in einem bestimmten Zeitraum anfallen. Der Ergebnishaushalt zeigt das Ergebnis der laufenden Verwaltung.
+
+Er wird oft in Form einer Gewinn- und Verlustrechnung präsentiert, die die Erträge und Aufwendungen gegenüberstellt.
+
+Der Ergebnishaushalt legt den Fokus auf die wirtschaftliche Lage und die laufende Verwaltung der Stadt.
+",XLSX
+Wohnungsmieten (Quartalszahlen),2023-09-26 12:19:58.584810,Daten aus der Kommunalen Bürgerumfrage zur Mietbelastung der Haushalte.,"CSV, JSON"
+Nettoeinkommen (Jahreszahlen),2023-09-26 12:19:53.571315,"Daten aus der Kommunalen Bürgerumfragezum persönlichem und zum Haushalts- Nettoeinkommen, gegliedert nach der Haushaltsgröße und Altersklassen.","CSV, JSON"
+Lebensunterhalt (Jahreszahlen),2023-09-26 12:19:53.315455,"Daten aus der Kommunalen Bürgerumfrage zur Quelle des Lebensunterhaltes: Erwerbseinkommen, Arbeitslosenbezüge, Renten und Pensionen sowie übrige Einkommen.","CSV, JSON"
+Handwerksbetriebe (Jahreszahlen),2023-09-26 12:19:51.528254,"Daten zu den bei der Handwerkskammer zu Leipzig registrierten Handwerks- und handwerskähnlichen Betrieben, aufgeteilt nach Gewerbegruppen.","CSV, JSON"
+Wohnungsmieten (Jahreszahlen),2023-09-26 12:19:48.988616,Daten aus der Kommunalen Bürgerumfrage zur Mietbelastung der Haushalte.,"CSV, JSON"
+Wohnsituation (Jahreszahlen),2023-09-26 12:19:47.999817,"Daten aus der Kommunalen Bürgerumfrage zur Wohnsituation der Haushalte: Wohnstatus, Wohnfläche und Wohnräume.","CSV, JSON"
+Volkshochschule (Jahreszahlen),2023-09-26 12:19:47.109830,Daten zu den Veranstaltungen und den Teilnehmern an Kursen der Leipziger Volkshochschule.,"CSV, JSON"
+Hochschulen (Jahreszahlen),2023-09-26 12:19:46.838275,Daten zu den Universitäten und Hochschulen in Leipzig; zu jeder Hochschule sind die Zahl der Studenten und der Personalbestand angegeben.,"CSV, JSON"
+Bibliotheken (Jahreszahlen),2023-09-26 12:19:31.537690,"Daten zum Buchbestand und den Beuschern in den Leipziger Bibliotheken: Deutsche Nationalbibliothek, Universitätsbibliothek, Deutsche Zentralbücherei für Blinde, Leipziger Städtische Bibliotheken.","CSV, JSON"
+Wetterdaten (Jahreszahlen),2023-09-26 12:19:28.904366,"Daten zur Lufttemperatur, Sonnenscheindauer und Niederschlägen.","CSV, JSON"
+LVB-Fahrplandaten,2017-12-15 08:32:04.803159,"Die Leipziger Verkehrsbetriebe (LVB) stellen hierin Bus- und Bahn-Fahrplandaten aus Leipzig im GTFS-Format zur Verfügung.  Diese enthalten Linien, Abfahrtzeiten, Routen usw.",GTFS
+Anträge Familienpass,2025-06-13 11:15:02.298899,"Anträge auf Ausstellung eines Familienpasses, gegliedert nach digitalem oder analogem Antragseingang.",CSV
+Anträge Melderecht,2025-06-13 13:08:03.433566,"Anträge auf Abmeldung Wohnsitz ins Ausland, Wohnsitzan-, Wohnsitzum- und -abmeldung und Abmeldung Nebenwohnsitz.",CSV
+Personenstandsklärungen Standesamt,2025-06-13 13:35:02.496817,"Personen, die nicht in Deutschland geheiratet haben, können Unterlagen vorlegen, um den Familienstand nach deutschem Recht feststellen zu lassen",CSV
+Ausgestellte Identitätsdokumente,2025-06-13 13:50:13.103781,"*   Personalausweise
+*   Reisepässe
+*   Kinderreisepässe (bis Ende 2023)",CSV
+Antrag Meldebescheinigung,2025-06-13 14:06:53.294668,Anträge auf Erteilung einer Meldebescheinigung. Trennung nach analogem und digitalem Antragseingang.,CSV
+Beglaubigungen,2025-06-13 14:18:15.374716,Anzahl beglaubigter Dokumente in den Bürgerbüros.,CSV
+Nachbestellung von Personenstandsurkunden,2025-06-13 12:49:35.294077,Anträge auf Ausstellung von Personenstandsurkunden sowie die Ausstellungszahlen.,CSV
+Anträge Führungszeugnis,2025-06-13 11:28:19.502451,"Anträge auf Ausstellung eines Führungszeugnisses, gegliedert nach digitalem oder analogem Antragseingang.",CSV
+Bundestagswahl 2025: Straßenabschnittsverzeichnis,2025-01-14 10:39:08.430936,Straßenabschnittsverzeichnis der Stadt Leipzig mit Wahlkreisen und Wahlbezirken zur Bundestagswahl 2025.,CSV
+Ortschaftsratswahlen 2024: Wahlbezirksergebnisse,2024-06-06 10:01:21.370098,"Eine Liste der verfügbaren Ergebnisse aus den Ortschaftsratswahlen am 9.6.2024, sowie Dokumentation zur Interpretation der Dateien, finden sich unter https://wahlergebnis.leipzig.de/4/eu2024/14713000/praesentation/opendata.html
+
+Die verfügbaren CSVs enthalten die abgegebenen Stimmen, nicht die resultierende Sitzverteilung.
+
+Die Zuordnung von Adressen und Wahlbezirken zu den Ortschaften kann dem zugehörigen Straßenabschnittsverzeichnis entnommen werden: https://opendata.leipzig.de/dataset/06194a4e-38f1-42ae-9606-47bb31b78d86",CSV
+Kontaktaufnahme Bürgertelefon,2025-06-13 06:00:10.327442,"Daten zu eingehenden E-Mails sowie angenommenen Anrufen des Bürgertelefons Leipzig über die Nummern 0341 123-0; 0341 115, 115.",CSV
+Online-Wahlen in Leipzig: Kennzahlen (Zeitreihe),2025-05-26 14:25:04.776926,"Wahltermine, Wahlberechtigten-, Wähler- und Kandidierendenzahlen für die Jugendparlamentswahlen und die Wahlen zum Migrantinnen- und Migrantenbeirat
+
+###Spaltenerklärungen:
+* datum: Wahltag laut Wahlordnung
+* wahl: Wahlart
+* zeitraum-start: Beginn des Zeitraums zur Online-Stimmabgabe
+* zeitraum-ende: Ende des Zeitraums zur Online-Stimmabgabe
+* gebiet-name: räumlicher Bezug
+* wahlberechtigte: 
+* kandidierende: Zahl der Kandidat/-innen
+* sitze: durch die Wahl zu vergebende Sitze im Gremium
+* waehler-gesamt: Anzahl der Wähler/-innen im gesamten Zeitraum
+* wahler-t1 ... waehler-t8: Anzahl der Wähler/-innen jeweils an Tag 1 (i.d.R. Montag vor dem Wahltag ab 8:00 Uhr) bis Tag 8 (i.d.R. Montag nach dem Wahltag bis 8:00 Uhr)
+* gueltige-stimmen: gültige abgegebene Stimmen (i.d.R. eine bis drei pro Wähler/-in möglich)
+* ungueltige-stimmzettel: ungültige abgegebene Online-Stimmzettel (i.d.R. mit weniger als einer oder mehr als drei abgegebenen Stimmen)",CSV
+Migrantinnen- und Migrantenbeiratswahl 2025: Wahlergebnis,2025-05-26 14:13:01.407717,"Wahlergebnis der 2. Online-Wahl zum Migrantinnen- und Migrantenbeirat der Stadt Leipzig
+
+###Spaltenerklärungen:
+* stimmzettelposition: Reihenfolge der Kandidierenden auf dem Online-Stimmzettel (ausgelost)
+* name: Vor- und Familiennamen der Kandidierenden
+* stimmen: Anzahl der Stimmen je Kandidat/-in
+* gewaehlt: Status, ob durch das Ergebnis ein Platz auf der Vorschlagsliste für den Stadtrat errungen wurde
+* herkunftsregion: Zugehörigkeit der Kandidierenden durch eine der Herkunftsregionen laut Wahlordnung",CSV
+Jugendparlamentswahl 2025: Wahlergebnis,2025-05-26 14:31:15.968400,"Wahlergebnis der 6. Online-Wahl zum Jugendparlament der Stadt Leipzig
+
+###Spaltenerklärungen:
+* stimmzettelposition: Reihenfolge der Kandidierenden auf dem Online-Stimmzettel (ausgelost)
+* name: Vor- und Familiennamen der Kandidierenden
+* stimmen: Anzahl der Stimmen je Kandidat/-in
+* gewaehlt: Status, ob durch das Ergebnis ein Sitz errungen wurde",CSV
+Kennzahlen zu Wahllokalen in Leipzig,2025-05-26 07:34:29.055032,"Anzahl Wahlräume, Wahlobjekte, Art der Objekte und Barrierefreiheit
+
+###Spaltenerklärungen:
+* datum: Wahltag
+* wahl: Wahlart
+* gebiet-name: räumlicher Bezug
+* wahlraeume: Zahl der Wahlräume (ein Wahlraum pro Wahlbezirk)
+* wahlraeume-barrierefrei: Anzahl der für Personen mit Gehbehinderung bzw. Rollstuhl zugänglichen Wahlräume
+* wahlobjekte: Anzahl der Gebäude/ Adressen, die für Wahlräume genutzt wurden (mehrere Wahlräume in einem Wahlobjekt möglich)
+* wahllobjekte-städtisch-schulen: Anzahl der als Wahlobjekt genutzten Schulen
+* wahlobjekte-städtisch-sonstige: sonstige als Wahlobjekt genutzte städtische Liegenschaften wie Rathäuser oder Feuerwachen
+* wahlobjekte-fremd: angemietete Wahlobjekte, die nicht in städtischem Besitz sind",CSV
+"Wahlberechtigte, Wähler/-innen und Briefwähler/-innen seit 1994",2025-05-26 06:48:41.012497,"Wahlberechtigte, Wähler/-innen und Briefwähler/-innen seit 1994
+
+###Spaltenerklärungen:
+* datum: Wahltag
+* wahl: Wahlart
+* gebiet-name: räumlicher Bezug
+* wahlberechtigte: Gesamtzahl wahlberechtigter Personen im Wählerverzeichnis
+* waehler-gesamt: Gesamtzahl aller Wähler/-innen (Urnenwahl und Briefwahl)
+* briefwaehler: zugelassene Wahlbriefe bei der Auszählung der Briefwahlbezirke (ohne Stimmabgaben mit Wahlschein in Wahllokalen)",CSV
+Bundestagswahl 2025: Geodaten der Briefwahlbezirke,2025-01-14 10:30:53.870944,"Dieser Datensatz enthält die Geodaten der Leipziger Briefwahlbezirke für die Bundestagswahl am 23.2.2025. Brief-Wahlbezirke setzen sich geographisch aus Urnen-Wahlbezirken zusammen, diese finden sich unter https://opendata.leipzig.de/dataset/bundestagswahl-2025-geodaten-der-wahlbezirke.
+
+Die erste Stelle der Wahlbezirks-Nummer entspricht der Stadtbezirksnummer, die ersten beiden Stellen der Wahlbezirks-Nummer entsprechen der Ortsteilnummer.
+
+Die Wahlkreise finden sich unter https://opendata.leipzig.de/dataset/bundestagswahl-2025-wahlkreise.
+
+Das zugehörige Straßenabschnittsverzeichnis mit den zugeordneten Adressen und Wahlkreisen findet sich unter https://opendata.leipzig.de/dataset/bundestagswahl-2025-strassenabschnittsverzeichnis",SHP
+"Bodenrichtwerte, Stadt Leipzig",2023-09-29 10:02:25.704702,"Der Gutachterausschuss in der Stadt Leipzig ermittelt und veröffentlicht gemäß §196 BauGB mindestens aller zwei Jahre die Bodenrichtwerte für das Gebiet der Stadt Leipzig bezogen auf den 1. Januar eines Jahres bzw. bis 2021 auf den 31. Dezember eines Jahres. Bodenrichtwerte sind durchschnittliche Lagewerte für den Boden unter Berücksichtigung der unterschiedlichen Entwicklungszustände angegeben pro Quadratmeter Grundstücksfläche. Bodenrichtwertzonen umfassen Gebiete, die nach Art und Maß der Nutzung weitgehend übereinstimmen. Die wertbeeinflussenden Merkmale des Bodenrichtwertgrundstücks sind dargestellt. Die Ermittlung der Bodenrichtwerte erfolgt gemäß der Regelungen der ImmoWertV. Dieser WMS-Dienst stellt die Bodenrichtwerte für das Gebiet der Stadt Leipzig beginnend ab dem Jahr 2010 bereit und enthält, soweit im jeweiligen Jahr verfügbar, die Ebenen ""Bodenrichtwertzone"", ""Bodenrichtwertgrundstück"", ""Entwicklungsmaßnahme"", ""Sanierungsgebiet"", ""Lagequalität"" sowie verschiedene Beschriftungsebenen.",WMS
+Unfälle mit Radbeteiligung,2022-09-13 07:49:24.470707,"Dieser Datensatz stellt Informationen zu Unfällen bereit, die in Leipzig im Zeitraum von 2016-2021 stattgefunden haben. Diese Daten wurden aus dem bundesweiten Unfallatlas von destatis extrahiert. Die Angaben stammen aus der Statistik der Straßenverkehrsunfälle, die auf Meldungen der Polizeidienststellen basiert. 
+",CSV
+Bundestagswahl 2025: Geodaten der Wahlkreise,2025-01-14 10:34:43.434257,Die Datei enthält die Geodaten der Leipziger Wahlkreiseinteilung für die Bundestagswahl 2025.,SHP
+Bundestagswahl 2025: Geodaten der Wahlbezirke,2025-01-14 09:34:43.814229,"Dieser Datensatz enthält die Geodaten der Leipziger Urnen-Wahlbezirke für die Bundestagswahl am 23.2.2025. Briefwahlbezirke setzen sich geographisch aus Urnen-Wahlbezirken zusammen, diese finden sich unter https://opendata.leipzig.de/dataset/bundestagswahl-2025-geodaten-der-briefwahlbezirke.
+
+Die erste Stelle der Wahlbezirks-Nummer entspricht der Stadtbezirksnummer, die ersten beiden Stellen der Wahlbezirks-Nummer entsprechen der Ortsteilnummer.
+
+Die Wahlkreise finden sich unter https://opendata.leipzig.de/dataset/bundestagswahl-2025-wahlkreise.
+
+Das zugehörige Straßenabschnittsverzeichnis mit den zugeordneten Adressen und Wahlkreisen findet sich unter https://opendata.leipzig.de/dataset/bundestagswahl-2025-strassenabschnittsverzeichnis",SHP
+"Ärzte (Jahreszahlen, kleinräumig)",2024-03-02 15:06:40.715189,Kleinräumige Daten zu niedergelassenen Ärzten in den Ortsteilen und Stadtbezirken.,"CSV, JSON"
+"Einwohner (Jahreszahlen, kleinräumig)",2023-09-26 12:20:14.413696,Kleinräumige Einwohnerdaten auf Ortsteil- und Stadtbezirksebene nach Geschlecht und Staatsangehörigkeit.,"CSV, JSON"
+"Apotheken (Jahreszahlen, kleinräumig)",2023-09-26 12:20:01.336744,Kleinräumige Daten zu Apotheken in den Ortsteilen und Stadtbezirken.,"CSV, JSON"
+"Kraftfahrzeugbestand (Jahreszahlen, kleinräumig)",2023-09-26 12:20:14.258132,"Kleinräumige Daten auf Ortsteil- und Stadtbezirksebene zum Bestand an Kraftfahrzeugen, darunter Personenkraftwagen, Nutzfahrzeuge, Krafträder und Anhänger.","CSV, JSON"
+Stadtratswahl 2024: Stadtergebnis,2024-06-06 09:41:38.166636,"Wahlergebnisse zur Stadtratswahl am 9.6.2024 im Leipziger Stadtgebiet.
+
+Dieser Datensatz enthält nur die abgegebenen Stimmen, nicht die daraus resultierende Sitzverteilung.",CSV
+Vornamenstatistik 2024,2025-01-06 11:10:17.215452,,CSV
+"Arbeitslose (Jahreszahlen, kleinräumig)",2024-03-02 15:06:36.184826,Kleinräumige Daten zu den Arbeitslosen in den Ortsteilen und Stadtbezirken.,"CSV, JSON"
+"Allgemeinbildende Schulen (Jahreszahlen, kleinräumig)",2023-09-26 12:20:12.501959,"Kleinräumige Daten auf Ortsteil- und Stadtbezirksebene zu Allgemeinbildenden Schulen und Schülern, darunter Grunschulen, MIttelschulen, Gymnasien und Förderschulen.","CSV, JSON"
+Aufwendungen für Kindertageseinrichtungen (Jahreszahlen),2023-09-26 12:19:45.225854,"Daten zur Entwicklung Erträge, Zuschüsse und Aufwendungen für Kindertageseinrichtungen","CSV, JSON"
+Aufwendungen für Erziehungshilfen (Jahreszahlen),2023-09-26 12:19:44.955955,Daten zu Aufwendungen für Erziehungshilfen,"CSV, JSON"
+Insolvenzverfahren (Jahreszahlen),2023-09-26 12:19:52.669194,"Daten zu den Unternehmensinsolvenzen, unterteilt in die Wirtschaftsabteilungen der Klassifikation der Wirtschaftszweige (WZ 2008).","CSV, JSON"
+Gewerbemeldungen (Jahreszahlen),2023-09-26 12:19:52.433213,"Daten zu den Gewerbean- und abmeldungen, unterteilt in die Wirtschaftsabteilungen der Klassifikation der Wirtschaftszweige (WZ 2008).","CSV, JSON"
+Tagespflege (Jahreszahlen),2023-09-26 12:19:42.157170,Daten zur Tagespflege von Kindern,"CSV, JSON"
+Kindertageseinrichtungen (Jahreszahlen),2023-09-26 12:19:39.801070,"Daten zu Kindertageseinrichtungen, deren Kapazität und angemeldeten Kinder.","CSV, JSON"
+LeipzigGiesst gegossene Liter Jahresstatistik 2024,2025-04-08 19:54:06.472128,"Gegossene Liter pro Straßenbaum, wie sie durch die Nutzer in app.LeipzigGiesst.de eingetragen wurden, aufsummiert im Zeitraum von 1. März 2024 bis 30. September 2024. Es werden die Daten des Baumkatasters für die Identifikation des jeweiligen Baums verwendet (aber auch Baum-Daten von OpenStreetMap.org)",CSV
+Geförderte Wohnraumanpassungen (Jahreszahlen),2023-09-26 12:19:45.995229,Daten zu geförderten Wohnraumanpassungen,"CSV, JSON"
+Erziehungshilfen für Minderjährige (Jahreszahlen),2023-09-26 12:19:44.714710,Daten zu Erziehungshilfen für Minderjährige und junge Volljährige nach Hilfearten ,"CSV, JSON"
+Verweildauer in Notunterkünften (Jahreszahlen),2023-09-26 12:19:43.357782,Daten zur durchschnittlichen Verweildauer in Leipziger Notunterkünften.,"CSV, JSON"
+Fälle ambulant betreuten Wohnens (Jahreszahlen),2023-09-26 12:19:42.731510,Daten zu Fällen ambulant betreuten Wohnens.,"CSV, JSON"
+Durchschnittliche Anzahl obdachloser und wohnungsloser Personen (Jahreszahlen),2023-09-26 12:19:41.832637,"Daten zur durchschnittlichen Anzahl obdachloser und wohnungsloser Personen, die auf der Straße angetroffen wurden.","CSV, JSON"
+Übernahme von Mietschulden (Jahreszahlen),2023-09-26 12:19:41.550602,Daten zur Übernahme von Mietschulden.,"CSV, JSON"
+Von Wohnungslosigkeit bedrohte Haushalte  (Jahreszahlen),2023-09-26 12:19:40.797405,"Daten zu Haushalten, die von Wohnungslosigkeit bedroht sind.","CSV, JSON"
+Vermittlung wohnungssuchender Haushalte mit Wohnberechtigungsschein (Jahreszahlen),2023-09-26 12:19:40.437887,,"CSV, JSON"
+Wohnraumversorgung mit Wohnberechtigungsschein (Jahreszahlen),2023-09-26 12:19:40.116284,,"CSV, JSON"
+Europawahl 2024: Stadtbezirksergebnisse,2024-06-06 09:01:10.825643,"Wahlergebnisse zur Europawahl am 9.6.2024 in den Leipziger Stadtbezirken.
+
+Die Geodaten der Stadtbezirke finden sich unter https://opendata.leipzig.de/dataset/eebf6dcb-6806-4c3f-8f25-d2763cae3da6
+",CSV
+Stadtratswahl 2024: Bewerberinnen und Bewerber (CSV),2024-08-15 06:53:56.428417,"Dieser Datensatz enthält die Daten der Bewerberinnen und Bewerber, die sich bei der Leipziger Stadtratswahl am 9.6.2024 zur Wahl gestellt haben.
+Wahlergebnisdaten sind hier zu finden:
+
+Stadtergebnis: https://opendata.leipzig.de/dataset/stadtratswahl-2024-stadtergebnis
+
+Wahlkreisergebnisse: https://opendata.leipzig.de/dataset/f3f1f107-18b4-4c2a-a071-75e1aea1ba37
+
+Ortsteilergebnisse: https://opendata.leipzig.de/dataset/stadtratswahl-2024-ortsteilergebnisse
+
+Wahlbezirksergebnisse: https://opendata.leipzig.de/dataset/stadtratswahl-2024-wahlbezirksergebnisse
+",CSV
+Bundestagswahl 2025: Stadtergebnis,2025-02-28 11:40:50.784591,Dieser Datensatz enthält das Stadtergebnis der Bundestagswahl 2025 in Leipzig.,CSV
+Bundestagswahl 2021: Wahlkreisergebnis Leipzig II (153),2024-04-23 10:19:26.377402,Dieser Datensatz enthält das Wahlkreisergebnis für den Wahlkreis Leipzig II - 153.,CSV
+Bundestagswahl 2021: Wahlkreisergebnis Leipzig I (152),2024-04-23 09:02:38.266822,Dieser Datensatz enthält das Wahlkreisergebnis für den Wahlkreis Leipzig I - 152.,CSV
+Bundestagswahl 2025: Wahlkreisergebnis Leipzig II (152),2025-02-28 11:36:27.447655,"Dieser Datensatz enthält das Wahlkreisergebnis für den Wahlkreis Leipzig II - 152 bei der Bundestagswahl 2025. Aufgrund einer Überarbeitung der Wahlkreisnummerierung war Leipzig II bei früheren Bundestagswahlen der Wahlkreis Nr. 153.
+
+Die Geodaten der Leipziger Wahlkreise finden sich unter: https://opendata.leipzig.de/dataset/11d923d1-9c91-492d-a5c2-13cc74e0f72b
+",CSV
+Bundestagswahl 2025: Wahlkreisergebnis Leipzig I (151),2025-02-28 11:32:05.057009,"Dieser Datensatz enthält das Wahlkreisergebnis für den Wahlkreis Leipzig I - 151 bei der Bundestagswahl 2025. Aufgrund einer Überarbeitung der Wahlkreisnummerierung war Leipzig I bei früheren Bundestagswahlen der Wahlkreis Nr. 152.
+
+Die Geodaten der Leipziger Wahlkreise finden sich unter: https://opendata.leipzig.de/dataset/11d923d1-9c91-492d-a5c2-13cc74e0f72b",CSV
+Bundestagswahl 2025: Wahlbezirksergebnisse,2025-02-28 11:14:34.255624,"Dieser Datensatz enthält die Ergebnisse der Bundestagswahl 2025 in den Leipziger Wahlbezirken.
+
+Die Geodaten der Wahlbezirke finden sich unter: https://opendata.leipzig.de/dataset/fea13bec-d397-40d9-b3de-2bd3030fa248
+
+Die Geodaten der Briefwahlbezirke finden sich unter: https://opendata.leipzig.de/dataset/e8a3b316-f697-440b-90c0-33cd2e04be7f",CSV
+Straßennamensverzeichnis mit Erläuterungen,2021-03-31 10:30:55.275224,"Informationen zu den Namen aller über 3.000 benannten Straßen und Plätze der Stadt Leipzig: Straßenname, Erläuterung des Straßennamens, frühere Namen (bei umbenannten Straßen), Beschlussdaten (Nummer und Datum des Benennungsbeschlusses des Stadrates)",XML
+Bundestagswahl 2025: Geodaten der Wahllokale,2025-01-22 15:21:33.070975,"Dieser Datensatz enthält die Geodaten der 414 Leipziger Wahllokale für die Bundestagswahl am 23.2.2025. In einem Wahlobjekt können sich mehrere Wahllokale (Wahlräume) befinden, denen Wahlbezirke zugeordnet sind. Die Geodaten der Wahlbezirke finden sich unter https://opendata.leipzig.de/dataset/fea13bec-d397-40d9-b3de-2bd3030fa248","CSV, SHP"
+"Beschäftigte (Jahreszahlen, kleinräumig)",2023-09-26 12:20:17.265494,Kleinräumige Daten zu den Sozialversicherungspflichtig Beschäftigten in den Ortsteilen und Stadtbezirken.,"CSV, JSON"
+Landtagswahlen (kleinräumig),2023-09-26 12:20:17.896046,Kleinräumige Wahlergebnisse der Landtagswahlen in den Ortsteilen und Stadtbezirken.,"CSV, JSON"
+"Einwohnerdichte (Jahreszahlen, kleinräumig)",2023-09-26 12:20:16.838094,Kleinräumige Daten zur Bevölkerungsdichte in den Ortsteilen und Stadtbezirken.,"CSV, JSON"
+"Straftaten (Jahreszahlen, kleinräumig)",2023-09-26 12:20:01.075721,"Kleinräumige Daten zu Straftaten in den Ortsteilen und Stadtbezirken nach Deliktarten, darunter Diebstahl, Körperverletzung und Vermögensdelikte.","CSV, JSON"
+"Baugenehmigungen (Jahreszahlen, kleinräumig)",2023-09-26 12:20:02.028110,Kleinräumige Daten zu Baugenehmigungen für Gebäude und Wohnungen in den Ortsteilen und Stadtbezirken.,"CSV, JSON"
+"Familien mit Kindern (Jahreszahlen, kleinräumig)",2023-09-26 12:20:03.069758,,"CSV, JSON"
+Durchschnittliche Nettokaltmiete (Median) der Angebotsmiete nach Baualter (Jahreszahlen),2023-09-26 12:19:49.182685,Daten zur durchschnittlichen Nettokaltmiete (Median) der Angebotsmiete nach Baualter.,"CSV, JSON"
+Gesamtmietbelastung nach Haushaltstyp (Jahreszahlen),2023-09-26 12:19:48.788479,,"CSV, JSON"
+Haushaltsgröße (Jahreszahlen),2023-09-26 12:19:48.489113,Daten zur Anzahl der Haushalte nach Haushaltsgröße sowie zur durchschnittlichen Haushaltsgröße.,"CSV, JSON"
+Wohnungsbestand  (Jahreszahlen),2023-09-26 12:19:48.290221,,"CSV, JSON"
+Anteilige Verteilung der Schulabschlüsse (Jahreszahlen),2023-09-26 12:19:47.575940,Angaben zur anteiligen Verteilung der Schulabschlüsse,"CSV, JSON"
+"Wanderungen (Melderegisterdaten, unrevidiert) (Jahreszahlen)",2023-09-26 12:19:39.465290,Daten zu den Zuzügen und Fortzügen von und nach der Stadt Leipzig nach Geschlecht und Staatsangehörigkeit.,"CSV, JSON"
+Bevölkerung nach Religionszugehörigkeit (Jahreszahlen),2024-02-06 15:04:33.758414,Daten zur Bevölkerung nach Religionszugehörigkeit.,"CSV, JSON"
+Ausgaben (Jahreszahlen),2023-09-26 12:19:35.677519,Daten zur Höhe der Haushaltsausgaben (laufende Ausgaben und Investitionen).,"CSV, JSON"
+Personal nach Dienstverhältnissen (Jahreszahlen),2023-09-26 12:19:35.167328,"Daten zum Personal der Stadtverwaltung nach Dienstverhältnissen, Beschäftigungsstatus und Geschlecht.","CSV, JSON"
+Personal nach Produktbereichen (Jahreszahlen),2023-09-26 12:19:34.942967,Daten zum Personal der Stadtverwaltung nach Produktbereichen und Geschlecht.,"CSV, JSON"
+Probleme aus Bürgersicht (ab 2020) (Jahreszahlen),2023-09-26 12:19:34.504924,"Daten aus der Kommunalen Bürgerumfrage zum Problemempfinden der Leipziger in den Bereichen Sicherheit, Straßenzustand, Armut, Finanzsituation/Verschuldung der Stadt, Arbeits-/Ausbildungsplätze, Straßenbaustellen, Umleitungen, Kindertagesstätten, Sauberkeit auf Straßen/Plätzen, Wohnkosten, Baustellen in der Innenstadt, Zusammenleben mit Ausländern, Parkplätze, ärztliche Versorgungn, Schulen, Freizeitangebote für Kinder und Jugendliche, Lärmbelastung, Öffentlicher Nahverkehr, Wohnungsleerstand und Umweltbelastung, ausgewiesen für junge Erwachsene, Eltern mit Kind(ern) und ältere Erwachsene ab 55 Jahre.","CSV, JSON"
+Probleme aus Bürgersicht (Jahreszahlen),2023-09-26 12:19:34.175469,"Daten aus der Kommunalen Bürgerumfrage zum Problemempfinden der Leipziger in den Bereichen Sicherheit, Straßenzustand, Armut, Finanzsituation/Verschuldung der Stadt, Arbeits-/Ausbildungsplätze, Straßenbaustellen, Umleitungen, Kindertagesstätten, Sauberkeit auf Straßen/Plätzen, Wohnkosten, Baustellen in der Innenstadt, Zusammenleben mit Ausländern, Parkplätze, ärztliche Versorgungn, Schulen, Freizeitangebote für Kinder und Jugendliche, Lärmbelastung, Öffentlicher Nahverkehr, Wohnungsleerstand und Umweltbelastung, ausgewiesen für junge Erwachsene, Eltern mit Kind(ern) und ältere Erwachsene ab 55 Jahre.","CSV, JSON"
+Sporteinrichtungen (Jahreszahlen),2023-09-26 12:19:32.721452,Daten zu den Leipziger Sporteinrichtungen und Sportanlagen.,"CSV, JSON"
+Sportvereine (Jahreszahlen),2023-09-26 12:19:32.431093,Daten zu den Mitgliedern in den Leipziger Sportvereinen nach Sportarten.,"CSV, JSON"
+Betreuungsquote von Kindern unter 7 Jahren in Kindertageseinrichtungen und Kindertagespflege,2023-03-20 08:45:28.532646,Quotient der Anzahl der Kinderkrippen- und Kindergartenkinder in Kindertageseinrichtungen in öffentlicher oder freier Trägerschaft und in öffentlich geförderter Kindertagespflege und der Anzahl aller Kinder bis unter 7 Jahre in Leipzig 2012 bis 2022 nach Altersgruppe (in Prozent).  Angaben zur Anzahl der Kinder entstammen den Daten des statistischen Landesamtes Sachsen zum 01.03. des jeweiligen Jahres. Angaben zur Anzahl der Kinder entstammen dem Einwohnermelderegister des Bürgerservice der Stadt Leipzig zum 31.03. des jeweiligen Jahres.,CSV
+Arbeitssituation Corona-Pandemie nach Geschlecht,2022-06-16 08:08:29.624345,Der Datensatz enthält eine Übersicht über Ergebnisse der Kommunalen Bürgerumfrage 2021 zur Frage ob und inwieweit sich die Arbeitssituation der Bürgerinnen und Bürger Leipzigs im Zuge der Corona-Pandemie seit März 2020 verändert hat.  Die Ergebnisse sind aufgeschlüsselt nach Geschlecht.,CSV
+Amtliche Korrekturen und reguläre Wanderungsvorgänge,2023-03-10 12:06:12.682598,Wanderungssalden nach der alten und neuen Methode (inkl. Amtlicher Korrekturen) seit 2015.,CSV
+Vornamensstatistik 2023,2024-01-05 12:32:30.892706,Der Datensatz enthält die Vornamensstatistik für das Jahr 2023. ,CSV
+Vornamensstatistik 2021,2024-03-28 09:56:33.928855,Der Datensatz enthält die Vornamensstatistik für das Jahr 2021.,CSV
+Vornamensstatistik 2020,2024-03-28 10:33:18.684355,Der Datensatz enthält die Vornamensstatistik für das Jahr 2020. ,CSV
+Vornamensstatistik 2019,2024-04-02 05:51:50.848115,Der Datensatz enthält die Vornamensstatistik für das Jahr 2019.,CSV
+Versorgungsgrad an Plätzen in Kindertageseinrichtungen,2023-03-20 08:57:52.586835,"Versorgungsgrad an Plätzen für Kindergarten- oder Kinderkrippenkinder in Kindertagesstätten in öffentlicher oder freier Trägerschaft nach Ortsteilen.
+
+Der Versorgungsgrad gibt den Quotient der zur Verfügung stehenden Plätze in Kindertagesstätten und den Einwohnern der entsprechenden Altersgruppe (für Kinderkrippenkinder: 1- unter 3 Jahre, für Kindergartenkinder: 3- unter 7 Jahre) in Prozent an.  Berechnungsgrundlage sind die Angaben zu Kapazitäten von Kindertageseinrichtungen unter öffentlicher oder freier Trägerschaft des Amts für Jugend und Familie im März 2022 sowie das Einwohnerregister des Bürgerservice der Stadt Leipzig zum 31.03.2022",CSV
+Relative Entwicklung der Einwohnerzahl nach Ortsteilen,2023-02-28 19:53:54.842312,"Relative Entwicklung der Einwohnerzahl nach Ortsteilen, 2018 bis 2022",CSV
+Stadtratswahl 2024: Wahlbezirksergebnisse,2024-05-27 08:13:30.683182,"Wahlergebnisse zur Stadtratswahl am 9.6.2024 in den Leipziger Wahlbezirken.
+
+Die geographische Zuordnung der Wahlbezirke ist im [zugehörigen Straßenabschnittsverzeichnis](https://opendata.leipzig.de/dataset/06194a4e-38f1-42ae-9606-47bb31b78d86) dokumentiert. Die [Geodaten der Wahlbezirke](https://opendata.leipzig.de/dataset/06d979ad-48df-4ed4-a9cb-ce1f0bc8d0a0) und die [Geodaten der Wahlkreise](https://opendata.leipzig.de/dataset/5e2f63ca-dfe9-4c57-b01f-5504a21a99e3) sind ebenfalls verfügbar. ",CSV
+Registrierungen ukrainischer Personen in Leipzig im Jahr 2022,2023-02-09 11:17:05.172720,Registrierungen ukrainischer Personen in Leipzig im Jahr 2022,CSV
+Leistungszahlen Leipziger Städtische Bibliotheken,2023-03-31 08:36:14.826542,"Leistungszahlen der Jahre 2020 bis 2023, unter anderem Entleihungen, Besuche und Erwerbungsetat",CSV
+"Luftbild 2022, Stadt Leipzig",2023-05-30 10:38:44.663506,Das Luftbild der Stadt Leipzig als TrueOrthophoto (TrueDOP) von 2022 in 20 cm Auflösung.,"WMS, WMTS"
+Stadtratswahl 2024: Wahlkreisergebnisse,2024-06-06 09:32:33.748503,"Wahlergebnisse zur Stadtratswahl am 9.6.2024 in den Leipziger Wahlkreisen.
+
+Die Geodaten der Wahlkreise finden sich unter https://opendata.leipzig.de/dataset/5e2f63ca-dfe9-4c57-b01f-5504a21a99e3
+",CSV
+Relative Bevölkerungsentwicklung - Kinder und Jugendliche,2023-02-28 19:41:24.905669,"Relative Entwicklung der Einwohnerzahlen 2018 bis 2022 für folgende Altersgruppen: 0 bis unter 6 Jahre,  6 bis unter 10 Jahre und 10 bis unter 19 Jahre",CSV
+Stadtratswahl 2019: Ergebnisse,2024-11-15 14:25:02.300858,"Alle Ergebnisse der Leipziger Stadtratswahl am 26.05.2019.
+
+Der Datensatz enthält die abgegebenen Stimmen insgesamt, sowie nach Ortsteilen, Wahlkreisen und Wahlbezirken. Es ist dabei zu beachten, dass insbesondere Wahlkreise und Wahlbezirke nicht mit denen bei anderen Wahlen übereinstimmen müssen.
+
+Es ist ebenfalls enthalten, welche Kandidierenden gewählt wurden.",XLSX
+Stadtratswahl 2024: Ortsteilergebnisse,2024-06-06 09:38:00.200287,"Wahlergebnisse zur Stadtratswahl am 9.6.2024 in den Leipziger Ortsteilen.
+
+Die Geodaten der Ortsteile finden sich unter https://opendata.leipzig.de/dataset/74b342a9-7db7-45a3-8404-944442a24d51",CSV
+Arbeitssituation Corona-Pandemie nach Geschlecht und Altersgruppen,2022-06-16 08:53:01.985487,Der Datensatz enthält eine Übersicht über Ergebnisse der Kommunalen Bürgerumfrage 2021 zur Frage ob und inwieweit sich die Arbeitssituation der Bürgerinnen und Bürger Leipzigs im Zuge der Corona-Pandemie seit März 2020 verändert hat. Die Ergebnisse sind aufgeschlüsselt nach Geschlecht und Altersgruppen.,CSV
+Beratungsstelle Wohnen und Soziales (Jahreszahlen),2023-09-26 12:19:45.701526,Daten zur Beratungsstelle Wohnen und Soziales.,"CSV, JSON"
+Untersuchte Kinder in Kindertageseinrichtungen (Jahreszahlen),2023-09-26 12:19:45.471056,Daten Untersuchte Kinder in Kindertageseinrichtungen,"CSV, JSON"
+Erziehungs- und Familienberatungsstellen (Jahreszahlen),2023-09-26 12:19:44.490477,Daten zu Beratungsleistungen der Erziehungs- und Familienberatungsstellen,"CSV, JSON"
+Kinder- und Jugendförderung freier Träger  (Jahreszahlen),2023-09-26 12:19:43.872046,Daten zum Budget Kinder- und Jugendförderung freier Träger nach Leistungsbereichen in Prozent,"CSV, JSON"
+Investitionen in den Schulbau (Jahreszahlen),2023-09-26 12:19:47.333010,Daten zu Investitionen in den Schulbau,"CSV, JSON"
+Zufriedenheit mit den Lebensbedingungen (Jahreszahlen),2023-09-26 12:19:36.456501,"Daten aus der Kommunalen Bürgerumfrage zur Zufriedenheit der Leipziger mit den Lebensbedingungen, u.a. Angebot an öffentlichen Grünanlagen, Ausbau der Naherholungsgebiete, Zustand der Gewässer, Sauberkeit der Luft, Angebot an Freizeitsportanlagen, Versorgung mit Alten- und Pflegeheimen, Sauberkeit der Straßen und öffentlichen Plätzen, Angebot an Ausbildungsplätzen, Lehrstellen, Angebot an Kindereinrichtungen, Angebot an Jugendfreizeiteinrichtungen, öffentliche Sicherheit/Schutz vor Kriminalität, Angebot an Arbeitsplätzen und Straßenzustand, ausgewiesen für junge Erwachsene, Eltern mit Kind(ern) und ältere Erwachsene ab 55 Jahre.","CSV, JSON"
+Landtagswahl 2024: Straßenabschnittsverzeichnis,2023-10-06 07:30:53.202262,Straßenabschnittsverzeichnis der Stadt Leipzig mit Wahlkreisen und Wahlbezirken für die Wahl zum sächsischen Landtag 2024.,CSV
+Sitzungskalender - Ratsinformationssystem Stadt Leipzig (OParl),2022-11-25 08:24:30.479212,"Dieser Datensatz enthält Angaben zu allen Sitzungsterminen, die im elektronischen Ratsinformationssystem Leipzig erfasst sind. Er kann über die OParl-Schnittstelle abgerufen werden.  
+
+Das elektronische Ratsinformationssystem der Stadt Leipzig bietet die öffentlichen Unterlagen und sonstigen Angaben der Ratsversammlung und ihrer Gremien jederzeit und frei zugänglich im Internet an.
+
+Genauere Informationen erhalten Sie auf den Seiten des [Ratsinformationssystems der Stadt Leipzig](https://ratsinformation.leipzig.de/allris_leipzig_public/) und in der [Dokumentation der OParl-Schnittstelle](https://oparl.org/spezifikation/online-ansicht/#oparl-endpunkt).",JSON
+Organisationen - Ratsinformationssystem Stadt Leipzig (OParl),2022-11-25 09:40:19.023616,"Dieser Datensatz enthält Angaben zu allen Organisationen, die im elektronischen Ratsinformationssystem Leipzig erfasst sind. Sie können über die OParl-Schnittstelle abgerufen werden.  Zu Organisationen zählen der [Stadtrat](https://ratsinformation.leipzig.de/allris_leipzig_public/gr020?GRLFDNR=2387), das [Jugendparlament](https://ratsinformation.leipzig.de/allris_leipzig_public/gr020?GRLFDNR=1000017) sowie die jeweiligen Gremien der [Ausschüsse](https://ratsinformation.leipzig.de/allris_leipzig_public/gr010?menu=Ausschuss), [Ortschaftsräte](https://ratsinformation.leipzig.de/allris_leipzig_public/gr010?menu=Ortschaftsr%C3%A4te), [Stadtbezirksbeiräte](https://ratsinformation.leipzig.de/allris_leipzig_public/gr010?menu=Stadtbezirksbeir%C3%A4te), [Beiräte](https://ratsinformation.leipzig.de/allris_leipzig_public/gr010?menu=Beir%C3%A4te), [Aufsichtsräte](https://ratsinformation.leipzig.de/allris_leipzig_public/gr010?menu=Aufsichtsr%C3%A4te), [Zweckverbände, Stiftungen](https://ratsinformation.leipzig.de/allris_leipzig_public/gr010?menu=Zweckverb%C3%A4nde%252C+Stiftungen+etc.) und [Fraktionen](https://ratsinformation.leipzig.de/allris_leipzig_public/gr010?menu=Fraktion).  Für jede Organisation werden deren Mitglieder, Sitzungen und Tagungsorte erfasst.
+
+Das elektronische Ratsinformationssystem der Stadt Leipzig bietet die öffentlichen Unterlagen und sonstigen Angaben der Ratsversammlung und ihrer Gremien jederzeit und frei zugänglich im Internet an.
+
+Genauere Informationen erhalten Sie auf den Seiten des [Ratsinformationssystems der Stadt Leipzig](https://ratsinformation.leipzig.de/allris_leipzig_public/) und in der [Dokumentation der OParl-Schnittstelle](https://oparl.org/spezifikation/online-ansicht/#oparl-endpunkt).",JSON
+Vorlagen - Ratsinformationssystem Stadt Leipzig (OParl),2022-11-25 09:52:08.513373,"Dieser Datensatz enthält Angaben zu allen Vorlagen, die im elektronischen Ratsinformationssystem Leipzig erfasst sind. Er kann über die OParl-Schnittstelle abgerufen werden.  
+
+Das elektronische Ratsinformationssystem der Stadt Leipzig bietet die öffentlichen Unterlagen und sonstigen Angaben der Ratsversammlung und ihrer Gremien jederzeit und frei zugänglich im Internet an.
+
+Genauere Informationen erhalten Sie auf den Seiten des [Ratsinformationssystems der Stadt Leipzig](https://ratsinformation.leipzig.de/allris_leipzig_public/) und in der [Dokumentation der OParl-Schnittstelle](https://oparl.org/spezifikation/online-ansicht/#oparl-endpunkt).",JSON
+Auszubildende (Jahreszahlen),2023-09-26 12:19:50.152217,Daten zu den Auszubildenen in den Wirtschaftsabteilungen nach der Klassifikation der Wirtschaftszweige (WZ 2008).,"CSV, JSON"
+Vornamensstatistik 2018,2024-04-02 05:55:23.731414,Der Datensatz enthält die Vornamensstatistik für das Jahr 2018.,CSV
+Leipziger Weihnachtsmarkt 2024 - Stände in 2D,2024-11-19 15:43:40.234159,Dieser Datensatz enthält Geo- und Sachdaten der Marktstände sowie der Hilfsflächen des Leipziger Weihnachtsmarktes 2024 in 2D. In den Sachdaten sind Händlerinformationen (wie z.B. das angebotene Sortiment) aufgeführt.,SHP
+Bundestagswahl 2021: Stadtergebnis,2024-04-23 08:52:12.568337,Dieser Datensatz enthält das Stadtergebnis der Bundestagswahl vom 26.09.2021 in Leipzig. ,CSV
+Bundestagswahl 2021: Ortsteilergebnisse,2024-04-23 10:37:13.365192,Dieser Datensatz enthält die Ortsteilergebnisse der verschieden Ortsteile Leipzigs für die Bundestagswahl vom 26.09.2021.,CSV
+Bundestagswahl 2021: Geodaten der Wahlbezirke,2021-10-11 12:18:20.438581,Dieser Datensatz enthält die Geodaten der Leipziger Wahlkreiseinteilung für die Bundestagswahl vom 26.09.2021.,SHP
+Bundestagswahl 2021: Wahlbezirksergebnisse,2024-04-23 10:40:51.038052,Dieser Datensatz enthält die Wahlbezirksergebnisse der verschiedenen Wahlbezirke Leipzigs für die Bundestagswahl vom 26.09.2021.,CSV
+Landtagswahl 2024: Wahlkreisergebnisse,2024-09-18 08:56:11.397063,"Der vorliegende Datensatz präsentiert die Ergebnisse der Wahl zum Sächsischen Landtag 2024 in den Leipziger Wahlkreisen.
+
+Die Geodaten der Wahlkreise finden sich unter: https://opendata.leipzig.de/dataset/6a96ec15-b9eb-4a2c-84d5-7b5521560a89",CSV
+Landtagswahl 2024: Wahlbezirksergebnisse,2024-09-18 09:50:49.841530,"Der vorliegende Datensatz präsentiert die Ergebnisse der Wahl zum Sächsischen Landtag 2024 in den Leipziger Wahlbezirken.
+
+Die Geodaten der Wahlbezirke finden sich unter: https://opendata.leipzig.de/dataset/ef736c22-c87f-4f8a-8392-7ffe4e657705",CSV
+Landtagswahl 2024: Geodaten der Wahlbezirke,2024-08-15 06:29:17.080238,"Dieser Datensatz enthält die Geodaten der Leipziger Wahlbezirke für die Landtagswahl vom 1.9.2024. 
+Die erste Stelle der Wahlbezirks-Nummer entspricht der Stadtbezirksnummer, die ersten beiden Stellen der Wahlbezirks-Nummer entsprechen der Ortsteilnummer.
+
+Die Wahlkreise finden sich unter https://opendata.leipzig.de/dataset/landtagswahl-2024-wahlkreise.
+
+Das zugehörige Straßenabschnittsverzeichnis mit den zugeordneten Adressen und Wahlkreisen findet sich unter https://opendata.leipzig.de/dataset/landtagswahl-2024-strassenabschnittsverzeichnis",SHP
+Landtagswahl 2024: Geodaten der Wahlkreise,2023-10-06 07:17:28.826180,Die Datei enthält die Geodaten der Leipziger Wahlkreiseinteilung für die Wahlen zum sächsischen Landtag 2024.,SHP
+Landtagswahl 2024: Ortsteilergebnisse,2024-11-15 13:57:14.985539,Der vorliegende Datensatz präsentiert die Ergebnisse der Wahl zum Sächsischen Landtag 2024 in den Leipziger Ortsteilen.,CSV
+Landtagswahl 2024: Stadtergebnis,2024-11-15 13:52:09.942038,Der vorliegende Datensatz präsentiert die Ergebnisse der Wahl zum Sächsischen Landtag 2024 im Leipziger Stadtgebiet.,CSV
+Europawahl 2024: Wahlbezirksergebnisse,2024-05-27 07:59:45.227292,"Wahlergebnisse zur Europawahl am 9.6.2024 in den Leipziger Wahlbezirken.
+
+Die geographische Zuordnung der Wahlbezirke ist im [zugehörigen Straßenabschnittsverzeichnis](https://opendata.leipzig.de/dataset/06194a4e-38f1-42ae-9606-47bb31b78d86) dokumentiert. Außerdem sind die [Geodaten der Wahlbezirke](https://opendata.leipzig.de/dataset/06d979ad-48df-4ed4-a9cb-ce1f0bc8d0a0) verfügbar.",CSV
+Europawahl 2024: Ortsteilergebnisse,2024-06-06 09:09:51.902543,"Wahlergebnisse zur Europawahl am 9.6.2024 in den Leipziger Ortsteilen.
+
+Die Geodaten der Ortsteile finden sich unter https://opendata.leipzig.de/dataset/74b342a9-7db7-45a3-8404-944442a24d51
+",CSV
+Europawahl 2024: Stadtergebnis,2024-06-06 08:44:52.692530,Wahlergebnisse zur Europawahl am 9.6.2024 im Leipziger Stadtgebiet.,CSV
+"Luftbild 2024, Stadt Leipzig",2024-11-05 08:46:14.561364,Das Luftbild der Stadt Leipzig als TrueOrthophoto (TrueDOP) von 2024 in 20 cm Auflösung.,"WMS, WMTS"
+Bundestagswahlen (kleinräumig),2023-09-26 12:20:18.133838,Kleinräumige Wahlergebnisse der Bundestagswahlen in den Ortsteilen und Stadtbezirken.,"CSV, JSON"
+Europawahlen (kleinräumig),2023-09-26 12:20:18.367397,Kleinräumige Wahlergebnisse der Europawahlen in den Ortsteilen und Stadtbezirken.,"CSV, JSON"
+Europawahlen,2023-09-26 12:20:00.308947,"Ergebnisse der Europawahlen (Wahlbeteiligung, Stimmenanteile der Parteien) seit 1990 in Leipzig","CSV, JSON"
+Europawahl und Stadtratswahl 2024: Straßenabschnittsverzeichnis,2023-07-31 09:13:45.902171,"Straßenabschnittsverzeichnis der Stadt Leipzig mit Stadtratswahlkreisen, Ortschaftsgebieten und Wahlbezirken für die Europa- und Stadtrats- und Ortschaftsratswahlen am 9.6.2024.  
+Stand: 05.01.2024",CSV
+"3D-Stadtmodell LoD2, Stadt Leipzig",2023-09-04 11:58:37.096556,"Die 3D-Gebäudedaten (LoD2, ohne Texturen) bilden die Grundlage für das 3D-Stadtmodell der Stadt Leipzig. Der Datensatz steht für das gesamte Stadtgebiet jeweils im CityGML-, Shapefile- und DXF-Format zur Verfügung. In den entsprechenden ZIP-Dateien befinden sich die 3D-Gebäudedaten aufgegliedert nach Ortsteilen (Kommunale Gebietsgliederung). Für die räumliche Zuordnung kann die Übersichtskarte (Übersicht_3D-Gebäude.pdf) genutzt werden. Des Weiteren ist eine Attributbeschreibung für die Formate CityGML und Shapefile hinterlegt.   [Weiterführende Informationen zu dem 3D-Stadtmodell Leipzig](https://www.leipzig.de/bauen-und-wohnen/bauen/geodaten-und-karten/3d-stadtmodell)
+","CITYGML, DXF, SHP"
+Wohnungsbestand (Jahreszahlen),2023-09-26 12:19:47.795619,Daten zur Anzahl der Wohnungen und zur Wohnfläche.,"CSV, JSON"
+Oberbürgermeisterwahl 2020: Geodaten der Wahlbezirke,2024-07-02 12:23:05.485209,Dieser Datensatz enthält die Geodaten der Leipziger Wahlbezirke für die Oberbürgermeisterwahl am 02.02.2020 (1. Wahlgang) und am 01.03.2020 (2. Wahlgang) .,SHP
+Stadtratswahlen,2023-09-26 12:20:00.897360,"Ergebnisse der Stadtratswahlen (Wahlbeteiligung, Stimmenanteile der Parteien) seit 1990 in Leipzig","CSV, JSON"
+Stadtratswahl 2024: Wahlkreise,2023-07-31 08:59:55.688857,Die Datei enthält die Geodaten der Wahlkreiseinteilung für die Wahlen zum Leipziger Stadtrat 2024.,SHP
+Europawahl und Stadtratswahl 2024: Geodaten der Wahlbezirke,2024-05-29 07:57:41.684611,"Dieser Datensatz enthält die Geodaten der Leipziger Wahlbezirke für die Europa- und Stadtratswahl vom 9.6.2024.
+Die erste Stelle der Wahlbezirks-Nummer entspricht dem Stadtbezirk, welche sich von den Wahlkreisen unterscheiden.
+
+Die daraus zusammengesetzten Wahlkreise finden sich unter https://opendata.leipzig.de/dataset/5e2f63ca-dfe9-4c57-b01f-5504a21a99e3
+
+Das zugehörige Straßenabschnittsverzeichnis mit den zugeordneten Adressen und Wahlkreisen finden sich unter https://opendata.leipzig.de/dataset/06194a4e-38f1-42ae-9606-47bb31b78d86",SHP
+Vornamensstatistik 2022,2024-03-28 07:02:24.204693,Der Datensatz enthält die Vornamensstatistik für das Jahr 2022. ,CSV
+Vornamensstatistik 2017,2024-04-02 05:59:07.714523,Der Datensatz enthält die Vornamensstatistik für das Jahr 2017.,CSV
+Vornamensstatistik 2016,2024-04-02 06:02:28.731488,Der Datensatz enthält die Vornamensstatistik für das Jahr 2016.,CSV
+Vornamensstatistik 2015,2024-04-02 06:05:36.066433,Der Datensatz enthält die Vornamensstatistik für das Jahr 2015. ,CSV
+Vornamensstatistik 2014,2020-01-22 13:41:22.934304,Der Datensatz enthält die Vornamensstatistik für das Jahr 2014.,CSV
+LeipzigGiesst gegossene Liter Jahresstatistik 2023,2024-04-04 05:24:19.099672,"Gegossene Liter pro Straßenbaum, wie sie durch die Nutzer in app.LeipzigGiesst.de eingetragen wurden, aufsummiert im Zeitraum von 1. März 2023 bis 30. September 2023. Es werden die Daten des Baumkatasters für die Identifikation des jeweiligen Baums verwendet (aber auch Baum-Daten von OpenStreetMap.org)",CSV
+LeipzigGiesst gegossene Liter Jahresstatistik 2022,2024-04-04 05:27:57.929422,"Gegossene Liter pro Straßenbaum, wie sie durch die Nutzer in app.LeipzigGiesst.de eingetragen wurden, aufsummiert im Zeitraum von 1. März 2022 bis 30. September 2022. Es werden die Daten des Baumkatasters für die Identifikation des jeweiligen Baums verwendet (aber auch Baum-Daten von OpenStreetMap.org)",CSV
+LeipzigGiesst gegossene Liter Jahresstatistik 2021,2022-11-22 09:36:14.715937,"Gegossene Liter pro Straßenbaum, wie sie durch die Nutzer in app.LeipzigGiesst.de eingetragen wurden, aufsummiert im Zeitraum von 1. März 2021 bis 30. September 2021. Es werden die Daten des Baumkatasters für die Identifikation des jeweiligen Baums verwendet (aber auch Baum-Daten von OpenStreetMap.org)",CSV
+Energie- und CO2-Bilanz 2011 der Stadt Leipzig,2015-02-12 11:57:41.776616,Daten zur Energie- und CO2-Bilanz Leipzig,ODS
+Gästebetten,2022-06-15 12:10:28.148099,Gästebetten zum 31.07. und jährliche Kapazitätsauslastung in der Stadt Leipzig,CSV
+Landschaftsschutzgebiete der Stadt Leipzig,2015-02-10 16:27:30.465600,"Dieser Datensatz beschreibt die Grenzen der Landschaftsschutzgebiete innerhalb der Stadtgrenzen Leipzigs. Grenzverläufe, die über die Stadtgrenze hinaus gehen sind an dieser ""abgeschnitten"".  Weitere Informationen können bei dem entsprechenden Landkreis bzw. dem LfULG eingeholt werden.","DBF, PRJ, SHP, SHX"
+"Firmen (WZ 2003) (Jahreszahlen, kleinräumig)",2023-09-26 12:20:16.251427,Kleinräumige Daten auf Ortsteil- und Stadtbezirksebene zu den Unternehmen der Industrie- und Handelskammer nach Wirtschaftszweigen.,"CSV, JSON"
+"Gebäudebestand (Jahreszahlen, kleinräumig)",2023-09-26 12:20:10.981219,Kleinräumige Daten zum Gebäudebestand nach Baualter in den Ortsteilen und Stadtbezirken.,"CSV, JSON"
+"Einzelhandel (Jahreszahlen, kleinräumig)",2024-03-02 15:06:41.247530,Kleinräumige Daten auf Ortsteil- und Stadtbezirksebene zu den Einzelhandelsunternehmen nach Warengruppen.,"CSV, JSON"
+"Grundsicherung für Arbeitssuchende (SGB II) (Jahreszahlen, kleinräumig)",2024-03-02 15:06:40.521140,Kleinräumige Daten auf Ortsteil- und Stadtbezirksebene zu Leistungsempfängern (Grundsicherung für Arbeitssuchende),"CSV, JSON"
+"Wohnberechtigte Einwohner nach Familienstand (Jahreszahlen, kleinräumig)",2023-09-26 12:20:13.505782,Kleinräumige Daten auf Ortsteil- und Stadtbezirksebene zum Familienstand der wohnberechtigten Bevölkerung.,"CSV, JSON"
+"Einwohner nach Alter (Jahreszahlen, kleinräumig)",2023-09-26 12:20:15.025816,Kleinräumige Daten auf Ortsteil- und Stadtbezirksebene zur Altersstruktur der Leipziger Bevölkerung (Alterskennziffern).,"CSV, JSON"
+"Wanderungen (unrevidiert) (Jahreszahlen, kleinräumig)",2024-03-02 15:06:39.326709,"Kleinräumige Wanderungsdaten auf Ortsteil- und Stadtbezirksebene, darunter innerstädtitsche und außerstädtische Zu- und Wegzüge.","CSV, JSON"
+"Kindertagesstätten (Angemeldete Kinder) (Jahreszahlen, kleinräumig)",2023-09-26 12:20:12.872699,Kleinräumige Daten auf Ortsteil- und Stadtbezirksebene in Kindertagesbetreuung,"CSV, JSON"
+"Wohnberechtigte Einwohner nach Alter (Jahreszahlen, kleinräumig)",2023-09-26 12:20:13.331157,Kleinräumige Daten auf Ortsteil- und Stadtbezirksebene zur Altersstruktur der wohnberechtigten Bevölkerung (Alterskennziffern).,"CSV, JSON"
+"Wohnungsbestand (Jahreszahlen, kleinräumig)",2023-09-26 12:20:15.475642,Kleinräumige Daten zum Wohnungsbestand in den Ortsteilen und Stadtbezirken.,"CSV, JSON"
+"Baufertigstellungen (Jahreszahlen, kleinräumig)",2023-09-26 12:20:02.843410,Kleinräumige Daten zu Baufertigstellungen von Gebäude und Wohnungen in den Ortsteilen und Stadtbezirken.,"CSV, JSON"
+"Personenhaushalte (Jahreszahlen, kleinräumig)",2023-09-26 12:20:14.830141,Kleinräumige Daten auf Ortsteil- und Stadtbezirksebene zur Haushaltestruktur der Leipziger Bevölkerung.,"CSV, JSON"
+"Wohnberechtigte Einwohner (Jahreszahlen, kleinräumig)",2023-09-26 12:20:16.661671,Kleinräumige Daten auf Ortsteil- und Stadtbezirksebene zur wohnberechtigten Bevölkerung (Einwohner mit Haupt- und Nebenwohnsitz) nach Geschlecht und Staatsangehörigkeit.,"CSV, JSON"
+"Einwohner nach Familienstand (Jahreszahlen, kleinräumig)",2023-09-26 12:20:12.690447,Kleinräumige Daten auf Ortsteil- und Stadtbezirksebene zum Familienstand der Leipziger Bevölkerung,"CSV, JSON"
+Geodaten der Ortsteile der Stadt Leipzig,2017-12-15 10:13:18.251058,Dieser Datensatz enthält geographische Koordinaten (ETRS89) für die Ebene der Ortsteile der kommunalen Gebietsgliederung der Stadt Leipzig.,"GEOJSON, SHP"
+Geodaten der Stadtbezirke der Stadt Leipzig,2023-09-29 19:10:53.298905,Dieser Datensatz enthält geographische Koordinaten (ETRS89) für die Ebene der Stadtbezirke der kommunalen Gebietsgliederung der Stadt Leipzig.,"GEOJSON, SHP"
+Geodaten der Statistischen Bezirke der Stadt Leipzig,2023-09-29 19:18:53.248225,Dieser Datensatz enthält geographische Koordinaten (ETRS89) für die Ebene der Statistischen Bezirke der kommunalen Gebietsgliederung der Stadt Leipzig.,"GEOJSON, SHP"
+"Flächennutzung (Jahreszahlen, kleinräumig)",2023-09-26 12:20:11.893127,"Kleinräumige Daten auf Ortsteil- und Stadtbezirksebene zur Flächennutzung, darunter Gebäude- und Freifläche, Wohnbaufläche, Industrie- und Gebwerbefläche, Verkehrsfläche, Landwirtschaftsfläche, Erholungsfläche, Waldfläche und Wasserfläche.","CSV, JSON"
+"Firmen (WZ 2008) (Jahreszahlen, kleinräumig)",2023-09-26 12:20:17.445784,Kleinräumige Daten auf Ortsteil- und Stadtbezirksebene zu den Unternehmen der Industrie- und Handelskammer nach Wirtschaftszweigen.,"CSV, JSON"
+"Geborene und Gestorbene (Jahreszahlen, kleinräumig)",2023-09-26 12:20:15.260436,Kleinräumige Daten zu den Geborenen und Gestorbenen in den Ortsteilen und Stadtbezirken.,"CSV, JSON"
+"Handwerksbetriebe (Jahreszahlen, kleinräumig)",2023-09-26 12:20:16.469089,Kleinräumige Daten auf Ortsteil- und Stadtbezirksebene zu den Handwerksbetrieben nach Gebwerbegruppen.,"CSV, JSON"
+"Wanderungen (Melderegisterdaten, unrevidiert) (Quartalszahlen)",2023-09-26 12:19:58.129693,Daten zu den Zuzügen und Fortzügen von und nach der Stadt Leipzig nach Geschlecht und Staatsangehörigkeit.,"CSV, JSON"
+Einschulungen und Nichteinschulungen (Jahreszahlen),2023-09-26 12:19:46.398656,Daten zu Einschlungen und Nichteinschulungen an Leipziger Grund- und Förderschulen.,"CSV, JSON"
+Wohnungslose - Statistik nach dem WoBerichtsG (Jahreszahlen),2023-09-26 12:19:43.592194,Wohnungslosenstatistik nach dem Wohnungslosenberichterstattungsgesetz (WoBerichtsG),"CSV, JSON"
+Wohnungsnotfälle (Jahreszahlen),2023-09-26 12:19:43.090686,Daten zu abgeschlossenen Wohnungsnotfällen des Sozialdienstes Wohnungsnotfallhilfe.,"CSV, JSON"
+Haushalte mit Wohnberechtigungsschein  (Jahreszahlen),2023-09-26 12:19:42.447867,,"CSV, JSON"
+Bevölkerungsvorausschätzung (Jahreszahlen),2023-09-26 12:19:37.897291,Daten aus der Bevölkerungsvorausberechnung,"CSV, JSON"
+Einsatz von Haushaltsmitteln (Jahreszahlen),2023-09-26 12:19:36.811816,"Daten aus der Kommunalen Bürgerumfrage zum gewünschten Einsatz der Haushaltsmittel in den Bereichen Schulen und Kindertagesstätten, Staßenbau und -sanierung, Angebote für Kinder und Jugendliche, Unterstützung sozial benachteiligter Jugendlicher/ hilfebedürftiger Familien, Naherholung, Grünalagen, Parks, Brand- und Katastrophenschutz, Schwimmbäder, Sportanalgen, Ver- und Entsorgunng (Wasser, Abwasser, Strom, Gas, Abfall), Wirtschaftsförderung, Ansiedlung von Investoren, Unternehmen, Öffentliche Verkehrsmittel, Angebote für Senioren, Gewährung von Ermäßigungen, Kultureinerichtungen, ausgewiesen für junge Erwachsene, Eltern mit Kind(ern) und ältere Erwachsene ab 55 Jahre.","CSV, JSON"
+Einnahmen (Jahreszahlen),2023-09-26 12:19:35.408541,Daten zur Höhe der Haushaltseinnahmen in den einzelnen Einnahmearten.,"CSV, JSON"
+Personal nach Aufgabenbereichen (Jahreszahlen),2023-09-26 12:19:33.920707,Daten zum Personal der Stadtverwaltung nach Aufgabenbereichen und Geschlecht.,"CSV, JSON"
+Energieverbrauch (Jahreszahlen),2023-09-26 12:19:33.462680,"Daten zum Energieverbrauch nach Energieträgern (Strom, Fernwärme, Erdgas, Kohle, Heizöl, Flüssiggas).","CSV, JSON"
+Leipziger Weihnachtsmarkt 2023 - Stände in 2D,2022-12-05 06:53:54.752303,Dieser Datensatz enthält Geo- und Sachdaten der Marktstände sowie der Hilfsflächen des Leipziger Weihnachtsmarktes 2023 in 2D. In den Sachdaten sind Händlerinformationen (wie z.B. das angebotene Sortiment) aufgeführt. ,SHP
+Leipziger Weihnachtsmarkt 2023 - Stände in 3D,2022-12-05 07:55:53.844274,Dieser Datensatz enthält Geodaten der Marktstände sowie der Hilfsflächen und Gasträume des Leipziger Weihnachtsmarktes 2023 in 3D in den Formaten 3DS und DWG. ,3DS
+Leipziger Spezialmärkte - Öffnungszeiten und Termine,2023-08-28 12:40:35.420356,"Der Datensatz enthält Informationen zu Terminen, Öffnungszeiten und Standorten der Spezialmärkte (Weihnachtsmarkt, Ostermarkt, etc.) der Stadt Leipzig.",CSV
+Leipziger Wochenmärkte - Öffnungszeiten und Termine,2023-06-05 08:44:16.626337,Die Stadt Leipzig betreibt 14 Wochenmärkte im Stadtgebiet. Der Datensatz enthält die Öffnungszeiten aller Standorte. ,CSV
+Herkunft ausländischer Gäste,2022-06-15 12:30:39.077967,Diese Datensammlung enthält eine Übersicht über die Herkunft ausländischer Gäste in Leipzig ab 2021.,CSV
+Potentielle Superblocks in Leipzig,2023-06-15 11:56:11.998452,"Der Datensatz enthält potentielle Superblocks für die Stadt Leipzig. Für jedes Gebiet wurden mithilfe eines von Eggimann entwickelten Verfahrens anhand von urbanen Charakteristika,  Straßennetztopologie und dem Verkehrsfluss potentielle Straßenzüge identifiziert.  Dieser Datensatz ist im Rahmen des [Leipzig Open Data Hackathon 2023](https://2023.dataweek.de/lodh-2023/) entstanden und wurde von PD - Berater der öffentlichen Hand erstellt. 
+
+Eggimann, Sven.  [The potential of implementing superblocks for multifunctional street use in cities](https://www.nature.com/articles/s41893-022-00855-2). Nature sustainability 5.5 (2022): 406-414.",GEOJSON
+Weihnachtsmärkte im Stadtgebiet Leipzig und Umland,2022-12-11 21:42:08.774144,"Weihnachtsmärkte im Stadtgebiet Leipzig und im näheren Umland. Die Weihnachtsmärkte (bzw. die Stände) direkt in der Innenstadt sind nicht enthalten, da diese im Datensatz leipziger-weihnachtsmarkt-2022-stande-in-2d bzw. leipziger-weihnachtsmarkt-2022-stande-in-3d gepflegt werden. 
+
+Der ""shortname"" ist für die Anzeige, z.B. in einem Popup, gedacht, während die Kombination ""veranstalter"" und ""name"" den Weihnachtsmarkt vollständig beschreibt. Die Angaben ""von"" und ""bis"" enthalten das erste und das letzte Datum, an dem der Weihnachtsmarkt stattfindet, ""oeffnungszeiten"" enthält die häufigste Öffnungszeit, in den Feldern ""Mo"" bis ""So"" werden die Öffnungszeiten ab auch pro Wochentag aufgeschüsselt (der Wert 0 bedeutet, dass dem jeweiligen Wochentag der Markt generell nicht offen hat). Tage im Bereich von ""von"" bis ""bis"", an denen der Markt nicht geöffnet ist, werden kommasepariert in ""closed-exc"" als Datum angegeben (z.B. 15.12.22). Abweichende Öffnungszeiten werden kommasepariert in ""hours-exc"" angegeben, z.B. 24.12.22=08:00-12:00. Optional können bei einem Datensatz E-Mail-Adresse (""email"") und Webseite (""w3"") des Marktes bzw. des Betreibers hinterlegt sein. Das Feld ""bemerkungen"" sit für Hinweise bezüglich Erreichbarkeit (z.B. zweite Tür links) oder Eintrittspreise gedacht. ""lat"" und ""lng"" entsprechen dem Breiten- bzw. Längengrad (wie über OSM Nominatim Adresssuche recherchiert). Die Adresse selbst ist durch ""strasse"" und ""plz_ort"" (und ergänzend ""bezirk"") bestimmt. ""RSS Beschreibung"" enthält weitere Beschreibungen des Weihnachtsmarktes, wie aus der Originalquelle https://www.leipzig.de/freizeit-kultur-und-tourismus/veranstaltungen-und-termine/weihnachten/weihnachtsmaerkte/ übernommen. ""immer-kostenlos"" trägt den Wert 0, wenn Eintritt verlangt wird, sonst 1. Über ""ignore"" kann die Anzeige des Marktes gefiltert werden. Besondere Themenmärkte wie z.B. ""Viktorianischer Weihnachtsmarkt"" werden durch international"" = 1 markierte, Märkte mit besondere Aktivitätsangeboten (z.B. Basteln) werden mit ""action"" = 1 gekennzeichnet. ""image"" enthält optional den Link auf ein Foto des Marktes und ""urheberschaft"" die Lizenzangabe des Fotos. In ""train"" wird die ÖPNV-Anbindung über die nächste Haltestelle beschrieben, ""train_distance"" enthält die Distanz in Metern von eben dieser Haltestelle zum eigentlichen Weihnachtsmarkt. Wenn die Distanz kleiner 400 Meter ist, steht ""short_distance"" auf 1, d.h. der Markt gut zu Fuß erreichbar.","CSV, JSON"
+LWB-Bestandsmieten nach Baualtersklassen,2022-07-07 08:24:51.708584,Dieser Datensatz enthält Angaben zu Bestandsmieten der LWB geordnet nach Baualtersklassen für den Zeitraum von 2012 bis 2021. Die Daten geben jeweils den Median der Grundmiete je Quadratmeter in Euro an.,CSV
+LWB-Angebotsmieten nach Baualtersklassen,2022-07-07 08:06:25.973174,Dieser Datensatz enthält Angaben zu Angebotsmieten der LWB geordnet nach Baualtersklassen für den Zeitraum von 2012 bis 2021. Die Daten geben jeweils den Median der Grundmiete je Quadratmeter in Euro an. ,CSV
+Bestand ukrainischer Einwohnerinnen und Einwohner in Leipzig am 31.12.2022 nach Ortsteilen,2023-02-09 11:11:21.280524,Bestand ukrainischer Einwohnerinnen und Einwohner in Leipzig am 31.12.2022 nach Ortsteilen,CSV
+Prognostizierte und tatsächliche Altersstruktur,2023-02-28 19:21:33.676894,Entwicklung der tatsächlichen Altersstruktur 2018 und 2022; Vergleich prognostizierte und tatsächliche Altersstruktur 2022,CSV
+Prognostizierte und tatsächliche Bevölkerungsentwicklung,2023-02-15 18:27:54.800357,Prognostizierte und tatsächliche Bevölkerungsentwicklung,CSV
+Jahresdurchschnittstemperaturen,2023-01-05 10:50:07.268754,"Dieser Datensatz enthält die jährlichen Aufzeichnungen der Temperaturwerte für die Stadt Leipzig für die Jahre 1851-2022. Die Daten wurden an der Station Leipzig-Holzhausen (Stations-Nr. 2928) des [Deutschen Wetterdienstes (DWD)](https://www.dwd.de/DE/Home/home_node.html) gemessen. 
+
+Es gelten die [Nutzungsbedingungen](https://opendata.dwd.de/climate_environment/CDC/Nutzungsbedingungen_German.pdf) des Clima Data Centers des DWD.",TXT
+Geburten und zusammengefasste Geburtenziffer,2023-03-10 11:36:32.558099,Geburten und zusammengefasste Geburtenziffer seit 2002,CSV
+Bevölkerungsvorausschätzung 2023,2023-06-16 10:40:30.977902,Schätzung der Einwohnerzahlen für die Stadt Leipzig bis zum Jahr 2040 ausgehend von der Bevölkerungsstatistik 2023.,CSV
+Kindertageseinrichtungen in öffentlicher oder freier Trägerschaft nach Ortsteilen,2023-03-20 09:13:25.142068,"Anzahl an Leipziger Kindertageseinrichtungen für Kinderkrippen- und Kindergartenkinder in öffentlicher oder freier Trägerschaft nach Ortsteilen und Stadtbezirken, Anzahl an Kindergarten- und Kinderkrippenkindern in Leipziger Kindertageseinrichtungen in öffentlicher oder freier Trägerschaft nach Ortsteilen und Stadtbezirken differenziert nach Geschlecht, Kindergarten und Kinderkrippenkindern für das Jahr 2022 und Veränderung der Anzahl der Kindergarten- und Kinderkrippenkinder von 2021 zu 2022 in Prozent differenziert nach Ortsteilen und Stadtbezirken.",CSV
+Personal in Kindertageseinrichtungen in öffentlicher oder freier Trägerschaft,2023-03-20 09:06:12.516791,"Anzahl des Personals in Kindertageseinrichtungen für Kinderkrippen- und Kindergartenkinder in Leipzig in den Jahren 2012, 2017, 2021 und 2022 Unterteilung des Personals in hauswirtschaftlich/technisches Personal und pädagogisches Personal Unterteilung des pädagogischen Personals und Verwaltungspersonals in Kindertageseinrichtungen für Kinderkrippen- und Kindergartenkinder nach Geschlecht, nach Altersgruppen, nach Wochenarbeitsstunden und nach Stellung.",CSV
+Wanderungssaldo nach Herkunfts- und Zielgebieten,2023-02-15 19:22:49.707562,"Wanderungssaldo Leipzigs nach Herkunfts- und Zielgebieten 2018 bis 2022
+
+Bei den hier dargestellten Daten zu Zuzügen und Wegzügen handelt es sich um revidierte Angaben, die von bisher veröffentlichten Angaben abweichen. Aufgrund einer signifikanten Zunahme von Korrekturbuchungen und Änderungen von Amts wegen im Leipziger Einwohnermelderegister in den zurückliegenden Jahren, insbesondere seit 2015, sind die betreffenden Zu- und Wegzüge in die hier dargestellten Daten neu eingerechnet worden. Bisher waren diese Vorgänge nicht mit ausgewertet worden. Die Meldebehörde nimmt Änderungen von Amts wegen unter anderem vor, wenn Personen in Erstaufnahmeeinrichtungen des Freistaates Sachsen in Leipzig aufgenommen wurden oder wenn bekannt wird, dass Personen ins Ausland verzogen sind. Die Daten wurden rückwirkend seit 2015 bereinigt. Die [bisher veröffentlichten, unrevidierten Angaben](https://statistik.leipzig.de/statcity/table.aspx?cat=3&rub=6) sind bis auf weiteres abrufbar.",CSV
+Kinderkrippen- und Kindergartenplätze in Kindertageseinrichtungen,2023-03-20 08:28:38.465522,Anzahl der Kinderkrippen- und Kindergartenplätze in Leipziger Kindertageseinrichtungen in öffentlicher oder freier Trägerschaft zwischen 2012 und 2022 und Anzahl der Kinder im entsprechenden Alter,CSV
+"Wanderungssaldo nach Zielgebiet, Herkunftsgebiet und Staatsbürgerschaft",2023-03-10 12:12:50.515421,"Wanderungssalden nach verschiedenen Gebietsabgrenzungen sowie getrennt nach Deutschen und Ausländern seit 2009.
+
+Bei den hier dargestellten Daten zu Zuzügen und Wegzügen handelt es sich um revidierte Angaben, die von bisher veröffentlichten Angaben abweichen. Aufgrund einer signifikanten Zunahme von Korrekturbuchungen und Änderungen von Amts wegen im Leipziger Einwohnermelderegister in den zurückliegenden Jahren, insbesondere seit 2015, sind die betreffenden Zu- und Wegzüge in die hier dargestellten Daten neu eingerechnet worden. Bisher waren diese Vorgänge nicht mit ausgewertet worden. Die Meldebehörde nimmt Änderungen von Amts wegen unter anderem vor, wenn Personen in Erstaufnahmeeinrichtungen des Freistaates Sachsen in Leipzig aufgenommen wurden oder wenn bekannt wird, dass Personen ins Ausland verzogen sind. Die Daten wurden rückwirkend seit 2015 bereinigt. Die [bisher veröffentlichten, unrevidierten Angaben](https://statistik.leipzig.de/statcity/table.aspx?cat=3&rub=6) sind bis auf weiteres abrufbar",CSV
+Sprachverständnis MigrantInnen,2022-06-16 10:48:07.437800,"Die Datensammlung gibt eine Übersicht über das Sprachverständnis Leipziger Migrantinnen und Migranten in Bezug auf die deutsche Sprache (Selbsteinschätzung) gruppiert nach Herkunftsländern und Geschlecht. Aufgeführt ist jeweils der Anteil der Befragten in Prozent, der angegeben hat, die deutsche Sprache ""sehr gut"" bzw. ""gut"" zu verstehen.  Die Daten wurden im Rahmen der Migrantenbefragung 2020 der Stadt Leipzig ermittelt.",CSV
+Bevölkerungsvorausschätzung und tatsächliche Einwohnerentwicklung,2023-02-15 19:08:31.500879,"Bevölkerungsvorausschätzung 2019 (Hauptvariante) und tatsächliche Einwohnerentwicklung 
+",CSV
+Bestand ukrainischer Einwohnerinnen und Einwohner in Leipzig am 31.12.2022 nach Alter,2023-02-09 11:13:05.730569,Bestand ukrainischer Einwohnerinnen und Einwohner in Leipzig am 31.12.2022 nach Alter,CSV
+Zu- und Wegzüge ukrainischer Personen nach/von Leipzig im Jahr 2022,2023-02-09 06:21:48.421678,Zu- und Wegzüge ukrainischer Personen nach/von Leipzig im Jahr 2022,CSV
+Lebenserwartung,2022-12-13 08:16:57.156475,Angaben zur durchschnittlichen Lebenserwartung im gesamten Stadtgebiet sowie in einzelnen Clustergebieten. ,CSV
+Nutzung öffentlicher Flächen in Kleingartenanlagen,2022-12-13 08:59:10.378067,"Nutzung von öffentlichen Flächen und Wegen in Kleingartenanlagen als  Abkürzung zu Fuß, zum Spazieren, von Spielplätzen oder gastronomischen Angeboten.",CSV
+Gartennutzung - Kommunale Bürgerumfrage,2022-12-13 08:57:26.439548,Gartennutzung in Leipzig nach Gartentypen sowie Interesse an Gartennutzung,CSV
+Umzugspotenzial Leipziger Haushalte - Kommunale Bürgerumfrage,2022-12-05 11:21:21.879988,"Antworten der Befragten aus der Kommunalen Bürgerumfrage 2021 auf die Frage ""Haben Sie vor oder sind Sie gezwungen, in den nächsten zwei Jahren aus Ihrer jetzigen Wohnung auszuziehen?"" Die Antworten sind nach soziodemografischen Merkmalen differenziert.",CSV
+Wohnstandortpräferenzen nach dem Umzug - Kommunale Bürgerumfrage,2022-12-05 11:57:18.893856,"Antworten der Befragten aus der Kommunalen Bürgerumfrage 2021 auf die Frage ""Falls Sie umziehen wollen oder müssen: Wo wollen Sie nach dem Umzug wohnen?"" Die Antworten sind nach soziodemografischen Merkmalen differenziert.",CSV
+Umzugsgründe umzugswilliger Haushalte - Kommunale Bürgerumfrage,2022-12-05 09:50:59.111285,"Antworten der Befragten aus der Kommunalen Bürgerumfrage 2021 auf die Frage ""Falls Sie in den nächsten 2 Jahren umziehen wollen oder müssen: Warum wollen oder müssen Sie umziehen?"" Die Befragten haben jeweils den Hauptgrund angekreuzt. Die Antworten sind nach soziodemografischen Merkmalen differenziert. ",CSV
+Anteil von Kindern mit Migrationshintergrund in Kindertageseinrichtungen,2023-03-20 08:52:52.429605,Anteil von Kindern mit Migrationshintergrund unter Kinderkrippenkindern und Kindergartenkindern in Leipziger Kindertageseinrichtungen in öffentlicher und freier Trägerschaft sowie in der Leipziger Bevölkerung im Alter von 1 - unter 3 Jahren und im Alter von 3 - unter 7 Jahren zwischen 2012 und 2022,CSV
+Kindergarten- und Kinderkrippenkinder in Kindertageseinrichtungen nach Migrationshintergrund,2023-03-20 08:50:07.095198,Anzahl der Kindergarten- und Kinderkrippenkinder in Leipziger Kindertageseinrichtungen in öffentlicher oder freier Trägerschaft nach Migrationshintergrund und in der Familie hauptsächlich gesprochenen Sprache zwischen 2012 und 2022,CSV
+Betreuungsquote von Kindern unter 3 Jahren in Kindertageseinrichtungen,2023-03-20 08:32:52.530616,"Betreuungsquote von Kindern unter 3 Jahren in Kindertageseinrichtungen und Kindertagespflege in Sachsen, den alten Bundesländern und den neuen Bundesländern zwischen 2007 und 2022 in Prozent",CSV
+Innerstädtische Umzüge ukrainischer Personen innerhalb der Stadt Leipzig 2022,2023-02-09 11:07:50.121759,Innerstädtische Umzüge ukrainischer Personen innerhalb der Stadt Leipzig 2022,CSV
+Räumliche Bevölkerungsbewegung nach Haushaltstypen,2022-09-09 08:10:52.312728,Zuzüge nach und Wegzüge aus Leipzig nach Haushaltstypen seit 2012,CSV
+Gewünschte Gartentypen - Kommunale Bürgerumfrage,2022-12-13 08:58:26.952164,"Gartentypen, die Interessierte gern nutzen würden. ",CSV
+Ehrenamt nach Geschlecht,2022-06-16 09:42:10.819381,"Der Datensatz enthält Antworten zur Frage, ob und inwieweit sich Leipziger Bürgerinnen und Bürger ehrenamtlich engagieren. Diese Antworten wurden im Rahmen der Kommunalen Bürgerumfrage 2021 erhoben. Die Angaben sind aufgeschlüsselt nach Geschlecht. 
+",CSV
+Gästeankünfte,2022-06-02 07:06:26.933021,"Diese Datensammlung enthält eine Übersicht über die Gästeankünfte im Jahr 2021 in 10 deutschen Großstädten (Berlin, Hamburg, München, Frankfurt am Main, Köln, Düsseldorf, Dresden, Leipzig, Nürnberg, Stuttgart). Zudem werden die zahlenmäßigen Veränderungen der Gästeankünfte gegenüber dem Jahr 2010 erfasst. 
+
+
+",CSV
+Erwerbstätigkeit MigrantInnen,2022-06-17 08:38:48.478945,"Diese Übersicht gibt einen Überblick über den Anteil derjenigen Leipziger MigrantInnen, der erwerbstätig ist. Die Daten sind nach Geschlecht und Herkunftsländern gruppiert und wurden im Rahmen der Migrantenbefragung 2020 erhoben.",CSV
