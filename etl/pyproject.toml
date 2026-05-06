@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.backends.legacy:build"
+
+[project]
+name = "leipzig-etl"
+version = "0.1.0"
+requires-python = ">=3.11"
+dependencies = [
+    "httpx[http2]>=0.27",
+    "psycopg[binary,pool]>=3.1",
+    "orjson>=3.10",
+    "python-dotenv>=1.0",
+    "shapely>=2.0",
+    "geojson-pydantic>=1.0",
+    "tenacity>=8.2",
+    "schedule>=1.2",
+    "gtfs-kit>=5.2",
+    "pandas>=2.1",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["src*"]
