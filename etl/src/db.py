@@ -40,7 +40,7 @@ def run_migrations() -> None:
     """Apply all SQL migrations on startup."""
     from pathlib import Path
 
-    migrations_dir = Path(__file__).parent.parent.parent / "sql" / "migrations"
+    migrations_dir = Path(__file__).parent.parent / "sql" / "migrations"
     migration_files = sorted(migrations_dir.glob("*.sql"))
 
     with get_conn() as conn:

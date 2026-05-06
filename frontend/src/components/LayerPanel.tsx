@@ -21,7 +21,7 @@ export default function LayerPanel() {
     selectedYear, setYear,
   } = useMapStore();
 
-  const { data: metrics = [] } = useQuery<string[]>("metrics", fetchMetrics, {
+  const { data: metrics = [] } = useQuery<string[]>("metrics", () => fetchMetrics(), {
     staleTime: 300_000,
   });
 
@@ -72,7 +72,7 @@ export default function LayerPanel() {
                 className="w-full bg-slate-700 text-slate-200 text-xs rounded-lg px-2 py-1.5 border border-slate-600 focus:outline-none focus:ring-1 focus:ring-brand-500"
               >
                 <option value="">— Metrik wählen —</option>
-                {metrics.map((m) => (
+                {metrics.map((m: string) => (
                   <option key={m} value={m}>{m}</option>
                 ))}
               </select>

@@ -1,5 +1,3 @@
-version: "3.9"
-
 services:
   # ── PostgreSQL + PostGIS ───────────────────────────────────────────────────
   db:
@@ -83,6 +81,8 @@ services:
         condition: service_healthy
     volumes:
       - etl_logs:/app/logs
+      - ../dataset_contracts.json:/app/dataset_contracts.json:ro
+      - ../sql:/app/sql:ro
     command: python -m src.scheduler
 
   # ── Frontend (built static files served by nginx) ─────────────────────────
@@ -99,8 +99,8 @@ services:
     image: nginx:alpine
     restart: unless-stopped
     ports:
-      - "80:80"
-      - "443:443"
+      - "8080:80"
+      - "8443:443"
     volumes:
       - ./nginx/conf.d:/etc/nginx/conf.d:ro
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro

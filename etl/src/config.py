@@ -5,7 +5,7 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 
-load_dotenv(Path(__file__).parent.parent.parent / ".env")
+load_dotenv(Path(__file__).parent.parent / ".env")
 
 
 class Settings:
@@ -37,9 +37,7 @@ class Settings:
     nightly_cron: str = os.getenv("ETL_NIGHTLY_CRON", "0 2 * * *")
 
     # Paths
-    contracts_path: Path = (
-        Path(__file__).parent.parent.parent / "dataset_contracts.json"
-    )
+    contracts_path: Path = Path(__file__).parent.parent / "dataset_contracts.json"
     logs_dir: Path = Path(os.getenv("ETL_LOGS_DIR", "/app/logs"))
 
 

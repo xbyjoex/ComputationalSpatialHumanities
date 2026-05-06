@@ -13,7 +13,7 @@ export default function StatsPanel() {
   const [spatialUnit, setSpatialUnit] = useState("ortsteil");
   const [year, setYear] = useState<number | null>(null);
 
-  const { data: metrics = [] } = useQuery<string[]>("metrics", fetchMetrics, {
+  const { data: metrics = [] } = useQuery<string[]>("metrics", () => fetchMetrics(), {
     staleTime: 300_000,
   });
 
@@ -42,7 +42,7 @@ export default function StatsPanel() {
               className="w-full bg-slate-700 text-slate-200 text-sm rounded-lg px-2 py-1.5 border border-slate-600 focus:outline-none focus:ring-1 focus:ring-brand-500"
             >
               <option value="">— wählen —</option>
-              {metrics.map((m) => <option key={m} value={m}>{m}</option>)}
+              {metrics.map((m: string) => <option key={m} value={m}>{m}</option>)}
             </select>
           </div>
           <div>
@@ -53,7 +53,7 @@ export default function StatsPanel() {
               className="w-full bg-slate-700 text-slate-200 text-sm rounded-lg px-2 py-1.5 border border-slate-600 focus:outline-none focus:ring-1 focus:ring-brand-500"
             >
               <option value="">— wählen —</option>
-              {metrics.map((m) => <option key={m} value={m}>{m}</option>)}
+              {metrics.map((m: string) => <option key={m} value={m}>{m}</option>)}
             </select>
           </div>
           <div>

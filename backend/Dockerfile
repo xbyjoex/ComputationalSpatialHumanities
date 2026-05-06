@@ -6,10 +6,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libpq-dev curl \
     && rm -rf /var/lib/apt/lists/*
 
-COPY pyproject.toml .
-RUN pip install --no-cache-dir -e .
-
 COPY . .
+RUN pip install --no-cache-dir .
 
 ENV PYTHONUNBUFFERED=1
 EXPOSE 8000

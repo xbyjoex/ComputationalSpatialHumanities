@@ -14,7 +14,7 @@
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.23",
     "maplibre-gl": "^4.3",
-    "@vis.gl/react-maplibre": "^7.1",
+    "@vis.gl/react-maplibre": "^8.1.1",
     "recharts": "^2.12",
     "zustand": "^4.5",
     "react-query": "^3.39",
