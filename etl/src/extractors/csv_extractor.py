@@ -22,7 +22,8 @@ class CsvExtractor(HttpExtractor):
         except UnicodeDecodeError:
             text = raw.decode("latin-1")
 
-        reader = csv.DictReader(io.StringIO(text), delimiter=delimiter)
+        # newline='' required for CSVs with embedded newlines in quoted fields
+        reader = csv.DictReader(io.StringIO(text, newline=""), delimiter=delimiter)
         for row in reader:
             yield {k.strip(): (v.strip() if v else None) for k, v in row.items() if k is not None}
 

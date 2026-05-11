@@ -5918,7 +5918,7 @@
     "best_resource": {
       "id": "d4be57e8-7b4c-409c-8ccf-f35468591a32",
       "name": "Die Verkehrsraumeinschränkungen (Punkte) im GeoJSON-Format",
-      "url": "https://geodienste.leipzig.de/l3/OpenData//wfs?VERSION=1.3.0&REQUEST=getFeature&typeName=OpenData%3Averkehrsraumeinschraenkungen_point&outputFormat=application/json",
+      "url": "https://geodienste.leipzig.de/l3/OpenData/wfs?VERSION=1.3.0&REQUEST=getFeature&typeName=OpenData%3Averkehrsraumeinschraenkungen_point&outputFormat=application/json",
       "format": "GeoJSON"
     },
     "resource_count": 3
