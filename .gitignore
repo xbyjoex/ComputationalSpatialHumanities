@@ -45,3 +45,4 @@ etl/logs/
 # Dataset files to keep in repo
 !dataset_contracts.json
 !leipzig_all_datasets_metadata.json
+infrastructure/nginx/certs/

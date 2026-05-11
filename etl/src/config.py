@@ -36,6 +36,10 @@ class Settings:
     live_interval: int = int(os.getenv("ETL_LIVE_INTERVAL_SECONDS", "300"))
     nightly_cron: str = os.getenv("ETL_NIGHTLY_CRON", "0 2 * * *")
 
+    # Telegram
+    telegram_bot_token: str = os.getenv("TELEGRAM_BOT_TOKEN", "")
+    telegram_chat_id: str = os.getenv("TELEGRAM_CHAT_ID", "")
+
     # Paths
     contracts_path: Path = Path(__file__).parent.parent / "dataset_contracts.json"
     logs_dir: Path = Path(os.getenv("ETL_LOGS_DIR", "/app/logs"))

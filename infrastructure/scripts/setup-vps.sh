@@ -9,7 +9,6 @@ set -euo pipefail
 DEPLOY_USER="${DEPLOY_USER:-deploy}"
 REPO_URL="${REPO_URL:-https://github.com/YOURUSER/YOURREPO.git}"
 APP_DIR="${APP_DIR:-/opt/leipzig-data}"
-DOMAIN="${DOMAIN:-yourdomain.com}"
 
 echo "=== Leipzig Open Data VPS Setup ==="
 
@@ -84,7 +83,6 @@ echo ""
 echo "=== Setup complete ==="
 echo "Next steps:"
 echo "  1. Add SSH public key to /home/$DEPLOY_USER/.ssh/authorized_keys"
-echo "  2. Edit $APP_DIR/.env"
-echo "  3. Update domain in infrastructure/nginx/conf.d/app.conf"
-echo "  4. Issue TLS cert: docker run --rm -p 80:80 certbot/certbot certonly --standalone -d $DOMAIN"
-echo "  5. cd $APP_DIR && docker compose -f infrastructure/docker-compose.yml up -d --build"
+echo "  2. Edit $APP_DIR/.env (copy from .env.example, fill in passwords + Telegram tokens)"
+echo "  3. Generate self-signed TLS cert: bash $APP_DIR/infrastructure/scripts/generate-selfsigned.sh"
+echo "  4. Start all services: cd $APP_DIR && docker compose -f infrastructure/docker-compose.yml up -d --build"

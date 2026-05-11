@@ -20,7 +20,15 @@ import schedule
 from .config import settings
 from .db import get_conn, run_migrations
 from .loaders.postgres import upsert_dataset_registry
+from .notifier import (
+    notify_mart_refresh_failed,
+    notify_nightly_done,
+    notify_nightly_error,
+    notify_nightly_start,
+    notify_live_mart_failed,
+)
 from .pipeline import run_dataset
+from .telegram_bot import TelegramPoller
 
 logging.basicConfig(
     level=logging.INFO,
@@ -57,13 +65,19 @@ def load_contracts() -> tuple[list[dict], list[dict]]:
 
 def run_nightly(nightly: list[dict]) -> None:
     logger.info("=== NIGHTLY ETL START (%d datasets) ===", len(nightly))
+    notify_nightly_start(len(nightly))
     stats = {"success": 0, "failed": 0, "skipped": 0}
-    for contract in nightly:
-        if _shutdown:
-            logger.warning("Shutdown requested, stopping nightly ETL early")
-            break
-        status, _, _ = run_dataset(contract)
-        stats[status] = stats.get(status, 0) + 1
+    try:
+        for contract in nightly:
+            if _shutdown:
+                logger.warning("Shutdown requested, stopping nightly ETL early")
+                break
+            status, _, _ = run_dataset(contract)
+            stats[status] = stats.get(status, 0) + 1
+    except Exception as exc:
+        logger.error("Nightly ETL crashed: %s", exc, exc_info=True)
+        notify_nightly_error(str(exc))
+        return
 
     # Refresh all mart views after nightly ETL
     try:
@@ -74,8 +88,10 @@ def run_nightly(nightly: list[dict]) -> None:
         logger.info("Mart views refreshed")
     except Exception as exc:
         logger.error("Failed to refresh mart views: %s", exc)
+        notify_mart_refresh_failed(str(exc))
 
     logger.info("=== NIGHTLY ETL DONE: %s ===", stats)
+    notify_nightly_done(stats)
 
 
 def run_live(live: list[dict]) -> None:
@@ -93,6 +109,7 @@ def run_live(live: list[dict]) -> None:
                 conn.commit()
     except Exception as exc:
         logger.error("Live mart refresh failed: %s", exc)
+        notify_live_mart_failed(str(exc))
 
 
 def main() -> None:
@@ -119,6 +136,13 @@ def main() -> None:
     logger.info("Running initial live refresh...")
     run_live(live)
 
+    # Start Telegram bot in background (no-op if not configured)
+    poller = TelegramPoller(
+        run_nightly=lambda: run_nightly(nightly),
+        run_live=lambda: run_live(live),
+    )
+    poller.start()
+
     logger.info(
         "Scheduler ready. Nightly at 02:00 UTC, live every %ds", interval
     )
@@ -127,6 +151,7 @@ def main() -> None:
         schedule.run_pending()
         time.sleep(5)
 
+    poller.stop()
     logger.info("Scheduler stopped")
 
 
