@@ -1,7 +1,7 @@
 import { useState, FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuthStore } from "../store/authStore";
-import { MapPin, Lock, Mail, AlertCircle } from "lucide-react";
+import { Lock, Mail, AlertCircle } from "lucide-react";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -30,11 +30,8 @@ export default function LoginPage() {
       <div className="w-full max-w-md p-8 rounded-2xl bg-slate-800/80 backdrop-blur border border-slate-700 shadow-2xl">
         {/* Logo */}
         <div className="flex flex-col items-center mb-8">
-          <div className="w-14 h-14 bg-brand-600 rounded-2xl flex items-center justify-center mb-4 shadow-lg">
-            <MapPin className="w-8 h-8 text-white" />
-          </div>
-          <h1 className="text-2xl font-bold text-white">Leipzig Open Data</h1>
-          <p className="text-slate-400 text-sm mt-1">Dashboard · Anmelden</p>
+          <img src="/logo.png" alt="Auerbachs Auge" className="w-48 mb-4 rounded-xl" />
+          <p className="text-slate-400 text-sm">Dashboard · Anmelden</p>
         </div>
 
         {error && (

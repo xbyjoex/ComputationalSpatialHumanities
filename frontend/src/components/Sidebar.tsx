@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { Map, BarChart3, Database, LogOut, MapPin } from "lucide-react";
+import { Map, BarChart3, Database, LogOut } from "lucide-react";
 import { useAuthStore } from "../store/authStore";
 import clsx from "clsx";
 
@@ -17,8 +17,8 @@ export default function Sidebar() {
   return (
     <nav className="w-16 flex flex-col items-center py-4 bg-slate-800 border-r border-slate-700 shrink-0">
       {/* Logo */}
-      <div className="w-9 h-9 bg-brand-600 rounded-xl flex items-center justify-center mb-6">
-        <MapPin className="w-5 h-5 text-white" />
+      <div className="w-12 mb-6">
+        <img src="/logo.png" alt="Auerbachs Auge" className="w-full rounded-lg" />
       </div>
 
       <div className="flex-1 flex flex-col gap-1 w-full px-2">
