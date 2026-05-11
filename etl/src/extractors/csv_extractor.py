@@ -21,6 +21,7 @@ class CsvExtractor(HttpExtractor):
             text = raw.decode(encoding)
         except UnicodeDecodeError:
             text = raw.decode("latin-1")
+        text = text.replace("\x00", "")
 
         # newline='' required for CSVs with embedded newlines in quoted fields
         reader = csv.DictReader(io.StringIO(text, newline=""), delimiter=delimiter)

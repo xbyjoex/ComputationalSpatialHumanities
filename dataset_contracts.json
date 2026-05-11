@@ -779,7 +779,7 @@
     "best_resource": {
       "id": "05a059f6-1dd9-40e4-9134-69b20c232dea",
       "name": "Baumkataster der Stadt Leipzig im GeoJSON-Format",
-      "url": "https://geodienste.leipzig.de/l3/OpenData//wfs?VERSION=1.3.0&REQUEST=getFeature&typeName=OpenData%3ABaeume&outputFormat=application/json",
+      "url": "https://geodienste.leipzig.de/l3/OpenData/wfs?VERSION=1.3.0&REQUEST=getFeature&typeName=OpenData%3ABaeume&outputFormat=application/json",
       "format": "GeoJSON"
     },
     "resource_count": 4
@@ -1628,7 +1628,7 @@
       "id": "0af908e4-f3dc-4f84-bf19-f0cd00ad8fc1",
       "name": "Stadtgrundkarte im GeoJSON-Format.",
       "url": "https://geodaten.leipzig.de/open_data/organisationseinheit/Amt_fuer_Geoinformation_und_Bodenordnung/Stadtgrundkarte/GeoJSON/DSGK2025mH_GeoJSON4937_NON_TILED.zip",
-      "format": "GeoJSON"
+      "format": "ZIP"
     },
     "resource_count": 6
   },
@@ -3206,7 +3206,7 @@
     "best_resource": {
       "id": "2ecc5712-f5d9-429c-a0a5-1cea40d34281",
       "name": "Horte der Stadt Leipzig im GeoJSON-Format.",
-      "url": "https://geodienste.leipzig.de/l3/OpenData//wfs?VERSION=1.3.0&REQUEST=getFeature&typeName=OpenData%3AHorte&outputFormat=application/json",
+      "url": "https://geodienste.leipzig.de/l3/OpenData/wfs?VERSION=1.3.0&REQUEST=getFeature&typeName=OpenData%3AHorte&outputFormat=application/json",
       "format": "GeoJSON"
     },
     "resource_count": 4
@@ -3536,7 +3536,7 @@
     "best_resource": {
       "id": "992cfbda-d632-4274-951a-027cfd425e99",
       "name": "Kindertageseinrichtungen der Stadt Leipzig im GeoJSON-Format.",
-      "url": "https://geodienste.leipzig.de/l3/OpenData//wfs?VERSION=1.3.0&REQUEST=getFeature&typeName=OpenData%3AKita&outputFormat=application/json",
+      "url": "https://geodienste.leipzig.de/l3/OpenData/wfs?VERSION=1.3.0&REQUEST=getFeature&typeName=OpenData%3AKita&outputFormat=application/json",
       "format": "GeoJSON"
     },
     "resource_count": 4
@@ -5899,7 +5899,7 @@
     "best_resource": {
       "id": "9e31fae5-8ab0-4393-9e76-a44545b3da7d",
       "name": "Die Verkehrsraumeinschränkungen (Polygone) im GeoJSON-Format",
-      "url": "https://geodienste.leipzig.de/l3/OpenData//wfs?VERSION=1.3.0&REQUEST=getFeature&typeName=OpenData%3Averkehrsraumeinschraenkungen&outputFormat=application/json",
+      "url": "https://geodienste.leipzig.de/l3/OpenData/wfs?VERSION=1.3.0&REQUEST=getFeature&typeName=OpenData%3Averkehrsraumeinschraenkungen&outputFormat=application/json",
       "format": "GeoJSON"
     },
     "resource_count": 3
@@ -5973,7 +5973,7 @@
     "best_resource": {
       "id": "038040ea-5739-4b98-b226-62b9c435bfa5",
       "name": "Die Verkehrszeichen im GeoJSON-Format",
-      "url": "https://geodienste.leipzig.de/l3/OpenData//wfs?VERSION=1.3.0&REQUEST=getFeature&typeName=OpenData%3Averkehrszeichen&outputFormat=application/json",
+      "url": "https://geodienste.leipzig.de/l3/OpenData/wfs?VERSION=1.3.0&REQUEST=getFeature&typeName=OpenData%3Averkehrszeichen&outputFormat=application/json",
       "format": "GeoJSON"
     },
     "resource_count": 3
