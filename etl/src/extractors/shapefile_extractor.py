@@ -13,6 +13,8 @@ import shapefile  # pyshp
 from shapely.geometry import shape, mapping
 from shapely.ops import transform as shapely_transform
 
+from .base import HttpExtractor
+
 logger = logging.getLogger(__name__)
 
 
