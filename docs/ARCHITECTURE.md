@@ -6,12 +6,12 @@ Ein **Leipzig Open Data Dashboard** — eine selbst-gehostete Web-Plattform, die
 
 ---
 
-## Überblick: Die 6 Services
+## Überblick: Die 7 Services
 
 ```
 Internet
     │
-    ▼ :80 (HTTP→HTTPS-Redirect) / :443 (HTTPS, self-signed)
+    ▼ :80 (HTTP→HTTPS-Redirect) / :443 (HTTPS, Let's Encrypt)
 ┌─────────────────────────────────────────────────────┐
 │                     nginx                           │
 │           (Reverse Proxy + Rate Limiting)           │
@@ -39,10 +39,10 @@ Internet
   │ Scheduler│
   └──────────┘
 
-  ┌─────────────┐
-  │ uptime-kuma │
-  │  Monitoring │
-  └─────────────┘
+  ┌──────────┐   ┌─────────────┐
+  │ certbot  │   │ uptime-kuma │
+  │TLS renew │   │  Monitoring │
+  └──────────┘   └─────────────┘
 ```
 
 ---
@@ -85,9 +85,14 @@ Internet
   - `/api/*` → Backend, Rate-Limit **30 req/min**
   - `/*` → Frontend (SPA-Fallback auf `index.html`)
 - Gzip-Komprimierung für JSON, JavaScript, GeoJSON
-- Security-Headers: `X-Frame-Options DENY`, CSP, `nosniff`
-- TLS via **self-signed Zertifikat** (`infrastructure/nginx/certs/`, 10 Jahre gültig, kein Renewal)
-- `server_name _` — catch-all, funktioniert direkt über VPS-IP ohne Domain
+- Security-Headers: `X-Frame-Options DENY`, CSP, `nosniff`, HSTS
+- TLS via Let's Encrypt — Zertifikat liegt in `infrastructure/certbot/conf/` (Bind-Mount)
+- Domain: `auerbachs-auge.tech`
+
+### `certbot` — TLS-Renewal
+- Prüft alle 12h ob Renewal nötig (`certbot renew --quiet`)
+- Teilt Bind-Mount-Verzeichnisse mit nginx: `infrastructure/certbot/conf/` (Zertifikate) und `infrastructure/certbot/www/` (ACME-Challenges)
+- Erstzertifikat einmalig per `certbot-init.sh` ausstellen (vor dem ersten `docker compose up`)
 
 ### `uptime-kuma` — Monitoring
 - Port `3001` nur auf `127.0.0.1` — nur per SSH-Tunnel erreichbar, nicht öffentlich
@@ -107,7 +112,7 @@ db (healthy)
 frontend (startet unabhängig)
     └── nginx (wartet auch auf frontend)
 
-uptime-kuma: komplett unabhängig
+certbot / uptime-kuma: komplett unabhängig
 ```
 
 ---
@@ -237,19 +242,20 @@ App.tsx
 
 ## HTTPS-Setup
 
-Self-signed Zertifikat generieren (einmalig auf dem VPS):
+Erstzertifikat ausstellen (einmalig, vor dem ersten `docker compose up`):
 
 ```bash
-bash infrastructure/scripts/generate-selfsigned.sh
+export CERTBOT_EMAIL=deine@email.com
+bash /opt/leipzig-data/infrastructure/scripts/certbot-init.sh
 ```
 
-Legt `fullchain.pem` und `privkey.pem` unter `infrastructure/nginx/certs/` ab (10 Jahre gültig, kein Renewal nötig). Nginx mountet dieses Verzeichnis read-only ein.
+Das Script stoppt laufende Container, startet einen temporären Certbot-Container auf Port 80 (standalone), stellt das Let's Encrypt-Zertifikat aus und legt es in `infrastructure/certbot/conf/` ab.
+
+Danach erneuert der `certbot`-Service das Zertifikat automatisch alle 12h (nur wenn Ablauf < 30 Tage). Let's Encrypt-Zertifikate laufen nach 90 Tagen ab.
 
 **Nginx-Routing:**
-- `HTTP :80` → 301 Redirect auf `HTTPS :443`
-- `HTTPS :443` → TLS terminiert (self-signed), dann Proxy zu backend/frontend
-
-Browser zeigen beim ersten Aufruf eine Warnung — einmalig "Trotzdem fortfahren" klicken.
+- `HTTP :80` → ACME-Challenge-Pfad durchlassen, alles andere → 301 auf `HTTPS :443`
+- `HTTPS :443` → TLS terminiert (Let's Encrypt), dann Proxy zu backend/frontend
 
 ---
 
@@ -305,4 +311,5 @@ git push → main
 | etl | custom (Python) | — | — |
 | frontend | custom (React+nginx) | — | 80 |
 | nginx | nginx:alpine | 0.0.0.0:80, 0.0.0.0:443 | — |
+| certbot | certbot/certbot | — | — |
 | uptime-kuma | louislam/uptime-kuma:1 | 127.0.0.1:3001 | 3001 |

@@ -1,68 +1,51 @@
 #!/usr/bin/env bash
 # =============================================================================
-# Erstzertifikat via Let's Encrypt ausstellen.
-# Einmalig auf dem VPS ausführen, BEVOR nginx mit HTTPS-Config gestartet wird.
+# Let's Encrypt Erstzertifikat ausstellen für auerbachs-auge.tech
+# Einmalig auf dem VPS ausführen, BEVOR docker compose up gestartet wird.
 #
 # Voraussetzungen:
-#   1. DNS-Eintrag für DOMAIN zeigt auf diese Server-IP
-#   2. Port 80 ist von außen erreichbar (für ACME-Challenge)
-#   3. DOMAIN und CERTBOT_EMAIL sind gesetzt (in .env oder als Umgebungsvariablen)
+#   - DNS A-Record für auerbachs-auge.tech zeigt auf diese VPS-IP
+#   - Port 80 ist von außen erreichbar
+#   - CERTBOT_EMAIL ist gesetzt
 #
 # Verwendung:
-#   export DOMAIN=yourdomain.com
-#   export CERTBOT_EMAIL=your@email.com
+#   export CERTBOT_EMAIL=deine@email.com
 #   bash infrastructure/scripts/certbot-init.sh
 # =============================================================================
 set -euo pipefail
 
 APP_DIR="${APP_DIR:-/opt/leipzig-data}"
 COMPOSE_FILE="$APP_DIR/infrastructure/docker-compose.yml"
-
-DOMAIN="${DOMAIN:?Bitte DOMAIN setzen, z.B.: export DOMAIN=yourdomain.com}"
-CERTBOT_EMAIL="${CERTBOT_EMAIL:?Bitte CERTBOT_EMAIL setzen, z.B.: export CERTBOT_EMAIL=you@example.com}"
+DOMAIN="auerbachs-auge.tech"
+CERTBOT_EMAIL="${CERTBOT_EMAIL:?Bitte setzen: export CERTBOT_EMAIL=deine@email.com}"
+CERTBOT_CONF="$APP_DIR/infrastructure/certbot/conf"
+CERTBOT_WWW="$APP_DIR/infrastructure/certbot/www"
 
 echo "=== Certbot Init: $DOMAIN ==="
 
-# 1. nginx temporär mit HTTP-only-Config starten (für ACME-Challenge)
-#    Dafür muss in app.conf der HTTPS-Block noch NICHT aktiv sein,
-#    oder nginx läuft noch nicht — dann direkt weiter zu Schritt 2.
-if ! docker compose -f "$COMPOSE_FILE" ps nginx | grep -q "Up"; then
-  echo "Nginx läuft nicht — starte temporär für ACME-Challenge..."
-  # Starte nur nginx im HTTP-Modus (HTTPS-Block verursacht Fehler ohne Zertifikat)
-  # Einfachste Lösung: kurze temp-config ohne SSL-Block
-  docker run --rm -d --name nginx-tmp \
-    -p 80:80 \
-    -v "$APP_DIR/infrastructure/certbot/www:/var/www/certbot" \
-    nginx:alpine sh -c "mkdir -p /var/www/certbot && nginx -g 'daemon off;'"
-  TEMP_NGINX=true
-else
-  TEMP_NGINX=false
-fi
+# Verzeichnisse anlegen
+mkdir -p "$CERTBOT_CONF" "$CERTBOT_WWW"
 
-# 2. Zertifikat ausstellen
-echo "Stelle Zertifikat für $DOMAIN aus..."
+# Laufende Container stoppen (Port 80 freigeben)
+echo "Stoppe laufende Container..."
+docker compose --project-directory "$APP_DIR" -f "$COMPOSE_FILE" down 2>/dev/null || true
+
+# Zertifikat via standalone ausstellen (certbot hört selbst auf Port 80)
+echo "Stelle Zertifikat aus..."
 docker run --rm \
-  -v "$APP_DIR/infrastructure/certbot/conf:/etc/letsencrypt" \
-  -v "$APP_DIR/infrastructure/certbot/www:/var/www/certbot" \
+  -p 80:80 \
+  -v "$CERTBOT_CONF:/etc/letsencrypt" \
+  -v "$CERTBOT_WWW:/var/www/certbot" \
   certbot/certbot certonly \
-    --webroot \
-    --webroot-path /var/www/certbot \
+    --standalone \
     --email "$CERTBOT_EMAIL" \
     --agree-tos \
     --no-eff-email \
     -d "$DOMAIN"
 
-# 3. Temp-nginx aufräumen
-if [ "$TEMP_NGINX" = "true" ]; then
-  docker stop nginx-tmp 2>/dev/null || true
-fi
-
 echo ""
 echo "=== Zertifikat erfolgreich ausgestellt ==="
+echo "Gültig bis: $(openssl x509 -noout -enddate -in "$CERTBOT_CONF/live/$DOMAIN/fullchain.pem")"
 echo ""
-echo "Nächste Schritte:"
-echo "  1. In infrastructure/nginx/conf.d/app.conf alle 'yourdomain.com' durch '$DOMAIN' ersetzen"
-echo "  2. docker compose -f $COMPOSE_FILE up -d nginx"
-echo ""
-echo "Zertifikat liegt in: /etc/letsencrypt/live/$DOMAIN/"
-echo "Certbot erneuert automatisch alle 12h (im certbot-Container)."
+echo "Jetzt starten:"
+echo "  cd $APP_DIR && docker compose --project-directory $APP_DIR -f infrastructure/docker-compose.yml up -d --build"

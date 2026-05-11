@@ -10,7 +10,7 @@ Schritt-für-Schritt-Guide vom leeren VPS bis zur laufenden Plattform.
 - GitHub-Account mit diesem Repository
 - Telegram-Account
 
-Keine Domain nötig — die Plattform ist direkt über die **VPS-IP** erreichbar. TLS läuft über ein self-signed Zertifikat (Browser zeigt einmalig eine Warnung).
+Domain: **auerbachs-auge.tech** (Hostinger). TLS via Let's Encrypt — vollständiges, von Browsern akzeptiertes Zertifikat, automatisches Renewal.
 
 ---
 
@@ -105,7 +105,7 @@ openssl rand -hex 32
 ### CORS
 
 ```env
-ALLOWED_ORIGINS=https://<DEINE-VPS-IP>  # ← ÄNDERN: VPS-IP mit https://, z.B. https://123.45.67.89
+ALLOWED_ORIGINS=https://auerbachs-auge.tech  # bereits korrekt gesetzt
 ```
 
 ### Leipzig Open Data API
@@ -155,17 +155,34 @@ AWS_SECRET_ACCESS_KEY=
 
 ---
 
-## Schritt 4 — Self-Signed Zertifikat generieren (einmalig)
+## Schritt 4 — DNS-A-Record setzen (einmalig)
 
-```bash
-bash /opt/leipzig-data/infrastructure/scripts/generate-selfsigned.sh
+Im **Hostinger-Panel** unter DNS-Verwaltung für `auerbachs-auge.tech`:
+
+```
+Typ:   A
+Name:  @
+Wert:  <VPS-IP>
+TTL:   300
 ```
 
-Das Script erkennt die VPS-IP automatisch und legt `fullchain.pem` + `privkey.pem` unter `infrastructure/nginx/certs/` ab. Gültig für 10 Jahre — kein Renewal nötig.
+Propagation abwarten (5–30 min), dann prüfen:
+```bash
+nslookup auerbachs-auge.tech
+```
+
+## Schritt 5 — Let's Encrypt Zertifikat ausstellen (einmalig)
+
+```bash
+export CERTBOT_EMAIL=deine@email.com
+bash /opt/leipzig-data/infrastructure/scripts/certbot-init.sh
+```
+
+Das Script stoppt laufende Container, stellt das Zertifikat via Certbot standalone aus und legt es in `infrastructure/certbot/conf/` ab. Der `certbot`-Service erneuert es danach automatisch alle 12h.
 
 ---
 
-## Schritt 5 — Ersten Start durchführen
+## Schritt 6 — Ersten Start durchführen
 
 ```bash
 cd /opt/leipzig-data
@@ -193,7 +210,7 @@ docker compose --project-directory /opt/leipzig-data -f infrastructure/docker-co
 
 ---
 
-## Schritt 6 — GitHub Actions Secrets konfigurieren
+## Schritt 7 — GitHub Actions Secrets konfigurieren
 
 Damit CI/CD bei jedem Push auf `main` automatisch deployed, braucht GitHub Zugriff auf den VPS.
 
@@ -233,7 +250,7 @@ Gehe zu: `GitHub → Repository → Settings → Environments → New environmen
 
 ---
 
-## Schritt 7 — Ersten Admin-User anlegen
+## Schritt 8 — Ersten Admin-User anlegen
 
 Nach dem Start muss einmalig ein User in der Datenbank angelegt werden:
 
@@ -262,25 +279,22 @@ print('User erstellt')
 
 ---
 
-## Schritt 8 — Alles verifizieren
+## Schritt 9 — Alles verifizieren
 
 ```bash
 # HTTP → HTTPS Redirect?
-curl -I http://<VPS-IP>
+curl -I http://auerbachs-auge.tech
 # → 301 Moved Permanently
 
-# HTTPS antwortet? (-k ignoriert self-signed Warnung)
-curl -k https://<VPS-IP>/health
+# HTTPS antwortet?
+curl https://auerbachs-auge.tech/health
 # → {"status":"ok"}
-
-# API antwortet?
-curl -k https://<VPS-IP>/api/datasets
 
 # ETL läuft?
 docker compose --project-directory /opt/leipzig-data -f infrastructure/docker-compose.yml logs etl | tail -20
 
 # Zertifikat gültig bis?
-openssl s_client -connect <VPS-IP>:443 < /dev/null 2>/dev/null | openssl x509 -noout -dates
+openssl s_client -connect auerbachs-auge.tech:443 -servername auerbachs-auge.tech < /dev/null 2>/dev/null | openssl x509 -noout -dates
 ```
 
 ### Telegram testen:
@@ -322,9 +336,9 @@ bash infrastructure/scripts/deploy.sh
 ### nginx startet nicht
 ```bash
 docker compose --project-directory /opt/leipzig-data -f infrastructure/docker-compose.yml logs nginx
-# Häufigste Ursache: Zertifikat fehlt noch → Schritt 4 wiederholen
+# Häufigste Ursache: Zertifikat fehlt noch → certbot-init.sh erneut ausführen
 # Prüfen ob Cert-Dateien vorhanden sind:
-ls -la /opt/leipzig-data/infrastructure/nginx/certs/
+ls -la /opt/leipzig-data/infrastructure/certbot/conf/live/auerbachs-auge.tech/
 ```
 
 ### ETL schlägt fehl
