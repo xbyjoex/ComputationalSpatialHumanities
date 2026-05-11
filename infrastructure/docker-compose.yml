@@ -50,7 +50,7 @@ services:
       context: ../backend
       dockerfile: Dockerfile
     restart: unless-stopped
-    env_file: ../.env
+    env_file: .env
     environment:
       POSTGRES_HOST: db
       REDIS_URL: redis://redis:6379/0
@@ -73,7 +73,7 @@ services:
       context: ../etl
       dockerfile: Dockerfile
     restart: unless-stopped
-    env_file: ../.env
+    env_file: .env
     environment:
       POSTGRES_HOST: db
     depends_on:
