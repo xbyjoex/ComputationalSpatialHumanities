@@ -415,6 +415,42 @@ def upsert_traffic_restrictions(
     return loaded
 
 
+def get_dataset_checksum(conn: psycopg.Connection, dataset_id: str) -> dict | None:
+    with conn.cursor() as cur:
+        cur.execute(
+            "SELECT etag, last_modified, content_hash FROM raw_ingest.dataset_checksums WHERE dataset_id = %s",
+            (dataset_id,),
+        )
+        row = cur.fetchone()
+        return dict(row) if row else None
+
+
+def upsert_dataset_checksum(
+    conn: psycopg.Connection,
+    dataset_id: str,
+    url: str,
+    etag: str | None,
+    last_modified: str | None,
+    content_hash: str | None,
+) -> None:
+    with conn.cursor() as cur:
+        cur.execute(
+            """
+            INSERT INTO raw_ingest.dataset_checksums
+                (dataset_id, url, etag, last_modified, content_hash, checked_at)
+            VALUES (%s, %s, %s, %s, %s, NOW())
+            ON CONFLICT (dataset_id) DO UPDATE SET
+                url           = EXCLUDED.url,
+                etag          = EXCLUDED.etag,
+                last_modified = EXCLUDED.last_modified,
+                content_hash  = EXCLUDED.content_hash,
+                checked_at    = NOW()
+            """,
+            (dataset_id, url, etag, last_modified, content_hash),
+        )
+        conn.commit()
+
+
 def _safe_int(val: Any) -> int | None:
     try:
         return int(float(str(val).replace(",", "."))) if val is not None else None

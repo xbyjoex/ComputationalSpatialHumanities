@@ -74,6 +74,21 @@ class HttpExtractor:
         resp.raise_for_status()
         return resp.content
 
+    def fetch_with_headers(
+        self,
+        url: str,
+        etag: str | None = None,
+        last_modified: str | None = None,
+    ) -> httpx.Response:
+        """GET with conditional headers; may return 304 Not Modified."""
+        headers: dict[str, str] = {}
+        if etag:
+            headers["If-None-Match"] = etag
+        if last_modified:
+            headers["If-Modified-Since"] = last_modified
+        resp = self.client.get(url, headers=headers, follow_redirects=True)
+        return resp
+
     def __enter__(self) -> "HttpExtractor":
         return self
 

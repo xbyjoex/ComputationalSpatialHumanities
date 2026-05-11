@@ -5,6 +5,7 @@ Dispatches to the right extractor/loader based on format and dataset type.
 
 from __future__ import annotations
 
+import hashlib
 import logging
 from typing import Any
 
@@ -17,10 +18,12 @@ from .extractors.csv_extractor import CsvExtractor
 from .extractors.geojson_extractor import GeoJsonExtractor
 from .extractors.json_extractor import StatistikApiExtractor
 from .loaders.postgres import (
+    get_dataset_checksum,
     log_etl_finish,
     log_etl_start,
     store_raw_payload,
     upsert_bicycle_counts,
+    upsert_dataset_checksum,
     upsert_geo_features,
     upsert_park_ride,
     upsert_statistics,
@@ -69,6 +72,43 @@ def run_dataset(contract: dict[str, Any]) -> tuple[str, int, int]:
         logger.info("Skipping %s — unsupported format %s", title, fmt)
         return "skipped", 0, 0
 
+    # ── Change detection ─────────────────────────────────────────────────────
+    with get_conn() as conn:
+        stored = get_dataset_checksum(conn, dataset_id)
+
+    etag = stored.get("etag") if stored else None
+    last_modified = stored.get("last_modified") if stored else None
+    stored_hash = stored.get("content_hash") if stored else None
+
+    try:
+        with HttpExtractor() as ext:
+            probe = ext.fetch_with_headers(url, etag=etag, last_modified=last_modified)
+
+        if probe.status_code == 304:
+            logger.info("[SKIP] %-60s unchanged (304)", title[:60])
+            return "skipped", 0, 0
+
+        if probe.status_code == 200:
+            content_hash = hashlib.sha256(probe.content).hexdigest()
+            new_etag = probe.headers.get("etag")
+            new_lm = probe.headers.get("last-modified")
+
+            if content_hash == stored_hash:
+                logger.info("[SKIP] %-60s unchanged (hash)", title[:60])
+                with get_conn() as conn:
+                    upsert_dataset_checksum(conn, dataset_id, url, new_etag, new_lm, content_hash)
+                return "skipped", 0, 0
+        else:
+            content_hash = None
+            new_etag = None
+            new_lm = None
+    except Exception as exc:
+        logger.debug("Change-detection probe failed for %s: %s — proceeding", title, exc)
+        content_hash = None
+        new_etag = None
+        new_lm = None
+
+    # ── Normal ETL ───────────────────────────────────────────────────────────
     with get_conn() as conn:
         run_id = log_etl_start(conn, dataset_id, title, schedule)
 
@@ -82,6 +122,8 @@ def run_dataset(contract: dict[str, Any]) -> tuple[str, int, int]:
                 rows_extracted=rows_extracted,
                 rows_loaded=rows_loaded,
             )
+        with get_conn() as conn:
+            upsert_dataset_checksum(conn, dataset_id, url, new_etag, new_lm, content_hash)
         logger.info("[OK] %-60s rows=%d", title[:60], rows_loaded)
         return "success", rows_extracted, rows_loaded
 
