@@ -199,72 +199,60 @@ def upsert_statistics(
     Generic statistics loader. Tries to detect period and value columns
     from the record structure.
     """
+    _SKIP_KEYS = {
+        "Jahr", "year", "Periode", "periode", "period",
+        "Ortsteil", "ortsteil", "Stadtbezirk", "stadtbezirk", "Gebiet",
+    }
+    _BATCH = 500
+
+    rows: list[tuple] = []
+    for rec in records:
+        year = None
+        period_label = None
+        period_type = "year"
+        su = spatial_unit
+
+        for k in ("Jahr", "year", "Periode", "periode", "period"):
+            if k in rec:
+                try:
+                    year = int(str(rec[k])[:4])
+                    period_label = str(rec[k])
+                except (ValueError, TypeError):
+                    pass
+                break
+
+        spatial_key = "Leipzig"
+        for k in ("Ortsteil", "ortsteil", "Stadtbezirk", "stadtbezirk", "Gebiet"):
+            if k in rec and rec[k]:
+                spatial_key = str(rec[k])
+                su = "ortsteil" if "ortsteil" in k.lower() else ("stadtbezirk" if "stadtbezirk" in k.lower() else su)
+                break
+
+        raw = json.dumps(rec)
+        for metric_name, raw_val in rec.items():
+            if metric_name in _SKIP_KEYS:
+                continue
+            try:
+                metric_value = float(str(raw_val).replace(",", "."))
+            except (ValueError, TypeError):
+                metric_value = None
+            rows.append((dataset_id, period_type, period_label, year, None, None, su, spatial_key, metric_name, metric_value, raw))
+
     loaded = 0
     with conn.cursor() as cur:
-        for rec in records:
-            # Detect period
-            year = None
-            quarter = None
-            month = None
-            period_label = None
-            period_type = "year"
-
-            for k in ("Jahr", "year", "Periode", "periode", "period"):
-                if k in rec:
-                    try:
-                        year = int(str(rec[k])[:4])
-                        period_label = str(rec[k])
-                    except (ValueError, TypeError):
-                        pass
-                    break
-
-            # Detect spatial key
-            spatial_key = "Leipzig"
-            for k in ("Ortsteil", "ortsteil", "Stadtbezirk", "stadtbezirk", "Gebiet"):
-                if k in rec and rec[k]:
-                    spatial_key = str(rec[k])
-                    if "ortsteil" in k.lower():
-                        spatial_unit = "ortsteil"
-                    elif "stadtbezirk" in k.lower():
-                        spatial_unit = "stadtbezirk"
-                    break
-
-            # Each remaining numeric column is a metric
-            skip_keys = {
-                "Jahr", "year", "Periode", "periode", "period",
-                "Ortsteil", "ortsteil", "Stadtbezirk", "stadtbezirk", "Gebiet",
-            }
-            for metric_name, raw_val in rec.items():
-                if metric_name in skip_keys:
-                    continue
-                try:
-                    metric_value = float(str(raw_val).replace(",", "."))
-                except (ValueError, TypeError):
-                    metric_value = None
-
-                cur.execute(
-                    """
-                    INSERT INTO core.statistics
-                        (dataset_id, period_type, period_label, period_year, period_quarter,
-                         period_month, spatial_unit, spatial_key, metric_name, metric_value, raw_payload)
-                    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
-                    ON CONFLICT DO NOTHING
-                    """,
-                    (
-                        dataset_id,
-                        period_type,
-                        period_label,
-                        year,
-                        quarter,
-                        month,
-                        spatial_unit,
-                        spatial_key,
-                        metric_name,
-                        metric_value,
-                        json.dumps(rec),
-                    ),
-                )
-                loaded += 1
+        for i in range(0, len(rows), _BATCH):
+            batch = rows[i : i + _BATCH]
+            cur.executemany(
+                """
+                INSERT INTO core.statistics
+                    (dataset_id, period_type, period_label, period_year, period_quarter,
+                     period_month, spatial_unit, spatial_key, metric_name, metric_value, raw_payload)
+                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                ON CONFLICT DO NOTHING
+                """,
+                batch,
+            )
+            loaded += len(batch)
         conn.commit()
     return loaded
 

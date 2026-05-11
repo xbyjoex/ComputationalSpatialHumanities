@@ -5,7 +5,6 @@ Dispatches to the right extractor/loader based on format and dataset type.
 
 from __future__ import annotations
 
-import hashlib
 import logging
 from typing import Any
 
@@ -72,41 +71,34 @@ def run_dataset(contract: dict[str, Any]) -> tuple[str, int, int]:
         logger.info("Skipping %s — unsupported format %s", title, fmt)
         return "skipped", 0, 0
 
-    # ── Change detection ─────────────────────────────────────────────────────
+    # ── Change detection via HEAD (no body download) ─────────────────────────
     with get_conn() as conn:
         stored = get_dataset_checksum(conn, dataset_id)
 
-    etag = stored.get("etag") if stored else None
-    last_modified = stored.get("last_modified") if stored else None
-    stored_hash = stored.get("content_hash") if stored else None
+    stored_etag = stored.get("etag") if stored else None
+    stored_lm = stored.get("last_modified") if stored else None
+    new_etag = None
+    new_lm = None
 
     try:
         with HttpExtractor() as ext:
-            probe = ext.fetch_with_headers(url, etag=etag, last_modified=last_modified)
+            probe = ext.fetch_with_headers(url, etag=stored_etag, last_modified=stored_lm)
+
+        new_etag = probe.headers.get("etag")
+        new_lm = probe.headers.get("last-modified")
 
         if probe.status_code == 304:
             logger.info("[SKIP] %-60s unchanged (304)", title[:60])
             return "skipped", 0, 0
 
-        if probe.status_code == 200:
-            content_hash = hashlib.sha256(probe.content).hexdigest()
-            new_etag = probe.headers.get("etag")
-            new_lm = probe.headers.get("last-modified")
-
-            if content_hash == stored_hash:
-                logger.info("[SKIP] %-60s unchanged (hash)", title[:60])
-                with get_conn() as conn:
-                    upsert_dataset_checksum(conn, dataset_id, url, new_etag, new_lm, content_hash)
-                return "skipped", 0, 0
-        else:
-            content_hash = None
-            new_etag = None
-            new_lm = None
+        # ETag present and unchanged → skip without downloading body
+        if new_etag and new_etag == stored_etag:
+            logger.info("[SKIP] %-60s unchanged (etag)", title[:60])
+            with get_conn() as conn:
+                upsert_dataset_checksum(conn, dataset_id, url, new_etag, new_lm, None)
+            return "skipped", 0, 0
     except Exception as exc:
-        logger.debug("Change-detection probe failed for %s: %s — proceeding", title, exc)
-        content_hash = None
-        new_etag = None
-        new_lm = None
+        logger.debug("Change-detection HEAD failed for %s: %s — proceeding", title, exc)
 
     # ── Normal ETL ───────────────────────────────────────────────────────────
     with get_conn() as conn:
@@ -123,7 +115,7 @@ def run_dataset(contract: dict[str, Any]) -> tuple[str, int, int]:
                 rows_loaded=rows_loaded,
             )
         with get_conn() as conn:
-            upsert_dataset_checksum(conn, dataset_id, url, new_etag, new_lm, content_hash)
+            upsert_dataset_checksum(conn, dataset_id, url, new_etag, new_lm, None)
         logger.info("[OK] %-60s rows=%d", title[:60], rows_loaded)
         return "success", rows_extracted, rows_loaded
 

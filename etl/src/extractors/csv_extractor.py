@@ -24,8 +24,7 @@ class CsvExtractor(HttpExtractor):
 
         reader = csv.DictReader(io.StringIO(text), delimiter=delimiter)
         for row in reader:
-            # Normalise: strip whitespace from keys and values
-            yield {k.strip(): (v.strip() if v else None) for k, v in row.items()}
+            yield {k.strip(): (v.strip() if v else None) for k, v in row.items() if k is not None}
 
     def extract_all(self, url: str, **kwargs: Any) -> list[dict[str, Any]]:
         return list(self.extract(url, **kwargs))
