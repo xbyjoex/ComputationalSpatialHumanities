@@ -44,6 +44,9 @@ TRAFFIC_RESTRICTION_IDS = {
 # Datasets served from statistik.leipzig.de JSON API
 STATISTIK_API_URL = "statistik.leipzig.de/opendata/api"
 
+# Formats we intentionally skip — binary/complex formats with no handler
+SKIP_FORMATS = {"GTFS", "ZIP", "PDF", "XLS", "XLSX", "ODS", "SHP", "GPKG"}
+
 
 def run_dataset(contract: dict[str, Any]) -> tuple[str, int, int]:
     """
@@ -60,6 +63,10 @@ def run_dataset(contract: dict[str, Any]) -> tuple[str, int, int]:
 
     if not url:
         logger.info("Skipping %s — no resource URL", title)
+        return "skipped", 0, 0
+
+    if fmt in SKIP_FORMATS:
+        logger.info("Skipping %s — unsupported format %s", title, fmt)
         return "skipped", 0, 0
 
     with get_conn() as conn:
