@@ -26,5 +26,11 @@ class CsvExtractor(HttpExtractor):
         for row in reader:
             yield {k.strip(): (v.strip() if v else None) for k, v in row.items() if k is not None}
 
-    def extract_all(self, url: str, **kwargs: Any) -> list[dict[str, Any]]:
-        return list(self.extract(url, **kwargs))
+    def extract_all(self, url: str, max_rows: int = 50_000, **kwargs: Any) -> list[dict[str, Any]]:
+        rows = []
+        for row in self.extract(url, **kwargs):
+            rows.append(row)
+            if len(rows) >= max_rows:
+                logger.warning("CSV truncated at %d rows (url=%s)", max_rows, url)
+                break
+        return rows
