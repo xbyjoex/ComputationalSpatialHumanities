@@ -10,6 +10,7 @@ from typing import Callable
 import httpx
 
 from .config import settings
+from . import etl_state
 
 logger = logging.getLogger(__name__)
 
@@ -80,8 +81,28 @@ def _handle(message: dict, run_nightly: Callable, run_live: Callable) -> None:
         _executor.submit(_run_safe, "live", run_live)
 
     elif cmd == "status":
-        state = "🔄 ETL-Lauf läuft gerade" if _etl_lock.locked() else "✅ Idle — kein aktiver Lauf"
-        _reply(f"📊 <b>Scheduler-Status</b>\n{state}")
+        s = etl_state.snapshot()
+        if s["running"]:
+            total = s["total"] or 1
+            done = s["done"]
+            pct = int(100 * done / total)
+            filled = int(16 * done / total)
+            bar = "▓" * filled + "░" * (16 - filled)
+            m, sec = divmod(int(s["elapsed"]), 60)
+            dur = f"{m}m {sec}s" if m else f"{sec}s"
+            lines = [
+                f"📊 <b>Scheduler-Status</b>",
+                f"🔄 {s['kind'].capitalize()} ETL läuft",
+                f"{bar} {done}/{total} ({pct}%)",
+                f"✓ {s['success']}  ✗ {s['failed']}  ⊘ {s['skipped']}  ⏱ {dur}",
+            ]
+            if s["failed_names"]:
+                lines.append("\n<b>Letzte Fehler:</b>")
+                for n in s["failed_names"][-3:]:
+                    lines.append(f"  • {n[:60]}")
+            _reply("\n".join(lines))
+        else:
+            _reply("📊 <b>Scheduler-Status</b>\n✅ Idle — kein aktiver Lauf")
 
     elif cmd in ("help", "hilfe", "start"):
         _reply(_HELP_TEXT)

@@ -19,11 +19,13 @@ import schedule
 
 from .config import settings
 from .db import get_conn, run_migrations
+from . import etl_state
 from .loaders.postgres import upsert_dataset_registry
 from .notifier import (
     notify_mart_refresh_failed,
     notify_nightly_done,
     notify_nightly_error,
+    notify_nightly_progress,
     notify_nightly_start,
     notify_live_mart_failed,
 )
@@ -63,20 +65,35 @@ def load_contracts() -> tuple[list[dict], list[dict]]:
     return nightly, live
 
 
+_PROGRESS_INTERVAL = 50  # edit message every N datasets
+
+
 def run_nightly(nightly: list[dict]) -> None:
     logger.info("=== NIGHTLY ETL START (%d datasets) ===", len(nightly))
-    notify_nightly_start(len(nightly))
-    stats = {"success": 0, "failed": 0, "skipped": 0}
+    total = len(nightly)
+    etl_state.start("nightly", total)
+    msg_id = notify_nightly_start(total)
+    t0 = time.monotonic()
+
     try:
-        for contract in nightly:
+        for i, contract in enumerate(nightly, 1):
             if _shutdown:
                 logger.warning("Shutdown requested, stopping nightly ETL early")
                 break
             status, _, _ = run_dataset(contract)
-            stats[status] = stats.get(status, 0) + 1
+            name = contract.get("title", contract.get("id", "?"))
+            etl_state.update(status, name if status == "failed" else None)
+            if i % _PROGRESS_INTERVAL == 0:
+                s = etl_state.snapshot()
+                notify_nightly_progress(
+                    msg_id, i, total,
+                    s["success"], s["failed"], s["skipped"],
+                    s["failed_names"], s["elapsed"],
+                )
     except Exception as exc:
         logger.error("Nightly ETL crashed: %s", exc, exc_info=True)
-        notify_nightly_error(str(exc))
+        etl_state.finish()
+        notify_nightly_error(str(exc), msg_id)
         return
 
     # Refresh all mart views after nightly ETL
@@ -90,8 +107,12 @@ def run_nightly(nightly: list[dict]) -> None:
         logger.error("Failed to refresh mart views: %s", exc)
         notify_mart_refresh_failed(str(exc))
 
-    logger.info("=== NIGHTLY ETL DONE: %s ===", stats)
-    notify_nightly_done(stats)
+    etl_state.finish()
+    s = etl_state.snapshot()
+    stats = {"success": s["success"], "failed": s["failed"], "skipped": s["skipped"]}
+    elapsed = time.monotonic() - t0
+    logger.info("=== NIGHTLY ETL DONE: %s in %.0fs ===", stats, elapsed)
+    notify_nightly_done(msg_id, stats, s["failed_names"], elapsed)
 
 
 def run_live(live: list[dict]) -> None:
