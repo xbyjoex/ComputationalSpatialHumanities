@@ -14,8 +14,13 @@ from .config import settings
 from .db import get_conn
 from .extractors.base import HttpExtractor
 from .extractors.csv_extractor import CsvExtractor
+from .extractors.excel_extractor import ExcelExtractor
 from .extractors.geojson_extractor import GeoJsonExtractor
+from .extractors.gtfs_extractor import GtfsExtractor
 from .extractors.json_extractor import StatistikApiExtractor
+from .extractors.shapefile_extractor import ShapefileExtractor
+from .extractors.xml_extractor import XmlExtractor
+from .extractors.zip_extractor import ZipExtractor
 from .loaders.postgres import (
     get_dataset_checksum,
     log_etl_finish,
@@ -46,8 +51,8 @@ TRAFFIC_RESTRICTION_IDS = {
 # Datasets served from statistik.leipzig.de JSON API
 STATISTIK_API_URL = "statistik.leipzig.de/opendata/api"
 
-# Formats we intentionally skip — binary/complex formats with no handler
-SKIP_FORMATS = {"GTFS", "ZIP", "PDF", "XLS", "XLSX", "ODS", "SHP", "GPKG"}
+# Formats we intentionally skip — no viable extraction path
+SKIP_FORMATS = {"PDF", "XLS"}
 
 
 def run_dataset(contract: dict[str, Any]) -> tuple[str, int, int]:
@@ -61,7 +66,7 @@ def run_dataset(contract: dict[str, Any]) -> tuple[str, int, int]:
     schedule = contract["schedule"]
     best = contract.get("best_resource") or {}
     url = best.get("url", "")
-    fmt = best.get("format", "")
+    fmt = (best.get("format", "") or "").upper()
 
     if not url:
         logger.info("Skipping %s — no resource URL", title)
@@ -137,10 +142,11 @@ def _dispatch(
     """Route to specialised handler or generic fallback."""
     dataset_id = contract["id"]
     name = contract.get("name", "")
+    title = contract.get("title", "")
 
     # ── Park+Ride live occupancy ─────────────────────────────────────────────
     if any(kw in name.lower() for kw in ("park-ride", "pr_anlage")):
-        if fmt in ("GeoJSON", "WFS"):
+        if fmt in ("GEOJSON", "WFS"):
             with GeoJsonExtractor() as ext:
                 feats = ext.extract_all(url)
             with get_conn() as conn:
@@ -150,7 +156,7 @@ def _dispatch(
     # ── Bicycle counters ─────────────────────────────────────────────────────
     if "dauerzaehlstell" in name.lower() or "radverkehr" in name.lower():
         period = "hour" if "stunde" in name.lower() else "day"
-        if fmt == "GeoJSON":
+        if fmt == "GEOJSON":
             with GeoJsonExtractor() as ext:
                 feats = ext.extract_all(url)
             records = [f.get("properties", {}) for f in feats]
@@ -164,15 +170,78 @@ def _dispatch(
     # ── Traffic restrictions ─────────────────────────────────────────────────
     if "verkehrsraum" in name.lower() or "baustell" in name.lower():
         rtype = "polygon" if "polygon" in name.lower() else "point"
-        if fmt in ("GeoJSON", "WFS"):
+        if fmt in ("GEOJSON", "WFS"):
             with GeoJsonExtractor() as ext:
                 feats = ext.extract_all(url)
             with get_conn() as conn:
                 loaded = upsert_traffic_restrictions(conn, dataset_id, feats, restriction_type=rtype)
             return len(feats), loaded
 
+    # ── GTFS (transit feed) ──────────────────────────────────────────────────
+    if fmt == "GTFS":
+        with GtfsExtractor() as ext:
+            stops = ext.extract_stops(url)
+            routes = ext.extract_routes(url)
+        with get_conn() as conn:
+            loaded = upsert_geo_features(conn, dataset_id, stops, feature_type="gtfs_stop")
+            store_raw_payload(conn, dataset_id, url, fmt, {"stops": len(stops), "routes": len(routes)})
+        return len(stops) + len(routes), loaded
+
+    # ── SHP / Shapefile ──────────────────────────────────────────────────────
+    if fmt in ("SHP", "GPKG"):
+        with ShapefileExtractor() as ext:
+            feats = ext.extract(url)
+        with get_conn() as conn:
+            loaded = upsert_geo_features(conn, dataset_id, feats, feature_type=name[:64])
+            store_raw_payload(conn, dataset_id, url, fmt, {"count": len(feats)})
+        return len(feats), loaded
+
+    # ── ZIP archive (GeoJSON / CSV inside) ───────────────────────────────────
+    if fmt == "ZIP":
+        with ZipExtractor() as ext:
+            detected_fmt, content = ext.extract(url)
+        if detected_fmt == "GeoJSON":
+            with get_conn() as conn:
+                loaded = upsert_geo_features(conn, dataset_id, content, feature_type=name[:64])
+                store_raw_payload(conn, dataset_id, url, fmt, {"count": len(content)})
+            return len(content), loaded
+        if detected_fmt == "CSV":
+            with get_conn() as conn:
+                loaded = upsert_statistics(conn, dataset_id, content)
+                store_raw_payload(conn, dataset_id, url, fmt, content)
+            return len(content), loaded
+        if detected_fmt == "SHP":
+            # Re-extract via ShapefileExtractor (it handles the ZIP itself)
+            with ShapefileExtractor() as ext:
+                feats = ext.extract(url)
+            with get_conn() as conn:
+                loaded = upsert_geo_features(conn, dataset_id, feats, feature_type=name[:64])
+            return len(feats), loaded
+        logger.info("ZIP from %s: unrecognised content, storing raw", url)
+        with get_conn() as conn:
+            store_raw_payload(conn, dataset_id, url, fmt, {"detected": detected_fmt})
+        return 0, 0
+
+    # ── Excel / ODS ──────────────────────────────────────────────────────────
+    if fmt in ("XLSX", "ODS"):
+        with ExcelExtractor() as ext:
+            records = ext.extract(url, fmt=fmt)
+        with get_conn() as conn:
+            loaded = upsert_statistics(conn, dataset_id, records)
+            store_raw_payload(conn, dataset_id, url, fmt, records)
+        return len(records), loaded
+
+    # ── XML ──────────────────────────────────────────────────────────────────
+    if fmt == "XML":
+        with XmlExtractor() as ext:
+            records = ext.extract(url)
+        with get_conn() as conn:
+            loaded = upsert_statistics(conn, dataset_id, records)
+            store_raw_payload(conn, dataset_id, url, fmt, records)
+        return len(records), loaded
+
     # ── Generic GeoJSON / WFS ────────────────────────────────────────────────
-    if fmt in ("GeoJSON", "WFS") or (fmt == "GPKG" and "geojson" in url.lower()):
+    if fmt in ("GEOJSON", "WFS") or (fmt == "GPKG" and "geojson" in url.lower()):
         with GeoJsonExtractor() as ext:
             feats = ext.extract_all(url)
         with get_conn() as conn:
@@ -199,7 +268,7 @@ def _dispatch(
         return len(records), loaded
 
     # ── Unhandled: store raw payload for manual review ───────────────────────
-    logger.info("No handler for %s (fmt=%s), storing raw", contract["title"], fmt)
+    logger.info("No handler for %s (fmt=%s), storing raw", title, fmt)
     with HttpExtractor() as ext:
         try:
             payload = ext.get_json(url)

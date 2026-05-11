@@ -3683,7 +3683,7 @@
       "id": "4137370f-8ff3-4345-a34a-66193cf0bca7",
       "name": "LSG_Lpz.shp",
       "url": "https://opendata.leipzig.de/dataset/b11bc8e2-034b-40ea-b1d6-eb3c1ec441ff/resource/4137370f-8ff3-4345-a34a-66193cf0bca7/download/lsglpz.shp",
-      "format": "shp"
+      "format": "SHP"
     },
     "resource_count": 4
   },
