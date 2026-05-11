@@ -9,7 +9,7 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     volumes:
       - db_data:/var/lib/postgresql/data
-      - ./postgres/init:/docker-entrypoint-initdb.d:ro
+      - ./infrastructure/postgres/init:/docker-entrypoint-initdb.d:ro
     ports:
       - "127.0.0.1:5432:5432"
     shm_size: 256m
@@ -47,7 +47,7 @@ services:
   # ── Backend API ───────────────────────────────────────────────────────────
   backend:
     build:
-      context: ../backend
+      context: backend
       dockerfile: Dockerfile
     restart: unless-stopped
     env_file: .env
@@ -70,7 +70,7 @@ services:
   # ── ETL nightly ───────────────────────────────────────────────────────────
   etl:
     build:
-      context: ../etl
+      context: etl
       dockerfile: Dockerfile
     restart: unless-stopped
     env_file: .env
@@ -81,14 +81,14 @@ services:
         condition: service_healthy
     volumes:
       - etl_logs:/app/logs
-      - ../dataset_contracts.json:/app/dataset_contracts.json:ro
-      - ../sql:/app/sql:ro
+      - ./dataset_contracts.json:/app/dataset_contracts.json:ro
+      - ./sql:/app/sql:ro
     command: python -m src.scheduler
 
   # ── Frontend (built static files served by nginx) ─────────────────────────
   frontend:
     build:
-      context: ../frontend
+      context: frontend
       dockerfile: Dockerfile
     restart: unless-stopped
     expose:
@@ -102,10 +102,10 @@ services:
       - "80:80"
       - "443:443"
     volumes:
-      - ./nginx/conf.d:/etc/nginx/conf.d:ro
-      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
-      - ./certbot/www:/var/www/certbot:ro
-      - ./certbot/conf:/etc/letsencrypt:ro
+      - ./infrastructure/nginx/conf.d:/etc/nginx/conf.d:ro
+      - ./infrastructure/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./infrastructure/certbot/www:/var/www/certbot:ro
+      - ./infrastructure/certbot/conf:/etc/letsencrypt:ro
     depends_on:
       - backend
       - frontend
@@ -120,8 +120,8 @@ services:
     image: certbot/certbot
     restart: unless-stopped
     volumes:
-      - ./certbot/www:/var/www/certbot
-      - ./certbot/conf:/etc/letsencrypt
+      - ./infrastructure/certbot/www:/var/www/certbot
+      - ./infrastructure/certbot/conf:/etc/letsencrypt
     entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew --quiet; sleep 12h & wait $${!}; done;'"
 
   # ── Uptime Kuma (monitoring) ──────────────────────────────────────────────
