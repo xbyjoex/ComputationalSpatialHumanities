@@ -171,7 +171,7 @@ def upsert_geo_features(
                 """
                 INSERT INTO core.geo_features
                     (dataset_id, feature_id, feature_type, name, description, geom, properties)
-                VALUES (%s, %s, %s, %s, %s, ST_GeomFromText(%s, 4326), %s)
+                VALUES (%s, %s, %s, %s, %s, ST_Force2D(ST_GeomFromText(%s, 4326)), %s)
                 ON CONFLICT DO NOTHING
                 """,
                 (

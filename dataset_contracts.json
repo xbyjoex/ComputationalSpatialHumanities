@@ -3203,12 +3203,7 @@
       "CSV",
       "GPKG"
     ],
-    "best_resource": {
-      "id": "2ecc5712-f5d9-429c-a0a5-1cea40d34281",
-      "name": "Horte der Stadt Leipzig im GeoJSON-Format.",
-      "url": "https://geodienste.leipzig.de/l3/OpenData/wfs?VERSION=1.3.0&REQUEST=getFeature&typeName=OpenData%3AHorte&outputFormat=application/json",
-      "format": "GeoJSON"
-    },
+    "best_resource": null,
     "resource_count": 4
   },
   {
@@ -3533,12 +3528,7 @@
       "CSV",
       "GPKG"
     ],
-    "best_resource": {
-      "id": "992cfbda-d632-4274-951a-027cfd425e99",
-      "name": "Kindertageseinrichtungen der Stadt Leipzig im GeoJSON-Format.",
-      "url": "https://geodienste.leipzig.de/l3/OpenData/wfs?VERSION=1.3.0&REQUEST=getFeature&typeName=OpenData%3AKita&outputFormat=application/json",
-      "format": "GeoJSON"
-    },
+    "best_resource": null,
     "resource_count": 4
   },
   {
@@ -5286,12 +5276,7 @@
     "formats": [
       "WFS"
     ],
-    "best_resource": {
-      "id": "e3f20250-72d3-47ce-a52d-fe85ce16bd2b",
-      "name": "Stadtbezirksbudget (WFS), Stadt Leipzig",
-      "url": "https://geodienste.leipzig.de/l3/OpenData/stadtbezirksbeiraete_bewilligungen/wfs?REQUEST=GetCapabilities&SERVICE=WFS",
-      "format": "WFS"
-    },
+    "best_resource": null,
     "resource_count": 4
   },
   {
@@ -5915,12 +5900,7 @@
       "GeoJSON",
       "CSV"
     ],
-    "best_resource": {
-      "id": "d4be57e8-7b4c-409c-8ccf-f35468591a32",
-      "name": "Die Verkehrsraumeinschränkungen (Punkte) im GeoJSON-Format",
-      "url": "https://geodienste.leipzig.de/l3/OpenData/wfs?VERSION=1.3.0&REQUEST=getFeature&typeName=OpenData%3Averkehrsraumeinschraenkungen_point&outputFormat=application/json",
-      "format": "GeoJSON"
-    },
+    "best_resource": null,
     "resource_count": 3
   },
   {
