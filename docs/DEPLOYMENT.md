@@ -170,25 +170,25 @@ Das Script erkennt die VPS-IP automatisch und legt `fullchain.pem` + `privkey.pe
 ```bash
 cd /opt/leipzig-data
 
-docker compose -f infrastructure/docker-compose.yml up -d --build
+docker compose --project-directory /opt/leipzig-data -f infrastructure/docker-compose.yml up -d --build
 ```
 
 Services hochfahren dauert beim ersten Start 2–5 Minuten (Images bauen). Status prüfen:
 
 ```bash
-docker compose -f infrastructure/docker-compose.yml ps
+docker compose --project-directory /opt/leipzig-data -f infrastructure/docker-compose.yml ps
 ```
 
 Alle Services sollten `Up (healthy)` zeigen. Logs prüfen:
 
 ```bash
 # Alle Services
-docker compose -f infrastructure/docker-compose.yml logs -f
+docker compose --project-directory /opt/leipzig-data -f infrastructure/docker-compose.yml logs -f
 
 # Einzelner Service
-docker compose -f infrastructure/docker-compose.yml logs -f etl
-docker compose -f infrastructure/docker-compose.yml logs -f backend
-docker compose -f infrastructure/docker-compose.yml logs -f nginx
+docker compose --project-directory /opt/leipzig-data -f infrastructure/docker-compose.yml logs -f etl
+docker compose --project-directory /opt/leipzig-data -f infrastructure/docker-compose.yml logs -f backend
+docker compose --project-directory /opt/leipzig-data -f infrastructure/docker-compose.yml logs -f nginx
 ```
 
 ---
@@ -238,7 +238,7 @@ Gehe zu: `GitHub → Repository → Settings → Environments → New environmen
 Nach dem Start muss einmalig ein User in der Datenbank angelegt werden:
 
 ```bash
-docker compose -f infrastructure/docker-compose.yml exec db \
+docker compose --project-directory /opt/leipzig-data -f infrastructure/docker-compose.yml exec db \
   psql -U leipzig -d leipzig_data -c \
   "INSERT INTO auth.users (username, password_hash)
    VALUES ('admin', crypt('DEIN_PASSWORT', gen_salt('bf', 12)))"
@@ -247,7 +247,7 @@ docker compose -f infrastructure/docker-compose.yml exec db \
 Alternativ mit Python im Backend-Container:
 
 ```bash
-docker compose -f infrastructure/docker-compose.yml exec backend python -c "
+docker compose --project-directory /opt/leipzig-data -f infrastructure/docker-compose.yml exec backend python -c "
 from src.api.auth import hash_password
 import psycopg, os
 with psycopg.connect(os.environ['DATABASE_URL']) as conn:
@@ -277,7 +277,7 @@ curl -k https://<VPS-IP>/health
 curl -k https://<VPS-IP>/api/datasets
 
 # ETL läuft?
-docker compose -f infrastructure/docker-compose.yml logs etl | tail -20
+docker compose --project-directory /opt/leipzig-data -f infrastructure/docker-compose.yml logs etl | tail -20
 
 # Zertifikat gültig bis?
 openssl s_client -connect <VPS-IP>:443 < /dev/null 2>/dev/null | openssl x509 -noout -dates
@@ -321,7 +321,7 @@ bash infrastructure/scripts/deploy.sh
 
 ### nginx startet nicht
 ```bash
-docker compose -f infrastructure/docker-compose.yml logs nginx
+docker compose --project-directory /opt/leipzig-data -f infrastructure/docker-compose.yml logs nginx
 # Häufigste Ursache: Zertifikat fehlt noch → Schritt 4 wiederholen
 # Prüfen ob Cert-Dateien vorhanden sind:
 ls -la /opt/leipzig-data/infrastructure/nginx/certs/
@@ -329,26 +329,26 @@ ls -la /opt/leipzig-data/infrastructure/nginx/certs/
 
 ### ETL schlägt fehl
 ```bash
-docker compose -f infrastructure/docker-compose.yml logs etl | grep FAIL
+docker compose --project-directory /opt/leipzig-data -f infrastructure/docker-compose.yml logs etl | grep FAIL
 # Einzelnen Datensatz testen:
-docker compose -f infrastructure/docker-compose.yml exec etl \
+docker compose --project-directory /opt/leipzig-data -f infrastructure/docker-compose.yml exec etl \
   python -c "from src.pipeline import run_dataset; run_dataset({...})"
 ```
 
 ### Telegram-Bot antwortet nicht
 ```bash
 # Prüfen ob polling läuft:
-docker compose -f infrastructure/docker-compose.yml logs etl | grep telegram
+docker compose --project-directory /opt/leipzig-data -f infrastructure/docker-compose.yml logs etl | grep telegram
 # Token/Chat-ID in .env prüfen
 # Sicherstellen dass du mit dem Bot geschrieben hast (nicht an dich selbst)
 ```
 
 ### Datenbank-Migration fehlgeschlagen
 ```bash
-docker compose -f infrastructure/docker-compose.yml exec db \
+docker compose --project-directory /opt/leipzig-data -f infrastructure/docker-compose.yml exec db \
   psql -U leipzig -d leipzig_data -c "SELECT * FROM public.schema_migrations"
 # Manuell ausführen:
-docker compose -f infrastructure/docker-compose.yml exec db \
+docker compose --project-directory /opt/leipzig-data -f infrastructure/docker-compose.yml exec db \
   psql -U leipzig -d leipzig_data -f /docker-entrypoint-initdb.d/001_schemas_and_core.sql
 ```
 

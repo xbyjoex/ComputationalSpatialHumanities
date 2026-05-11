@@ -7,6 +7,7 @@ set -euo pipefail
 
 APP_DIR="${APP_DIR:-/opt/leipzig-data}"
 COMPOSE_FILE="$APP_DIR/infrastructure/docker-compose.yml"
+COMPOSE="docker compose --project-directory $APP_DIR -f $COMPOSE_FILE"
 
 echo "=== Deploy: $(date -u +%Y-%m-%dT%H:%M:%SZ) ==="
 
@@ -17,14 +18,13 @@ git fetch origin main
 git reset --hard origin/main
 
 # Rebuild and restart changed services only
-docker compose -f "$COMPOSE_FILE" build --pull --no-cache backend etl frontend
-docker compose -f "$COMPOSE_FILE" up -d --remove-orphans
+$COMPOSE build --pull --no-cache backend etl frontend
+$COMPOSE up -d --remove-orphans
 
 # Wait for backend health
 echo "Waiting for backend health …"
 for i in $(seq 1 30); do
-  if docker compose -f "$COMPOSE_FILE" exec -T backend \
-       curl -sf http://localhost:8000/health &>/dev/null; then
+  if $COMPOSE exec -T backend curl -sf http://localhost:8000/health &>/dev/null; then
     echo "Backend healthy"
     break
   fi
