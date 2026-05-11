@@ -50,6 +50,7 @@ SELECT
 FROM core.traffic_restrictions
 WHERE (valid_until IS NULL OR valid_until > NOW())
   AND (valid_from  IS NULL OR valid_from  <= NOW());
+CREATE UNIQUE INDEX IF NOT EXISTS idx_mart_restr_id   ON mart.active_restrictions(id);
 CREATE INDEX IF NOT EXISTS idx_mart_restr_geom ON mart.active_restrictions USING gist(geom);
 CREATE INDEX IF NOT EXISTS idx_mart_restr_type ON mart.active_restrictions(restriction_type);
 
@@ -67,6 +68,7 @@ SELECT DISTINCT ON (dataset_id, spatial_unit, spatial_key, metric_name)
     ingested_at
 FROM core.statistics
 ORDER BY dataset_id, spatial_unit, spatial_key, metric_name, period_year DESC NULLS LAST, period_quarter DESC NULLS LAST, period_month DESC NULLS LAST;
+CREATE UNIQUE INDEX IF NOT EXISTS idx_mart_stats_latest_unique ON mart.statistics_latest(dataset_id, spatial_unit, spatial_key, metric_name);
 CREATE INDEX IF NOT EXISTS idx_mart_stats_latest_ds ON mart.statistics_latest(dataset_id);
 CREATE INDEX IF NOT EXISTS idx_mart_stats_latest_spatial ON mart.statistics_latest(spatial_unit, spatial_key);
 CREATE INDEX IF NOT EXISTS idx_mart_stats_latest_metric ON mart.statistics_latest(metric_name);
@@ -93,6 +95,7 @@ SELECT
 FROM core.geo_features f
 JOIN core.datasets d ON d.id = f.dataset_id
 WHERE d.is_active;
+CREATE UNIQUE INDEX IF NOT EXISTS idx_mart_gf_map_id ON mart.geo_features_map(id);
 CREATE INDEX IF NOT EXISTS idx_mart_gf_map_geom ON mart.geo_features_map USING gist(geom);
 CREATE INDEX IF NOT EXISTS idx_mart_gf_map_dataset ON mart.geo_features_map(dataset_id);
 CREATE INDEX IF NOT EXISTS idx_mart_gf_map_type ON mart.geo_features_map(feature_type);
