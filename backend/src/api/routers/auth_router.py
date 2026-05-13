@@ -135,17 +135,26 @@ async def me(user: CurrentUser) -> dict:
     }
 
 
+MAX_USERS = 2
+
+
 @router.post("/register", status_code=201)
 async def register(body: RegisterRequest) -> dict:
-    """Open registration — disable in production after seeding initial users."""
     async with get_conn() as conn:
         async with conn.cursor() as cur:
+            await cur.execute("SELECT COUNT(*) AS n FROM auth.users")
+            count = (await cur.fetchone())["n"]
+            if count >= MAX_USERS:
+                raise HTTPException(
+                    status_code=status.HTTP_403_FORBIDDEN,
+                    detail="Registrierung nicht möglich – maximale Nutzeranzahl erreicht.",
+                )
             await cur.execute(
                 "SELECT 1 FROM auth.users WHERE email = %s", (body.email,)
             )
             if await cur.fetchone():
                 raise HTTPException(
-                    status_code=status.HTTP_409_CONFLICT, detail="Email already registered"
+                    status_code=status.HTTP_409_CONFLICT, detail="E-Mail bereits registriert."
                 )
             await cur.execute(
                 "INSERT INTO auth.users (email, password_hash, full_name) VALUES (%s, %s, %s) RETURNING id",
