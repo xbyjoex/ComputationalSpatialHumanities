@@ -72,8 +72,5 @@ ALTER TABLE core.statistics DROP COLUMN IF EXISTS raw_payload;
 -- Drop the now-orphaned GIN index on the dropped column (no-op if gone)
 DROP INDEX IF EXISTS core.idx_statistics_payload;
 
--- Reclaim disk after column drop
-VACUUM FULL core.statistics;
-VACUUM FULL core.geo_features;
-VACUUM FULL core.traffic_restrictions;
-VACUUM FULL raw_ingest.payloads;
+-- NOTE: post-column-drop VACUUM FULL also has to live outside the migration
+-- (see comment in 005). Use the manual block in docs/DEPLOYMENT.md if needed.

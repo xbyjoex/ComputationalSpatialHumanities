@@ -93,12 +93,7 @@ DELETE FROM core.park_ride_occupancy WHERE measured_at < NOW() - INTERVAL '30 da
 DELETE FROM core.bicycle_counts      WHERE period_start < NOW() - INTERVAL '365 days';
 DELETE FROM raw_ingest.etl_runs      WHERE started_at  < NOW() - INTERVAL '90 days';
 
--- ── Reclaim disk space back to the OS ──────────────────────────────────────
--- VACUUM FULL takes an ACCESS EXCLUSIVE lock; brief downtime per table.
-VACUUM FULL core.geo_features;
-VACUUM FULL core.statistics;
-VACUUM FULL core.traffic_restrictions;
-VACUUM FULL core.park_ride_occupancy;
-VACUUM FULL core.bicycle_counts;
-VACUUM FULL raw_ingest.payloads;
-VACUUM FULL raw_ingest.etl_runs;
+-- NOTE: VACUUM FULL would reclaim disk here, but it cannot run inside the
+-- implicit transaction psycopg uses for multi-statement migrations. If you
+-- ever need to reclaim disk after this migration on a bloated DB, run the
+-- manual VACUUM block documented in docs/DEPLOYMENT.md ("Disk voll").
