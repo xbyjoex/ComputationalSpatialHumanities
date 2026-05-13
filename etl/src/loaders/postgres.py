@@ -307,47 +307,127 @@ def upsert_statistics(
     return loaded
 
 
-def upsert_park_ride(
+def _pr_extract(feat: dict[str, Any]) -> dict[str, Any] | None:
+    """Pull the shared P+R columns out of a WFS GeoJSON feature."""
+    props = feat.get("properties") or {}
+    geom_dict = feat.get("geometry")
+    geom_wkt = None
+    if geom_dict:
+        try:
+            from shapely.geometry import shape
+            geom_wkt = shape(geom_dict).wkt
+        except Exception:
+            pass
+
+    site_id = str(props.get("id") or props.get("ID") or "")
+    if not site_id:
+        return None
+    return {
+        "site_id":         site_id,
+        "site_name":       str(props.get("name") or props.get("Name") or "") or None,
+        "total_spaces":    _safe_int(props.get("gesamt") or props.get("total")),
+        "occupied_spaces": _safe_int(props.get("belegt") or props.get("occupied")),
+        "free_spaces":     _safe_int(props.get("frei") or props.get("free")),
+        "geom_wkt":        geom_wkt,
+        "measured_at":     props.get("timestamp") or props.get("measured_at"),
+    }
+
+
+def upsert_park_ride_latest(
     conn: psycopg.Connection, features: list[dict[str, Any]]
 ) -> int:
+    """Upsert one row per site into core.park_ride_latest (live snapshot).
+
+    No history is kept — each site has exactly one row that gets overwritten
+    every 5 minutes by the WFS `lastrecord` endpoint.
+    """
     loaded = 0
     with conn.cursor() as cur:
         for feat in features:
-            props = feat.get("properties") or {}
-            geom_dict = feat.get("geometry")
-            geom_wkt = None
-            if geom_dict:
-                try:
-                    from shapely.geometry import shape
-                    geom_wkt = shape(geom_dict).wkt
-                except Exception:
-                    pass
-
+            r = _pr_extract(feat)
+            if not r:
+                continue
             try:
                 cur.execute(
                     """
-                    INSERT INTO core.park_ride_occupancy
-                        (site_id, site_name, total_spaces, occupied_spaces, free_spaces, geom, measured_at)
-                    VALUES (%s, %s, %s, %s, %s,
-                            CASE WHEN %s IS NOT NULL THEN ST_GeomFromText(%s, 4326) ELSE NULL END,
-                            COALESCE(%s::timestamptz, NOW()))
+                    INSERT INTO core.park_ride_latest
+                        (site_id, site_name, total_spaces, occupied_spaces,
+                         free_spaces, geom, measured_at, updated_at)
+                    VALUES (
+                        %s, %s, %s, %s, %s,
+                        CASE WHEN %s IS NOT NULL THEN ST_GeomFromText(%s, 4326) ELSE NULL END,
+                        COALESCE(%s::timestamptz, NOW()),
+                        NOW()
+                    )
+                    ON CONFLICT (site_id) DO UPDATE SET
+                        site_name       = EXCLUDED.site_name,
+                        total_spaces    = EXCLUDED.total_spaces,
+                        occupied_spaces = EXCLUDED.occupied_spaces,
+                        free_spaces     = EXCLUDED.free_spaces,
+                        geom            = EXCLUDED.geom,
+                        measured_at     = EXCLUDED.measured_at,
+                        updated_at      = NOW()
                     """,
                     (
-                        str(props.get("id") or props.get("ID") or ""),
-                        str(props.get("name") or props.get("Name") or ""),
-                        _safe_int(props.get("gesamt") or props.get("total")),
-                        _safe_int(props.get("belegt") or props.get("occupied")),
-                        _safe_int(props.get("frei") or props.get("free")),
-                        geom_wkt,
-                        geom_wkt,
-                        props.get("timestamp") or props.get("measured_at"),
+                        r["site_id"], r["site_name"],
+                        r["total_spaces"], r["occupied_spaces"], r["free_spaces"],
+                        r["geom_wkt"], r["geom_wkt"],
+                        r["measured_at"],
                     ),
                 )
                 loaded += 1
             except Exception as exc:
-                logger.debug("park_ride upsert error: %s", exc)
+                logger.debug("park_ride_latest upsert error: %s", exc)
         conn.commit()
     return loaded
+
+
+def upsert_park_ride_history(
+    conn: psycopg.Connection, features: list[dict[str, Any]]
+) -> int:
+    """Insert historical occupancy points into core.park_ride_occupancy.
+
+    Idempotent on (site_id, measured_at) — the WFS zeitreihe endpoint
+    re-publishes the same 30-day window on every poll, so we want re-imports
+    to be no-ops.
+    """
+    loaded = 0
+    with conn.cursor() as cur:
+        for feat in features:
+            r = _pr_extract(feat)
+            if not r or not r["measured_at"]:
+                continue
+            try:
+                cur.execute(
+                    """
+                    INSERT INTO core.park_ride_occupancy
+                        (site_id, site_name, total_spaces, occupied_spaces,
+                         free_spaces, geom, measured_at)
+                    VALUES (
+                        %s, %s, %s, %s, %s,
+                        CASE WHEN %s IS NOT NULL THEN ST_GeomFromText(%s, 4326) ELSE NULL END,
+                        %s::timestamptz
+                    )
+                    ON CONFLICT (site_id, measured_at) DO NOTHING
+                    """,
+                    (
+                        r["site_id"], r["site_name"],
+                        r["total_spaces"], r["occupied_spaces"], r["free_spaces"],
+                        r["geom_wkt"], r["geom_wkt"],
+                        r["measured_at"],
+                    ),
+                )
+                loaded += 1
+            except Exception as exc:
+                logger.debug("park_ride_history upsert error: %s", exc)
+        conn.commit()
+    return loaded
+
+
+# Backwards-compat shim: keep the old name around so external imports keep
+# working. Routes to the latest-snapshot loader.
+def upsert_park_ride(conn: psycopg.Connection, features: list[dict[str, Any]]) -> int:
+    return upsert_park_ride_latest(conn, features)
 
 
 def upsert_bicycle_counts(

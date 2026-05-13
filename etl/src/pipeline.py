@@ -31,24 +31,13 @@ from .loaders.postgres import (
     upsert_bicycle_counts,
     upsert_dataset_checksum,
     upsert_geo_features,
-    upsert_park_ride,
+    upsert_park_ride_history,
+    upsert_park_ride_latest,
     upsert_statistics,
     upsert_traffic_restrictions,
 )
 
 logger = logging.getLogger(__name__)
-
-# Dataset IDs that have specialised handlers
-PARK_RIDE_IDS = {
-    "aktuelle-belegung-park-ride",
-    "historische-belegung-park-ride",
-}
-BICYCLE_HOURLY_IDS = {"dauerzaehlstellen-radverkehr-stunden"}
-BICYCLE_DAILY_IDS = {"dauerzaehlstellen-radverkehr-tage"}
-TRAFFIC_RESTRICTION_IDS = {
-    "verkehrsraumeinschraenkungen-polygone",
-    "verkehrsraumeinschraenkungen-punkte",
-}
 
 # Datasets served from statistik.leipzig.de JSON API
 STATISTIK_API_URL = "statistik.leipzig.de/opendata/api"
@@ -160,13 +149,24 @@ def _dispatch(
     name = contract.get("name", "")
     title = contract.get("title", "")
 
-    # ── Park+Ride live occupancy ─────────────────────────────────────────────
-    if any(kw in name.lower() for kw in ("park-ride", "pr_anlage")):
+    # ── Park+Ride: three distinct WFS endpoints, distinguished by URL ────────
+    # - lastrecord       → live snapshot, one row per site (overwritten)
+    # - zeitreihe        → 30-day history, idempotent on (site_id, measured_at)
+    # - standort_statisch→ static locations, no occupancy → generic geo path
+    if "pr_anlage_belegung_lastrecord" in url:
         if fmt in ("GEOJSON", "WFS"):
             with GeoJsonExtractor() as ext:
                 feats = ext.extract_all(url)
             with get_conn() as conn:
-                loaded = upsert_park_ride(conn, feats)
+                loaded = upsert_park_ride_latest(conn, feats)
+            return len(feats), loaded, "core.park_ride_latest"
+
+    if "pr_anlage_belegung_zeitreihe" in url:
+        if fmt in ("GEOJSON", "WFS"):
+            with GeoJsonExtractor() as ext:
+                feats = ext.extract_all(url)
+            with get_conn() as conn:
+                loaded = upsert_park_ride_history(conn, feats)
             return len(feats), loaded, "core.park_ride_occupancy"
 
     # ── Bicycle counters ─────────────────────────────────────────────────────

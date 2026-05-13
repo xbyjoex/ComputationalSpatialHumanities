@@ -20,6 +20,7 @@ _DATASET_ID_TABLES = {
 # Whitelist for direct interpolation — request paths never reach SQL strings
 # except through this lookup, so SQL injection on the table name is impossible.
 _ALLOWED_TARGETS = _DATASET_ID_TABLES | {
+    "core.park_ride_latest",
     "core.park_ride_occupancy",
     "core.bicycle_counts",
 }
@@ -191,6 +192,9 @@ async def get_dataset_rows(
         elif target == "core.park_ride_occupancy":
             cols = "id, site_id, site_name, total_spaces, occupied_spaces, free_spaces, occupancy_pct, measured_at"
             search_cols = ("site_name", "site_id")
+        elif target == "core.park_ride_latest":
+            cols = "site_id, site_name, total_spaces, occupied_spaces, free_spaces, occupancy_pct, measured_at, updated_at"
+            search_cols = ("site_name", "site_id")
         elif target == "core.bicycle_counts":
             cols = "id, counter_id, counter_name, count_period, period_start, count_value"
             search_cols = ("counter_name", "counter_id")
@@ -206,8 +210,9 @@ async def get_dataset_rows(
             await cur.execute(f"SELECT COUNT(*) AS n FROM {target} WHERE {where}", params)
             total = (await cur.fetchone())["n"]
 
+            order_col = "site_id" if target == "core.park_ride_latest" else "id"
             await cur.execute(
-                f"SELECT {cols} FROM {target} WHERE {where} ORDER BY id DESC LIMIT %s OFFSET %s",
+                f"SELECT {cols} FROM {target} WHERE {where} ORDER BY {order_col} DESC LIMIT %s OFFSET %s",
                 params + [limit, offset],
             )
             items = await cur.fetchall()
@@ -312,14 +317,14 @@ async def get_dataset_stats(dataset_id: str, _user: CurrentUser) -> dict[str, An
                 head = await cur.fetchone()
                 return {"target_table": target, "summary": head, "per_type": per_type}
 
-            if target == "core.park_ride_occupancy":
+            if target in ("core.park_ride_occupancy", "core.park_ride_latest"):
                 await cur.execute(
-                    """
+                    f"""
                     SELECT site_name,
                            COUNT(*)             AS n,
                            AVG(occupancy_pct)   AS avg_occ,
                            MAX(occupancy_pct)   AS max_occ
-                    FROM core.park_ride_occupancy
+                    FROM {target}
                     GROUP BY site_name ORDER BY n DESC LIMIT 30
                     """
                 )

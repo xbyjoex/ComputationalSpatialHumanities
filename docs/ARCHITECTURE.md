@@ -174,6 +174,18 @@ Frühe Loader hatten `ON CONFLICT DO NOTHING` ohne echten Unique-Constraint — 
 
 Migration 007 ergänzt eine Zeile pro Datensatz und ETL-Lauf (`run_id`, `target_table`, `rows_added`, `rows_updated`, `rows_total_after`, `created_at`). `pipeline.run_dataset()` schreibt sie automatisch via `record_change_log()`. Die Felder werden best-effort aus dem Delta der Gesamtzeilen plus dem `rows_loaded` aus dem Upsert berechnet. Frontend-Detailseite (`/datasets/:id`) zeigt das als Timeline an.
 
+### Park+Ride: Live-Snapshot vs. historische Zeitreihe
+
+Drei separate WFS-Endpoints liefern die P+R-Daten:
+
+| Endpoint | Zeilen/Abruf | Schedule | Ziel-Tabelle | Verhalten |
+|---|---|---|---|---|
+| `pr_anlage_belegung_lastrecord` | 7 | **live (5 min)** | `core.park_ride_latest` (UNIQUE site_id) | Upsert — eine Zeile pro Standort, alte wird überschrieben |
+| `pr_anlage_belegung_zeitreihe` | 10019 | **nightly** | `core.park_ride_occupancy` (UNIQUE site_id, measured_at) | Insert ON CONFLICT DO NOTHING — 30-Tage-Historie, idempotent |
+| `pr_anlage_standort_statisch` | 15 | **nightly** | `core.geo_features` | Statische Standortdaten |
+
+`mart.park_ride_latest` ist seit Migration 008 ein einfacher View auf `core.park_ride_latest` (vorher Materialized View mit `DISTINCT ON` über `park_ride_occupancy`). Refresh ist daher nicht mehr nötig — die Tabelle ist immer aktuell.
+
 ### Telegram-Bot: Speicher-Befehl
 
 `disk` (Aliase: `speicher`, `storage`) → Bot meldet `pg_database_size`, Top-Tabellen nach Größe und Retention-relevante Zeilenzahlen (`raw_ingest.payloads`, `park_ride_occupancy`, `bicycle_counts`).

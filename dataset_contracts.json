@@ -3157,7 +3157,7 @@
     "id": "430a768c-7f00-47eb-a2a0-effd50a00023",
     "name": "historische-belegung-letzten-30-tage-parkride-anlagen-stadt-leipzig",
     "title": "Historische Belegung (letzten 30 Tage) Park+Ride Anlagen, Stadt Leipzig",
-    "schedule": "live",
+    "schedule": "nightly",
     "has_geo": true,
     "formats": [
       "WFS",
@@ -4626,7 +4626,7 @@
     "id": "a2c3a1bd-d996-4fb7-9742-e756afe4e306",
     "name": "parkride-anlagen-standorte-stadt-leipzig",
     "title": "Park+Ride Anlagen Standorte, Stadt Leipzig",
-    "schedule": "live",
+    "schedule": "nightly",
     "has_geo": true,
     "formats": [
       "WFS",
