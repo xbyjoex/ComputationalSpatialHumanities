@@ -153,6 +153,31 @@ auth         ← Users + Refresh-Tokens (SHA-256 gehasht, 30 Tage TTL)
 
 Migrations werden in `public.schema_migrations` getrackt und beim ETL-Start automatisch angewendet (`etl/src/db.py:run_migrations()`).
 
+### Speicher-Governance (ab Migration 005/006)
+
+Frühe Loader hatten `ON CONFLICT DO NOTHING` ohne echten Unique-Constraint — jede ETL-Nacht hat alle Zeilen als Duplikate eingefügt (~40 GB in 3 Tagen). Seitdem:
+
+- **Echte Unique-Constraints** auf den Upsert-Zielen:
+  - `core.geo_features (dataset_id, dedup_key)` — `dedup_key = feature_id` oder Hash(properties + geom)
+  - `core.statistics (dataset_id, period_label, spatial_unit, spatial_key, metric_name)`
+  - `core.traffic_restrictions (dataset_id, dedup_key)`
+  - `raw_ingest.payloads (dataset_id)` — genau **eine** Zeile pro Datensatz
+- **`raw_ingest.payloads` enthält nur Summaries** (`{count: N, …}`), nie volle Records. Vorher wurde pro Lauf die komplette Records-Liste als JSONB persistiert.
+- **`core.statistics.raw_payload` wurde entfernt** — redundant.
+- **Retention** (nachts nach `mart.refresh_all()` in `scheduler.run_nightly`):
+  - `core.park_ride_occupancy`: 30 Tage
+  - `core.bicycle_counts`: 365 Tage
+  - `raw_ingest.etl_runs`: 90 Tage
+- Historische statische Datensätze wachsen jetzt **nicht** mehr — Upserts schreiben nur geänderte Zeilen.
+
+### ETL-Änderungshistorie (`raw_ingest.change_log`)
+
+Migration 007 ergänzt eine Zeile pro Datensatz und ETL-Lauf (`run_id`, `target_table`, `rows_added`, `rows_updated`, `rows_total_after`, `created_at`). `pipeline.run_dataset()` schreibt sie automatisch via `record_change_log()`. Die Felder werden best-effort aus dem Delta der Gesamtzeilen plus dem `rows_loaded` aus dem Upsert berechnet. Frontend-Detailseite (`/datasets/:id`) zeigt das als Timeline an.
+
+### Telegram-Bot: Speicher-Befehl
+
+`disk` (Aliase: `speicher`, `storage`) → Bot meldet `pg_database_size`, Top-Tabellen nach Größe und Retention-relevante Zeilenzahlen (`raw_ingest.payloads`, `park_ride_occupancy`, `bicycle_counts`).
+
 ---
 
 ## ETL-Pipeline im Detail
@@ -185,7 +210,7 @@ scheduler.py  ─── nightly 02:00 UTC ──► run_nightly() ─► alle 39
                     _counts   _restrictions
 ```
 
-**Dispatch-Logik** in `pipeline.py`: Name-Matching auf den Datensatz-Titel (z.B. `"park-ride"` im Namen → `upsert_park_ride()`). Unbekannte Formate landen als Rohpayload in `raw_ingest.payloads`.
+**Dispatch-Logik** in `pipeline.py`: Name-Matching auf den Datensatz-Titel (z.B. `"park-ride"` im Namen → `upsert_park_ride()`). Unbekannte Formate werden mit einem Summary-Eintrag (`{count, type, …}`) in `raw_ingest.payloads` notiert — nie als volle Rohdaten.
 
 ---
 
@@ -196,7 +221,12 @@ POST   /api/auth/login           ← JWT-Login (kein Auth nötig)
 POST   /api/auth/refresh         ← Access Token erneuern
 GET    /api/auth/me              ← eigenes Profil
 
-GET    /api/datasets             ← alle 398 Datensätze + ETL-Status
+GET    /api/datasets             ← alle 398 Datensätze + ETL-Status (Suche/Filter)
+GET    /api/datasets/status      ← Status-Übersicht aus mart.dataset_status
+GET    /api/datasets/{id}        ← Detail + recent_runs + Zeilenanzahl
+GET    /api/datasets/{id}/rows   ← paginierte Einträge der Ziel-Tabelle (Suche)
+GET    /api/datasets/{id}/stats  ← Statistik-Aggregate (per_metric / per_type / …)
+GET    /api/datasets/{id}/history ← change_log + etl_runs Historie
 
 GET    /api/map/features         ← GeoJSON (Bbox-Filter, max 2000 Features)
 GET    /api/map/park-ride        ← Live P+R-Belegung (Cache 60s)
@@ -221,9 +251,10 @@ App.tsx
 ├── /login  → LoginPage  (JWT-Formular, Zustand in authStore)
 └── /*      → RequireAuth (Redirect auf /login wenn kein Token)
                 └── DashboardPage
-                    ├── /          → MapView    (MapLibre GL, Layer-Polling)
-                    ├── /stats     → StatsPanel (Recharts Zeitreihen + Pearson)
-                    └── /datasets  → DatasetList (alle 398 + ETL-Status)
+                    ├── /                  → MapView    (MapLibre GL, Layer-Polling)
+                    ├── /stats             → StatsPanel (Recharts Zeitreihen + Pearson)
+                    ├── /datasets          → DatasetList (Suche/Filter, aufklappbare Karten)
+                    └── /datasets/:id      → DatasetDetail (Metadaten + Einträge + Stats + Historie)
 ```
 
 **State:** Zustand — `authStore` (Token), `mapStore` (aktive Layer, Choropleth-Metrik, Jahr)

@@ -107,18 +107,27 @@ def run_nightly(nightly: list[dict]) -> None:
         logger.error("Failed to refresh mart views: %s", exc)
         notify_mart_refresh_failed(str(exc))
 
-    # Retention: keep only last 7 days of raw payloads
-    try:
-        with get_conn() as conn:
-            with conn.cursor() as cur:
-                cur.execute(
-                    "DELETE FROM raw_ingest.payloads WHERE ingested_at < NOW() - INTERVAL '7 days'"
-                )
-                deleted = cur.rowcount
-                conn.commit()
-        logger.info("Payload retention: removed %d old rows", deleted)
-    except Exception as exc:
-        logger.warning("Payload retention cleanup failed: %s", exc)
+    # Retention sweep — keeps live time-series and audit log bounded.
+    # raw_ingest.payloads now holds a single summary row per dataset (upsert),
+    # so no retention is needed there.
+    retention_sql = [
+        ("park_ride_occupancy",
+         "DELETE FROM core.park_ride_occupancy WHERE measured_at < NOW() - INTERVAL '30 days'"),
+        ("bicycle_counts",
+         "DELETE FROM core.bicycle_counts WHERE period_start < NOW() - INTERVAL '365 days'"),
+        ("etl_runs",
+         "DELETE FROM raw_ingest.etl_runs WHERE started_at < NOW() - INTERVAL '90 days'"),
+    ]
+    for name, sql in retention_sql:
+        try:
+            with get_conn() as conn:
+                with conn.cursor() as cur:
+                    cur.execute(sql)
+                    deleted = cur.rowcount
+                    conn.commit()
+            logger.info("Retention %s: removed %d rows", name, deleted)
+        except Exception as exc:
+            logger.warning("Retention %s failed: %s", name, exc)
 
     etl_state.finish()
     s = etl_state.snapshot()

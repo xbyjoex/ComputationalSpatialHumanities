@@ -10,6 +10,7 @@ from typing import Callable
 import httpx
 
 from .config import settings
+from .db import get_conn
 from . import etl_state
 
 logger = logging.getLogger(__name__)
@@ -23,8 +24,57 @@ _HELP_TEXT = (
     "▶️ <code>etl-start</code> — Nightly ETL manuell starten (alle Datensätze)\n"
     "🔄 <code>etl-live</code>  — Live-Refresh manuell starten\n"
     "📊 <code>status</code>    — Aktuellen Scheduler-Status abfragen\n"
+    "💾 <code>disk</code>      — Speicherbelegung der Datenbank anzeigen\n"
     "❓ <code>help</code>       — Diese Hilfe anzeigen"
 )
+
+
+def _format_disk_report() -> str:
+    """Query Postgres for DB size and top tables; return HTML message."""
+    try:
+        with get_conn() as conn, conn.cursor() as cur:
+            cur.execute("SELECT pg_size_pretty(pg_database_size(current_database())) AS size")
+            db_size = cur.fetchone()["size"]
+
+            cur.execute(
+                """
+                SELECT schemaname || '.' || relname AS tbl,
+                       pg_size_pretty(pg_total_relation_size(relid)) AS size,
+                       pg_total_relation_size(relid) AS bytes
+                FROM pg_catalog.pg_statio_user_tables
+                WHERE schemaname IN ('core', 'raw_ingest', 'mart')
+                ORDER BY pg_total_relation_size(relid) DESC
+                LIMIT 8
+                """
+            )
+            tables = cur.fetchall()
+
+            cur.execute("SELECT COUNT(*) AS n FROM raw_ingest.payloads")
+            payload_rows = cur.fetchone()["n"]
+
+            cur.execute("SELECT COUNT(*) AS n FROM core.park_ride_occupancy")
+            pr_rows = cur.fetchone()["n"]
+
+            cur.execute("SELECT COUNT(*) AS n FROM core.bicycle_counts")
+            bc_rows = cur.fetchone()["n"]
+    except Exception as exc:
+        logger.warning("disk command failed: %s", exc)
+        return f"❌ <b>Konnte Speicher nicht abfragen:</b>\n<code>{str(exc)[:300]}</code>"
+
+    lines = [
+        f"💾 <b>Datenbank-Speicher</b>",
+        f"Gesamt: <b>{db_size}</b>",
+        "",
+        "<b>Größte Tabellen:</b>",
+    ]
+    for t in tables:
+        lines.append(f"  • {t['tbl']:<40} {t['size']}")
+    lines.append("")
+    lines.append("<b>Zeilen (Retention-Check):</b>")
+    lines.append(f"  • raw_ingest.payloads:        {payload_rows}")
+    lines.append(f"  • core.park_ride_occupancy:   {pr_rows} (Retention 30d)")
+    lines.append(f"  • core.bicycle_counts:        {bc_rows} (Retention 365d)")
+    return "\n".join(lines)
 
 
 def _call(method: str, **kwargs) -> dict:
@@ -103,6 +153,9 @@ def _handle(message: dict, run_nightly: Callable, run_live: Callable) -> None:
             _reply("\n".join(lines))
         else:
             _reply("📊 <b>Scheduler-Status</b>\n✅ Idle — kein aktiver Lauf")
+
+    elif cmd in ("disk", "speicher", "storage"):
+        _reply(_format_disk_report())
 
     elif cmd in ("help", "hilfe", "start"):
         _reply(_HELP_TEXT)

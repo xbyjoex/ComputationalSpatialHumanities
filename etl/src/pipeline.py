@@ -22,9 +22,11 @@ from .extractors.shapefile_extractor import ShapefileExtractor
 from .extractors.xml_extractor import XmlExtractor
 from .extractors.zip_extractor import ZipExtractor
 from .loaders.postgres import (
+    count_dataset_rows,
     get_dataset_checksum,
     log_etl_finish,
     log_etl_start,
+    record_change_log,
     store_raw_payload,
     upsert_bicycle_counts,
     upsert_dataset_checksum,
@@ -110,7 +112,7 @@ def run_dataset(contract: dict[str, Any]) -> tuple[str, int, int]:
         run_id = log_etl_start(conn, dataset_id, title, schedule)
 
     try:
-        rows_extracted, rows_loaded = _dispatch(contract, url, fmt)
+        rows_extracted, rows_loaded, target_table = _dispatch(contract, url, fmt)
         with get_conn() as conn:
             log_etl_finish(
                 conn,
@@ -121,6 +123,15 @@ def run_dataset(contract: dict[str, Any]) -> tuple[str, int, int]:
             )
         with get_conn() as conn:
             upsert_dataset_checksum(conn, dataset_id, url, new_etag, new_lm, None)
+        if target_table:
+            try:
+                with get_conn() as conn:
+                    total_after = count_dataset_rows(conn, dataset_id, target_table)
+                    record_change_log(
+                        conn, dataset_id, run_id, target_table, rows_loaded, total_after
+                    )
+            except Exception as exc:
+                logger.warning("change_log write failed for %s: %s", dataset_id, exc)
         logger.info("[OK] %-60s rows=%d", title[:60], rows_loaded)
         return "success", rows_extracted, rows_loaded
 
@@ -138,8 +149,13 @@ def run_dataset(contract: dict[str, Any]) -> tuple[str, int, int]:
 
 def _dispatch(
     contract: dict[str, Any], url: str, fmt: str
-) -> tuple[int, int]:
-    """Route to specialised handler or generic fallback."""
+) -> tuple[int, int, str]:
+    """Route to specialised handler or generic fallback.
+
+    Returns (rows_extracted, rows_loaded, target_table). target_table is the
+    fully-qualified core table that received the rows (used by change_log);
+    empty string when no rows were written to a tracked core table.
+    """
     dataset_id = contract["id"]
     name = contract.get("name", "")
     title = contract.get("title", "")
@@ -151,7 +167,7 @@ def _dispatch(
                 feats = ext.extract_all(url)
             with get_conn() as conn:
                 loaded = upsert_park_ride(conn, feats)
-            return len(feats), loaded
+            return len(feats), loaded, "core.park_ride_occupancy"
 
     # ── Bicycle counters ─────────────────────────────────────────────────────
     if "dauerzaehlstell" in name.lower() or "radverkehr" in name.lower():
@@ -165,7 +181,7 @@ def _dispatch(
                 records = ext.extract_all(url)
         with get_conn() as conn:
             loaded = upsert_bicycle_counts(conn, records, count_period=period)
-        return len(records), loaded
+        return len(records), loaded, "core.bicycle_counts"
 
     # ── Traffic restrictions ─────────────────────────────────────────────────
     if "verkehrsraum" in name.lower() or "baustell" in name.lower():
@@ -175,7 +191,7 @@ def _dispatch(
                 feats = ext.extract_all(url)
             with get_conn() as conn:
                 loaded = upsert_traffic_restrictions(conn, dataset_id, feats, restriction_type=rtype)
-            return len(feats), loaded
+            return len(feats), loaded, "core.traffic_restrictions"
 
     # ── GTFS (transit feed) ──────────────────────────────────────────────────
     if fmt == "GTFS":
@@ -185,7 +201,7 @@ def _dispatch(
         with get_conn() as conn:
             loaded = upsert_geo_features(conn, dataset_id, stops, feature_type="gtfs_stop")
             store_raw_payload(conn, dataset_id, url, fmt, {"stops": len(stops), "routes": len(routes)})
-        return len(stops) + len(routes), loaded
+        return len(stops) + len(routes), loaded, "core.geo_features"
 
     # ── SHP / Shapefile ──────────────────────────────────────────────────────
     if fmt in ("SHP", "GPKG"):
@@ -194,7 +210,7 @@ def _dispatch(
         with get_conn() as conn:
             loaded = upsert_geo_features(conn, dataset_id, feats, feature_type=name[:64])
             store_raw_payload(conn, dataset_id, url, fmt, {"count": len(feats)})
-        return len(feats), loaded
+        return len(feats), loaded, "core.geo_features"
 
     # ── ZIP archive (GeoJSON / CSV inside) ───────────────────────────────────
     if fmt == "ZIP":
@@ -204,23 +220,23 @@ def _dispatch(
             with get_conn() as conn:
                 loaded = upsert_geo_features(conn, dataset_id, content, feature_type=name[:64])
                 store_raw_payload(conn, dataset_id, url, fmt, {"count": len(content)})
-            return len(content), loaded
+            return len(content), loaded, "core.geo_features"
         if detected_fmt == "CSV":
             with get_conn() as conn:
                 loaded = upsert_statistics(conn, dataset_id, content)
-                store_raw_payload(conn, dataset_id, url, fmt, content)
-            return len(content), loaded
+                store_raw_payload(conn, dataset_id, url, fmt, {"count": len(content)})
+            return len(content), loaded, "core.statistics"
         if detected_fmt == "SHP":
             # Re-extract via ShapefileExtractor (it handles the ZIP itself)
             with ShapefileExtractor() as ext:
                 feats = ext.extract(url)
             with get_conn() as conn:
                 loaded = upsert_geo_features(conn, dataset_id, feats, feature_type=name[:64])
-            return len(feats), loaded
+            return len(feats), loaded, "core.geo_features"
         logger.info("ZIP from %s: unrecognised content, storing raw", url)
         with get_conn() as conn:
             store_raw_payload(conn, dataset_id, url, fmt, {"detected": detected_fmt})
-        return 0, 0
+        return 0, 0, ""
 
     # ── Excel / ODS ──────────────────────────────────────────────────────────
     if fmt in ("XLSX", "ODS"):
@@ -228,8 +244,8 @@ def _dispatch(
             records = ext.extract(url, fmt=fmt)
         with get_conn() as conn:
             loaded = upsert_statistics(conn, dataset_id, records)
-            store_raw_payload(conn, dataset_id, url, fmt, records)
-        return len(records), loaded
+            store_raw_payload(conn, dataset_id, url, fmt, {"count": len(records)})
+        return len(records), loaded, "core.statistics"
 
     # ── XML ──────────────────────────────────────────────────────────────────
     if fmt == "XML":
@@ -237,8 +253,8 @@ def _dispatch(
             records = ext.extract(url)
         with get_conn() as conn:
             loaded = upsert_statistics(conn, dataset_id, records)
-            store_raw_payload(conn, dataset_id, url, fmt, records)
-        return len(records), loaded
+            store_raw_payload(conn, dataset_id, url, fmt, {"count": len(records)})
+        return len(records), loaded, "core.statistics"
 
     # ── Generic GeoJSON / WFS ────────────────────────────────────────────────
     if fmt in ("GEOJSON", "WFS") or (fmt == "GPKG" and "geojson" in url.lower()):
@@ -247,7 +263,7 @@ def _dispatch(
         with get_conn() as conn:
             loaded = upsert_geo_features(conn, dataset_id, feats, feature_type=name[:64])
             store_raw_payload(conn, dataset_id, url, fmt, {"count": len(feats)})
-        return len(feats), loaded
+        return len(feats), loaded, "core.geo_features"
 
     # ── Statistics JSON API ──────────────────────────────────────────────────
     if fmt == "JSON" and STATISTIK_API_URL in url:
@@ -255,8 +271,8 @@ def _dispatch(
             records = ext.extract_values(url)
         with get_conn() as conn:
             loaded = upsert_statistics(conn, dataset_id, records)
-            store_raw_payload(conn, dataset_id, url, fmt, records)
-        return len(records), loaded
+            store_raw_payload(conn, dataset_id, url, fmt, {"count": len(records)})
+        return len(records), loaded, "core.statistics"
 
     # ── CSV fallback ─────────────────────────────────────────────────────────
     if fmt == "CSV":
@@ -264,25 +280,23 @@ def _dispatch(
             records = ext.extract_all(url)
         with get_conn() as conn:
             loaded = upsert_statistics(conn, dataset_id, records)
-            store_raw_payload(conn, dataset_id, url, fmt, records)
-        return len(records), loaded
+            store_raw_payload(conn, dataset_id, url, fmt, {"count": len(records)})
+        return len(records), loaded, "core.statistics"
 
-    # ── Unhandled: store raw payload for manual review ───────────────────────
-    logger.info("No handler for %s (fmt=%s), storing raw", title, fmt)
+    # ── Unhandled: record a summary so dashboards can see the run ────────────
+    logger.info("No handler for %s (fmt=%s), recording summary only", title, fmt)
     with HttpExtractor() as ext:
         try:
             payload = ext.get_json(url)
+            size = len(payload) if isinstance(payload, (list, dict)) else 1
             with get_conn() as conn:
-                store_raw_payload(conn, dataset_id, url, fmt, payload)
-            return 1, 0
+                store_raw_payload(conn, dataset_id, url, fmt, {"count": size, "type": "json"})
+            return 1, 0, ""
         except Exception:
             raw = ext.get_text(url)
             with get_conn() as conn:
-                with conn.cursor() as cur:
-                    cur.execute(
-                        "INSERT INTO raw_ingest.payloads (dataset_id, resource_url, format, raw_text) "
-                        "VALUES (%s, %s, %s, %s)",
-                        (dataset_id, url, fmt, raw[:100_000]),
-                    )
-                    conn.commit()
-            return 1, 0
+                store_raw_payload(
+                    conn, dataset_id, url, fmt,
+                    {"count": 1, "type": "text", "bytes": len(raw)},
+                )
+            return 1, 0, ""

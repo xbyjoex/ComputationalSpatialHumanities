@@ -3,6 +3,7 @@ import Sidebar from "../components/Sidebar";
 import MapView from "../components/MapView";
 import StatsPanel from "../components/StatsPanel";
 import DatasetList from "../components/DatasetList";
+import DatasetDetail from "../components/DatasetDetail";
 
 export default function DashboardPage() {
   return (
@@ -13,6 +14,7 @@ export default function DashboardPage() {
           <Route path="/" element={<MapView />} />
           <Route path="/stats" element={<StatsPanel />} />
           <Route path="/datasets" element={<DatasetList />} />
+          <Route path="/datasets/:datasetId" element={<DatasetDetail />} />
         </Routes>
       </main>
     </div>

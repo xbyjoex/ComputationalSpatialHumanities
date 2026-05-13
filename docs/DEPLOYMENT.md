@@ -357,6 +357,22 @@ docker compose --project-directory /opt/leipzig-data -f infrastructure/docker-co
 # Sicherstellen dass du mit dem Bot geschrieben hast (nicht an dich selbst)
 ```
 
+### Disk voll / Mart-Refresh schlägt fehl mit `No space left on device`
+
+Die Datenbank ist zu groß geworden. Erste Diagnose — größte Tabellen anzeigen:
+
+```bash
+docker compose --project-directory /opt/leipzig-data -f infrastructure/docker-compose.yml exec db psql -U leipzig -d leipzig_data -c "SELECT schemaname||'.'||relname AS table, pg_size_pretty(pg_total_relation_size(relid)) AS size FROM pg_catalog.pg_statio_user_tables ORDER BY pg_total_relation_size(relid) DESC LIMIT 15"
+```
+
+Ab Migration 005/006 erledigen die Migrations Dedup + Retention + `VACUUM FULL` einmalig. Wiederholte Retention erfolgt nachts in `scheduler.run_nightly` (Park+Ride 30d, Bicycle 365d, etl_runs 90d). Wenn die Disk trotzdem wächst, prüfe `raw_ingest.payloads` (sollte ≤ 1 Zeile pro `dataset_id` enthalten) und ob neue Loader-Aufrufe `ON CONFLICT` korrekt nutzen.
+
+Manueller Notlauf (falls Disk akut voll und Migrations noch nicht durch sind):
+
+```bash
+docker compose --project-directory /opt/leipzig-data -f infrastructure/docker-compose.yml exec db psql -U leipzig -d leipzig_data -c "DELETE FROM raw_ingest.payloads WHERE ingested_at < NOW() - INTERVAL '1 day'; VACUUM FULL raw_ingest.payloads;"
+```
+
 ### Datenbank-Migration fehlgeschlagen
 ```bash
 docker compose --project-directory /opt/leipzig-data -f infrastructure/docker-compose.yml exec db \
