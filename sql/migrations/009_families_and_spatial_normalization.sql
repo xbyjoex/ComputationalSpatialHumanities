@@ -77,9 +77,10 @@ RETURNS TEXT LANGUAGE sql STABLE AS $$
         (SELECT code, 2, 1.0 FROM core.admin_boundaries
           WHERE boundary_type = p_unit AND code = btrim(p_raw))
         UNION ALL
+        -- \y = word boundary in Postgres regex (\b would be backspace)
         (SELECT code, 3, 1.0 FROM core.admin_boundaries
           WHERE boundary_type = p_unit
-            AND code = (regexp_match(btrim(p_raw), '^(\d{1,4})\b'))[1])
+            AND code = (regexp_match(btrim(p_raw), '^(\d{1,4})\y'))[1])
         UNION ALL
         (SELECT code, 4, similarity(core.norm_name(name), core.norm_name(p_raw))::float
            FROM core.admin_boundaries
