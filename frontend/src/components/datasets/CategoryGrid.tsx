@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
-import { FolderOpen, ChevronRight, Database } from "lucide-react";
+import { FolderOpen, ChevronRight, Database, LineChart } from "lucide-react";
 import { listCategories, listDatasets, Category } from "../../api/datasets";
 
 /**
@@ -97,6 +97,28 @@ export default function CategoryGrid() {
               className="grid grid-cols-1 gap-3 animate-rise sm:grid-cols-2 lg:grid-cols-3"
               style={{ animationDelay: "120ms" }}
             >
+              {/* Kuratiertes Topic aus dem Indikatoren-Katalog */}
+              <Link
+                to="/stats?topic=Demografie"
+                className="panel corners group flex flex-col justify-between border-signal-violet/40 p-4 transition-colors hover:bg-gotham-800/70"
+              >
+                <div className="flex items-start gap-3">
+                  <LineChart className="mt-0.5 h-4 w-4 shrink-0 text-signal-violet" />
+                  <div className="min-w-0">
+                    <p className="text-sm font-medium text-gotham-100 group-hover:text-white">
+                      Demografie-Zeitreihen
+                    </p>
+                    <p className="mt-1 line-clamp-2 font-mono text-[10px] leading-relaxed text-gotham-500">
+                      Kuratierte Indikatoren zur Bevölkerungsentwicklung — direkt in der
+                      Analyse. Überschneidet sich mit „Bevölkerung und Gesellschaft“.
+                    </p>
+                  </div>
+                </div>
+                <div className="mt-3 flex items-center gap-4 font-mono text-[10px] text-gotham-400">
+                  <span className="text-signal-violet">Indikatoren-Katalog</span>
+                  <ChevronRight className="ml-auto h-3 w-3 text-gotham-500 group-hover:text-signal-violet" />
+                </div>
+              </Link>
               {categories.map((c) => (
                 <Link
                   key={c.category_id}

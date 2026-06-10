@@ -13,6 +13,7 @@ import psycopg
 from .config import settings
 from .db import get_conn
 from .domains import elections
+from .extractors import statistik_transform
 from .extractors.base import HttpExtractor
 from .extractors.csv_extractor import CsvExtractor
 from .extractors.excel_extractor import ExcelExtractor
@@ -321,14 +322,27 @@ def _dispatch(
             store_raw_payload(conn, dataset_id, url, fmt, {"count": len(feats)})
         return len(feats), loaded, "core.geo_features"
 
-    # ── Statistics JSON API ──────────────────────────────────────────────────
-    if fmt == "JSON" and STATISTIK_API_URL in url:
-        with StatistikApiExtractor() as ext:
-            records = ext.extract_values(url)
+    # ── statistik.leipzig.de API (wide-by-year → melt to long) ──────────────
+    if STATISTIK_API_URL in url and fmt in ("CSV", "JSON"):
+        units: dict[str, str] = {}
+        if fmt == "JSON":
+            with StatistikApiExtractor() as ext:
+                raw_rows = ext.extract_values(url)
+            if "kdvalues" in url:
+                records = statistik_transform.melt_kdvalues(raw_rows)
+            else:
+                records, units = statistik_transform.melt_json_values(raw_rows)
+        else:
+            with CsvExtractor() as ext:
+                raw_rows = ext.extract_all(url)
+            if "kdvalues" in url:
+                records = statistik_transform.melt_kdvalues(raw_rows)
+            else:
+                records, units = statistik_transform.melt_values(raw_rows)
         with get_conn() as conn:
-            loaded = upsert_statistics(conn, dataset_id, records, **stat_kwargs)
+            loaded = upsert_statistics(conn, dataset_id, records, units=units, **stat_kwargs)
             store_raw_payload(conn, dataset_id, url, fmt, {"count": len(records)})
-        return len(records), loaded, "core.statistics"
+        return len(raw_rows), loaded, "core.statistics"
 
     # ── CSV fallback ─────────────────────────────────────────────────────────
     if fmt == "CSV":

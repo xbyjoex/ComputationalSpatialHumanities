@@ -20,33 +20,59 @@ async def list_metrics(
     _user: CurrentUser,
     dataset_id: str | None = Query(None),
     spatial_unit: str | None = Query(None),
-) -> list[str]:
+    grouped: bool = Query(False),
+) -> Any:
     """Metrics that can actually be visualized.
 
     Only numeric values count as metrics; for a concrete spatial unit
     (ortsteil/stadtbezirk/wahlbezirk) the metric must additionally have rows
     with a resolved spatial_code — otherwise it cannot join a boundary and
     would render an empty choropleth.
+
+    grouped=true folds metric variants into the canonical indicator catalog
+    (core.indicators): [{indicator_id, name, unit, topic, metrics: [...]}];
+    uncatalogued metrics come last with indicator_id null.
     """
+    conditions = ["metric_value IS NOT NULL"]
+    params: list[Any] = []
+    if dataset_id:
+        conditions.append("dataset_id = %s")
+        params.append(dataset_id)
+    if spatial_unit:
+        conditions.append("spatial_unit = %s")
+        params.append(spatial_unit)
+        if spatial_unit != "city":
+            conditions.append("spatial_code IS NOT NULL")
+    where = " AND ".join(conditions)
+
     async with get_conn() as conn:
         async with conn.cursor() as cur:
-            conditions = ["metric_value IS NOT NULL"]
-            params: list[Any] = []
-            if dataset_id:
-                conditions.append("dataset_id = %s")
-                params.append(dataset_id)
-            if spatial_unit:
-                conditions.append("spatial_unit = %s")
-                params.append(spatial_unit)
-                if spatial_unit != "city":
-                    conditions.append("spatial_code IS NOT NULL")
-            where = " AND ".join(conditions)
+            if not grouped:
+                await cur.execute(
+                    f"SELECT DISTINCT metric_name FROM mart.statistics_latest WHERE {where} ORDER BY 1",
+                    params,
+                )
+                rows = await cur.fetchall()
+                return [r["metric_name"] for r in rows]
+
             await cur.execute(
-                f"SELECT DISTINCT metric_name FROM mart.statistics_latest WHERE {where} ORDER BY 1",
+                f"""
+                SELECT i.indicator_id, i.name, i.unit, i.topic,
+                       ARRAY_AGG(DISTINCT m.metric_name) AS metrics
+                FROM (
+                    SELECT DISTINCT dataset_id, metric_name
+                    FROM mart.statistics_latest WHERE {where}
+                ) m
+                LEFT JOIN core.indicator_metrics im
+                    ON im.dataset_id = m.dataset_id AND im.metric_name = m.metric_name
+                LEFT JOIN core.indicators i ON i.indicator_id = im.indicator_id
+                GROUP BY i.indicator_id, i.name, i.unit, i.topic
+                ORDER BY i.topic NULLS LAST, i.name NULLS LAST
+                """,
                 params,
             )
             rows = await cur.fetchall()
-    return [r["metric_name"] for r in rows]
+    return ORJSONResponse(rows)
 
 
 @router.get("/timeseries")

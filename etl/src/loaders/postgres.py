@@ -179,6 +179,51 @@ def sync_dataset_categories(
     return len(memberships)
 
 
+def sync_indicator_catalog(
+    conn: psycopg.Connection, config: dict[str, Any]
+) -> int:
+    """Sync indicator_catalog.json into core.indicators + core.indicator_metrics."""
+    indicators = config.get("indicators", [])
+    with conn.cursor() as cur:
+        for ind in indicators:
+            cur.execute(
+                """
+                INSERT INTO core.indicators (indicator_id, name, unit, topic, description)
+                VALUES (%s, %s, %s, %s, %s)
+                ON CONFLICT (indicator_id) DO UPDATE SET
+                    name        = EXCLUDED.name,
+                    unit        = EXCLUDED.unit,
+                    topic       = EXCLUDED.topic,
+                    description = EXCLUDED.description,
+                    updated_at  = NOW()
+                """,
+                (ind["indicator_id"], ind["name"], ind.get("unit"),
+                 ind.get("topic"), ind.get("description")),
+            )
+        # Mappings: full reconciliation (a few thousand rows, trivial)
+        cur.execute("DELETE FROM core.indicator_metrics")
+        rows = [
+            (ind["indicator_id"], m["dataset_id"], m["metric_name"])
+            for ind in indicators
+            for m in ind.get("metrics", [])
+        ]
+        if rows:
+            cur.executemany(
+                """
+                INSERT INTO core.indicator_metrics (indicator_id, dataset_id, metric_name)
+                VALUES (%s, %s, %s)
+                ON CONFLICT (dataset_id, metric_name) DO NOTHING
+                """,
+                rows,
+            )
+        cur.execute(
+            "DELETE FROM core.indicators WHERE indicator_id <> ALL(%s)",
+            ([i["indicator_id"] for i in indicators] or [""],),
+        )
+        conn.commit()
+    return len(indicators)
+
+
 def log_etl_start(
     conn: psycopg.Connection, dataset_id: str, title: str, schedule: str
 ) -> int:
@@ -401,6 +446,7 @@ def upsert_statistics(
     spatial_key_column: str | None = None,
     default_year: int | None = None,
     skip_columns: list[str] | None = None,
+    units: dict[str, str] | None = None,
 ) -> int:
     """
     Generic statistics loader. Tries to detect period and value columns
@@ -457,6 +503,7 @@ def upsert_statistics(
             rows.append([
                 dataset_id, period_type, period_label, year, None, None,
                 su, spatial_key, metric_name, metric_value,
+                (units or {}).get(metric_name),
             ])
 
     # Canonical boundary code per row — resolved once per distinct key.
@@ -477,8 +524,8 @@ def upsert_statistics(
                 INSERT INTO core.statistics
                     (dataset_id, period_type, period_label, period_year, period_quarter,
                      period_month, spatial_unit, spatial_key, metric_name, metric_value,
-                     spatial_code)
-                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                     metric_unit, spatial_code)
+                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
                 ON CONFLICT (dataset_id, period_label, spatial_unit, spatial_key, metric_name)
                 DO UPDATE SET
                     period_type    = EXCLUDED.period_type,
@@ -486,6 +533,7 @@ def upsert_statistics(
                     period_quarter = EXCLUDED.period_quarter,
                     period_month   = EXCLUDED.period_month,
                     metric_value   = EXCLUDED.metric_value,
+                    metric_unit    = COALESCE(EXCLUDED.metric_unit, core.statistics.metric_unit),
                     spatial_code   = EXCLUDED.spatial_code,
                     ingested_at    = NOW()
                 """,

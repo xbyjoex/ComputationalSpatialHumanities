@@ -27,6 +27,7 @@ from . import etl_state
 from .loaders.postgres import (
     sync_dataset_categories,
     sync_dataset_families,
+    sync_indicator_catalog,
     upsert_dataset_registry,
 )
 from .notifier import (
@@ -256,6 +257,23 @@ def main() -> None:
             logger.info("Elections synced: %d definitions", n_elections)
     except Exception as exc:
         logger.error("Election sync failed: %s", exc)
+
+    # Indicator catalog (canonical metric registry)
+    try:
+        path = Path(settings.indicators_path)
+        if not path.exists():
+            repo_root_path = Path(__file__).resolve().parents[2] / "indicator_catalog.json"
+            path = repo_root_path if repo_root_path.exists() else path
+        if path.exists():
+            with open(path, encoding="utf-8") as f:
+                catalog = json.load(f)
+            with get_conn() as conn:
+                n_ind = sync_indicator_catalog(conn, catalog)
+                logger.info("Indicator catalog synced: %d indicators", n_ind)
+        else:
+            logger.warning("No indicator_catalog.json found — catalog disabled")
+    except Exception as exc:
+        logger.error("Indicator catalog sync failed: %s", exc)
 
     # Seed admin boundaries once at startup so choropleths work without
     # waiting for the 02:00 nightly run.

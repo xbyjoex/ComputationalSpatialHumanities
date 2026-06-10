@@ -86,6 +86,7 @@ services:
       - ./dataset_families.json:/app/dataset_families.json:ro
       - ./dataset_categories.json:/app/dataset_categories.json:ro
       - ./election_definitions.json:/app/election_definitions.json:ro
+      - ./indicator_catalog.json:/app/indicator_catalog.json:ro
       - ./sql:/app/sql:ro
     command: python -m src.scheduler
 
