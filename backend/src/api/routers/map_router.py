@@ -70,19 +70,29 @@ async def get_map_features(
 @router.get("/feature-datasets")
 @cached(ttl=600)
 async def get_feature_datasets(_user: CurrentUser) -> ORJSONResponse:
-    """List all datasets that have features in the unified geo layer."""
+    """List selectable groups for the unified geo layer.
+
+    Year-variant dataset families collapse into a single group with the
+    available years; standalone datasets appear as their own group.
+    """
     async with get_conn() as conn:
         async with conn.cursor() as cur:
             await cur.execute(
                 """
                 SELECT
-                    dataset_id,
-                    dataset_title,
-                    COUNT(*) AS feature_count,
-                    ARRAY_AGG(DISTINCT ST_GeometryType(geom)) AS geometry_types
-                FROM mart.geo_features_map
-                GROUP BY dataset_id, dataset_title
-                ORDER BY dataset_title
+                    COALESCE(d.family_id, f.dataset_id)          AS group_id,
+                    COALESCE(fam.title, MIN(d.title))            AS title,
+                    (d.family_id IS NOT NULL)                    AS is_family,
+                    ARRAY_AGG(DISTINCT f.dataset_id)             AS dataset_ids,
+                    ARRAY_AGG(DISTINCT f.year ORDER BY f.year)
+                        FILTER (WHERE f.year IS NOT NULL)        AS years,
+                    COUNT(*)                                     AS feature_count,
+                    ARRAY_AGG(DISTINCT ST_GeometryType(f.geom))  AS geometry_types
+                FROM core.geo_features f
+                JOIN core.datasets d ON d.id = f.dataset_id AND d.is_active
+                LEFT JOIN core.dataset_families fam ON fam.family_id = d.family_id
+                GROUP BY 1, 3, fam.title
+                ORDER BY 2
                 """
             )
             rows = await cur.fetchall()
@@ -90,8 +100,11 @@ async def get_feature_datasets(_user: CurrentUser) -> ORJSONResponse:
     return ORJSONResponse(
         [
             {
-                "dataset_id": r["dataset_id"],
-                "dataset_title": r["dataset_title"],
+                "group_id": r["group_id"],
+                "title": r["title"],
+                "is_family": r["is_family"],
+                "dataset_ids": r["dataset_ids"],
+                "years": r["years"] or [],
                 "feature_count": r["feature_count"],
                 "geometry_types": r["geometry_types"],
             }

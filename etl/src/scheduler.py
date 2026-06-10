@@ -18,6 +18,7 @@ from pathlib import Path
 import schedule
 
 from .boundaries import seed_boundaries_safe
+from .cache_bump import bump_tiles_version
 from .config import settings
 from .db import get_conn, run_migrations
 from . import etl_state
@@ -140,6 +141,9 @@ def run_nightly(nightly: list[dict]) -> None:
                 cur.execute("SELECT mart.refresh_all()")
                 conn.commit()
         logger.info("Mart views refreshed")
+        # Geo features changed → invalidate the per-tile Redis cache.
+        # Live cycles do not bump: live tables are not in the tile path.
+        bump_tiles_version()
     except Exception as exc:
         logger.error("Failed to refresh mart views: %s", exc)
         notify_mart_refresh_failed(str(exc))
