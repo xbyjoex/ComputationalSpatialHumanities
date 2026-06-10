@@ -2,12 +2,14 @@ from __future__ import annotations
 
 from typing import Any
 
+import orjson
 from fastapi import APIRouter, HTTPException, Query
 from fastapi.responses import ORJSONResponse
 
 from ..auth import CurrentUser
-from ..cache import cached
+from ..cache import cache_get_bytes, cache_set_bytes, cached, tiles_version
 from ..db import get_conn
+from ..profiling import build_histogram, build_profile
 
 router = APIRouter(prefix="/datasets", tags=["datasets"])
 
@@ -469,6 +471,54 @@ async def get_dataset_stats(dataset_id: str, _user: CurrentUser) -> dict[str, An
                 return {"target_table": target, "per_counter": per_counter}
 
     return {"target_table": target, "summary": {}}
+
+
+@router.get("/{dataset_id}/profile")
+async def get_dataset_profile(dataset_id: str, _user: CurrentUser) -> ORJSONResponse:
+    """Column profile (statistics + distributions) for the data explorer.
+
+    Cached per data generation: the key embeds tiles_version, which the ETL
+    bumps after every nightly mart refresh — profiles invalidate exactly when
+    the data changes.
+    """
+    version = await tiles_version()
+    cache_key = f"profile:{version}:{dataset_id}"
+    hit = await cache_get_bytes(cache_key)
+    if hit:
+        return ORJSONResponse(orjson.loads(hit))
+
+    async with get_conn() as conn:
+        target = await _resolve_target_table(conn, dataset_id)
+        if not target:
+            return ORJSONResponse({"target_table": None, "row_count": 0, "columns": []})
+        result = await build_profile(conn, dataset_id, target)
+
+    await cache_set_bytes(cache_key, orjson.dumps(result), 86_400)
+    return ORJSONResponse(result)
+
+
+@router.get("/{dataset_id}/profile/histogram")
+async def get_dataset_histogram(
+    dataset_id: str,
+    _user: CurrentUser,
+    column: str = Query(..., max_length=200),
+) -> ORJSONResponse:
+    version = await tiles_version()
+    cache_key = f"profhist:{version}:{dataset_id}:{column}"
+    hit = await cache_get_bytes(cache_key)
+    if hit:
+        return ORJSONResponse(orjson.loads(hit))
+
+    async with get_conn() as conn:
+        target = await _resolve_target_table(conn, dataset_id)
+        if not target:
+            raise HTTPException(status_code=404, detail="Keine Daten geladen")
+        result = await build_histogram(conn, dataset_id, target, column)
+        if result is None:
+            raise HTTPException(status_code=400, detail="Spalte nicht histogrammierbar")
+
+    await cache_set_bytes(cache_key, orjson.dumps(result), 86_400)
+    return ORJSONResponse(result)
 
 
 @router.get("/{dataset_id}/history")

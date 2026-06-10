@@ -162,6 +162,49 @@ export const getDatasetStats = (id: string) =>
     .get<DatasetStatsResponse>(`/datasets/${encodeURIComponent(id)}/stats`)
     .then((r) => r.data);
 
+export interface ProfileColumn {
+  name: string;
+  kind: "numeric" | "categorical" | "date";
+  n?: number;
+  non_null?: number;
+  null_share?: number | null;
+  min?: number | string | null;
+  max?: number | string | null;
+  mean?: number | null;
+  median?: number | null;
+  stddev?: number | null;
+  year_min?: number | null;
+  year_max?: number | null;
+  distinct?: number;
+  top?: Array<{ value: string; n: number }>;
+  histogram_column?: string;
+}
+
+export interface DatasetProfile {
+  target_table: string | null;
+  row_count: number;
+  columns: ProfileColumn[];
+}
+
+export interface Histogram {
+  column: string;
+  lo: number | null;
+  hi: number | null;
+  buckets: Array<{ lo: number; hi: number; n: number }>;
+}
+
+export const getDatasetProfile = (id: string) =>
+  apiClient
+    .get<DatasetProfile>(`/datasets/${encodeURIComponent(id)}/profile`)
+    .then((r) => r.data);
+
+export const getDatasetHistogram = (id: string, column: string) =>
+  apiClient
+    .get<Histogram>(`/datasets/${encodeURIComponent(id)}/profile/histogram`, {
+      params: { column },
+    })
+    .then((r) => r.data);
+
 export const getDatasetHistory = (id: string, limit = 100) =>
   apiClient
     .get<DatasetHistoryResponse>(`/datasets/${encodeURIComponent(id)}/history`, {

@@ -4,12 +4,14 @@ import { Link, useParams } from "react-router-dom";
 import {
   getDatasetBySlug,
   getDatasetHistory,
+  getDatasetProfile,
   getDatasetRows,
-  getDatasetStats,
 } from "../api/datasets";
 import { ArrowLeft, ExternalLink } from "lucide-react";
 import { format, formatDistanceToNow } from "date-fns";
 import { de } from "date-fns/locale";
+import ColumnProfileCard from "./datasets/ColumnProfileCard";
+import { datasetColor } from "../map/gothamStyle";
 
 const PAGE_SIZE = 50;
 
@@ -35,10 +37,10 @@ export default function DatasetDetail() {
   );
   // Sub-Ressourcen laufen intern weiter über die Dataset-ID
   const datasetId = detail?.dataset.id ?? "";
-  const { data: stats } = useQuery(
-    ["dataset-stats", datasetId],
-    () => getDatasetStats(datasetId),
-    { enabled: !!datasetId }
+  const { data: profile, isLoading: profileLoading } = useQuery(
+    ["dataset-profile", datasetId],
+    () => getDatasetProfile(datasetId),
+    { enabled: !!datasetId, staleTime: 300_000 }
   );
   const { data: rows, isLoading: rowsLoading } = useQuery(
     ["dataset-rows", datasetId, search, page],
@@ -154,12 +156,35 @@ export default function DatasetDetail() {
           </div>
         </section>
 
-        {/* Stats */}
-        <section className="panel p-4 animate-rise" style={{ animationDelay: "120ms" }}>
-          <p className="hud-label mb-3 border-b border-gotham-700 pb-2.5 text-gotham-200">
-            Statistiken
-          </p>
-          <StatsBlock stats={stats} />
+        {/* Datenprofil: Spalten-Statistiken + Verteilungen */}
+        <section className="panel animate-rise" style={{ animationDelay: "120ms" }}>
+          <div className="flex items-center justify-between border-b border-gotham-700 px-4 py-3">
+            <p className="hud-label text-gotham-200">Datenprofil</p>
+            {profile && (
+              <p className="font-mono text-[10px] text-gotham-500">
+                {profile.columns.length} Merkmale · {profile.row_count.toLocaleString()} Zeilen
+              </p>
+            )}
+          </div>
+          {profileLoading ? (
+            <p className="p-6 text-center font-mono text-xs text-gotham-500">
+              <span className="led mr-2 inline-block animate-led bg-signal-cyan" />
+              Profiliere Daten …
+            </p>
+          ) : !profile || profile.columns.length === 0 ? (
+            <p className="p-6 text-center font-mono text-xs text-gotham-500">
+              Kein Profil verfügbar.
+            </p>
+          ) : (
+            profile.columns.map((col) => (
+              <ColumnProfileCard
+                key={col.name}
+                datasetId={datasetId}
+                column={col}
+                color={datasetColor(datasetId)}
+              />
+            ))
+          )}
         </section>
 
         {/* Rows */}
@@ -292,65 +317,5 @@ export default function DatasetDetail() {
         </section>
       </div>
     </div>
-  );
-}
-
-function StatsBlock({
-  stats,
-}: {
-  stats: Awaited<ReturnType<typeof getDatasetStats>> | undefined;
-}) {
-  if (!stats) return <p className="font-mono text-[11px] text-gotham-500">Lade …</p>;
-  if (!stats.target_table) {
-    return <p className="font-mono text-[11px] text-gotham-500">Keine Daten geladen.</p>;
-  }
-
-  const buckets =
-    stats.per_metric ?? stats.per_type ?? stats.per_site ?? stats.per_counter ?? [];
-  if (buckets.length === 0) {
-    return (
-      <pre className="whitespace-pre-wrap font-mono text-[11px] text-gotham-400">
-        {JSON.stringify(stats.summary ?? {}, null, 2)}
-      </pre>
-    );
-  }
-  const keys = Object.keys(buckets[0]);
-  return (
-    <>
-      {stats.summary && (
-        <div className="mb-3 flex flex-wrap gap-x-5 gap-y-1 font-mono text-[11px] text-gotham-400">
-          {Object.entries(stats.summary).map(([k, v]) => (
-            <span key={k}>
-              <span className="text-gotham-500">{k}&nbsp;</span>
-              <span className="text-gotham-200">{fmt(v)}</span>
-            </span>
-          ))}
-        </div>
-      )}
-      <div className="overflow-x-auto">
-        <table className="w-full font-mono text-[11px]">
-          <thead>
-            <tr className="border-b border-gotham-700 text-gotham-500">
-              {keys.map((k) => (
-                <th key={k} className="py-1.5 pr-3 text-left font-medium uppercase tracking-[0.08em]">
-                  {k}
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody className="text-gotham-200">
-            {buckets.map((row, i) => (
-              <tr key={i} className="border-b border-gotham-750 last:border-0">
-                {keys.map((k) => (
-                  <td key={k} className="max-w-[220px] truncate py-1 pr-3">
-                    {fmt(row[k])}
-                  </td>
-                ))}
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </>
   );
 }
