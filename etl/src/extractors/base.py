@@ -18,11 +18,12 @@ from ..config import settings
 
 logger = logging.getLogger(__name__)
 
-RETRY_EXCEPTIONS = (
-    httpx.TimeoutException,
-    httpx.ConnectError,
-    httpx.RemoteProtocolError,
-)
+# httpx.TransportError is the base of every transient network failure:
+# ConnectError, ReadError ("[Errno 104] Connection reset by peer"), WriteError,
+# PoolTimeout, ConnectTimeout, ReadTimeout, ProtocolError, RemoteProtocolError.
+# The earlier list missed ReadError, so reset-during-read (the opendata.leipzig
+# failure mode) never retried.
+RETRY_EXCEPTIONS = (httpx.TransportError,)
 
 
 def _make_retry(max_retries: int = settings.max_retries):
@@ -44,11 +45,14 @@ class HttpExtractor:
     @property
     def client(self) -> httpx.Client:
         if self._client is None or self._client.is_closed:
+            # HTTP/1.1, not HTTP/2: opendata.leipzig.de (Apache) resets the
+            # connection mid-stream under HTTP/2, which is what failed the whole
+            # election-CSV family. HTTP/1.1 downloads the same files reliably.
             self._client = httpx.Client(
                 timeout=settings.request_timeout,
                 follow_redirects=True,
                 headers={"User-Agent": "Leipzig-Open-Data-ETL/1.0"},
-                http2=True,
+                http2=False,
             )
         return self._client
 
