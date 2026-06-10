@@ -3,8 +3,10 @@ from __future__ import annotations
 from typing import Any
 
 from fastapi import APIRouter, HTTPException, Query
+from fastapi.responses import ORJSONResponse
 
 from ..auth import CurrentUser
+from ..cache import cached
 from ..db import get_conn
 
 router = APIRouter(prefix="/datasets", tags=["datasets"])
@@ -61,6 +63,7 @@ async def list_datasets(
     schedule: str | None = Query(None, description="nightly or live"),
     has_geo: bool | None = Query(None),
     fmt: str | None = Query(None, alias="format", description="best_format filter"),
+    category: str | None = Query(None, description="category_id filter"),
     search: str | None = Query(None, max_length=100),
     limit: int = Query(50, le=200),
     offset: int = Query(0, ge=0),
@@ -77,6 +80,9 @@ async def list_datasets(
     if fmt:
         conditions.append("best_format = %s")
         params.append(fmt.upper())
+    if category:
+        conditions.append("%s = ANY(categories)")
+        params.append(category)
     if search:
         conditions.append("(title ILIKE %s OR id ILIKE %s)")
         params.extend([f"%{search}%", f"%{search}%"])
@@ -92,8 +98,9 @@ async def list_datasets(
 
             await cur.execute(
                 f"""
-                SELECT id, title, schedule, has_geo, formats, best_format,
-                       best_url, last_ingested, is_active
+                SELECT id, name, title, schedule, has_geo, formats, best_format,
+                       best_url, last_ingested, is_active, family_id, family_year,
+                       categories
                 FROM core.datasets
                 WHERE {where}
                 ORDER BY title
@@ -114,49 +121,165 @@ async def dataset_status(_user: CurrentUser) -> list[dict[str, Any]]:
             return await cur.fetchall()
 
 
-@router.get("/{dataset_id}")
-async def get_dataset(dataset_id: str, _user: CurrentUser) -> dict[str, Any]:
+# Static routes MUST be declared before the /{dataset_id} catch-all.
+
+
+@router.get("/categories")
+@cached(ttl=300)
+async def list_categories(_user: CurrentUser) -> ORJSONResponse:
+    """Thematic categories (CKAN/DCAT themes) with dataset counts."""
     async with get_conn() as conn:
         async with conn.cursor() as cur:
             await cur.execute(
-                "SELECT * FROM core.datasets WHERE id = %s", (dataset_id,)
+                """
+                SELECT c.category_id, c.title, c.description, c.position,
+                       COUNT(d.id)                                 AS dataset_count,
+                       COUNT(d.id) FILTER (WHERE d.has_geo)        AS geo_count,
+                       COUNT(DISTINCT d.family_id)                 AS family_count
+                FROM core.dataset_categories c
+                LEFT JOIN core.datasets d
+                    ON c.category_id = ANY(d.categories) AND d.is_active
+                GROUP BY c.category_id, c.title, c.description, c.position
+                ORDER BY c.position, c.title
+                """
             )
-            row = await cur.fetchone()
-            if not row:
-                raise HTTPException(status_code=404, detail="Dataset not found")
+            rows = await cur.fetchall()
+    return ORJSONResponse(rows)
+
+
+@router.get("/categories/{category_id}")
+@cached(ttl=300)
+async def category_datasets(category_id: str, _user: CurrentUser) -> ORJSONResponse:
+    """Datasets in one category, year-variant families collapsed into groups."""
+    async with get_conn() as conn:
+        async with conn.cursor() as cur:
+            await cur.execute(
+                """
+                SELECT category_id, title, description, position
+                FROM core.dataset_categories WHERE category_id = %s
+                """,
+                (category_id,),
+            )
+            category = await cur.fetchone()
+            if not category:
+                raise HTTPException(status_code=404, detail="Kategorie nicht gefunden")
 
             await cur.execute(
                 """
-                SELECT status, started_at, finished_at, rows_loaded, rows_extracted,
-                       duration_ms, error_message
-                FROM raw_ingest.etl_runs
-                WHERE dataset_id = %s
-                ORDER BY started_at DESC
-                LIMIT 10
+                SELECT d.id, d.name, d.title, d.schedule, d.has_geo, d.best_format,
+                       d.family_id, d.family_year, d.last_ingested,
+                       f.title AS family_title,
+                       s.last_run_status, s.last_run_at, s.last_run_rows
+                FROM core.datasets d
+                LEFT JOIN core.dataset_families f ON f.family_id = d.family_id
+                LEFT JOIN mart.dataset_status s ON s.id = d.id
+                WHERE %s = ANY(d.categories) AND d.is_active
+                ORDER BY d.title
                 """,
-                (dataset_id,),
+                (category_id,),
             )
-            runs = await cur.fetchall()
+            rows = await cur.fetchall()
 
-        target = await _resolve_target_table(conn, dataset_id)
-        row_count = 0
-        if target:
-            async with conn.cursor() as cur:
-                if target in _DATASET_ID_TABLES:
-                    await cur.execute(
-                        f"SELECT COUNT(*) AS n FROM {target} WHERE dataset_id = %s",
-                        (dataset_id,),
-                    )
-                else:
-                    await cur.execute(f"SELECT COUNT(*) AS n FROM {target}")
-                row_count = (await cur.fetchone())["n"]
+    families: dict[str, dict[str, Any]] = {}
+    singles: list[dict[str, Any]] = []
+    for row in rows:
+        if row["family_id"]:
+            fam = families.setdefault(
+                row["family_id"],
+                {
+                    "family_id": row["family_id"],
+                    "title": row["family_title"],
+                    "members": [],
+                },
+            )
+            fam["members"].append(row)
+        else:
+            singles.append(row)
+    for fam in families.values():
+        fam["members"].sort(key=lambda m: (m["family_year"] or 0, m["title"]))
+
+    return ORJSONResponse(
+        {
+            "category": category,
+            "families": sorted(families.values(), key=lambda f: f["title"] or ""),
+            "datasets": singles,
+        }
+    )
+
+
+async def _dataset_detail(conn, dataset_id: str) -> dict[str, Any]:
+    async with conn.cursor() as cur:
+        await cur.execute(
+            "SELECT * FROM core.datasets WHERE id = %s", (dataset_id,)
+        )
+        row = await cur.fetchone()
+        if not row:
+            raise HTTPException(status_code=404, detail="Dataset not found")
+
+        await cur.execute(
+            """
+            SELECT status, started_at, finished_at, rows_loaded, rows_extracted,
+                   duration_ms, error_message
+            FROM raw_ingest.etl_runs
+            WHERE dataset_id = %s
+            ORDER BY started_at DESC
+            LIMIT 10
+            """,
+            (dataset_id,),
+        )
+        runs = await cur.fetchall()
+
+        await cur.execute(
+            """
+            SELECT category_id, title FROM core.dataset_categories
+            WHERE category_id = ANY(
+                SELECT unnest(categories) FROM core.datasets WHERE id = %s
+            )
+            ORDER BY position
+            """,
+            (dataset_id,),
+        )
+        categories = await cur.fetchall()
+
+    target = await _resolve_target_table(conn, dataset_id)
+    row_count = 0
+    if target:
+        async with conn.cursor() as cur:
+            if target in _DATASET_ID_TABLES:
+                await cur.execute(
+                    f"SELECT COUNT(*) AS n FROM {target} WHERE dataset_id = %s",
+                    (dataset_id,),
+                )
+            else:
+                await cur.execute(f"SELECT COUNT(*) AS n FROM {target}")
+            row_count = (await cur.fetchone())["n"]
 
     return {
         "dataset": row,
+        "categories": categories,
         "target_table": target,
         "row_count": row_count,
         "recent_runs": runs,
     }
+
+
+@router.get("/by-slug/{slug}")
+async def get_dataset_by_slug(slug: str, _user: CurrentUser) -> dict[str, Any]:
+    async with get_conn() as conn:
+        async with conn.cursor() as cur:
+            await cur.execute(
+                "SELECT id FROM core.datasets WHERE name = %s", (slug,)
+            )
+            row = await cur.fetchone()
+        if not row:
+            raise HTTPException(status_code=404, detail="Dataset not found")
+        return await _dataset_detail(conn, row["id"])
+
+
+@router.get("/{dataset_id}")
+async def get_dataset(dataset_id: str, _user: CurrentUser) -> dict[str, Any]:
+    async with get_conn() as conn:
+        return await _dataset_detail(conn, dataset_id)
 
 
 @router.get("/{dataset_id}/rows")

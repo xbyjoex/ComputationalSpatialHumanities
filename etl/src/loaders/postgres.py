@@ -134,6 +134,51 @@ def sync_dataset_families(
     return len(member_map)
 
 
+def sync_dataset_categories(
+    conn: psycopg.Connection, config: dict[str, Any]
+) -> int:
+    """Sync dataset_categories.json into core.dataset_categories + the
+    categories array on core.datasets (mirrors sync_dataset_families)."""
+    categories = config.get("categories", [])
+    memberships: dict[str, list[str]] = config.get("memberships", {})
+
+    with conn.cursor() as cur:
+        for cat in categories:
+            cur.execute(
+                """
+                INSERT INTO core.dataset_categories
+                    (category_id, title, description, position)
+                VALUES (%s, %s, %s, %s)
+                ON CONFLICT (category_id) DO UPDATE SET
+                    title       = EXCLUDED.title,
+                    description = EXCLUDED.description,
+                    position    = EXCLUDED.position,
+                    updated_at  = NOW()
+                """,
+                (cat["category_id"], cat["title"], cat.get("description"),
+                 cat.get("position", 0)),
+            )
+
+        for dataset_id, cats in memberships.items():
+            cur.execute(
+                "UPDATE core.datasets SET categories = %s WHERE id = %s",
+                (cats, dataset_id),
+            )
+        cur.execute(
+            """
+            UPDATE core.datasets SET categories = '{}'
+            WHERE categories <> '{}' AND id <> ALL(%s)
+            """,
+            (list(memberships.keys()) or [""],),
+        )
+        cur.execute(
+            "DELETE FROM core.dataset_categories WHERE category_id <> ALL(%s)",
+            ([c["category_id"] for c in categories] or [""],),
+        )
+        conn.commit()
+    return len(memberships)
+
+
 def log_etl_start(
     conn: psycopg.Connection, dataset_id: str, title: str, schedule: str
 ) -> int:
