@@ -1,0 +1,247 @@
+id|schedule|fmt|st|ext|ld|err|title
+5965a268-10e8-4902-9250-80de58ab7a9b|live|JSON|success|1|0|DQ: raw-only ingest (no core rows)|Liegenschaften
+6fcdd972-b19e-453b-b28c-272dab80febb|nightly|CSV|failed|0|0|[Errno 104] Connection reset by peer|A-Wochen und B-Wochen für Fahrplan Fahrbibliothek
+8354f558-9291-44a4-b487-35577e5ea2ec|nightly|CSV|failed|0|0|[Errno 104] Connection reset by peer|Bundestagswahl 2021: Ortsteilergebnisse
+fff8cfc0-a4aa-4627-89ed-a46bb6a29c59|nightly|CSV|failed|0|0|[Errno 104] Connection reset by peer|Bundestagswahl 2021: Stadtergebnis
+f5b27739-e3dd-49ca-95cd-9b0e9b907684|nightly|CSV|failed|0|0|[Errno 104] Connection reset by peer|Bundestagswahl 2021: Wahlbezirksergebnisse
+52f541e1-dbbb-4d8d-97d2-586bf2bc796d|nightly|CSV|failed|0|0|[Errno 104] Connection reset by peer|Bundestagswahl 2021: Wahlkreisergebnis Leipzig I (152)
+3d7102cc-c3fe-4a68-ad21-f9cd2d67e1d7|nightly|CSV|failed|0|0|[Errno 104] Connection reset by peer|Bundestagswahl 2021: Wahlkreisergebnis Leipzig II (153)
+0e7e9fa6-5d6a-4301-b991-5dad6c6f027e|nightly|CSV|failed|0|0|[Errno 104] Connection reset by peer|Europawahl 2024: Ortsteilergebnisse
+c1bac74a-cdd2-4116-8ba9-ff2c2c7aa6b0|nightly|CSV|failed|0|0|[Errno 104] Connection reset by peer|Europawahl 2024: Stadtbezirksergebnisse
+4b9c85a0-63a1-406f-923e-1df14295f3ed|nightly|CSV|failed|0|0|[Errno 104] Connection reset by peer|Europawahl 2024: Stadtergebnis
+bf7b851d-592c-425c-9f11-704966305147|nightly|CSV|failed|0|0|[Errno 104] Connection reset by peer|Europawahl 2024: Wahlbezirksergebnisse
+38ee8385-296a-462b-8a07-d11eb0ea27e6|nightly|CSV|failed|0|0|[Errno 104] Connection reset by peer|Fahrplan der Fahrbibliothek
+95b2a361-d6fc-44d7-a122-6472bab01dfa|nightly|CSV|failed|0|0|[Errno 104] Connection reset by peer|Fahrplan der Fahrbibliothek für Schulen
+ea8436ec-0471-48a9-826d-ebdb7e45c757|nightly|CSV|failed|0|0|[Errno 104] Connection reset by peer|Frühjahrsputztermine
+981dad4d-6aa5-41e1-ac5b-003d6399383a|nightly|CSV|failed|0|0|[Errno 104] Connection reset by peer|Gartennutzung - Kommunale Bürgerumfrage
+bd9f8ea8-4d5d-4fd5-9bb0-a97532388d5d|nightly|CSV|failed|0|0|[Errno 104] Connection reset by peer|Kindergarten- und Kinderkrippenkinder in Kindertageseinricht
+dd7ccaeb-c50a-4250-8895-6c64677ad787|nightly|CSV|failed|0|0|[Errno 104] Connection reset by peer|Kommunale Bügerumfrage 2024 - Personengewichtung
+62cdd44d-a98b-4666-8e87-e5cd7d8c1a44|nightly|CSV|failed|0|0|[Errno 104] Connection reset by peer|Kontaktdaten und Öffnungszeiten der Bibliotheken
+b11bc8e2-034b-40ea-b1d6-eb3c1ec441ff|nightly|SHP|failed|0|0|[Errno 104] Connection reset by peer|Landschaftsschutzgebiete der Stadt Leipzig
+3700e4dc-bb3e-483c-b285-f25b1aea806e|nightly|CSV|failed|0|0|[Errno 104] Connection reset by peer|Landtagswahl 2024: Ortsteilergebnisse
+4db3895e-92a9-4bb7-bb33-f792178d331f|nightly|CSV|failed|0|0|[Errno 104] Connection reset by peer|Landtagswahl 2024: Wahlbezirksergebnisse
+b73f72dc-ac75-4595-b12b-b95f32824d2a|nightly|CSV|failed|0|0|[Errno 104] Connection reset by peer|Landtagswahl 2024: Wahlkreisergebnisse
+ddba0783-03f0-4537-865f-defda60ac6a8|nightly|CSV|failed|0|0|[Errno 104] Connection reset by peer|Leipziger Spezialmärkte - Öffnungszeiten und Termine
+2168319b-68e2-4789-9b67-0058ac4a51ce|nightly|CSV|failed|0|0|[Errno 104] Connection reset by peer|Leipziger Wochenmärkte - Öffnungszeiten und Termine
+8453d907-b50c-4d6d-9756-28dd3e5aa2ae|nightly|CSV|failed|0|0|[Errno 104] Connection reset by peer|Ortschaftsratswahlen 2024: Wahlbezirksergebnisse
+5cf0fe8f-5052-4ed3-9f10-26a4ecd54bda|nightly|CSV|failed|0|0|[Errno 104] Connection reset by peer|Stadtbezirksbeiräte_Sitzungen
+068a5cde-705c-4da1-a8b5-3dba08f20091|nightly|XLSX|failed|0|0|[Errno 104] Connection reset by peer|Stadtratswahl 2019: Ergebnisse
+4f261ede-a4c6-4815-a773-6d975c0a8ae5|nightly|CSV|failed|0|0|[Errno 104] Connection reset by peer|Stadtratswahl 2024: Ortsteilergebnisse
+b03dcd68-b921-4356-b2b8-5f28669e8e50|nightly|CSV|failed|0|0|[Errno 104] Connection reset by peer|Stadtratswahl 2024: Stadtergebnis
+1ae46e0e-af40-439e-9ad8-eb5abf81679d|nightly|CSV|failed|0|0|[Errno 104] Connection reset by peer|Stadtratswahl 2024: Wahlbezirksergebnisse
+f3f1f107-18b4-4c2a-a071-75e1aea1ba37|nightly|CSV|failed|0|0|[Errno 104] Connection reset by peer|Stadtratswahl 2024: Wahlkreisergebnisse
+712164f5-a316-47f6-b157-50f5357008dc|nightly|CSV|failed|0|0|[Errno 104] Connection reset by peer|Vornamensstatistik 2015
+af353191-ed9d-40f8-927f-de14cca5694b|nightly|CSV|failed|0|0|[Errno 104] Connection reset by peer|Vornamensstatistik 2016
+3d361523-04a3-4aef-805e-09239e5994d5|nightly|CSV|failed|0|0|[Errno 104] Connection reset by peer|Vornamensstatistik 2017
+2ddc2b70-19ff-44fa-be8d-a205f6a96d13|nightly|CSV|failed|0|0|[Errno 104] Connection reset by peer|Vornamensstatistik 2018
+99766e60-275e-4688-8c0f-028be2304eeb|nightly|CSV|failed|0|0|[Errno 104] Connection reset by peer|Vornamensstatistik 2019
+38fb00b5-2d6a-4be8-9e0c-809ea51db955|nightly|CSV|failed|0|0|[Errno 104] Connection reset by peer|Vornamenstatistik 2025
+501a3dbc-8ef3-453d-999c-f039dba20b5d|live|∅|skipped|0|0|no resource URL|LIS Test
+85d549ea-7f17-4cf1-9a75-c87054b443a3|live|∅|skipped|0|0|no resource URL|Verkehrsraumeinschränkungen (Punkte), Stadt Leipzig
+1a595f9b-23e5-4afe-90fd-1543045cd8b0|live|CSV|skipped|0|0|unchanged (304)|Weihnachtsmärkte im Stadtgebiet Leipzig und Umland
+e767030c-569d-4a8e-a7fa-911d77b5e996|nightly|SHP|success|0|0||3D-Stadtmodell LoD2, Stadt Leipzig
+eaea1da7-fab0-4e24-9bc2-6b16a05e4169|nightly|SHP|success|0|0||3D-Stadtmodell LoD2, Stadt Leipzig
+8fc4c316-0225-44ad-9bab-41e79fe875a3|nightly|CSV|success|9|234||Abfallentsorgung (Jahreszahlen)
+85d2d221-59f7-41ab-bc1f-3a298944a591|nightly|CSV|success|5|490||Abfallentsorgung (Quartalszahlen)
+55da7549-f64e-448d-a636-b84db35efbe5|live|GeoJSON|success|7|0||Aktuelle Belegung Park+Ride Anlagen, Stadt Leipzig
+9c27b2fe-1c54-4926-adaa-82b605abb787|nightly|CSV|success|60|1860||Allgemeinbildende Schulen (Jahreszahlen)
+6de98fef-8ca8-42e3-b98f-f7e8d5d3c8fc|nightly|CSV|success|740|15540||Allgemeinbildende Schulen (Jahreszahlen, kleinräumig)
+64c65647-dac0-45f1-bbff-8a0b2e6ca178|nightly|CSV|success|222|1998||Alten- und Pflegeheime (Jahreszahlen, kleinräumig)
+ae790b75-2ed5-410d-a8eb-664ccf6dd564|nightly|CSV|success|27|837||Ankünfte und Übernachtungen (Jahreszahlen)
+bf764161-13cd-4caa-a381-1f3bf429fb3b|nightly|CSV|success|24|2352||Ankünfte und Übernachtungen (Quartalszahlen)
+2eb90b7c-54e3-4014-92cf-57184fa6b5ab|nightly|CSV|success|4|112||Anteilige Verteilung der Schulabschlüsse (Jahreszahlen)
+c7911cb3-779d-4632-8d53-bccbca7bf5e2|nightly|CSV|success|74|1332||Apotheken (Jahreszahlen, kleinräumig)
+47997b4e-6087-473f-988b-6b41b4118555|nightly|CSV|success|18|522||Arbeitslose (Jahreszahlen)
+30943d88-4ac9-4968-84bc-35e9b337a85d|nightly|CSV|success|1184|30784||Arbeitslose (Jahreszahlen, kleinräumig)
+4f7c3186-2986-47c1-99ea-f2a579e31b8e|nightly|CSV|success|15|1365||Arbeitslose (Quartalszahlen)
+33e4f511-2888-44fd-8823-67e7a0c75e5e|nightly|CSV|success|3|39||Aufwendungen für Erziehungshilfen (Jahreszahlen)
+ff521ec6-1b01-41aa-9b00-d0d5922f6f92|nightly|CSV|success|3|54||Aufwendungen für Kindertageseinrichtungen (Jahreszahlen)
+626c3a9b-8159-416a-8cfe-89b3e030c540|nightly|CSV|success|7|210||Ausbaugewerbe (Jahreszahlen)
+3eb01a65-00cd-4f57-93e5-c0bf98083b73|nightly|CSV|success|6|582||Ausbaugewerbe (Quartalszahlen)
+23361f4f-5320-47a8-a5b7-60a07c3b3735|nightly|CSV|success|14|322||Ausgaben (Jahreszahlen)
+9bf82e45-c075-438a-88f5-00cb9be22582|nightly|CSV|success|6|168||Auszubildende (Jahreszahlen)
+5e190d25-11c7-4640-ab42-dd2a0b49ccd9|nightly|CSV|success|9|279||Baufertigstellungen (Jahreszahlen)
+0b46970d-7f65-42fd-aa43-2eee8a7465b1|nightly|CSV|success|370|9620||Baufertigstellungen (Jahreszahlen, kleinräumig)
+f41af93c-a75d-44dc-9cd6-25fd06828903|nightly|CSV|success|9|279||Baugenehmigungen (Jahreszahlen)
+1ef1b11a-0faa-452f-aefe-15501bd10137|nightly|CSV|success|370|9620||Baugenehmigungen (Jahreszahlen, kleinräumig)
+6d5a32ee-c4a3-477f-b7d9-10d6c9906c5c|nightly|CSV|success|9|873||Baugenehmigungen (Quartalszahlen)
+690e64b4-9660-4b2f-bf2b-e7efe6b7a0bb|nightly|CSV|success|12|360||Bauhauptgewerbe (Jahreszahlen)
+c38ad265-541d-4e6b-91b2-a1184cfd8a40|nightly|CSV|success|8|784||Bauhauptgewerbe (Quartalszahlen)
+6d795885-3997-4ea8-9481-56be25131a0f|nightly|CSV|success|21|630||Beherbergungskapazität (Jahreszahlen)
+e2f47d0a-3e36-4c0f-86f5-3a61f6f5c818|nightly|CSV|success|7|105||Beratungsstelle Wohnen und Soziales (Jahreszahlen)
+bdc2aaf4-b78f-4638-b921-f04d48966e44|nightly|CSV|success|27|810||Berufsbildende Schulen (Jahreszahlen)
+a40f735d-0313-4480-a51b-dd6549a8c0f1|nightly|CSV|success|45|1350||Beschäftigte (Jahreszahlen)
+ff25a901-b1c9-4298-86ed-26e4c6c24792|nightly|CSV|success|740|18500||Beschäftigte (Jahreszahlen, kleinräumig)
+33d21bb0-9101-4c5a-881c-40addcc8c7fb|nightly|CSV|success|25|2400||Beschäftigte (Quartalszahlen)
+d8fe1181-a743-47a2-a38d-36e34646ddc5|nightly|CSV|success|4|48||Bevölkerung nach Religionszugehörigkeit (Jahreszahlen)
+36c28163-c4ab-415b-88cf-143f61851e17|nightly|CSV|success|3|72||Bevölkerungsvorausschätzung (Jahreszahlen)
+85753a0b-734a-4bb3-8eeb-ff4df76347ee|nightly|CSV|success|222|4440||Bevölkerungsvorausschätzung (Jahreszahlen, kleinräumig)
+6502a5cc-3233-4032-b4e9-be4c5b7a5ebf|nightly|CSV|success|21|630||Bibliotheken (Jahreszahlen)
+eef99ed5-1971-47cf-a9c1-7ebb2e90452b|nightly|∅|never|0|0||Bodenrichtwerte, Stadt Leipzig
+30c37a65-b022-43c6-a9be-b9c266b19618|nightly|CSV|success|12|348||Bruttoinlandsprodukt und Bruttowertschöpfung (Jahreszahlen)
+785fc967-2c3f-4ed1-9909-52d0a137fc01|nightly|CSV|success|30|510||Bruttomonatsentgelte (Jahreszahlen)
+3c925bd6-892f-47eb-aafb-0ddfd8490272|nightly|CSV|success|74|666||Bruttomonatsentgelte (Jahreszahlen, kleinräumig)
+510a0409-744b-4462-87ec-832057c1df38|nightly|CSV|success|1|1||Bundestagswahl 2025: Stadtergebnis
+19ea44b0-1d0f-4e4e-b6e4-4f4d5bcc0c90|nightly|CSV|success|610|610||Bundestagswahl 2025: Wahlbezirksergebnisse
+94ff8fe8-ce67-48a6-a196-93367b54f277|nightly|CSV|success|1|1||Bundestagswahl 2025: Wahlkreisergebnis Leipzig I (151)
+32729aa1-8f29-477b-b53d-c83063f886e0|nightly|CSV|success|1|1||Bundestagswahl 2025: Wahlkreisergebnis Leipzig II (152)
+1c393ab2-e938-4ff8-8698-7d23c8944d87|nightly|CSV|success|11|176||Bundestagswahlen
+cbd82a0a-a6e7-45c4-a69a-00e69552fbb4|nightly|CSV|success|592|5920||Bundestagswahlen (kleinräumig)
+32887a3e-0abf-49de-b500-ba7c9cbe8df3|nightly|CSV|success|10|150||Bundestagswahlen - Erststimmenergebnis
+365d4074-1b54-4c03-8f22-bea46b30d552|nightly|CSV|success|7|210||Bäder (Jahreszahlen)
+cf574a1a-3968-4a9c-ae4b-5187cc506483|nightly|CSV|success|5|490||Bäder (Quartalszahlen)
+1f7e5e3c-5cda-40f3-877a-d4a3506dd04e|live|GeoJSON|success|20629|0||Dauerzählstellen Radverkehr - Gesamtanzahl der Fahrräder pro
+42439f19-5ee8-42d4-b63e-3ac9eb6a4386|live|GeoJSON|success|26|0||Dauerzählstellen Radverkehr - Standorte, Stadt Leipzig
+fba8708f-3482-4872-8d54-9f3f8425d168|live|GeoJSON|success|12528|0||Dauerzählstellen Radverkehr- Gesamtanzahl der Fahrräder pro 
+c3ffce44-f95e-4e5d-9513-a53c9f11d167|nightly|∅|never|0|0||Digitale Stadtkarte 1:25.000, Stadt Leipzig
+fcb2b034-10ef-44e9-8c0a-dfa315ed16f8|nightly|∅|never|0|0||Digitale Stadtkarte 1:5.000, Stadt Leipzig
+98579d91-49d0-4b2a-8c6c-87bcb52f9f29|nightly|CSV|success|10|120||Durchschnittliche Anzahl obdachloser und wohnungsloser Perso
+2a33b013-fcee-4cfa-b2d2-473ed62d8c10|nightly|CSV|success|8|144||Durchschnittliche Nettokaltmiete (Median) der Angebotsmiete 
+54318429-bb11-4756-87d2-8bebca94f388|nightly|CSV|success|5|150||Eheschließungen und Ehescheidungen (Jahreszahlen)
+d80ce591-0e1e-4c8b-bf6b-af38e74fc079|nightly|CSV|success|18|414||Einnahmen (Jahreszahlen)
+5ede7e2b-a627-4e5e-9f4a-b0a2bd9ad2f7|nightly|CSV|success|64|640||Einsatz von Haushaltsmitteln (Jahreszahlen)
+0a5a7822-3e5a-4217-88f2-5b322106af4a|nightly|CSV|success|5|140||Einschulungen und Nichteinschulungen (Jahreszahlen)
+4741c48d-bc95-49ca-845a-b8a8ff02f4df|nightly|CSV|success|22|704||Einwohner (Jahreszahlen)
+dcc45e1a-11d1-4922-80c3-f49ba12863fb|nightly|CSV|success|370|9990||Einwohner (Jahreszahlen, kleinräumig)
+dbb0dfad-6846-4b1a-9606-9d49c5bad2e7|nightly|CSV|success|22|2442||Einwohner (Quartalszahlen)
+3b757abf-39c2-4e1c-929c-adc119d2fdd5|nightly|CSV|success|592|11248||Einwohner mit Migrationshintergrund (Jahreszahlen, kleinräum
+0b74ac49-337a-4c94-b5e0-7609713f03e3|nightly|CSV|success|34|1054||Einwohner nach Alter (Jahreszahlen)
+7729dee5-fba1-4e2f-93a8-0c9a3ec356c8|nightly|CSV|success|222|5994||Einwohner nach Alter (Jahreszahlen, kleinräumig)
+9f481e00-fc33-48b2-af24-303fe12bb9d8|nightly|CSV|success|296|7992||Einwohner nach Familienstand (Jahreszahlen, kleinräumig)
+93671c8e-b29c-48f2-a1ac-cdeeb5b9327b|nightly|CSV|success|74|1702||Einwohnerdichte (Jahreszahlen, kleinräumig)
+b3756364-19ec-4ac2-befc-1be995458c3e|nightly|CSV|success|1460|10220||Einzelhandel (Jahreszahlen, kleinräumig)
+1be7c5e4-d57f-4fbe-b6a8-a05b70a7d614|nightly|CSV|success|12|252||Energieverbrauch (Jahreszahlen)
+57c8b4b5-bb66-4d1f-8eed-bc4cf51285a8|nightly|CSV|success|4|84||Erziehungs- und Familienberatungsstellen (Jahreszahlen)
+ab1aef38-8982-471a-bc92-7c191f7d91f2|nightly|CSV|success|11|187||Erziehungshilfen für Minderjährige (Jahreszahlen)
+485670d4-74eb-417f-8ecb-44901e99f821|nightly|CSV|success|12|156||Europawahlen
+1da7d611-5f59-41b6-b62c-5032f9883acf|nightly|CSV|success|666|5328||Europawahlen (kleinräumig)
+aa01ad81-1060-48e9-84f2-8908287ecf5e|nightly|CSV|success|1628|19536||Familien mit Kindern (Jahreszahlen, kleinräumig)
+b247ec49-2155-46e3-bc93-7a899054178c|nightly|CSV|success|962|9620||Firmen (WZ 2003) (Jahreszahlen, kleinräumig)
+2aa51b55-7fe3-4eb1-815e-03e52da6ae23|nightly|CSV|success|1332|23976||Firmen (WZ 2008) (Jahreszahlen, kleinräumig)
+1d3d7a33-d02d-4c04-912a-fd879f922c0f|nightly|CSV|success|666|5328||Flächennutzung (Jahreszahlen, kleinräumig)
+e86b650f-dc9f-41e3-8a5e-b89d06a00e41|nightly|∅|never|0|0||Flächennutzungsplan der Stadt Leipzig
+c20afda1-0b3f-4fc7-8dd1-0fb4c4b90e14|nightly|CSV|success|2|26||Fälle ambulant betreuten Wohnens (Jahreszahlen)
+19271aa9-bdfa-4a73-9c32-e0a5f13314db|nightly|CSV|success|9|270||Geborene und Gestorbene (Amtliche Daten) (Jahreszahlen)
+f80a6f76-eabc-4496-aaf8-f60329ce972b|nightly|CSV|success|9|873||Geborene und Gestorbene (Amtliche Daten) (Quartalszahlen)
+3f7ca831-54f6-49ea-9dd5-1deb9d623f60|nightly|CSV|success|222|5994||Geborene und Gestorbene (Jahreszahlen, kleinräumig)
+97fcb661-5160-4990-a985-6079cf56abd5|nightly|CSV|success|9|288||Geborene und Gestorbene (Melderegisterdaten) (Jahreszahlen)
+1858be69-e5bc-49a5-9676-1a4656f23e1a|nightly|CSV|success|9|423||Geborene und Gestorbene (Melderegisterdaten) (Quartalszahlen
+293a89a8-1b82-466d-8730-72686db1e3b0|nightly|CSV|success|444|11544||Gebäudebestand (Jahreszahlen, kleinräumig)
+cd072bc9-0fd0-4b6a-940c-b96dd3be89c3|nightly|CSV|success|2|24||Geförderte Wohnraumanpassungen (Jahreszahlen)
+067399e7-7c44-4cdc-beda-61b3f43984a0|nightly|∅|never|0|0||Geodatenkatalog Leipzig
+ca5d49d7-54b2-46c0-8020-f510472c9429|nightly|CSV|success|3|75||Geografische Lage (Jahreszahlen)
+a9818d1b-f2c8-4d88-b8cd-ce7e5a91ed67|nightly|CSV|success|7|84||Gesamtmietbelastung nach Haushaltstyp (Jahreszahlen)
+ab221bce-0e1b-4552-8bb3-428a6305f44f|nightly|CSV|success|26|780||Gewerbemeldungen (Jahreszahlen)
+9e62d839-a83b-4c86-9f8a-5c31a3f8bfc0|nightly|CSV|success|17|408||Grundsicherung für Arbeitssuchende (Jahreszahlen)
+2e3985be-6c3d-481c-82c5-7fea9ed2ab2a|nightly|CSV|success|24|1392||Grundsicherung für Arbeitssuchende (Quartalszahlen)
+dad06a91-b009-4a34-b5df-ec4ea1336439|nightly|CSV|success|1702|32338||Grundsicherung für Arbeitssuchende (SGB II) (Jahreszahlen, k
+bf2e55ff-a9d0-4399-a74b-d1ff4c18d7b7|nightly|CSV|success|24|720||Gäste nach Herkunftsländern (Jahreszahlen)
+aaab3a7f-d461-4166-b9b1-73bcac640246|nightly|CSV|success|9|279||Handwerksbetriebe (Jahreszahlen)
+e43c96b0-221c-4b51-95cd-090e3845d7c8|nightly|CSV|success|666|12654||Handwerksbetriebe (Jahreszahlen, kleinräumig)
+3adf72d5-c177-47d5-99b7-990eb37135d8|nightly|CSV|success|666|1998||Handwerksbetriebe (Jahreszahlen, kleinräumig)
+98457fa7-0f9c-4666-912f-a8ed8fade45e|nightly|CSV|success|2|38||Haushalte mit Wohnberechtigungsschein  (Jahreszahlen)
+576e749e-9cc1-4be4-885b-0ae4fcb440e7|nightly|CSV|success|6|96||Haushaltsgröße (Jahreszahlen)
+430a768c-7f00-47eb-a2a0-effd50a00023|nightly|GeoJSON|success|9945|9945||Historische Belegung (letzten 30 Tage) Park+Ride Anlagen, St
+18b60b44-1b25-43f0-a5a5-e5ead794a8b5|nightly|CSV|success|44|1320||Hochschulen (Jahreszahlen)
+4dcae4c8-0048-4618-bc3a-61ba59a97f91|nightly|∅|never|0|0||Horte
+3f7f4401-d367-4c49-8c79-ab0ec42ff4d0|nightly|CSV|success|13|403||Immissionen (Jahreszahlen)
+29b76544-4021-48d3-b5f7-60d0df39b382|nightly|CSV|success|8|152||Inklusiv unterrichtete Schüler/-innen nach Förderschwerpunkt
+478e2319-5635-4d21-bb53-32c44f2a0937|nightly|CSV|success|8|240||Insolvenzverfahren (Jahreszahlen)
+d0bef989-c815-4742-ae56-5886d6c91d03|nightly|CSV|success|3|51||Investitionen in den Schulbau (Jahreszahlen)
+f641b1d9-1129-4b52-89b4-bfa1401e4158|nightly|∅|never|0|0||Jahresdurchschnittstemperaturen
+ef19404c-4c2c-4a23-ba2b-2cb3e77bc39a|nightly|CSV|success|5|85||Kinder- und Jugendförderung freier Träger  (Jahreszahlen)
+18009861-e573-4609-aafc-e2e964c8c6e9|nightly|CSV|success|148|1776||Kinderspielplätze (Jahreszahlen, kleinräumig)
+3ec02b27-4153-4e67-83e0-524348e924eb|nightly|CSV|success|296|1184||Kindertagesbetreuung (Kapazitäten) (Jahreszahlen, kleinräumi
+10c54d8e-d4a3-45ce-b164-907fb19efa70|nightly|CSV|success|27|567||Kindertageseinrichtungen (Jahreszahlen)
+efe34543-2dc6-450a-895e-ab37c9010886|nightly|∅|never|0|0||Kindertageseinrichtungen, Stadt Leipzig
+1163863c-c492-46a0-99ef-77a15fbd4e86|nightly|CSV|success|518|8806||Kindertagesstätten (Angemeldete Kinder) (Jahreszahlen, klein
+3c62959b-0614-46c0-afbb-587d2ca01e35|nightly|CSV|success|14|434||Kraftfahrzeugbestand (Jahreszahlen)
+869d6935-88f8-4d21-9058-0cb280ef4978|nightly|CSV|success|1110|28860||Kraftfahrzeugbestand (Jahreszahlen, kleinräumig)
+5be18d85-d375-4849-9a8b-8c222f53c1d4|nightly|CSV|success|1|1||Landtagswahl 2024: Stadtergebnis
+88b3dd42-044a-43c8-9286-20e171692767|nightly|CSV|success|12|180||Landtagswahlen
+2b2f9e42-4c85-470d-a9f3-7e163d23ddb7|nightly|CSV|success|740|5920||Landtagswahlen (kleinräumig)
+ee291d90-c491-4db2-bcb0-4a2870b0910e|nightly|CSV|success|11|143||Landtagswahlen - Erststimmenergebnis
+b82dd1f9-248f-4c96-8627-9d5b05d8adf5|nightly|CSV|success|5|150||Lebensunterhalt (Jahreszahlen)
+467c0e9c-9231-468f-bba3-b0055934df88|nightly|CSV|success|296|2368||Lebensunterhalt (Jahreszahlen, kleinräumig)
+41143cbd-7246-49b3-8d9c-2657f0428a11|nightly|∅|never|0|0||Leipzig-Informationssystem
+4634b871-5deb-4f90-b54a-485deb884520|nightly|∅|never|0|0||Leipziger Weihnachtsmarkt 2023 - Stände in 3D
+254af7ad-6edb-4735-848e-1cbe5fa144eb|nightly|∅|never|0|0||Luftbild 2022 (20 cm Bodenauflösung), Stadt Leipzig
+0fdd7999-fc66-4dd3-82eb-d302765442a0|nightly|∅|never|0|0||Luftbild 2022, Stadt Leipzig
+d9d5332f-cad1-43f3-ae2c-2ba0ffe43c14|nightly|∅|never|0|0||Luftbild 2024 (20 cm Bodenauflösung), Stadt Leipzig
+afdddd9e-77ec-4357-b05a-248ca7a4f539|nightly|∅|never|0|0||Luftbild 2024, Stadt Leipzig
+23635389-0aaa-49a5-a52c-a0fc43b7f956|nightly|CSV|success|16|480||Luftverkehr (Jahreszahlen)
+d5c2baac-7e9f-471d-968a-12a15e8e8e5a|nightly|CSV|success|10|820||Luftverkehr (Quartalszahlen)
+78e11869-df37-4ac5-9fa5-6b1879c2ad15|nightly|CSV|success|4|120||Messen und Ausstellungen (Jahreszahlen)
+43abb915-ea90-4aff-a9ba-aaa9269af97b|nightly|CSV|success|25|750||Museen (Jahreszahlen)
+4f92e0c2-f98e-4c4b-be3a-c4a2c05a0e02|nightly|CSV|success|25|2450||Museen (Quartalszahlen)
+0c0c413b-541a-493f-b426-2260009b8b21|nightly|CSV|success|12|360||Nettoeinkommen (Jahreszahlen)
+985716cc-d211-4eec-b0d8-b1bc2f9f67b1|nightly|CSV|success|148|1184||Nettoeinkommen (Jahreszahlen, kleinräumig)
+8540fb95-9df3-4c2d-aacc-00ee1510d136|nightly|CSV|success|511|6132||Oberbürgermeisterwahlen (kleinräumig)
+f7aaa328-f870-48bf-9692-f1582cc2168d|nightly|CSV|success|8|96||Oberbürgermeisterwahlen - 1. Wahlgang
+697aab68-70e5-4446-8e01-4c2a9f8fb184|nightly|CSV|success|7|77||Oberbürgermeisterwahlen - 2. Wahlgang
+a2f6883e-a2a1-40b1-8e75-ecaca3f3df9a|nightly|JSON|success|1|0||Organisationen - Ratsinformationssystem Stadt Leipzig (OParl
+a2c3a1bd-d996-4fb7-9742-e756afe4e306|nightly|GeoJSON|success|15|15||Park+Ride Anlagen Standorte, Stadt Leipzig
+c3ea46e4-a4de-4ce3-ac2a-9fc264ccbfcd|nightly|CSV|success|18|306||Personal nach Aufgabenbereichen (Jahreszahlen)
+e094e983-c8ba-4af9-b019-d9e9bc34f466|nightly|CSV|success|16|416||Personal nach Dienstverhältnissen (Jahreszahlen)
+12c37985-f571-4cab-b7ed-7ac95231646e|nightly|CSV|success|27|405||Personal nach Produktbereichen (Jahreszahlen)
+38bc4c0a-0572-42e4-923f-42147b6003e7|nightly|CSV|success|888|18648||Personenhaushalte (Jahreszahlen, kleinräumig)
+6c7a199f-e274-4942-84e0-a44c9d4ab230|nightly|CSV|success|10|300||Personennahverkehr (Jahreszahlen)
+478a8065-81b0-4fd1-b0dd-0430100b0bf1|nightly|CSV|success|7|203||Realsteuervergleich (Jahreszahlen)
+430a89cf-543b-4de8-b623-cf163f0867ba|nightly|CSV|success|666|5328||Schul- und Berufsabschlüsse (Jahreszahlen, kleinräumig)
+800261c9-8e1a-4ff2-9709-eba8fdbab6be|nightly|JSON|success|1|0||Sitzungskalender - Ratsinformationssystem Stadt Leipzig (OPa
+4f882330-1b70-482a-a87c-213de7366870|nightly|CSV|success|6|156||Sporteinrichtungen (Jahreszahlen)
+a996b5e4-ea05-4183-9726-bd8b2da7cb0b|nightly|CSV|success|35|980||Sportvereine (Jahreszahlen)
+4a894883-d3ec-4870-848e-e8f73c4d547f|nightly|∅|never|0|0||Stadtbezirksbudget, Stadt Leipzig
+0bc23baf-5a03-4e60-8d9a-df012e9aec5c|nightly|CSV|success|13|169||Stadtratswahlen
+dd2024f3-7095-43a2-8817-1ebf9dbbe6a8|nightly|CSV|success|666|5328||Stadtratswahlen (kleinräumig)
+cf4cbdb2-550d-4789-8b1b-08c8e2858bac|nightly|CSV|success|10|310||Steuereinnahmen (Jahreszahlen)
+56780158-57d8-419e-a63e-1f7bf64f4e90|nightly|CSV|success|9|873||Steuereinnahmen (Quartalszahlen)
+616d67a3-4928-4462-8c00-3902961c1e98|nightly|CSV|success|370|7770||Straftaten (Jahreszahlen, kleinräumig)
+556027a0-0613-4315-83fb-2675eb80dbe7|nightly|CSV|success|6|180||Straßennetz (Jahreszahlen)
+cf35a2b1-cfe3-45f6-9d4b-40e0950a0732|nightly|CSV|success|13|273||Tagespflege (Jahreszahlen)
+1288247d-2e9f-4de8-993b-55fe49f5706a|nightly|CSV|success|20|600||Theater (Jahreszahlen)
+f9c2f386-e06a-4811-8644-109423b1de19|nightly|CSV|success|20|1960||Theater (Quartalszahlen)
+bcb6fbbb-ce0f-4c3a-833a-819d0eb1cc98|nightly|∅|never|0|0||Travel-API Leipzig
+a33b5fa0-6ad2-4949-b6e4-b2a67712efb2|nightly|CSV|success|18|558||Unternehmen (Jahreszahlen)
+2d8cd9fd-b23c-4911-ab68-2904f1358112|nightly|CSV|success|2|42||Untersuchte Kinder in Kindertageseinrichtungen (Jahreszahlen
+e63d217d-69d5-4e92-9e0e-d8b1d986db37|nightly|CSV|success|12|360||Verarbeitendes Gewerbe (Jahreszahlen)
+0f90db9f-eee3-41aa-858b-82ce79fed32b|nightly|CSV|success|7|679||Verarbeitendes Gewerbe (Quartalszahlen)
+9ffe4c39-5ad9-4765-a298-65b7adbfc4dd|nightly|CSV|success|15|450||Verkehrsunfälle (Jahreszahlen)
+3140cb43-0960-440f-b125-bc3ae6ac41d8|nightly|CSV|success|6|588||Verkehrsunfälle (Quartalszahlen)
+1a82121a-5818-4f16-9a1e-13e23156a370|nightly|CSV|success|6|96||Vermittlung wohnungssuchender Haushalte mit Wohnberechtigung
+b7665b6e-611a-4344-910a-e9971ab0e329|nightly|CSV|success|7|91||Verweildauer in Notunterkünften (Jahreszahlen)
+fa7769b4-29d6-4d03-970d-99fa773835f8|nightly|CSV|success|30|930||Volkshochschule (Jahreszahlen)
+65baea5c-a954-499e-8341-1b10e20aa491|nightly|CSV|success|5|85||Von Wohnungslosigkeit bedrohte Haushalte  (Jahreszahlen)
+248df2af-2fca-4045-8ed7-cf7a1e95ddb3|nightly|JSON|success|1|0||Vorlagen - Ratsinformationssystem Stadt Leipzig (OParl)
+249dbb5a-9b5d-4232-b85a-9740b6bf8137|nightly|CSV|success|15|450||Wanderungen (Amtliche Daten) (Jahreszahlen)
+5f6a30d1-9640-49d0-aa2d-ba1d6bf50a3c|nightly|CSV|success|15|1455||Wanderungen (Amtliche Daten) (Quartalszahlen)
+ff04c13d-6d3d-4c54-81f5-ba46912f33d2|nightly|CSV|success|444|5328||Wanderungen (Jahreszahlen, kleinräumig)
+dec169ba-1dd7-4a1a-92c5-0dbadd87d2de|nightly|CSV|success|15|255||Wanderungen (Melderegisterdaten) (Jahreszahlen)
+de277f72-3dec-4fd2-a77e-3cce5d224995|nightly|CSV|success|15|405||Wanderungen (Melderegisterdaten) (Quartalszahlen)
+f2e28c7b-98c5-469f-afc2-84b40a350d20|nightly|CSV|success|15|420||Wanderungen (Melderegisterdaten, unrevidiert) (Jahreszahlen)
+d20754dd-b88e-443a-acf8-c56909c17738|nightly|CSV|success|15|495||Wanderungen (Melderegisterdaten, unrevidiert) (Quartalszahle
+3fbaa117-0f95-447c-8164-ac7e9acefc76|nightly|CSV|success|444|10212||Wanderungen (unrevidiert) (Jahreszahlen, kleinräumig)
+066cef35-cb7d-4d64-b8f4-6586c3a0a0cc|nightly|CSV|success|18|504||Wasserhygiene (Jahreszahlen)
+fefc48c8-ad04-4613-b2e7-698d1ee575ad|nightly|CSV|success|18|558||Wetterdaten (Jahreszahlen)
+86a51041-fa64-4666-a0ec-e55aafe33f68|nightly|CSV|success|370|9990||Wohnberechtigte Einwohner (Jahreszahlen, kleinräumig)
+67ee7165-3892-4ad4-b4f5-e8d894031f37|nightly|CSV|success|33|1056||Wohnberechtigte Einwohner nach Alter (Jahreszahlen)
+3df17ed3-5edd-4ef8-9e8d-5c2b3fdb6578|nightly|CSV|success|222|5994||Wohnberechtigte Einwohner nach Alter (Jahreszahlen, kleinräu
+cde8c03b-81c3-4b3b-9b5e-d84d5de63dfd|nightly|CSV|success|296|7992||Wohnberechtigte Einwohner nach Familienstand (Jahreszahlen, 
+72c104a6-4c0d-4ee6-902a-efce9aa7d5ac|nightly|CSV|success|6|78||Wohnraumversorgung mit Wohnberechtigungsschein (Jahreszahlen
+19e13258-89ab-47a0-a38b-5e7ef5511dc1|nightly|CSV|success|32|960||Wohnsituation (Jahreszahlen)
+52f0ef5e-ccbb-476c-ad7d-798d604a8e6d|nightly|CSV|success|222|1776||Wohnsituation (Jahreszahlen, kleinräumig)
+1d1f3228-5030-4153-80af-cf51b6ce965d|nightly|CSV|success|5|105||Wohnungsbestand  (Jahreszahlen)
+5a584612-7c42-45fb-b754-0187cb26949a|nightly|CSV|success|5|155||Wohnungsbestand (Jahreszahlen)
+0c5b91dc-1d23-42b5-aee6-43b548626b96|nightly|CSV|success|222|5772||Wohnungsbestand (Jahreszahlen, kleinräumig)
+4d734239-2d41-4632-92ab-da1041e1dc14|nightly|CSV|success|38|304||Wohnungslose - Statistik nach dem WoBerichtsG (Jahreszahlen)
+9e55de06-0bfa-4f4f-98e6-22564825055f|nightly|CSV|success|10|290||Wohnungsmieten (Jahreszahlen)
+3069dab9-756e-4dd8-aafe-f0ab4119fd82|nightly|CSV|success|222|1776||Wohnungsmieten (Jahreszahlen, kleinräumig)
+995c690c-d1d8-4a68-b702-4fe7c8208960|nightly|CSV|success|1|7||Wohnungsmieten (Quartalszahlen)
+eae5f68b-b44b-4f58-8c1a-0c29e952c9c9|nightly|CSV|success|9|144||Wohnungsnotfälle  (Jahreszahlen)
+14866a1a-f59a-48dc-8ab2-2054e269e6f0|nightly|CSV|success|4|48||Wohnungsnotfälle (Jahreszahlen)
+4fcfaacc-9521-4d01-ae28-f7bb4d3a5d19|nightly|CSV|success|3|90||Zoo Leipzig (Jahreszahlen)
+dd202e16-f271-4867-8ba2-f8d718984a4a|nightly|CSV|success|1|98||Zoo Leipzig (Quartalszahlen)
+052717ed-1088-447c-87ef-c764f5622216|nightly|CSV|success|56|1064||Zufriedenheit mit den Lebensbedingungen (Jahreszahlen)
+8e5c548e-2dc7-41fb-9531-2d04277b06c5|nightly|CSV|success|296|1776||Zufriedenheitsfaktoren (Jahreszahlen, kleinräumig)
+d5bfcb1a-da12-4732-a524-150c2a3d2b67|nightly|CSV|success|74|1332||Ärzte (Jahreszahlen, kleinräumig)
+c97eb62b-94f5-413d-a264-cd23aec50dd6|nightly|CSV|success|2|42||Übernahme von Mietschulden (Jahreszahlen)

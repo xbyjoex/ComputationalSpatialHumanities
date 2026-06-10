@@ -1,0 +1,30 @@
+id|schedule|cats|family_id|n|ftypes|geomtypes|yrs|title
+e8ec865e-f3ca-413d-960f-7c917d7103a3|nightly|umwelt||3593028|baumkataster-stadt-leipzig1|POINT||Baumkataster, Stadt Leipzig
+044e92ba-337a-4a25-879f-c1c51e7df74f|live|verkehr||271264|strassennetz-stadt-leipzig|MULTILINESTRING||Straßennetz, Stadt Leipzig
+df23769e-b218-44bd-b348-dea3cb80678e|nightly|verkehr||206397|knotenpunkte-strassennetz|POINT||Knotenpunkte Straßennetz
+4bbb6ab0-2080-400d-8b1b-8387dee0137f|nightly|verkehr||82534|verkehrszeichen-stadt-leipzig|POINT||Verkehrszeichen, Stadt Leipzig
+8803f612-2ce1-4643-82d1-213434889200|live|verkehr||5299|gtfs_stop|POINT||LVB-Fahrplandaten
+23fb5146-908c-43d5-b72d-e70511caed9a|nightly|regionen-und-staedte;verkehr||5212|digitale-stadtgrundkarte-leipzig-dsgk-5|POINT||Digitale Stadtgrundkarte Leipzig (DSGK)
+e127b488-c6c0-4d62-ac45-67729909baec|nightly|gesundheit||3397|luftreinhalteplan-prognose-strasse-2025-stadt-leipzig|LINESTRING,MULTILINESTRING||Luftreinhalteplan-Prognose Straße 2025, Stadt Leipzig
+8c15efbe-173d-4f6f-b921-93ee5f0580ce|nightly|regionen-und-staedte;umwelt;wirtschaft-und-finanzen;wissenschaft-und-technologie|bodenrichtwerte|1179|bodenrichtwerte-2023-stadt-leipzig1|POLYGON|2023-2023|Bodenrichtwerte 2023, Stadt Leipzig
+5d8199d4-d57c-44b2-855d-4299eeffbc84|nightly|regionen-und-staedte;umwelt;wirtschaft-und-finanzen;wissenschaft-und-technologie|bodenrichtwerte|1178|bodenrichtwerte-2024-stadt-leipzig3|POLYGON|2024-2024|Bodenrichtwerte 2024, Stadt Leipzig
+6117093d-1ca4-4915-b905-99c405f16f88|nightly|regionen-und-staedte;umwelt;wirtschaft-und-finanzen;wissenschaft-und-technologie|bodenrichtwerte|1162|bodenrichtwerte-2022-stadt-leipzig1|POLYGON|2022-2022|Bodenrichtwerte 2022, Stadt Leipzig
+2f1e2327-4a1a-44dc-a2ed-f369fabe8886|nightly|bildung-kultur-und-sport|weihnachtsmarkt-staende-2d|483|leipziger-weihnachtsmarkt-2025-stande-in-2d|MULTIPOLYGON,POLYGON|2025-2025|Leipziger Weihnachtsmarkt 2025 - Stände in 2D
+fea13bec-d397-40d9-b3de-2bd3030fa248|nightly|regierung-und-oeffentlicher-sektor|geodaten-wahlbezirke|414|bundestagswahl-2025-geodaten-der-wahlbezirke|MULTIPOLYGON,POLYGON|2025-2025|Bundestagswahl 2025: Geodaten der Wahlbezirke
+06d979ad-48df-4ed4-a9cb-ce1f0bc8d0a0|nightly|regierung-und-oeffentlicher-sektor||414|europawahl-und-stadtratswahl-2024-geodaten-der-wahlbezirke|MULTIPOLYGON,POLYGON||Europawahl und Stadtratswahl 2024: Geodaten der Wahlbezirke
+ef736c22-c87f-4f8a-8392-7ffe4e657705|nightly|regierung-und-oeffentlicher-sektor|geodaten-wahlbezirke|414|landtagswahl-2024-geodaten-der-wahlbezirke|MULTIPOLYGON,POLYGON|2024-2024|Landtagswahl 2024: Geodaten der Wahlbezirke
+467e6524-1683-4cdf-9e49-8ed8a2667fa0|nightly|gesundheit;umwelt||406|luftqualitat-monatsmittelwerte-no2-passivsammler-stadt-leipzig|MULTIPOINT,POINT||Luftqualität - Monatsmittelwerte NO2-Passivsammler, Stadt Leipzig
+3e23daff-60cc-449c-9c12-52f494266bf1|nightly|regierung-und-oeffentlicher-sektor|geodaten-wahlbezirke|405|bundestagswahl-2021-geodaten-der-wahlbezirke|MULTIPOLYGON,POLYGON|2021-2021|Bundestagswahl 2021: Geodaten der Wahlbezirke
+e39a35d6-2f70-4317-b752-4741ce215aa4|nightly|bildung-kultur-und-sport|weihnachtsmarkt-staende-2d|399|leipziger-weihnachtsmarkt-2024-stande-in-2d|MULTIPOLYGON,POLYGON|2024-2024|Leipziger Weihnachtsmarkt 2024 - Stände in 2D
+81ad3a28-2f15-4c74-aec5-962b539e24f1|nightly|bildung-kultur-und-sport|weihnachtsmarkt-staende-2d|399|leipziger-weihnachtsmarkt-2023-stande-in-2d|MULTIPOLYGON,POLYGON|2023-2023|Leipziger Weihnachtsmarkt 2023 - Stände in 2D
+335902ec-7baf-4d39-aed2-1edbebc7cefd|nightly|regierung-und-oeffentlicher-sektor|geodaten-wahlbezirke|349|oberburgermeisterwahl-2020-geodaten-der-wahlbezirke|MULTIPOLYGON,POLYGON|2020-2020|Oberbürgermeisterwahl 2020: Geodaten der Wahlbezirke
+39d43ac7-b449-4a7b-85fa-7ed70580e61e|nightly|sonstiges||310|geodaten-statistische-bezirke-leipzig|POLYGON||Geodaten der Statistischen Bezirke der Stadt Leipzig
+e8a3b316-f697-440b-90c0-33cd2e04be7f|nightly|regierung-und-oeffentlicher-sektor||194|bundestagswahl-2025-geodaten-der-briefwahlbezirke|MULTIPOLYGON,POLYGON||Bundestagswahl 2025: Geodaten der Briefwahlbezirke
+55936043-c92f-4067-8b4c-9086b2912f6e|nightly|sonstiges||171|potentielle-superblocks-in-leipzig-nach-eggiman|POLYGON||Potentielle Superblocks in Leipzig
+74b342a9-7db7-45a3-8404-944442a24d51|nightly|sonstiges||63|geodaten-ortsteile-leipzig|POLYGON||Geodaten der Ortsteile der Stadt Leipzig
+caeb0399-5e64-45d9-8da5-b6fc32f6b846|nightly|gesundheit;umwelt||34|luftqualitat-jahresmittelwerte-no2-passivsammler-stadt-leipzig|POINT||Luftqualität - Jahresmittelwerte NO2-Passivsammler, Stadt Leipzig
+86088c2d-1d1c-4245-8773-239c1f9cdb85|nightly|gesundheit;umwelt||11|luftqualitat-luftreinhaltemassnahmen-stadt-leipzig|POINT||Luftqualität - Luftreinhaltemaßnahmen, Stadt Leipzig
+5e2f63ca-dfe9-4c57-b01f-5504a21a99e3|nightly|regierung-und-oeffentlicher-sektor||10|stadtratswahl-2024-wahlkreise|POLYGON||Stadtratswahl 2024: Wahlkreise
+eebf6dcb-6806-4c3f-8f25-d2763cae3da6|nightly|sonstiges||10|geodaten-stadtbezirke-leipzig|POLYGON||Geodaten der Stadtbezirke der Stadt Leipzig
+6a96ec15-b9eb-4a2c-84d5-7b5521560a89|nightly|regierung-und-oeffentlicher-sektor||8|landtagswahl-2024-wahlkreise|POLYGON||Landtagswahl 2024: Geodaten der Wahlkreise
+11d923d1-9c91-492d-a5c2-13cc74e0f72b|nightly|regierung-und-oeffentlicher-sektor||2|bundestagswahl-2025-wahlkreise|POLYGON||Bundestagswahl 2025: Geodaten der Wahlkreise

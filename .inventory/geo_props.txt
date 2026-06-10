@@ -1,0 +1,30 @@
+id|title|keys
+e8ec865e-f3ca-413d-960f-7c917d7103a3|Baumkataster, Stadt Leipzig|baumhoehe, baumnummer, fme_tstamp, ga_lang_deutsch, ga_lang_wiss, gattung, gebiet, gefaellt_am, kr_durchm, letzte_bewaesserung, nachpflanzung_geplant, objectid, objektkuerzel, ot, patenschaftsnummer, pflanzjahr, st_durchm, st_umfang, standzeitraum, status_patenbaum, strasse
+6117093d-1ca4-4915-b905-99c405f16f88|Bodenrichtwerte 2022, Stadt Leipzig|acza, aufw, basbe, basma, bauw, bedw, beit, bem, bezug, bmz, bod, brke, brw, brw_e, brzname, entw, ergnuta, erve, flae, frei, gabe, gasl, gbrei, gema, gena, genu, gesl, gez, grz, grza, gtie, koorverf, koorwert, lumnum, nuta, objectid, ortst, plz, stag, umart, verf, verf_e, verg, weer, wgfz, wnum, xverg, xwert, yverg, ywert
+8c15efbe-173d-4f6f-b921-93ee5f0580ce|Bodenrichtwerte 2023, Stadt Leipzig|acza, aufw, basbe, basma, bauw, bedw, beit, bem, bezug, bmz, bod, brke, brw, brw_e, brzname, entw, ergnuta, erve, flae, frei, gabe, gasl, gbrei, gema, gena, genu, gesl, gez, grz, grza, gtie, koorverf, koorwert, lumnum, nuta, objectid, ortst, plz, stag, umart, verf, verf_e, verg, weer, wgfz, wnum, xverg, xwert, yverg, ywert
+5d8199d4-d57c-44b2-855d-4299eeffbc84|Bodenrichtwerte 2024, Stadt Leipzig|acza, aufw, basbe, basma, bauw, bedw, beit, bem, bezug, bmz, bod, brke, brw, brw_e, brzname, entw, ergnuta, erve, flae, frei, gabe, gasl, gbrei, gema, gena, genu, gesl, gez, grz, grza, gtie, koorverf, koorwert, lumnum, nuta, objectid, ortst, plz, stag, umart, verf, verf_e, verg, weer, wgfz, wnum, xverg, xwert, yverg, ywert
+3e23daff-60cc-449c-9c12-52f494266bf1|Bundestagswahl 2021: Geodaten der Wahlbe|blk, ewo, id, waehler, wber, wbz
+e8a3b316-f697-440b-90c0-33cd2e04be7f|Bundestagswahl 2025: Geodaten der Briefw|bwbz
+fea13bec-d397-40d9-b3de-2bd3030fa248|Bundestagswahl 2025: Geodaten der Wahlbe|bwbz, wbz
+11d923d1-9c91-492d-a5c2-13cc74e0f72b|Bundestagswahl 2025: Geodaten der Wahlkr|WBZBTW__WK
+23fb5146-908c-43d5-b72d-e70511caed9a|Digitale Stadtgrundkarte Leipzig (DSGK)|anlass_aenderung, anlass_neueintrag, dokument_extern, horizontfreiheit_resolved, identifikator, kennung, lebenszeitintervall_beginnt, lebenszeitintervall_endet, letzte_aenderung, modellart, punktkennung, punktort1_x_koordinate, punktort1_y_koordinate, punktort1_yx_koordinatenstatus_resolved, punktort1_yx_lage_crs, punktort1_yx_qualitaetsangaben_resolved, punktort2_x_koordinate, punktort2_y_koordinate, punktort2_yx_koordinatenstatus_resolved, punktort2_yx_lage_crs, punktort2_yx_qualitaetsangaben_resolved, punktort3_z_hoehe_crs, punktort3_z_koordinate, punktort3_z_koordinatenstatus_resolved, punktort3_z_qualitaetsangaben_resolved, punktort4_z_hoehe_crs, punktort4_z_koordinate, punktort4_z_koordinatenstatus_resolved, punktort4_z_qualitaetsangaben_resolved, punktort5_z_hoehe_crs, punktort5_z_koordinate, punktort5_z_koordinatenstatus_resolved, punktort5_z_qualitaetsangaben_resolved, relativehoehe, sonstigeeigenschaft, vermarkung_marke_resolved, zeigtaufexternes
+06d979ad-48df-4ed4-a9cb-ce1f0bc8d0a0|Europawahl und Stadtratswahl 2024: Geoda|wbz
+74b342a9-7db7-45a3-8404-944442a24d51|Geodaten der Ortsteile der Stadt Leipzig|FID, Name, OT
+eebf6dcb-6806-4c3f-8f25-d2763cae3da6|Geodaten der Stadtbezirke der Stadt Leip|FID, Name, SBZ
+39d43ac7-b449-4a7b-85fa-7ed70580e61e|Geodaten der Statistischen Bezirke der S|FID, STB
+df23769e-b218-44bd-b348-dea3cb80678e|Knotenpunkte Straßennetz|fme_tstamp, gilt_bis, gilt_von, knoten, knoten_01, objectid
+8803f612-2ce1-4643-82d1-213434889200|LVB-Fahrplandaten|id, name, stop_id, stop_name
+ef736c22-c87f-4f8a-8392-7ffe4e657705|Landtagswahl 2024: Geodaten der Wahlbezi|wbz
+6a96ec15-b9eb-4a2c-84d5-7b5521560a89|Landtagswahl 2024: Geodaten der Wahlkrei|ltwk_24_8b
+81ad3a28-2f15-4c74-aec5-962b539e24f1|Leipziger Weihnachtsmarkt 2023 - Stände |marktart, objektart
+e39a35d6-2f70-4317-b752-4741ce215aa4|Leipziger Weihnachtsmarkt 2024 - Stände |angebot, firma, hausnummer, internet, marktart, standort, teilnahme
+2f1e2327-4a1a-44dc-a2ed-f369fabe8886|Leipziger Weihnachtsmarkt 2025 - Stände |marktart, objektart
+caeb0399-5e64-45d9-8da5-b6fc32f6b846|Luftqualität - Jahresmittelwerte NO2-Pas|betreiber, date_year, einheit, fme_tstamp, jmw, objectid, parameter, stationname, thing_id, thing_id_short
+86088c2d-1d1c-4245-8773-239c1f9cdb85|Luftqualität - Luftreinhaltemaßnahmen, S|fme_tstamp, grundlage, nr, objectid, photos, status_num, status_txt, text, ziel
+467e6524-1683-4cdf-9e49-8ed8a2667fa0|Luftqualität - Monatsmittelwerte NO2-Pas|betreiber, date_month, einheit, fme_tstamp, mmw, objectid, parameter, stationname, thing_id, thing_id_short
+e127b488-c6c0-4d62-ac45-67729909baec|Luftreinhalteplan-Prognose Straße 2025, |bis, fall, fid_strnet, fme_tstamp, laenge, no2, no2_i1_gb, objectid, pm10, pm10_i1_gb, strasse, von
+335902ec-7baf-4d39-aed2-1edbebc7cefd|Oberbürgermeisterwahl 2020: Geodaten der|BF, EWO, OBJID, WAEHLER, WB, WBZ_1, wbz
+55936043-c92f-4067-8b4c-9086b2912f6e|Potentielle Superblocks in Leipzig|area, b_type, inter_id, job_id
+5e2f63ca-dfe9-4c57-b01f-5504a21a99e3|Stadtratswahl 2024: Wahlkreise|srwk__SRWK
+044e92ba-337a-4a25-879f-c1c51e7df74f|Straßennetz, Stadt Leipzig|abs_nr, abs_nr17, baulast, bis_str, bis_str_nr, erschlname, fme_tstamp, kat_erschl, kat_sstrgs, klass_netz, laenge_m, objectid, ortsd_text, ortsdurchf, sstrgsname, stadtbez, str, str_nr, von_str, von_str_nr, wintkat
+4bbb6ab0-2080-400d-8b1b-8387dee0137f|Verkehrszeichen, Stadt Leipzig|fme_tstamp, objectid, so_av_id, so_av_tx, so_beg, so_bof, so_change, so_end, so_entf, so_fun_id, so_fun_tx, so_gid, so_id, so_kt, so_la_id, so_la_tx, so_lb_id, so_lb_tx, so_lc_id, so_lc_tx, so_ld_id, so_ld_tx, so_mat_id, so_mat_tx, so_prj, so_seg_id, so_seg_sb, so_seg_sid, so_seg_sn, so_sym_id, so_sym_tx, so_sym_wk, so_typ, so_vs, so_x, so_y, so_zu_id, so_zu_tx, vz_aufst, vz_bez, vz_ftyp, vz_gr, vz_kat_nr, vz_lr, vz_nr, vz_pos, vz_rtg_id, vz_rtg_tx, vz_seg_id, vz_seg_sid, vz_seg_sn, vz_var, vz_wnkl, vz_zus_tx

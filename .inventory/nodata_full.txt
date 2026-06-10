@@ -1,0 +1,247 @@
+schedule|fmt|src|st|ext|cats|title
+nightly|∅|noURL|never|0|regionen-und-staedte;umwelt;wirtschaft-und-finanzen;wissenschaft-und-technologie|Bodenrichtwerte, Stadt Leipzig
+nightly|∅|noURL|never|0|landwirtschaft-fischerei-forstwirtschaft-und-nahrungsmittel;regierung-und-oeffentlicher-sektor;regionen-und-staedte;umwelt;wissenschaft-und-technologie|Digitale Stadtkarte 1:25.000, Stadt Leipzig
+nightly|∅|noURL|never|0|landwirtschaft-fischerei-forstwirtschaft-und-nahrungsmittel;regierung-und-oeffentlicher-sektor;regionen-und-staedte;umwelt;verkehr;wissenschaft-und-technologie|Digitale Stadtkarte 1:5.000, Stadt Leipzig
+nightly|∅|noURL|never|0|regierung-und-oeffentlicher-sektor;regionen-und-staedte|Flächennutzungsplan der Stadt Leipzig
+nightly|∅|noURL|never|0|sonstiges|Geodatenkatalog Leipzig
+nightly|∅|noURL|never|0|bevoelkerung-und-gesellschaft;bildung-kultur-und-sport|Horte
+nightly|∅|noURL|never|0|sonstiges|Jahresdurchschnittstemperaturen
+nightly|∅|noURL|never|0|bevoelkerung-und-gesellschaft;bildung-kultur-und-sport|Kindertageseinrichtungen, Stadt Leipzig
+live|∅|noURL|skipped|0|sonstiges|LIS Test
+nightly|∅|noURL|never|0|sonstiges|Leipzig-Informationssystem
+nightly|∅|noURL|never|0|bildung-kultur-und-sport|Leipziger Weihnachtsmarkt 2023 - Stände in 3D
+nightly|∅|noURL|never|0|regierung-und-oeffentlicher-sektor;regionen-und-staedte|Luftbild 2022 (20 cm Bodenauflösung), Stadt Leipzig
+nightly|∅|noURL|never|0|sonstiges|Luftbild 2022, Stadt Leipzig
+nightly|∅|noURL|never|0|regierung-und-oeffentlicher-sektor;regionen-und-staedte|Luftbild 2024 (20 cm Bodenauflösung), Stadt Leipzig
+nightly|∅|noURL|never|0|sonstiges|Luftbild 2024, Stadt Leipzig
+nightly|∅|noURL|never|0|regierung-und-oeffentlicher-sektor;regionen-und-staedte|Stadtbezirksbudget, Stadt Leipzig
+nightly|∅|noURL|never|0|bildung-kultur-und-sport;regionen-und-staedte;verkehr|Travel-API Leipzig
+live|∅|noURL|skipped|0|verkehr|Verkehrsraumeinschränkungen (Punkte), Stadt Leipzig
+nightly|CSV|opendata|failed|0|sonstiges|A-Wochen und B-Wochen für Fahrplan Fahrbibliothek
+nightly|CSV|opendata|failed|0|regierung-und-oeffentlicher-sektor|Bundestagswahl 2021: Ortsteilergebnisse
+nightly|CSV|opendata|failed|0|regierung-und-oeffentlicher-sektor|Bundestagswahl 2021: Stadtergebnis
+nightly|CSV|opendata|failed|0|regierung-und-oeffentlicher-sektor|Bundestagswahl 2021: Wahlbezirksergebnisse
+nightly|CSV|opendata|failed|0|regierung-und-oeffentlicher-sektor|Bundestagswahl 2021: Wahlkreisergebnis Leipzig I (152)
+nightly|CSV|opendata|failed|0|regierung-und-oeffentlicher-sektor|Bundestagswahl 2021: Wahlkreisergebnis Leipzig II (153)
+nightly|CSV|opendata|failed|0|regierung-und-oeffentlicher-sektor|Europawahl 2024: Ortsteilergebnisse
+nightly|CSV|opendata|failed|0|regierung-und-oeffentlicher-sektor|Europawahl 2024: Stadtbezirksergebnisse
+nightly|CSV|opendata|failed|0|regierung-und-oeffentlicher-sektor|Europawahl 2024: Stadtergebnis
+nightly|CSV|opendata|failed|0|regierung-und-oeffentlicher-sektor|Europawahl 2024: Wahlbezirksergebnisse
+nightly|CSV|opendata|failed|0|sonstiges|Fahrplan der Fahrbibliothek
+nightly|CSV|opendata|failed|0|sonstiges|Fahrplan der Fahrbibliothek für Schulen
+nightly|CSV|opendata|failed|0|sonstiges|Frühjahrsputztermine
+nightly|CSV|opendata|failed|0|sonstiges|Gartennutzung - Kommunale Bürgerumfrage
+nightly|CSV|opendata|failed|0|internationale-themen|Kindergarten- und Kinderkrippenkinder in Kindertageseinric
+nightly|CSV|opendata|failed|0|sonstiges|Kommunale Bügerumfrage 2024 - Personengewichtung
+nightly|CSV|opendata|failed|0|sonstiges|Kontaktdaten und Öffnungszeiten der Bibliotheken
+nightly|SHP|opendata|failed|0|sonstiges|Landschaftsschutzgebiete der Stadt Leipzig
+nightly|CSV|opendata|failed|0|regierung-und-oeffentlicher-sektor|Landtagswahl 2024: Ortsteilergebnisse
+nightly|CSV|opendata|success|1|regierung-und-oeffentlicher-sektor|Landtagswahl 2024: Stadtergebnis
+nightly|CSV|opendata|failed|0|regierung-und-oeffentlicher-sektor|Landtagswahl 2024: Wahlbezirksergebnisse
+nightly|CSV|opendata|failed|0|regierung-und-oeffentlicher-sektor|Landtagswahl 2024: Wahlkreisergebnisse
+nightly|CSV|opendata|failed|0|sonstiges|Leipziger Spezialmärkte - Öffnungszeiten und Termine
+nightly|CSV|opendata|failed|0|sonstiges|Leipziger Wochenmärkte - Öffnungszeiten und Termine
+nightly|CSV|opendata|failed|0|regierung-und-oeffentlicher-sektor|Ortschaftsratswahlen 2024: Wahlbezirksergebnisse
+nightly|CSV|opendata|failed|0|sonstiges|Stadtbezirksbeiräte_Sitzungen
+nightly|XLSX|opendata|failed|0|regierung-und-oeffentlicher-sektor|Stadtratswahl 2019: Ergebnisse
+nightly|CSV|opendata|failed|0|regierung-und-oeffentlicher-sektor|Stadtratswahl 2024: Ortsteilergebnisse
+nightly|CSV|opendata|failed|0|regierung-und-oeffentlicher-sektor|Stadtratswahl 2024: Stadtergebnis
+nightly|CSV|opendata|failed|0|regierung-und-oeffentlicher-sektor|Stadtratswahl 2024: Wahlbezirksergebnisse
+nightly|CSV|opendata|failed|0|regierung-und-oeffentlicher-sektor|Stadtratswahl 2024: Wahlkreisergebnisse
+nightly|CSV|opendata|failed|0|bevoelkerung-und-gesellschaft|Vornamensstatistik 2015
+nightly|CSV|opendata|failed|0|bevoelkerung-und-gesellschaft|Vornamensstatistik 2016
+nightly|CSV|opendata|failed|0|bevoelkerung-und-gesellschaft|Vornamensstatistik 2017
+nightly|CSV|opendata|failed|0|bevoelkerung-und-gesellschaft|Vornamensstatistik 2018
+nightly|CSV|opendata|failed|0|bevoelkerung-und-gesellschaft|Vornamensstatistik 2019
+nightly|CSV|opendata|failed|0|bevoelkerung-und-gesellschaft|Vornamenstatistik 2025
+live|CSV|opendata|skipped|0|bildung-kultur-und-sport|Weihnachtsmärkte im Stadtgebiet Leipzig und Umland
+nightly|SHP|other|success|0|sonstiges|3D-Stadtmodell LoD2, Stadt Leipzig
+nightly|SHP|other|success|0|landwirtschaft-fischerei-forstwirtschaft-und-nahrungsmittel;regierung-und-oeffentlicher-sektor;regionen-und-staedte;umwelt;verkehr;wissenschaft-und-technologie|3D-Stadtmodell LoD2, Stadt Leipzig
+live|GeoJSON|other|success|7|verkehr|Aktuelle Belegung Park+Ride Anlagen, Stadt Leipzig
+nightly|CSV|other|success|1|regierung-und-oeffentlicher-sektor|Bundestagswahl 2025: Stadtergebnis
+nightly|CSV|other|success|610|regierung-und-oeffentlicher-sektor|Bundestagswahl 2025: Wahlbezirksergebnisse
+nightly|CSV|other|success|1|regierung-und-oeffentlicher-sektor|Bundestagswahl 2025: Wahlkreisergebnis Leipzig I (151)
+nightly|CSV|other|success|1|regierung-und-oeffentlicher-sektor|Bundestagswahl 2025: Wahlkreisergebnis Leipzig II (152)
+live|GeoJSON|other|success|20629|verkehr|Dauerzählstellen Radverkehr - Gesamtanzahl der Fahrräder p
+live|GeoJSON|other|success|26|verkehr|Dauerzählstellen Radverkehr - Standorte, Stadt Leipzig
+live|GeoJSON|other|success|12528|verkehr|Dauerzählstellen Radverkehr- Gesamtanzahl der Fahrräder pr
+nightly|GeoJSON|other|success|9945|verkehr|Historische Belegung (letzten 30 Tage) Park+Ride Anlagen, 
+live|JSON|other|success|1|sonstiges|Liegenschaften
+nightly|JSON|other|success|1|regierung-und-oeffentlicher-sektor|Organisationen - Ratsinformationssystem Stadt Leipzig (OPa
+nightly|GeoJSON|other|success|15|verkehr|Park+Ride Anlagen Standorte, Stadt Leipzig
+nightly|JSON|other|success|1|regierung-und-oeffentlicher-sektor|Sitzungskalender - Ratsinformationssystem Stadt Leipzig (O
+nightly|JSON|other|success|1|regierung-und-oeffentlicher-sektor|Vorlagen - Ratsinformationssystem Stadt Leipzig (OParl)
+nightly|CSV|statistik|success|9|umwelt|Abfallentsorgung (Jahreszahlen)
+nightly|CSV|statistik|success|5|umwelt|Abfallentsorgung (Quartalszahlen)
+nightly|CSV|statistik|success|60|bildung-kultur-und-sport|Allgemeinbildende Schulen (Jahreszahlen)
+nightly|CSV|statistik|success|740|bildung-kultur-und-sport|Allgemeinbildende Schulen (Jahreszahlen, kleinräumig)
+nightly|CSV|statistik|success|222|bevoelkerung-und-gesellschaft|Alten- und Pflegeheime (Jahreszahlen, kleinräumig)
+nightly|CSV|statistik|success|27|wirtschaft-und-finanzen|Ankünfte und Übernachtungen (Jahreszahlen)
+nightly|CSV|statistik|success|24|wirtschaft-und-finanzen|Ankünfte und Übernachtungen (Quartalszahlen)
+nightly|CSV|statistik|success|4|bildung-kultur-und-sport|Anteilige Verteilung der Schulabschlüsse (Jahreszahlen)
+nightly|CSV|statistik|success|74|bevoelkerung-und-gesellschaft|Apotheken (Jahreszahlen, kleinräumig)
+nightly|CSV|statistik|success|18|bevoelkerung-und-gesellschaft;wirtschaft-und-finanzen|Arbeitslose (Jahreszahlen)
+nightly|CSV|statistik|success|1184|wirtschaft-und-finanzen|Arbeitslose (Jahreszahlen, kleinräumig)
+nightly|CSV|statistik|success|15|bevoelkerung-und-gesellschaft;wirtschaft-und-finanzen|Arbeitslose (Quartalszahlen)
+nightly|CSV|statistik|success|3|bildung-kultur-und-sport|Aufwendungen für Erziehungshilfen (Jahreszahlen)
+nightly|CSV|statistik|success|3|bildung-kultur-und-sport|Aufwendungen für Kindertageseinrichtungen (Jahreszahlen)
+nightly|CSV|statistik|success|7|wirtschaft-und-finanzen|Ausbaugewerbe (Jahreszahlen)
+nightly|CSV|statistik|success|6|wirtschaft-und-finanzen|Ausbaugewerbe (Quartalszahlen)
+nightly|CSV|statistik|success|14|regierung-und-oeffentlicher-sektor;wirtschaft-und-finanzen|Ausgaben (Jahreszahlen)
+nightly|CSV|statistik|success|6|bildung-kultur-und-sport;wirtschaft-und-finanzen|Auszubildende (Jahreszahlen)
+nightly|CSV|statistik|success|9|regionen-und-staedte|Baufertigstellungen (Jahreszahlen)
+nightly|CSV|statistik|success|370|regionen-und-staedte|Baufertigstellungen (Jahreszahlen, kleinräumig)
+nightly|CSV|statistik|success|9|regionen-und-staedte|Baugenehmigungen (Jahreszahlen)
+nightly|CSV|statistik|success|370|regionen-und-staedte|Baugenehmigungen (Jahreszahlen, kleinräumig)
+nightly|CSV|statistik|success|9|regionen-und-staedte|Baugenehmigungen (Quartalszahlen)
+nightly|CSV|statistik|success|12|wirtschaft-und-finanzen|Bauhauptgewerbe (Jahreszahlen)
+nightly|CSV|statistik|success|8|wirtschaft-und-finanzen|Bauhauptgewerbe (Quartalszahlen)
+nightly|CSV|statistik|success|21|wirtschaft-und-finanzen|Beherbergungskapazität (Jahreszahlen)
+nightly|CSV|statistik|success|7|bevoelkerung-und-gesellschaft|Beratungsstelle Wohnen und Soziales (Jahreszahlen)
+nightly|CSV|statistik|success|27|bildung-kultur-und-sport|Berufsbildende Schulen (Jahreszahlen)
+nightly|CSV|statistik|success|45|bevoelkerung-und-gesellschaft;wirtschaft-und-finanzen|Beschäftigte (Jahreszahlen)
+nightly|CSV|statistik|success|740|wirtschaft-und-finanzen|Beschäftigte (Jahreszahlen, kleinräumig)
+nightly|CSV|statistik|success|25|bevoelkerung-und-gesellschaft;wirtschaft-und-finanzen|Beschäftigte (Quartalszahlen)
+nightly|CSV|statistik|success|4|bevoelkerung-und-gesellschaft|Bevölkerung nach Religionszugehörigkeit (Jahreszahlen)
+nightly|CSV|statistik|success|3|bevoelkerung-und-gesellschaft|Bevölkerungsvorausschätzung (Jahreszahlen)
+nightly|CSV|statistik|success|222|bevoelkerung-und-gesellschaft|Bevölkerungsvorausschätzung (Jahreszahlen, kleinräumig)
+nightly|CSV|statistik|success|21|bildung-kultur-und-sport|Bibliotheken (Jahreszahlen)
+nightly|CSV|statistik|success|12|wirtschaft-und-finanzen|Bruttoinlandsprodukt und Bruttowertschöpfung (Jahreszahlen
+nightly|CSV|statistik|success|30|bevoelkerung-und-gesellschaft|Bruttomonatsentgelte (Jahreszahlen)
+nightly|CSV|statistik|success|74|bevoelkerung-und-gesellschaft|Bruttomonatsentgelte (Jahreszahlen, kleinräumig)
+nightly|CSV|statistik|success|11|bevoelkerung-und-gesellschaft;regierung-und-oeffentlicher-sektor|Bundestagswahlen
+nightly|CSV|statistik|success|592|bevoelkerung-und-gesellschaft;regierung-und-oeffentlicher-sektor|Bundestagswahlen (kleinräumig)
+nightly|CSV|statistik|success|10|bevoelkerung-und-gesellschaft;regierung-und-oeffentlicher-sektor|Bundestagswahlen - Erststimmenergebnis
+nightly|CSV|statistik|success|7|bildung-kultur-und-sport|Bäder (Jahreszahlen)
+nightly|CSV|statistik|success|5|bildung-kultur-und-sport|Bäder (Quartalszahlen)
+nightly|CSV|statistik|success|10|bevoelkerung-und-gesellschaft|Durchschnittliche Anzahl obdachloser und wohnungsloser Per
+nightly|CSV|statistik|success|8|regionen-und-staedte|Durchschnittliche Nettokaltmiete (Median) der Angebotsmiet
+nightly|CSV|statistik|success|5|bevoelkerung-und-gesellschaft|Eheschließungen und Ehescheidungen (Jahreszahlen)
+nightly|CSV|statistik|success|18|regierung-und-oeffentlicher-sektor;wirtschaft-und-finanzen|Einnahmen (Jahreszahlen)
+nightly|CSV|statistik|success|64|regierung-und-oeffentlicher-sektor;wirtschaft-und-finanzen|Einsatz von Haushaltsmitteln (Jahreszahlen)
+nightly|CSV|statistik|success|5|bildung-kultur-und-sport|Einschulungen und Nichteinschulungen (Jahreszahlen)
+nightly|CSV|statistik|success|22|bevoelkerung-und-gesellschaft|Einwohner (Jahreszahlen)
+nightly|CSV|statistik|success|370|bevoelkerung-und-gesellschaft|Einwohner (Jahreszahlen, kleinräumig)
+nightly|CSV|statistik|success|22|bevoelkerung-und-gesellschaft|Einwohner (Quartalszahlen)
+nightly|CSV|statistik|success|592|bevoelkerung-und-gesellschaft|Einwohner mit Migrationshintergrund (Jahreszahlen, kleinrä
+nightly|CSV|statistik|success|34|bevoelkerung-und-gesellschaft|Einwohner nach Alter (Jahreszahlen)
+nightly|CSV|statistik|success|222|bevoelkerung-und-gesellschaft|Einwohner nach Alter (Jahreszahlen, kleinräumig)
+nightly|CSV|statistik|success|296|bevoelkerung-und-gesellschaft|Einwohner nach Familienstand (Jahreszahlen, kleinräumig)
+nightly|CSV|statistik|success|74|bevoelkerung-und-gesellschaft|Einwohnerdichte (Jahreszahlen, kleinräumig)
+nightly|CSV|statistik|success|1460|wirtschaft-und-finanzen|Einzelhandel (Jahreszahlen, kleinräumig)
+nightly|CSV|statistik|success|12|energie|Energieverbrauch (Jahreszahlen)
+nightly|CSV|statistik|success|4|bildung-kultur-und-sport|Erziehungs- und Familienberatungsstellen (Jahreszahlen)
+nightly|CSV|statistik|success|11|bildung-kultur-und-sport|Erziehungshilfen für Minderjährige (Jahreszahlen)
+nightly|CSV|statistik|success|12|bevoelkerung-und-gesellschaft;regierung-und-oeffentlicher-sektor|Europawahlen
+nightly|CSV|statistik|success|666|bevoelkerung-und-gesellschaft;regierung-und-oeffentlicher-sektor|Europawahlen (kleinräumig)
+nightly|CSV|statistik|success|1628|bevoelkerung-und-gesellschaft|Familien mit Kindern (Jahreszahlen, kleinräumig)
+nightly|CSV|statistik|success|962|wirtschaft-und-finanzen|Firmen (WZ 2003) (Jahreszahlen, kleinräumig)
+nightly|CSV|statistik|success|1332|wirtschaft-und-finanzen|Firmen (WZ 2008) (Jahreszahlen, kleinräumig)
+nightly|CSV|statistik|success|666|regionen-und-staedte|Flächennutzung (Jahreszahlen, kleinräumig)
+nightly|CSV|statistik|success|2|bevoelkerung-und-gesellschaft|Fälle ambulant betreuten Wohnens (Jahreszahlen)
+nightly|CSV|statistik|success|9|bevoelkerung-und-gesellschaft|Geborene und Gestorbene (Amtliche Daten) (Jahreszahlen)
+nightly|CSV|statistik|success|9|bevoelkerung-und-gesellschaft|Geborene und Gestorbene (Amtliche Daten) (Quartalszahlen)
+nightly|CSV|statistik|success|222|bevoelkerung-und-gesellschaft|Geborene und Gestorbene (Jahreszahlen, kleinräumig)
+nightly|CSV|statistik|success|9|bevoelkerung-und-gesellschaft|Geborene und Gestorbene (Melderegisterdaten) (Jahreszahlen
+nightly|CSV|statistik|success|9|bevoelkerung-und-gesellschaft|Geborene und Gestorbene (Melderegisterdaten) (Quartalszahl
+nightly|CSV|statistik|success|444|regionen-und-staedte|Gebäudebestand (Jahreszahlen, kleinräumig)
+nightly|CSV|statistik|success|2|bevoelkerung-und-gesellschaft|Geförderte Wohnraumanpassungen (Jahreszahlen)
+nightly|CSV|statistik|success|3|regionen-und-staedte|Geografische Lage (Jahreszahlen)
+nightly|CSV|statistik|success|7|bevoelkerung-und-gesellschaft;regionen-und-staedte|Gesamtmietbelastung nach Haushaltstyp (Jahreszahlen)
+nightly|CSV|statistik|success|26|wirtschaft-und-finanzen|Gewerbemeldungen (Jahreszahlen)
+nightly|CSV|statistik|success|17|bevoelkerung-und-gesellschaft|Grundsicherung für Arbeitssuchende (Jahreszahlen)
+nightly|CSV|statistik|success|24|bevoelkerung-und-gesellschaft|Grundsicherung für Arbeitssuchende (Quartalszahlen)
+nightly|CSV|statistik|success|1702|bevoelkerung-und-gesellschaft|Grundsicherung für Arbeitssuchende (SGB II) (Jahreszahlen,
+nightly|CSV|statistik|success|24|wirtschaft-und-finanzen|Gäste nach Herkunftsländern (Jahreszahlen)
+nightly|CSV|statistik|success|9|wirtschaft-und-finanzen|Handwerksbetriebe (Jahreszahlen)
+nightly|CSV|statistik|success|666|wirtschaft-und-finanzen|Handwerksbetriebe (Jahreszahlen, kleinräumig)
+nightly|CSV|statistik|success|666|wirtschaft-und-finanzen|Handwerksbetriebe (Jahreszahlen, kleinräumig)
+nightly|CSV|statistik|success|2|bevoelkerung-und-gesellschaft|Haushalte mit Wohnberechtigungsschein  (Jahreszahlen)
+nightly|CSV|statistik|success|6|bevoelkerung-und-gesellschaft;regionen-und-staedte|Haushaltsgröße (Jahreszahlen)
+nightly|CSV|statistik|success|44|bildung-kultur-und-sport;wissenschaft-und-technologie|Hochschulen (Jahreszahlen)
+nightly|CSV|statistik|success|13|umwelt|Immissionen (Jahreszahlen)
+nightly|CSV|statistik|success|8|bildung-kultur-und-sport|Inklusiv unterrichtete Schüler/-innen nach Förderschwerpun
+nightly|CSV|statistik|success|8|wirtschaft-und-finanzen|Insolvenzverfahren (Jahreszahlen)
+nightly|CSV|statistik|success|3|bildung-kultur-und-sport|Investitionen in den Schulbau (Jahreszahlen)
+nightly|CSV|statistik|success|5|bildung-kultur-und-sport|Kinder- und Jugendförderung freier Träger  (Jahreszahlen)
+nightly|CSV|statistik|success|148|bevoelkerung-und-gesellschaft|Kinderspielplätze (Jahreszahlen, kleinräumig)
+nightly|CSV|statistik|success|296|bevoelkerung-und-gesellschaft|Kindertagesbetreuung (Kapazitäten) (Jahreszahlen, kleinräu
+nightly|CSV|statistik|success|27|bevoelkerung-und-gesellschaft;bildung-kultur-und-sport|Kindertageseinrichtungen (Jahreszahlen)
+nightly|CSV|statistik|success|518|bevoelkerung-und-gesellschaft|Kindertagesstätten (Angemeldete Kinder) (Jahreszahlen, kle
+nightly|CSV|statistik|success|14|umwelt;verkehr|Kraftfahrzeugbestand (Jahreszahlen)
+nightly|CSV|statistik|success|1110|verkehr|Kraftfahrzeugbestand (Jahreszahlen, kleinräumig)
+nightly|CSV|statistik|success|12|bevoelkerung-und-gesellschaft;regierung-und-oeffentlicher-sektor|Landtagswahlen
+nightly|CSV|statistik|success|740|bevoelkerung-und-gesellschaft;regierung-und-oeffentlicher-sektor|Landtagswahlen (kleinräumig)
+nightly|CSV|statistik|success|11|bevoelkerung-und-gesellschaft;regierung-und-oeffentlicher-sektor|Landtagswahlen - Erststimmenergebnis
+nightly|CSV|statistik|success|5|bevoelkerung-und-gesellschaft;wirtschaft-und-finanzen|Lebensunterhalt (Jahreszahlen)
+nightly|CSV|statistik|success|296|bevoelkerung-und-gesellschaft|Lebensunterhalt (Jahreszahlen, kleinräumig)
+nightly|CSV|statistik|success|16|umwelt;verkehr|Luftverkehr (Jahreszahlen)
+nightly|CSV|statistik|success|10|umwelt;verkehr|Luftverkehr (Quartalszahlen)
+nightly|CSV|statistik|success|4|wirtschaft-und-finanzen|Messen und Ausstellungen (Jahreszahlen)
+nightly|CSV|statistik|success|25|bildung-kultur-und-sport|Museen (Jahreszahlen)
+nightly|CSV|statistik|success|25|bildung-kultur-und-sport|Museen (Quartalszahlen)
+nightly|CSV|statistik|success|12|bevoelkerung-und-gesellschaft;wirtschaft-und-finanzen|Nettoeinkommen (Jahreszahlen)
+nightly|CSV|statistik|success|148|bevoelkerung-und-gesellschaft|Nettoeinkommen (Jahreszahlen, kleinräumig)
+nightly|CSV|statistik|success|511|bevoelkerung-und-gesellschaft;regierung-und-oeffentlicher-sektor|Oberbürgermeisterwahlen (kleinräumig)
+nightly|CSV|statistik|success|8|bevoelkerung-und-gesellschaft;regierung-und-oeffentlicher-sektor|Oberbürgermeisterwahlen - 1. Wahlgang
+nightly|CSV|statistik|success|7|bevoelkerung-und-gesellschaft;regierung-und-oeffentlicher-sektor|Oberbürgermeisterwahlen - 2. Wahlgang
+nightly|CSV|statistik|success|18|regierung-und-oeffentlicher-sektor|Personal nach Aufgabenbereichen (Jahreszahlen)
+nightly|CSV|statistik|success|16|regierung-und-oeffentlicher-sektor|Personal nach Dienstverhältnissen (Jahreszahlen)
+nightly|CSV|statistik|success|27|regierung-und-oeffentlicher-sektor|Personal nach Produktbereichen (Jahreszahlen)
+nightly|CSV|statistik|success|888|bevoelkerung-und-gesellschaft|Personenhaushalte (Jahreszahlen, kleinräumig)
+nightly|CSV|statistik|success|10|umwelt;verkehr|Personennahverkehr (Jahreszahlen)
+nightly|CSV|statistik|success|7|regierung-und-oeffentlicher-sektor;wirtschaft-und-finanzen|Realsteuervergleich (Jahreszahlen)
+nightly|CSV|statistik|success|666|bildung-kultur-und-sport|Schul- und Berufsabschlüsse (Jahreszahlen, kleinräumig)
+nightly|CSV|statistik|success|6|bildung-kultur-und-sport|Sporteinrichtungen (Jahreszahlen)
+nightly|CSV|statistik|success|35|bildung-kultur-und-sport|Sportvereine (Jahreszahlen)
+nightly|CSV|statistik|success|13|bevoelkerung-und-gesellschaft;regierung-und-oeffentlicher-sektor|Stadtratswahlen
+nightly|CSV|statistik|success|666|bevoelkerung-und-gesellschaft;regierung-und-oeffentlicher-sektor|Stadtratswahlen (kleinräumig)
+nightly|CSV|statistik|success|10|regierung-und-oeffentlicher-sektor;wirtschaft-und-finanzen|Steuereinnahmen (Jahreszahlen)
+nightly|CSV|statistik|success|9|regierung-und-oeffentlicher-sektor;wirtschaft-und-finanzen|Steuereinnahmen (Quartalszahlen)
+nightly|CSV|statistik|success|370|justiz-rechtssystem-und-oeffentliche-sicherheit|Straftaten (Jahreszahlen, kleinräumig)
+nightly|CSV|statistik|success|6|verkehr|Straßennetz (Jahreszahlen)
+nightly|CSV|statistik|success|13|bevoelkerung-und-gesellschaft;bildung-kultur-und-sport|Tagespflege (Jahreszahlen)
+nightly|CSV|statistik|success|20|bildung-kultur-und-sport|Theater (Jahreszahlen)
+nightly|CSV|statistik|success|20|bildung-kultur-und-sport|Theater (Quartalszahlen)
+nightly|CSV|statistik|success|18|wirtschaft-und-finanzen|Unternehmen (Jahreszahlen)
+nightly|CSV|statistik|success|2|gesundheit|Untersuchte Kinder in Kindertageseinrichtungen (Jahreszahl
+nightly|CSV|statistik|success|12|wirtschaft-und-finanzen|Verarbeitendes Gewerbe (Jahreszahlen)
+nightly|CSV|statistik|success|7|wirtschaft-und-finanzen|Verarbeitendes Gewerbe (Quartalszahlen)
+nightly|CSV|statistik|success|15|verkehr|Verkehrsunfälle (Jahreszahlen)
+nightly|CSV|statistik|success|6|verkehr|Verkehrsunfälle (Quartalszahlen)
+nightly|CSV|statistik|success|6|bevoelkerung-und-gesellschaft|Vermittlung wohnungssuchender Haushalte mit Wohnberechtigu
+nightly|CSV|statistik|success|7|bevoelkerung-und-gesellschaft|Verweildauer in Notunterkünften (Jahreszahlen)
+nightly|CSV|statistik|success|30|bildung-kultur-und-sport|Volkshochschule (Jahreszahlen)
+nightly|CSV|statistik|success|5|bevoelkerung-und-gesellschaft|Von Wohnungslosigkeit bedrohte Haushalte  (Jahreszahlen)
+nightly|CSV|statistik|success|15|bevoelkerung-und-gesellschaft|Wanderungen (Amtliche Daten) (Jahreszahlen)
+nightly|CSV|statistik|success|15|bevoelkerung-und-gesellschaft|Wanderungen (Amtliche Daten) (Quartalszahlen)
+nightly|CSV|statistik|success|444|bevoelkerung-und-gesellschaft|Wanderungen (Jahreszahlen, kleinräumig)
+nightly|CSV|statistik|success|15|bevoelkerung-und-gesellschaft|Wanderungen (Melderegisterdaten) (Jahreszahlen)
+nightly|CSV|statistik|success|15|bevoelkerung-und-gesellschaft|Wanderungen (Melderegisterdaten) (Quartalszahlen)
+nightly|CSV|statistik|success|15|bevoelkerung-und-gesellschaft|Wanderungen (Melderegisterdaten, unrevidiert) (Jahreszahle
+nightly|CSV|statistik|success|15|bevoelkerung-und-gesellschaft|Wanderungen (Melderegisterdaten, unrevidiert) (Quartalszah
+nightly|CSV|statistik|success|444|bevoelkerung-und-gesellschaft|Wanderungen (unrevidiert) (Jahreszahlen, kleinräumig)
+nightly|CSV|statistik|success|18|umwelt|Wasserhygiene (Jahreszahlen)
+nightly|CSV|statistik|success|18|umwelt|Wetterdaten (Jahreszahlen)
+nightly|CSV|statistik|success|370|bevoelkerung-und-gesellschaft|Wohnberechtigte Einwohner (Jahreszahlen, kleinräumig)
+nightly|CSV|statistik|success|33|bevoelkerung-und-gesellschaft|Wohnberechtigte Einwohner nach Alter (Jahreszahlen)
+nightly|CSV|statistik|success|222|bevoelkerung-und-gesellschaft|Wohnberechtigte Einwohner nach Alter (Jahreszahlen, kleinr
+nightly|CSV|statistik|success|296|bevoelkerung-und-gesellschaft|Wohnberechtigte Einwohner nach Familienstand (Jahreszahlen
+nightly|CSV|statistik|success|6|bevoelkerung-und-gesellschaft|Wohnraumversorgung mit Wohnberechtigungsschein (Jahreszahl
+nightly|CSV|statistik|success|32|bevoelkerung-und-gesellschaft;regionen-und-staedte|Wohnsituation (Jahreszahlen)
+nightly|CSV|statistik|success|222|regionen-und-staedte|Wohnsituation (Jahreszahlen, kleinräumig)
+nightly|CSV|statistik|success|5|regionen-und-staedte|Wohnungsbestand  (Jahreszahlen)
+nightly|CSV|statistik|success|5|regionen-und-staedte|Wohnungsbestand (Jahreszahlen)
+nightly|CSV|statistik|success|222|regionen-und-staedte|Wohnungsbestand (Jahreszahlen, kleinräumig)
+nightly|CSV|statistik|success|38|bevoelkerung-und-gesellschaft|Wohnungslose - Statistik nach dem WoBerichtsG (Jahreszahle
+nightly|CSV|statistik|success|10|regionen-und-staedte|Wohnungsmieten (Jahreszahlen)
+nightly|CSV|statistik|success|222|regionen-und-staedte|Wohnungsmieten (Jahreszahlen, kleinräumig)
+nightly|CSV|statistik|success|1|regionen-und-staedte|Wohnungsmieten (Quartalszahlen)
+nightly|CSV|statistik|success|9|bevoelkerung-und-gesellschaft|Wohnungsnotfälle  (Jahreszahlen)
+nightly|CSV|statistik|success|4|bevoelkerung-und-gesellschaft|Wohnungsnotfälle (Jahreszahlen)
+nightly|CSV|statistik|success|3|bildung-kultur-und-sport|Zoo Leipzig (Jahreszahlen)
+nightly|CSV|statistik|success|1|bildung-kultur-und-sport|Zoo Leipzig (Quartalszahlen)
+nightly|CSV|statistik|success|56|bevoelkerung-und-gesellschaft|Zufriedenheit mit den Lebensbedingungen (Jahreszahlen)
+nightly|CSV|statistik|success|296|bevoelkerung-und-gesellschaft|Zufriedenheitsfaktoren (Jahreszahlen, kleinräumig)
+nightly|CSV|statistik|success|74|bevoelkerung-und-gesellschaft|Ärzte (Jahreszahlen, kleinräumig)
+nightly|CSV|statistik|success|2|bevoelkerung-und-gesellschaft|Übernahme von Mietschulden (Jahreszahlen)

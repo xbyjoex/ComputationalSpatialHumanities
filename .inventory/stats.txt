@@ -1,0 +1,123 @@
+id|schedule|cats|family_id|n|metrics|units|ptypes|yrs|title
+a5645464-a1be-4d20-a8e4-cb2849692fb9|nightly|sonstiges||563|8|city,ortsteil|year||Kindertageseinrichtungen in öffentlicher oder freier Trägerschaft na
+e94e64b8-bd19-48b5-b181-2a3e43300121|nightly|regierung-und-oeffentlicher-sektor;wirtschaft-und-finanzen||431|4|ortsteil|year|2023-2025|Stadtbezirksbudget
+00b28e50-ff57-4f5c-883e-6c41a0c9089a|nightly|regierung-und-oeffentlicher-sektor||361|7|ortsteil|year||Landtagswahl 2024: Straßenabschnittsverzeichnis
+105257c2-5112-436b-a175-cccf2e85c8ca|nightly|regierung-und-oeffentlicher-sektor||361|7|ortsteil|year||Bundestagswahl 2025: Straßenabschnittsverzeichnis
+efcbc626-5bb4-466a-9a19-e2f19cdd701c|nightly|sonstiges||258|4|city,ortsteil|year||Zu- und Wegzüge ukrainischer Personen nach/von Leipzig im Jahr 2022
+4ae3ee79-56ea-4d67-bf3c-dd4c6d8fddc1|nightly|sonstiges||252|4|ortsteil|year||Relative Entwicklung der Einwohnerzahl nach Ortsteilen
+f85a6b33-6557-4bb7-9f86-15b03266f537|nightly|bevoelkerung-und-gesellschaft;regierung-und-oeffentlicher-sektor||245|5|ortsteil|year|1994-1994|Ergebnisse Landtagswahl seit 1994 (Wahlbezirke)
+fa437fdf-a738-4d79-a87c-1dfdb1f95d31|nightly|bevoelkerung-und-gesellschaft;regierung-und-oeffentlicher-sektor||245|5|ortsteil|year|1994-1994|Ergebnisse Bundestagswahl seit 1994 (Wahlbezirke)
+8e5c90e3-e0c3-4a87-966b-f18adb6748c3|nightly|bevoelkerung-und-gesellschaft;regierung-und-oeffentlicher-sektor||245|5|ortsteil|year|1994-1994|Ergebnisse Stadtratswahl seit 1994 (Wahlbezirke)
+d1afb566-aa9a-4e86-93e4-c229e1cd7b98|live|bevoelkerung-und-gesellschaft||203|24|city|year|2010-2019|Probleme aus Bürgersicht (Jahreszahlen)
+176bf6ce-df09-4e96-899f-4953da9829a8|nightly|bevoelkerung-und-gesellschaft;regierung-und-oeffentlicher-sektor||196|4|ortsteil|year|1994-1994|Ergebnisse Oberbürgermeisterwahl seit 1994 (Wahlbezirke)
+e8d2acc7-a2e8-4781-93d4-5b739c1c8c34|nightly|sonstiges||191|3|ortsteil|year||Versorgungsgrad an Plätzen in Kindertageseinrichtungen
+e1b381f0-4b57-4f0d-86cd-a4bb423894da|live|regionen-und-staedte||187|3|ortsteil|year||Kommunale Gebietsgliederung Leipzig: Adressen
+0ba3c1ff-400c-4fd2-ab18-fc2f7adc18e8|nightly|bevoelkerung-und-gesellschaft||182|8|city|year|1998-2021|Lebenserwartung
+d16ca9e9-45a0-4ab4-9932-8c247379271c|nightly|bevoelkerung-und-gesellschaft;internationale-themen||150|5|city|year||Wanderungssaldo nach Herkunfts- und Zielgebieten
+79b229cd-7d4b-49e2-ae16-4a0584610ee9|nightly|sonstiges||147|3|ortsteil|year|1994-1994|Ergebnisse Landtagswahl seit 1994 (Ortsteile)
+cb64fb2b-99bc-48de-95ed-16e12ca1dbfe|nightly|sonstiges||144|3|ortsteil|year|1994-1994|Ergebnisse Bundestagswahl seit 1994 (Ortsteile)
+cb93c96e-1532-4b0e-ad43-c79e70833a56|nightly|sonstiges||127|7|city|year|2011-2040|Prognostizierte und tatsächliche Bevölkerungsentwicklung
+894b8062-e56f-4a2f-84c5-ba62a5cb0d2a|nightly|bevoelkerung-und-gesellschaft;internationale-themen||126|9|city|year|2009-2022|Wanderungssaldo nach Zielgebiet, Herkunftsgebiet und Staatsbürgersch
+46d7d322-9ee6-4666-bf04-d10d2fe8d965|nightly|sonstiges||120|2|ortsteil|year|1999-1999|Ergebnisse Stadtratswahl seit 1999 (Ortsteile)
+b01f056d-d416-4a31-b351-a7ca58d1f9d9|nightly|sonstiges||116|2|ortsteil|year||Übersicht allgemeinbildende Schulen in Leipzig mit Adressen Schuljah
+b0c060f9-1cd5-4fe3-8611-177e830f787e|nightly|sonstiges||98|2|ortsteil|year|1994-1994|Ergebnisse Oberbürgermeisterwahl seit 1994 (Ortsteile)
+2ffe1ab8-b752-46d2-bb6d-057698724ac9|nightly|energie;regierung-und-oeffentlicher-sektor;umwelt||85|5|ortsteil|year||Öffentliche Toiletten, Stadt Leipzig
+68a48da4-9fa1-4c63-97c7-c597322a81f1|nightly|sonstiges||74|8|city|year|2012-2021|LWB-Angebotsmieten nach Baualtersklassen
+d8f5240e-8772-4d51-a211-b1d231c83702|nightly|sonstiges||71|18|city|year|2012-2022|Personal in Kindertageseinrichtungen in öffentlicher oder freier Trä
+425b6d75-fac7-414d-bf53-454bb1de4838|nightly|sonstiges||63|1|ortsteil|year|2004-2004|Ergebnisse Europawahl seit 2004 (Ortsteile)
+e5b65c72-658e-4908-9938-d0b83e1bcf78|nightly|sonstiges||54|3|city|year|2023-2040|Bevölkerungsvorausschätzung 2023
+ad3ff271-387a-4f8a-9ddb-c9ce797220a2|live|bevoelkerung-und-gesellschaft||48|12|city|year|2020-2023|Probleme aus Bürgersicht (ab 2020) (Jahreszahlen)
+9a96c299-ab95-4468-ae75-f207eb1938a4|nightly|bevoelkerung-und-gesellschaft||42|2|city|year|2002-2022|Geburten und zusammengefasste Geburtenziffer
+49cdea43-cf4d-4b8a-bc2b-e50af94b32f6|nightly|bevoelkerung-und-gesellschaft||32|4|city|year|2015-2022|Amtliche Korrekturen und reguläre Wanderungsvorgänge
+cc8c4057-1c98-4135-b1a6-e6bf3b3fa65a|nightly|sonstiges||24|24|city|year||Personalkennzahlen der Stadtverwaltung Leipzig
+126ea2a3-38f4-410d-91fe-c683558c99cd|nightly|sonstiges||24|4|city|year||Sprachverständnis MigrantInnen
+479aea7a-fd31-433b-a714-221625376120|nightly|justiz-rechtssystem-und-oeffentliche-sicherheit;verkehr||20|20|city|year||Unfälle mit Radbeteiligung
+7069dbc1-6235-4f5a-925d-86574171f8b2|nightly|sonstiges||17|17|city|year||Umzugsgründe umzugswilliger Haushalte - Kommunale Bürgerumfrage
+f3081eae-6a8d-4cdf-a72c-fb6fd62b59dc|nightly|sonstiges||16|16|city|year||Betreuungsquote von Kindern unter 3 Jahren in Kindertageseinrichtung
+5bfc1b42-15a1-404f-87b1-aebcd4c80efe|nightly|energie;umwelt;wissenschaft-und-technologie||14|14|city|year||Energie- und CO2-Bilanz 2011 der Stadt Leipzig
+2dd67638-9f03-4582-813c-f59e6f41492b|nightly|bildung-kultur-und-sport;internationale-themen;wirtschaft-und-finanzen||14|2|city|year||Herkunft ausländischer Gäste
+090ca8d9-c9b0-4ff0-b520-2672544d4565|nightly|sonstiges||14|14|city|year||Schüler/-innen mit Migrationshintergrund an allgemeinbildenden Schul
+5fe9d907-6363-488d-b865-9f51ee15c025|nightly|sonstiges||14|14|city|year||Online-Wahlen in Leipzig: Kennzahlen (Zeitreihe)
+671841eb-4a28-4a05-8584-451c1d0441d3|nightly|bildung-kultur-und-sport;internationale-themen||11|11|city|year||Anteil von Kindern mit Migrationshintergrund in Kindertageseinrichtu
+a1f1c2f0-749e-4c78-959c-25c5f9745c58|nightly|sonstiges||11|11|city|year||Kinderkrippen- und Kindergartenplätze in Kindertageseinrichtungen
+abeec883-acf4-4286-8bd9-1e8290f3541d|nightly|sonstiges||11|11|city|year||Betreuungsquote von Kindern unter 7 Jahren in Kindertageseinrichtung
+325dd2ee-effb-44b9-aa93-c3c98c3b7c6a|nightly|sonstiges||11|11|city|year||Vergabearten
+b4a230a8-a719-4698-82c1-7c17be66d8c8|nightly|sonstiges||11|11|city|year||Relative Bevölkerungsentwicklung - Kinder und Jugendliche
+8797b725-ad41-4632-9588-4652a8fbf876|nightly|sonstiges||10|10|city|year||Wohnstandortpräferenzen nach dem Umzug - Kommunale Bürgerumfrage
+16a3c866-73d3-4525-9af3-399c3840440a|nightly|sonstiges||10|10|city|year||Bevölkerungsvorausschätzung und tatsächliche Einwohnerentwicklung
+f2ea226a-6a00-4dd5-945d-094f3bfd92cc|nightly|sonstiges||9|9|city|year||Bestand ukrainischer Einwohnerinnen und Einwohner in Leipzig am 31.1
+9594589e-6e34-48e4-9468-2688ed861f2b|nightly|sonstiges|leipziggiesst-jahresstatistik|9|9|city|year|2022-2022|LeipzigGiesst gegossene Liter Jahresstatistik 2022
+96955248-a67f-46d7-b324-5f8111e464df|nightly|sonstiges||9|9|city|year||LWB-Bestandsmieten nach Baualtersklassen
+10b3d24a-8a5b-4fda-9691-4059c8700bff|nightly|sonstiges||9|9|city|year||Arbeitssituation Corona-Pandemie nach Geschlecht und Altersgruppen
+a18f1281-560d-4c56-8cf4-1dee1092269e|nightly|sonstiges|leipziggiesst-jahresstatistik|8|8|city|year|2025-2025|LeipzigGiesst gegossene Liter Jahresstatistik 2025
+44543285-378f-40f2-aefc-50e0a27be2a0|nightly|sonstiges|leipziggiesst-jahresstatistik|8|8|city|year|2021-2021|LeipzigGiesst gegossene Liter Jahresstatistik 2021
+99181505-7f92-4cb6-9340-d0f80aee99e7|nightly|sonstiges|leipziggiesst-jahresstatistik|8|8|city|year|2024-2024|LeipzigGiesst gegossene Liter Jahresstatistik 2024
+6eb8d75d-3c6d-4d95-b50b-4636c3365fc4|nightly|sonstiges|leipziggiesst-jahresstatistik|8|8|city|year|2023-2023|LeipzigGiesst gegossene Liter Jahresstatistik 2023
+fe3bbe2d-6118-40bc-8817-9f8c03b2f168|nightly|bevoelkerung-und-gesellschaft||7|7|city|year||Räumliche Bevölkerungsbewegung nach Haushaltstypen
+06194a4e-38f1-42ae-9606-47bb31b78d86|nightly|regierung-und-oeffentlicher-sektor||7|7|city|year||Europawahl und Stadtratswahl 2024: Straßenabschnittsverzeichnis
+46c0f4e1-54dc-41fc-a0bf-b21c0d5047b8|nightly|sonstiges||7|7|city|year||Bestand ukrainischer Einwohnerinnen und Einwohner in Leipzig am 31.1
+1bb1c349-2259-450f-a5cb-d769a94a0e75|nightly|sonstiges||6|6|city|year||Schülerzahlen allgemeinbildende Schulen Leipzig seit 2021/22
+625db328-8a78-4144-8aee-d55ae50654d8|nightly|regierung-und-oeffentlicher-sektor||6|6|city|year||Kennzahlen zu Wahllokalen in Leipzig
+dc7e25ad-17b9-4643-a595-faaf0ff4fd18|nightly|sonstiges||6|6|city|year||Registrierungen ukrainischer Personen in Leipzig im Jahr 2022
+19b8f22d-5453-4a6b-abe9-e06738381003|nightly|sonstiges||6|6|city|year||Geo-Koordinaten der Haltestellen Fahrbibliothek
+a519a271-322a-43db-b6f7-ad9d50830e5e|nightly|sonstiges||6|6|city|year||Geo-Koordinaten der Haltestellen Schulfahrplan Fahrbibliothek
+323580d3-602f-4edf-9bf8-e6479f38cbab|live|sonstiges||6|6|city|year||Anzahl betreute Kinder im Hort/Betreuungsangebot nach Schulen seit 2
+f341b052-328f-4e17-87b9-75b079deb97a|nightly|sonstiges||6|6|city|year||Besucherstatistik Städtische Bibliotheken
+422139f2-8795-40e4-badf-99fbd94e5214|nightly|sonstiges||6|6|city|year||Inklusion - Anzahl Schüler/-innen mit sonderpäd. Förderbedarf an all
+1e6d1ffb-5ff7-4af5-8133-8c0e24577f79|nightly|sonstiges||6|6|city|year||Arbeitssituation Corona-Pandemie nach Geschlecht
+6301cc46-855b-4f33-8f70-50c0c441bb8d|nightly|sonstiges||6|6|city|year||Innerstädtische Umzüge ukrainischer Personen innerhalb der Stadt Lei
+72f1f5fc-dad9-44a2-b3a8-67b3fad88abd|nightly|regierung-und-oeffentlicher-sektor||5|5|city|year||Bundestagswahl 2025: Geodaten der Wahllokale
+363811bb-7137-49e7-ba84-53610c7e17d8|nightly|sonstiges||4|4|city|year||Straßennamensverzeichnis mit Erläuterungen
+d5f21df2-b30a-452b-8366-3edc82a7762c|nightly|sonstiges||4|4|city|year||Nutzung öffentlicher Flächen in Kleingartenanlagen
+74d29284-1da5-4d45-b0a7-7005ccf64372|nightly|sonstiges||4|4|city|year||Umzugspotenzial Leipziger Haushalte - Kommunale Bürgerumfrage
+f0e8dd61-0ea6-4706-8547-e3fd920b28be|nightly|sonstiges||4|4|city|year||Leistungszahlen Leipziger Städtische Bibliotheken
+2a43ed7d-5e0a-4cf3-ac06-1f601b4f6c3b|nightly|sonstiges||4|4|city|year||Geo-Koordinaten der Bibliotheken
+bc51b6f5-edaf-429b-a1cf-b505806fb55e|nightly|bevoelkerung-und-gesellschaft;regierung-und-oeffentlicher-sektor||3|3|city|year|2005-2005|Repräsentative Wahlstatistik Oberbürgermeisterwahlen - Wahlbeteiligu
+c0301522-063c-4b7a-8545-030103ea4fc3|nightly|regierung-und-oeffentlicher-sektor||3|3|city|year||Nachbestellung von Personenstandsurkunden
+25eee7f7-9a50-4098-820c-5df3b2eaa40a|nightly|regierung-und-oeffentlicher-sektor||3|3|city|year||Anträge Familienpass
+06b56709-b676-4e2c-bd41-de19aa632bba|nightly|sonstiges||3|3|city|year||Prognostizierte und tatsächliche Altersstruktur
+a1222ca2-93fc-4d9a-a36c-fb7aae993872|nightly|regierung-und-oeffentlicher-sektor||3|3|city|year||Kontaktaufnahme Bürgertelefon
+6368b651-4265-466d-bedd-d13cd63aa84e|nightly|regierung-und-oeffentlicher-sektor||3|3|city|year||Anträge Melderecht
+899157f7-ed32-4a28-b8fb-f7d35a02b64c|nightly|regierung-und-oeffentlicher-sektor||3|3|city|year||Beglaubigungen
+a24fbeaa-54bb-4c68-ba4e-1f583b7d9a1d|nightly|regierung-und-oeffentlicher-sektor||3|3|city|year||Personenstandsklärungen Standesamt
+9323f677-e97b-495f-a779-969e2bb0750f|nightly|bevoelkerung-und-gesellschaft;regierung-und-oeffentlicher-sektor||3|3|city|year|2009-2009|Repräsentative Wahlstatistik Europawahlen - Wahlbeteiligung (seit 20
+a3b8108f-c21f-490b-94b8-a483b325ed01|nightly|bevoelkerung-und-gesellschaft;regierung-und-oeffentlicher-sektor||3|3|city|year|2004-2004|Repräsentative Wahlstatistik Landtagswahlen - Wahlbeteiligung (seit 
+1dec669f-ec1d-42e8-9774-a70f1591e855|nightly|bevoelkerung-und-gesellschaft;regierung-und-oeffentlicher-sektor||3|3|city|year|1994-1994|Ergebnisse Europawahl seit 1994 (Wahlbezirke)
+5e0a7a96-75b7-4669-97db-80dd7bc2c27c|nightly|regierung-und-oeffentlicher-sektor||3|3|city|year||Wahlberechtigte, Wähler/-innen und Briefwähler/-innen seit 1994
+2c87782a-ff64-4ba1-99bd-4cff343463a7|nightly|regierung-und-oeffentlicher-sektor||3|3|city|year||Antrag Meldebescheinigung
+8dfb40a0-0e27-422f-ae15-c78045bcf72b|nightly|regierung-und-oeffentlicher-sektor||3|3|city|year||Ausgestellte Identitätsdokumente
+4aa2ce25-04c8-40de-a25e-80a6cefc5d1e|nightly|regierung-und-oeffentlicher-sektor||3|3|city|year||Stadtratswahl 2024: Bewerberinnen und Bewerber (CSV)
+bb383aea-37fc-4bcd-ad24-393f5c996d07|nightly|bildung-kultur-und-sport;wirtschaft-und-finanzen||3|3|city|year||Gästebetten
+9defc23f-5edd-4ef0-a3b0-9264fc83f269|nightly|sonstiges||2|2|city|year||Parteienverzeichnis StatAmtLeipzig
+8c0cc030-4bf6-437a-a086-7f3cdf136a0b|nightly|bevoelkerung-und-gesellschaft|vornamenstatistik|2|2|city|year|2024-2024|Vornamenstatistik 2024
+91e823fc-e845-47ca-9fe3-3dbe1f193815|nightly|bevoelkerung-und-gesellschaft|vornamenstatistik|2|2|city|year|2021-2021|Vornamensstatistik 2021
+986e5c01-ba5e-4960-8ac2-b845ae1b4dde|nightly|bevoelkerung-und-gesellschaft|vornamenstatistik|2|2|city|year|2020-2020|Vornamensstatistik 2020
+862806c0-5273-4fca-9432-290939ccf669|nightly|sonstiges||2|2|city|year||Eignungsüberprüfung Fahrerlaubnis
+60b36fac-bb59-437c-ba18-9d4d1e395ccc|nightly|wirtschaft-und-finanzen||2|2|city|year||Ergebnishaushalt der Stadt Leipzig 2025/2026
+a2f12d0f-ebad-4bb5-9b79-0e7077cbb800|nightly|bevoelkerung-und-gesellschaft|vornamenstatistik|2|2|city|year|2023-2023|Vornamensstatistik 2023
+600a9a82-d361-48b4-b41a-172c12154fb7|nightly|sonstiges||2|2|city|year||Erteilte verkehrsrechtliche Genehmigungen und Ausnahmegenehmigungen 
+ac13f1cd-1515-47df-bc6f-ec18ae325918|nightly|sonstiges||2|2|city|year||Erwerbstätigkeit MigrantInnen
+50375b4a-7023-4d83-9113-ce2a2af04ca9|nightly|sonstiges||2|2|city|year||Ausgegebene Führerscheine
+4fa71303-0b59-41f9-a8d5-25d9690fe612|nightly|sonstiges||2|2|city|year||Entzug Fahrererlaubnis
+c5767b83-de35-4b11-8da8-15de4e8e1780|nightly|sonstiges||2|2|city|year||Migrantinnen- und Migrantenbeiratswahl 2025: Wahlergebnis
+c62e543b-a558-4fed-a5cb-973ba8dc787d|nightly|bevoelkerung-und-gesellschaft|vornamenstatistik|2|2|city|year|2014-2014|Vornamensstatistik 2014
+3dcba8e6-760e-45e9-b41b-0e1b1dafc52d|nightly|sonstiges||2|2|city|year||Kfz-Zulassung
+374b40fc-40e5-4c4c-a53f-1ebe153e3fe4|nightly|bildung-kultur-und-sport;regionen-und-staedte;wirtschaft-und-finanzen||2|2|city|year||Gästeankünfte
+27c0f926-9718-4c4e-8039-b7dae6ec778d|nightly|sonstiges||2|2|city|year||Erteilung/Verlängerung von Fahrerlaubnissen zur Fahrgastbeförderung
+232a0de4-a6ae-4591-a459-4fd5aa987b68|nightly|sonstiges||2|2|city|year||Namensvorschläge Straßenbenennungen
+2127ad69-ef01-4d67-a529-a7c58cd858db|nightly|sonstiges||2|2|city|year||Jugendparlamentswahl 2025: Wahlergebnis
+190c9591-3e84-49eb-b2a2-9ceea7958a5d|nightly|bevoelkerung-und-gesellschaft|vornamenstatistik|2|2|city|year|2022-2022|Vornamensstatistik 2022
+072848bf-7537-4efd-9009-2f535bdc9ebf|nightly|sonstiges||2|2|city|year||Standorte Defibrillatoren
+03f75b80-e11c-4ff9-bf4f-5e5d6ce8cbcb|nightly|sonstiges||2|2|city|year||Kommunale Bügerumfrage 2024 - Haushaltsgewichtung
+f91dfa55-7126-4ba8-b756-9a91d1b5900a|nightly|sonstiges||1|1|city|year||Gewünschte Gartentypen - Kommunale Bürgerumfrage
+6397755a-7f9f-43df-bfd9-dbb1fdaa81c4|nightly|regierung-und-oeffentlicher-sektor||1|1|city|year||Anträge Führungszeugnis
+09531960-8429-4b31-9047-a55efeb2b483|nightly|sonstiges||1|1|city|year||Ehrenamt nach Geschlecht
+7e1ece46-11d8-4a0c-8ab0-b465db5ba61f|nightly|sonstiges||1|1|city|year||Untersagung des Führens von fahrerlaubnisfreien Fahrzeugen
+486dedc5-0ebd-41ea-903e-4805865de852|nightly|sonstiges||1|1|city|year|1998-1998|Repräsentative Wahlstatistik Oberbürgermeisterwahlen - Stimmen (seit
+70100423-5e1e-4219-979f-84f83cc5d82d|nightly|sonstiges||1|1|city|year|2002-2002|Repräsentative Wahlstatistik Bundestagswahlen - Zweitstimmen (seit 2
+7d70d301-2659-414a-80ae-2e507674348f|nightly|bevoelkerung-und-gesellschaft;regierung-und-oeffentlicher-sektor||1|1|city|year|2002-2002|Repräsentative Wahlstatistik Bundestagswahlen - Wahlbeteiligung (sei
+4892dd2c-d702-49af-a340-07b5dc4e7c6d|nightly|sonstiges||1|1|city|year|1994-1994|Repräsentative Wahlstatistik Europawahlen - Stimmen (seit 1994)
+552938b6-77ef-46a6-8b7f-fda28e9c96f9|nightly|sonstiges||1|1|city|year|1994-1994|Repräsentative Wahlstatistik Landtagswahlen - Zweitstimmen (seit 199
+5bf0e7cd-4f82-4a15-af71-978b927eccd4|nightly|sonstiges||1|1|city|year||Vergabeverfahren
+2adcfb1a-9952-4898-b9b4-b8748444d5db|nightly|wirtschaft-und-finanzen||1|1|city|year||Finanzhaushalt der Stadt Leipzig 2025/2026
+a90633aa-c5b6-404f-bb0d-0b0eee3f8101|live|sonstiges||1|1|city|year|2020-2020|Oberbürgermeisterwahl 2020 Repräsentative Nachwahlbefragung

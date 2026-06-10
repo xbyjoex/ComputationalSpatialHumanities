@@ -206,38 +206,45 @@ def _dispatch(
     if election_route:
         return elections.run_election_dataset(contract, url, *election_route)
 
-    # ── Park+Ride: three distinct WFS endpoints, distinguished by URL ────────
-    # - lastrecord       → live snapshot, one row per site (overwritten)
-    # - zeitreihe        → 30-day history, idempotent on (site_id, measured_at)
-    # - standort_statisch→ static locations, no occupancy → generic geo path
-    if "pr_anlage_belegung_lastrecord" in url:
-        if fmt in ("GEOJSON", "WFS"):
-            with GeoJsonExtractor() as ext:
-                feats = ext.extract_all(url)
-            with get_conn() as conn:
-                loaded = upsert_park_ride_latest(conn, feats)
-            return len(feats), loaded, "core.park_ride_latest"
-
-    if "pr_anlage_belegung_zeitreihe" in url:
-        if fmt in ("GEOJSON", "WFS"):
-            with GeoJsonExtractor() as ext:
-                feats = ext.extract_all(url)
-            with get_conn() as conn:
-                loaded = upsert_park_ride_history(conn, feats)
-            return len(feats), loaded, "core.park_ride_occupancy"
-
-    # ── Bicycle counters ─────────────────────────────────────────────────────
-    if "dauerzaehlstell" in name.lower() or "radverkehr" in name.lower():
-        period = "hour" if "stunde" in name.lower() else "day"
-        if fmt == "GEOJSON":
-            with GeoJsonExtractor() as ext:
-                feats = ext.extract_all(url)
-            records = [f.get("properties", {}) for f in feats]
-        else:
-            with CsvExtractor() as ext:
-                records = ext.extract_all(url)
+    # ── Park+Ride: live occupancy + history → unified geo layer ──────────────
+    # The MVT map reads core.geo_features, so both Park+Ride feeds land there
+    # (the old core.park_ride_* tables are retired). Distinguished by URL:
+    # - lastrecord → live snapshot; dedup_key = site id ⇒ one row/site, the
+    #   `ON CONFLICT … DO UPDATE` overwrites occupancy every 5 min.
+    # - zeitreihe  → 30-day history; objectid per record ⇒ time-in-geo points
+    #   (occupancy over time via properties.phenomenontime).
+    if "pr_anlage_belegung_lastrecord" in url and fmt in ("GEOJSON", "WFS"):
+        with GeoJsonExtractor() as ext:
+            feats = ext.extract_all(url)
         with get_conn() as conn:
-            loaded = upsert_bicycle_counts(conn, records, count_period=period)
+            loaded = upsert_geo_features(conn, dataset_id, feats, feature_type="park_ride")
+        return len(feats), loaded, "core.geo_features"
+
+    if "pr_anlage_belegung_zeitreihe" in url and fmt in ("GEOJSON", "WFS"):
+        with GeoJsonExtractor() as ext:
+            feats = ext.extract_all(url)
+        with get_conn() as conn:
+            loaded = upsert_geo_features(conn, dataset_id, feats, feature_type="park_ride_history")
+        return len(feats), loaded, "core.geo_features"
+
+    # ── Radverkehr Dauerzählstellen → unified geo layer ──────────────────────
+    # Source CRS is EPSG:25833 (UTM33) — GeoJsonExtractor reprojects to WGS84.
+    # Standorte = counter points; *anzahl/gesamt = per-station counts over time
+    # (time-in-geo via properties.phenomenontime + count).
+    if "dauerzaehlstell" in name.lower() or "radverkehr" in name.lower():
+        is_count = any(k in name.lower() for k in ("anzahl", "gesamt")) or "zeitreihe" in url.lower()
+        ftype = "bicycle_count" if is_count else "bicycle_station"
+        if fmt in ("GEOJSON", "WFS"):
+            with GeoJsonExtractor() as ext:
+                feats = ext.extract_all(url)
+            with get_conn() as conn:
+                loaded = upsert_geo_features(conn, dataset_id, feats, feature_type=ftype)
+            return len(feats), loaded, "core.geo_features"
+        # Legacy CSV fallback (no current source uses it)
+        with CsvExtractor() as ext:
+            records = ext.extract_all(url)
+        with get_conn() as conn:
+            loaded = upsert_bicycle_counts(conn, records, count_period="day")
         return len(records), loaded, "core.bicycle_counts"
 
     # ── Traffic restrictions ─────────────────────────────────────────────────
