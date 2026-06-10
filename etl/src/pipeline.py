@@ -12,6 +12,7 @@ import psycopg
 
 from .config import settings
 from .db import get_conn
+from .domains import elections
 from .extractors.base import HttpExtractor
 from .extractors.csv_extractor import CsvExtractor
 from .extractors.excel_extractor import ExcelExtractor
@@ -198,6 +199,11 @@ def _dispatch(
     title = contract.get("title", "")
     year = _contract_year(contract)
     stat_kwargs = _stat_kwargs(contract)
+
+    # ── Semantic domains first: curated configs beat format heuristics ──────
+    election_route = elections.route_for(dataset_id)
+    if election_route:
+        return elections.run_election_dataset(contract, url, *election_route)
 
     # ── Park+Ride: three distinct WFS endpoints, distinguished by URL ────────
     # - lastrecord       → live snapshot, one row per site (overwritten)

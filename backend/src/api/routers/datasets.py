@@ -19,6 +19,7 @@ _DATASET_ID_TABLES = {
     "core.geo_features",
     "core.statistics",
     "core.traffic_restrictions",
+    "core.election_results",
 }
 
 # Whitelist for direct interpolation — request paths never reach SQL strings
@@ -49,8 +50,13 @@ async def _resolve_target_table(conn, dataset_id: str) -> str | None:
         if row and row["target_table"] in _ALLOWED_TARGETS:
             return row["target_table"]
 
-        # Fallback: probe the three dataset_id-carrying tables.
-        for t in ("core.geo_features", "core.statistics", "core.traffic_restrictions"):
+        # Fallback: probe the dataset_id-carrying tables.
+        for t in (
+            "core.election_results",
+            "core.geo_features",
+            "core.statistics",
+            "core.traffic_restrictions",
+        ):
             await cur.execute(
                 f"SELECT 1 FROM {t} WHERE dataset_id = %s LIMIT 1", (dataset_id,)
             )
@@ -323,6 +329,12 @@ async def get_dataset_rows(
         elif target == "core.bicycle_counts":
             cols = "id, counter_id, counter_name, count_period, period_start, count_value"
             search_cols = ("counter_name", "counter_id")
+        elif target == "core.election_results":
+            cols = (
+                "id, election_id, level, gebiet_code, gebiet_name, party, "
+                "erststimmen, zweitstimmen, wahlberechtigte, waehler, gueltige_zweit"
+            )
+            search_cols = ("party", "gebiet_name", "gebiet_code")
         else:
             raise HTTPException(status_code=400, detail="Unsupported target table")
 

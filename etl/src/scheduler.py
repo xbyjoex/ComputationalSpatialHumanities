@@ -20,6 +20,8 @@ import schedule
 from .boundaries import seed_boundaries_safe
 from .cache_bump import bump_tiles_version
 from .config import settings
+from .domains import elections
+from .domains.elections import sync_elections
 from .db import get_conn, run_migrations
 from . import etl_state
 from .loaders.postgres import (
@@ -246,6 +248,14 @@ def main() -> None:
             logger.info("Dataset categories synced: %d memberships", n_cat)
     except Exception as exc:
         logger.error("Category sync failed: %s", exc)
+
+    # Election domain registry + legacy statistics cleanup
+    try:
+        with get_conn() as conn:
+            n_elections = sync_elections(conn, elections.load_definitions())
+            logger.info("Elections synced: %d definitions", n_elections)
+    except Exception as exc:
+        logger.error("Election sync failed: %s", exc)
 
     # Seed admin boundaries once at startup so choropleths work without
     # waiting for the 02:00 nightly run.

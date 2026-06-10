@@ -11,6 +11,7 @@ import { ArrowLeft, ExternalLink } from "lucide-react";
 import { format, formatDistanceToNow } from "date-fns";
 import { de } from "date-fns/locale";
 import ColumnProfileCard from "./datasets/ColumnProfileCard";
+import ElectionResultsPanel from "./datasets/ElectionResultsPanel";
 import { datasetColor } from "../map/gothamStyle";
 
 const PAGE_SIZE = 50;
@@ -77,6 +78,11 @@ export default function DatasetDetail() {
 
   const ds = detail.dataset;
   const totalPages = rows ? Math.ceil(rows.total / PAGE_SIZE) : 0;
+  // Semantische Wahl-Domäne: election_id aus den Zeilen ableiten
+  const electionId =
+    detail.target_table === "core.election_results"
+      ? (rows?.items?.[0]?.election_id as string | undefined)
+      : undefined;
 
   return (
     <div className="blueprint-bg h-full overflow-y-auto">
@@ -155,6 +161,16 @@ export default function DatasetDetail() {
             )}
           </div>
         </section>
+
+        {/* Wahlergebnis (semantisch vereinheitlichte Domäne) */}
+        {electionId && (
+          <section className="panel corners animate-rise" style={{ animationDelay: "100ms" }}>
+            <div className="border-b border-gotham-700 px-4 py-3">
+              <p className="hud-label text-gotham-200">Wahlergebnis · Stadt Leipzig</p>
+            </div>
+            <ElectionResultsPanel electionId={electionId} />
+          </section>
+        )}
 
         {/* Datenprofil: Spalten-Statistiken + Verteilungen */}
         <section className="panel animate-rise" style={{ animationDelay: "120ms" }}>

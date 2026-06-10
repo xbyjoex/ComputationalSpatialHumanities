@@ -28,6 +28,7 @@ _DATASET_ID_TABLES = {
     "core.geo_features",
     "core.statistics",
     "core.traffic_restrictions",
+    "core.election_results",
 }
 
 # Static column specs for the small domain tables. These names are
@@ -52,6 +53,11 @@ _PROFILE_SPECS: dict[str, dict[str, list[str]]] = {
         "numeric": [],
         "categorical": ["restriction_type", "title"],
         "temporal": ["valid_from", "valid_until"],
+    },
+    "core.election_results": {
+        "numeric": ["erststimmen", "zweitstimmen", "wahlberechtigte", "waehler"],
+        "categorical": ["party", "level", "gebiet_name"],
+        "temporal": [],
     },
 }
 
