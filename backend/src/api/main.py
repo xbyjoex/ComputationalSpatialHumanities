@@ -15,6 +15,8 @@ from .config import settings
 from .db import close_pool, init_pool
 from .routers.auth_router import router as auth_router
 from .routers.datasets import router as datasets_router
+from .routers.elections_router import router as elections_router
+from .routers.indicators_router import router as indicators_router
 from .routers.map_router import router as map_router
 from .routers.stats_router import router as stats_router
 from .routers.tiles_router import router as tiles_router
@@ -50,6 +52,8 @@ app.include_router(datasets_router, prefix="/api")
 app.include_router(map_router, prefix="/api")
 app.include_router(stats_router, prefix="/api")
 app.include_router(tiles_router, prefix="/api")
+app.include_router(elections_router, prefix="/api")
+app.include_router(indicators_router, prefix="/api")
 
 
 @app.get("/health")

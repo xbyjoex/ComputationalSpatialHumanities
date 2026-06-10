@@ -5,6 +5,9 @@ import MapView from "../components/MapView";
 import StatsPanel from "../components/StatsPanel";
 import DatasetList from "../components/DatasetList";
 import DatasetDetail from "../components/DatasetDetail";
+import CategoryGrid from "../components/datasets/CategoryGrid";
+import CategoryDatasets from "../components/datasets/CategoryDatasets";
+import LegacyDatasetRedirect from "../components/datasets/LegacyDatasetRedirect";
 
 export default function DashboardPage() {
   return (
@@ -22,8 +25,11 @@ export default function DashboardPage() {
         <Routes>
           <Route path="/" element={<MapView />} />
           <Route path="/stats" element={<StatsPanel />} />
-          <Route path="/datasets" element={<DatasetList />} />
-          <Route path="/datasets/:datasetId" element={<DatasetDetail />} />
+          <Route path="/datasets" element={<CategoryGrid />} />
+          <Route path="/datasets/register" element={<DatasetList />} />
+          <Route path="/datasets/c/:categoryId" element={<CategoryDatasets />} />
+          <Route path="/datasets/d/:slug" element={<DatasetDetail />} />
+          <Route path="/datasets/:datasetId" element={<LegacyDatasetRedirect />} />
         </Routes>
       </main>
 

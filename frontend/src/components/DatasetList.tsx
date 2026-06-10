@@ -11,6 +11,7 @@ import {
 import clsx from "clsx";
 import { formatDistanceToNow } from "date-fns";
 import { de } from "date-fns/locale";
+import StatusLed from "./datasets/StatusLed";
 
 type StatusRow = {
   id: string;
@@ -23,14 +24,6 @@ type StatusRow = {
   last_run_at: string | null;
   last_run_rows: number | null;
 };
-
-function StatusLed({ s }: { s: string | null }) {
-  if (s === "success") return <span className="led bg-signal-green" title="Erfolgreich" />;
-  if (s === "failed") return <span className="led bg-signal-red" title="Fehlgeschlagen" />;
-  if (s === "started") return <span className="led animate-led bg-signal-amber" title="Läuft" />;
-  if (s === "skipped") return <span className="led bg-gotham-400" title="Übersprungen — Quelle unverändert" />;
-  return <span className="led bg-gotham-600" title="Kein Lauf" />;
-}
 
 function ExpandedPanel({ datasetId }: { datasetId: string }) {
   const { data: detail, isLoading: dLoading } = useQuery(
@@ -88,7 +81,7 @@ function ExpandedPanel({ datasetId }: { datasetId: string }) {
 
       <div className="flex justify-end">
         <Link
-          to={`/datasets/${encodeURIComponent(datasetId)}`}
+          to={`/datasets/d/${encodeURIComponent(ds.name ?? datasetId)}`}
           className="inline-flex items-center gap-1 uppercase tracking-[0.12em] text-signal-cyan hover:text-signal-bright"
         >
           Details &amp; Daten öffnen <ChevronRight className="h-3 w-3" />

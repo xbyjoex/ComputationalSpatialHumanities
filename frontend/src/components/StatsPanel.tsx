@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { useQuery } from "react-query";
+import { useSearchParams } from "react-router-dom";
+import clsx from "clsx";
 import {
   ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip,
   ResponsiveContainer,
 } from "recharts";
-import { fetchCorrelation, fetchMetrics } from "../api/map";
+import { fetchCorrelation, fetchGroupedMetrics, MetricGroup } from "../api/map";
 
 function classify(r: number): { label: string; color: string } {
   const a = Math.abs(r);
@@ -13,16 +15,74 @@ function classify(r: number): { label: string; color: string } {
   return { label: "Schwache Korrelation", color: "#678599" };
 }
 
+/** Auswahl über den Indikatoren-Katalog: Optgroups je Thema, kanonische Namen. */
+function MetricSelect({
+  value,
+  onChange,
+  groups,
+}: {
+  value: string;
+  onChange: (v: string) => void;
+  groups: MetricGroup[];
+}) {
+  const byTopic = useMemo(() => {
+    const map = new Map<string, MetricGroup[]>();
+    for (const g of groups) {
+      const topic = g.topic ?? "Nicht katalogisiert";
+      map.set(topic, [...(map.get(topic) ?? []), g]);
+    }
+    return [...map.entries()];
+  }, [groups]);
+
+  return (
+    <select value={value} onChange={(e) => onChange(e.target.value)} className="field">
+      <option value="">— wählen —</option>
+      {byTopic.map(([topic, topicGroups]) => (
+        <optgroup key={topic} label={topic}>
+          {topicGroups.flatMap((g) =>
+            g.metrics.map((m) => (
+              <option key={m} value={m}>
+                {g.name
+                  ? g.metrics.length > 1
+                    ? `${g.name} — ${m}`
+                    : `${g.name}${g.unit ? ` (${g.unit})` : ""}`
+                  : m}
+              </option>
+            ))
+          )}
+        </optgroup>
+      ))}
+    </select>
+  );
+}
+
 export default function StatsPanel() {
+  const [searchParams] = useSearchParams();
   const [metricA, setMetricA] = useState("");
   const [metricB, setMetricB] = useState("");
   const [spatialUnit, setSpatialUnit] = useState("ortsteil");
   const [year, setYear] = useState<number | null>(null);
+  const [topicFilter, setTopicFilter] = useState<string | null>(
+    searchParams.get("topic")
+  );
 
-  const { data: metrics = [] } = useQuery<string[]>(
-    ["metrics", spatialUnit],
-    () => fetchMetrics(spatialUnit),
+  const { data: metricGroups = [] } = useQuery<MetricGroup[]>(
+    ["metricsGrouped", spatialUnit],
+    () => fetchGroupedMetrics(spatialUnit),
     { staleTime: 300_000 }
+  );
+
+  const topics = useMemo(
+    () =>
+      [...new Set(metricGroups.map((g) => g.topic).filter((t): t is string => !!t))].sort(),
+    [metricGroups]
+  );
+  const visibleGroups = useMemo(
+    () =>
+      topicFilter
+        ? metricGroups.filter((g) => g.topic === topicFilter)
+        : metricGroups,
+    [metricGroups, topicFilter]
   );
 
   const { data: corrData, isLoading } = useQuery(
@@ -58,20 +118,47 @@ export default function StatsPanel() {
               Parameter
             </p>
 
+            {/* Themen-Filter aus dem Indikatoren-Katalog */}
+            {topics.length > 0 && (
+              <div className="flex flex-wrap gap-1">
+                <button
+                  type="button"
+                  onClick={() => setTopicFilter(null)}
+                  className={clsx(
+                    "border px-2 py-0.5 font-mono text-[9px] uppercase tracking-[0.1em] transition-colors",
+                    topicFilter === null
+                      ? "border-signal-cyan bg-signal-cyan/20 text-signal-cyan"
+                      : "border-gotham-600 text-gotham-400 hover:border-gotham-400"
+                  )}
+                >
+                  Alle
+                </button>
+                {topics.map((t) => (
+                  <button
+                    key={t}
+                    type="button"
+                    onClick={() => setTopicFilter(topicFilter === t ? null : t)}
+                    className={clsx(
+                      "border px-2 py-0.5 font-mono text-[9px] uppercase tracking-[0.1em] transition-colors",
+                      topicFilter === t
+                        ? "border-signal-cyan bg-signal-cyan/20 text-signal-cyan"
+                        : "border-gotham-600 text-gotham-400 hover:border-gotham-400"
+                    )}
+                  >
+                    {t}
+                  </button>
+                ))}
+              </div>
+            )}
+
             <div>
               <label className="hud-label mb-1.5 block">Metrik A — X-Achse</label>
-              <select value={metricA} onChange={(e) => setMetricA(e.target.value)} className="field">
-                <option value="">— wählen —</option>
-                {metrics.map((m: string) => <option key={m} value={m}>{m}</option>)}
-              </select>
+              <MetricSelect value={metricA} onChange={setMetricA} groups={visibleGroups} />
             </div>
 
             <div>
               <label className="hud-label mb-1.5 block">Metrik B — Y-Achse</label>
-              <select value={metricB} onChange={(e) => setMetricB(e.target.value)} className="field">
-                <option value="">— wählen —</option>
-                {metrics.map((m: string) => <option key={m} value={m}>{m}</option>)}
-              </select>
+              <MetricSelect value={metricB} onChange={setMetricB} groups={visibleGroups} />
             </div>
 
             <div className="grid grid-cols-2 gap-2.5">

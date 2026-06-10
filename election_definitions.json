@@ -1,0 +1,229 @@
+{
+  "elections": [
+    {
+      "election_id": "btw2021",
+      "title": "Bundestagswahl 2021",
+      "election_type": "bundestagswahl",
+      "date": "2021-09-26",
+      "year": 2021,
+      "vote_mode": "erst_zweit",
+      "parties": [
+        "AfD",
+        "CDU",
+        "DIE LINKE",
+        "SPD",
+        "FDP",
+        "GRÜNE",
+        "Liste 7",
+        "Liste 8",
+        "NPD",
+        "Liste 10",
+        "PIRATEN",
+        "Liste 12",
+        "Liste 13",
+        "Liste 14",
+        "Liste 15",
+        "Liste 16",
+        "Liste 17",
+        "Liste 18",
+        "Liste 19",
+        "Liste 20",
+        "Liste 21",
+        "Liste 22",
+        "Liste 23",
+        "Liste 24",
+        "Liste 25",
+        "Liste 26",
+        "Liste 27"
+      ],
+      "datasets": {
+        "fff8cfc0-a4aa-4627-89ed-a46bb6a29c59": {
+          "level": "stadt"
+        },
+        "f5b27739-e3dd-49ca-95cd-9b0e9b907684": {
+          "level": "wahlbezirk"
+        },
+        "8354f558-9291-44a4-b487-35577e5ea2ec": {
+          "level": "ortsteil"
+        }
+      }
+    },
+    {
+      "election_id": "btw2025",
+      "title": "Bundestagswahl 2025",
+      "election_type": "bundestagswahl",
+      "date": "2025-02-23",
+      "year": 2025,
+      "vote_mode": "erst_zweit",
+      "parties": [
+        "AfD",
+        "SPD",
+        "CDU",
+        "FDP",
+        "DIE LINKE",
+        "GRÜNE",
+        "Liste 7",
+        "Liste 8",
+        "Liste 9",
+        "PIRATEN",
+        "Liste 11",
+        "Liste 12",
+        "Liste 13",
+        "Liste 14",
+        "BSW",
+        "Liste 16",
+        "Liste 17",
+        "Liste 18"
+      ],
+      "datasets": {
+        "510a0409-744b-4462-87ec-832057c1df38": {
+          "level": "stadt"
+        },
+        "19ea44b0-1d0f-4e4e-b6e4-4f4d5bcc0c90": {
+          "level": "wahlbezirk"
+        }
+      }
+    },
+    {
+      "election_id": "ew2024",
+      "title": "Europawahl 2024",
+      "election_type": "europawahl",
+      "date": "2024-06-09",
+      "year": 2024,
+      "vote_mode": "single",
+      "parties": [
+        "AfD",
+        "CDU",
+        "DIE LINKE",
+        "GRÜNE",
+        "SPD",
+        "FDP",
+        "Liste 7",
+        "Die PARTEI",
+        "Liste 9",
+        "Liste 10",
+        "NPD",
+        "Liste 12",
+        "Volt",
+        "Liste 14",
+        "Liste 15",
+        "Liste 16",
+        "Liste 17",
+        "Liste 18",
+        "Liste 19",
+        "Liste 20",
+        "Liste 21",
+        "Liste 22",
+        "Liste 23",
+        "Liste 24",
+        "Liste 25",
+        "Liste 26",
+        "Liste 27",
+        "BSW",
+        "Liste 29",
+        "Liste 30",
+        "Liste 31",
+        "Liste 32",
+        "Liste 33",
+        "Liste 34"
+      ],
+      "datasets": {
+        "4b9c85a0-63a1-406f-923e-1df14295f3ed": {
+          "level": "stadt"
+        },
+        "bf7b851d-592c-425c-9f11-704966305147": {
+          "level": "wahlbezirk"
+        },
+        "0e7e9fa6-5d6a-4301-b991-5dad6c6f027e": {
+          "level": "ortsteil"
+        },
+        "c1bac74a-cdd2-4116-8ba9-ff2c2c7aa6b0": {
+          "level": "stadtbezirk"
+        }
+      }
+    },
+    {
+      "election_id": "ltw2024",
+      "title": "Landtagswahl 2024",
+      "election_type": "landtagswahl",
+      "date": "2024-09-01",
+      "year": 2024,
+      "vote_mode": "erst_zweit",
+      "parties": [
+        "CDU",
+        "AfD",
+        "DIE LINKE",
+        "GRÜNE",
+        "SPD",
+        "FDP",
+        "FREIE WÄHLER",
+        "Die PARTEI",
+        "Liste 9",
+        "Liste 10",
+        "Liste 11",
+        "Liste 12",
+        "Liste 13",
+        "Liste 14",
+        "Liste 15",
+        "BSW",
+        "Liste 17",
+        "Liste 18",
+        "Liste 19",
+        "Liste 20",
+        "Liste 21",
+        "Liste 22",
+        "Liste 23",
+        "Liste 24",
+        "Liste 25",
+        "Liste 26"
+      ],
+      "datasets": {
+        "5be18d85-d375-4849-9a8b-8c222f53c1d4": {
+          "level": "stadt"
+        },
+        "4db3895e-92a9-4bb7-bb33-f792178d331f": {
+          "level": "wahlbezirk"
+        },
+        "3700e4dc-bb3e-483c-b285-f25b1aea806e": {
+          "level": "ortsteil"
+        }
+      }
+    },
+    {
+      "election_id": "srw2024",
+      "title": "Stadtratswahl 2024",
+      "election_type": "stadtratswahl",
+      "date": "2024-06-09",
+      "year": 2024,
+      "vote_mode": "kommunal",
+      "parties": [
+        "DIE LINKE",
+        "GRÜNE",
+        "CDU",
+        "AfD",
+        "SPD",
+        "FDP",
+        "Die PARTEI",
+        "Freie Wähler",
+        "PIRATEN",
+        "Liste 10",
+        "BSW",
+        "Liste 12",
+        "Liste 13",
+        "Liste 14",
+        "Liste 15"
+      ],
+      "datasets": {
+        "b03dcd68-b921-4356-b2b8-5f28669e8e50": {
+          "level": "stadt"
+        },
+        "1ae46e0e-af40-439e-9ad8-eb5abf81679d": {
+          "level": "wahlbezirk"
+        },
+        "4f261ede-a4c6-4815-a773-6d975c0a8ae5": {
+          "level": "ortsteil"
+        }
+      }
+    }
+  ]
+}

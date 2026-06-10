@@ -20,9 +20,16 @@ import schedule
 from .boundaries import seed_boundaries_safe
 from .cache_bump import bump_tiles_version
 from .config import settings
+from .domains import elections
+from .domains.elections import sync_elections
 from .db import get_conn, run_migrations
 from . import etl_state
-from .loaders.postgres import sync_dataset_families, upsert_dataset_registry
+from .loaders.postgres import (
+    sync_dataset_categories,
+    sync_dataset_families,
+    sync_indicator_catalog,
+    upsert_dataset_registry,
+)
 from .notifier import (
     notify_mart_refresh_failed,
     notify_nightly_done,
@@ -71,6 +78,24 @@ def load_families() -> dict:
     logger.info(
         "Loaded %d dataset families, %d dataset hints",
         len(config.get("families", [])), len(config.get("dataset_hints", {})),
+    )
+    return config
+
+
+def load_categories() -> dict:
+    """Load the generated dataset_categories.json (empty config if absent)."""
+    path = Path(settings.categories_path)
+    if not path.exists():
+        repo_root_path = Path(__file__).resolve().parents[2] / "dataset_categories.json"
+        path = repo_root_path if repo_root_path.exists() else path
+    if not path.exists():
+        logger.warning("No dataset_categories.json found — categories disabled")
+        return {"categories": [], "memberships": {}}
+    with open(path, encoding="utf-8") as f:
+        config = json.load(f)
+    logger.info(
+        "Loaded %d categories, %d memberships",
+        len(config.get("categories", [])), len(config.get("memberships", {})),
     )
     return config
 
@@ -216,6 +241,39 @@ def main() -> None:
             logger.info("Dataset families synced: %d member datasets", members)
     except Exception as exc:
         logger.error("Family sync failed: %s", exc)
+
+    # Thematic categories (dataset_categories.json, mirrors CKAN groups)
+    try:
+        with get_conn() as conn:
+            n_cat = sync_dataset_categories(conn, load_categories())
+            logger.info("Dataset categories synced: %d memberships", n_cat)
+    except Exception as exc:
+        logger.error("Category sync failed: %s", exc)
+
+    # Election domain registry + legacy statistics cleanup
+    try:
+        with get_conn() as conn:
+            n_elections = sync_elections(conn, elections.load_definitions())
+            logger.info("Elections synced: %d definitions", n_elections)
+    except Exception as exc:
+        logger.error("Election sync failed: %s", exc)
+
+    # Indicator catalog (canonical metric registry)
+    try:
+        path = Path(settings.indicators_path)
+        if not path.exists():
+            repo_root_path = Path(__file__).resolve().parents[2] / "indicator_catalog.json"
+            path = repo_root_path if repo_root_path.exists() else path
+        if path.exists():
+            with open(path, encoding="utf-8") as f:
+                catalog = json.load(f)
+            with get_conn() as conn:
+                n_ind = sync_indicator_catalog(conn, catalog)
+                logger.info("Indicator catalog synced: %d indicators", n_ind)
+        else:
+            logger.warning("No indicator_catalog.json found — catalog disabled")
+    except Exception as exc:
+        logger.error("Indicator catalog sync failed: %s", exc)
 
     # Seed admin boundaries once at startup so choropleths work without
     # waiting for the 02:00 nightly run.

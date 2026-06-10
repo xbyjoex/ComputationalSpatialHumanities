@@ -46,6 +46,18 @@ class Settings:
         os.getenv("ETL_FAMILIES_PATH")
         or Path(__file__).parent.parent / "dataset_families.json"
     )
+    categories_path: Path = Path(
+        os.getenv("ETL_CATEGORIES_PATH")
+        or Path(__file__).parent.parent / "dataset_categories.json"
+    )
+    elections_path: Path = Path(
+        os.getenv("ETL_ELECTIONS_PATH")
+        or Path(__file__).parent.parent / "election_definitions.json"
+    )
+    indicators_path: Path = Path(
+        os.getenv("ETL_INDICATORS_PATH")
+        or Path(__file__).parent.parent / "indicator_catalog.json"
+    )
     logs_dir: Path = Path(os.getenv("ETL_LOGS_DIR", "/app/logs"))
 
 

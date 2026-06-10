@@ -63,6 +63,20 @@ export const fetchCorrelation = (metric_a: string, metric_b: string, spatial_uni
 export const fetchMetrics = (spatial_unit?: string, dataset_id?: string) =>
   apiClient.get("/stats/metrics", { params: { spatial_unit, dataset_id } }).then((r) => r.data);
 
+export interface MetricGroup {
+  indicator_id: string | null;
+  name: string | null;
+  unit: string | null;
+  topic: string | null;
+  metrics: string[];
+}
+
+// Metriken gefaltet auf den kanonischen Indikatoren-Katalog (Themen-Gruppen)
+export const fetchGroupedMetrics = (spatial_unit?: string): Promise<MetricGroup[]> =>
+  apiClient
+    .get("/stats/metrics", { params: { spatial_unit, grouped: true } })
+    .then((r) => r.data);
+
 export const fetchDatasets = (params?: Record<string, unknown>) =>
   apiClient.get("/datasets", { params }).then((r) => r.data);
 
