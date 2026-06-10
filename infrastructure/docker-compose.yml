@@ -82,6 +82,7 @@ services:
     volumes:
       - etl_logs:/app/logs
       - ./dataset_contracts.json:/app/dataset_contracts.json:ro
+      - ./dataset_families.json:/app/dataset_families.json:ro
       - ./sql:/app/sql:ro
     command: python -m src.scheduler
 
