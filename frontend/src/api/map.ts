@@ -12,15 +12,45 @@ export interface BboxParams {
 export const fetchMapFeatures = (params: BboxParams) =>
   apiClient.get("/map/features", { params }).then((r) => r.data);
 
-export interface FeatureDataset {
-  dataset_id: string;
-  dataset_title: string;
+export interface FeatureGroup {
+  group_id: string;
+  title: string;
+  is_family: boolean;
+  dataset_ids: string[];
+  years: number[];
   feature_count: number;
   geometry_types: string[];
 }
 
-export const fetchFeatureDatasets = (): Promise<FeatureDataset[]> =>
+export const fetchFeatureGroups = (): Promise<FeatureGroup[]> =>
   apiClient.get("/map/feature-datasets").then((r) => r.data);
+
+// Tile-URL mit literalen {z}/{x}/{y}-Platzhaltern für MapLibre. Muss absolut
+// sein, da MapLibre relative Tile-URLs nicht gegen den Origin auflöst.
+export const buildTileUrl = (datasetIds: string[], familyIds: string[]): string => {
+  const p = new URLSearchParams();
+  [...datasetIds].sort().forEach((id) => p.append("dataset_ids", id));
+  [...familyIds].sort().forEach((id) => p.append("family_ids", id));
+  return `${window.location.origin}/api/map/tiles/{z}/{x}/{y}.pbf?${p.toString()}`;
+};
+
+export interface FeatureDetail {
+  id: number;
+  dataset_id: string;
+  dataset_title: string;
+  family_id: string | null;
+  feature_type: string | null;
+  name: string | null;
+  description: string | null;
+  year: number | null;
+  properties: Record<string, unknown> | null;
+  valid_from: string | null;
+  valid_until: string | null;
+  updated_at: string | null;
+}
+
+export const fetchFeatureDetail = (id: number): Promise<FeatureDetail> =>
+  apiClient.get(`/map/feature/${id}`).then((r) => r.data);
 
 // FastAPI erwartet wiederholte Query-Parameter (dataset_ids=a&dataset_ids=b),
 // Axios serialisiert Arrays aber als dataset_ids[]=… — daher manuell.

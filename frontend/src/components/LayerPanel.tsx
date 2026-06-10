@@ -3,7 +3,7 @@ import { Layers, ChevronUp, ChevronDown, Check } from "lucide-react";
 import clsx from "clsx";
 import { useState } from "react";
 import { useQuery } from "react-query";
-import { fetchMetrics, fetchFeatureDatasets, FeatureDataset } from "../api/map";
+import { fetchMetrics, fetchFeatureGroups, FeatureGroup } from "../api/map";
 import { datasetColor } from "../map/gothamStyle";
 
 const LAYERS: { key: LayerKey; label: string; desc: string; color: string }[] = [
@@ -11,7 +11,7 @@ const LAYERS: { key: LayerKey; label: string; desc: string; color: string }[] = 
   { key: "bicycle", label: "Radzählstellen", desc: "14-Tage-Aufkommen", color: "#9adcff" },
   { key: "restrictions", label: "Verkehrslagen", desc: "Einschränkungen · live", color: "#ffb02e" },
   { key: "choropleth", label: "Choroplethen", desc: "Statistik je Raumeinheit", color: "#53b9e8" },
-  { key: "geo_features", label: "Datenebene", desc: "Alle Geo-Quellen · bereinigt", color: "#9d8cff" },
+  { key: "geo_features", label: "Datenebene", desc: "Alle Geo-Quellen · Vector Tiles", color: "#9d8cff" },
 ];
 
 function fmtCount(n: number): string {
@@ -27,25 +27,28 @@ export default function LayerPanel() {
     activeLayers, toggleLayer,
     choroplethMetric, setChoroplethMetric,
     spatialUnit, setSpatialUnit,
-    selectedYear, setYear,
+    timelineYear, setTimelineYear,
     selectedDatasetIds, toggleDatasetId,
+    selectedFamilyIds, toggleFamilyId,
   } = useMapStore();
 
   const { data: metrics = [] } = useQuery<string[]>("metrics", () => fetchMetrics(), {
     staleTime: 300_000,
   });
 
-  const { data: featureDatasets = [] } = useQuery<FeatureDataset[]>(
-    "featureDatasets",
-    fetchFeatureDatasets,
+  const { data: featureGroups = [] } = useQuery<FeatureGroup[]>(
+    "featureGroups",
+    fetchFeatureGroups,
     { staleTime: 600_000, enabled: activeLayers.has("geo_features") }
   );
 
-  const filteredDatasets = featureDatasets.filter(
-    (d) =>
+  const filteredGroups = featureGroups.filter(
+    (g) =>
       !datasetSearch ||
-      d.dataset_title.toLowerCase().includes(datasetSearch.toLowerCase())
+      g.title.toLowerCase().includes(datasetSearch.toLowerCase())
   );
+
+  const activeCount = selectedDatasetIds.length + selectedFamilyIds.length;
 
   return (
     <div className="absolute left-5 top-5 z-10 w-72 animate-rise">
@@ -113,13 +116,13 @@ export default function LayerPanel() {
               })}
             </div>
 
-            {/* Datenebene: Quellenauswahl */}
+            {/* Datenebene: Quellenauswahl (Familien gebündelt mit Jahr-Chips) */}
             {activeLayers.has("geo_features") && (
               <div className="mt-3 space-y-2 border-t border-gotham-700 pt-3">
                 <div className="flex items-baseline justify-between">
                   <p className="hud-label">Quellen der Datenebene</p>
                   <span className="font-mono text-[10px] text-gotham-500">
-                    {selectedDatasetIds.length} aktiv
+                    {activeCount} aktiv
                   </span>
                 </div>
                 <input
@@ -130,19 +133,25 @@ export default function LayerPanel() {
                   className="field"
                 />
                 <div className="max-h-52 space-y-0.5 overflow-y-auto pr-1">
-                  {featureDatasets.length === 0 && (
+                  {featureGroups.length === 0 && (
                     <p className="py-2 text-center font-mono text-[10px] text-gotham-500">
                       Lade Quellen …
                     </p>
                   )}
-                  {filteredDatasets.map((d) => {
-                    const on = selectedDatasetIds.includes(d.dataset_id);
+                  {filteredGroups.map((g) => {
+                    const on = g.is_family
+                      ? selectedFamilyIds.includes(g.group_id)
+                      : selectedDatasetIds.includes(g.group_id);
                     return (
                       <button
-                        key={d.dataset_id}
-                        onClick={() => toggleDatasetId(d.dataset_id)}
+                        key={g.group_id}
+                        onClick={() =>
+                          g.is_family
+                            ? toggleFamilyId(g.group_id)
+                            : toggleDatasetId(g.group_id)
+                        }
                         className="group flex w-full items-center gap-2.5 px-1 py-1 text-left transition-colors hover:bg-gotham-800/70"
-                        title={d.dataset_title}
+                        title={g.title}
                       >
                         <span
                           className={clsx(
@@ -157,34 +166,37 @@ export default function LayerPanel() {
                         <span
                           className="h-1.5 w-1.5 shrink-0"
                           style={{
-                            backgroundColor: datasetColor(d.dataset_id),
+                            backgroundColor: datasetColor(g.group_id),
                             opacity: on ? 1 : 0.35,
                           }}
                         />
-                        <span
-                          className={clsx(
-                            "min-w-0 flex-1 truncate text-[11px] transition-colors",
-                            on ? "text-gotham-100" : "text-gotham-400 group-hover:text-gotham-300"
+                        <span className="min-w-0 flex-1">
+                          <span
+                            className={clsx(
+                              "block truncate text-[11px] transition-colors",
+                              on ? "text-gotham-100" : "text-gotham-400 group-hover:text-gotham-300"
+                            )}
+                          >
+                            {g.title}
+                          </span>
+                          {g.is_family && g.years.length > 0 && (
+                            <span className="block truncate font-mono text-[9px] text-gotham-500">
+                              {g.years.join(" · ")}
+                            </span>
                           )}
-                        >
-                          {d.dataset_title}
                         </span>
                         <span className="shrink-0 font-mono text-[9px] text-gotham-500">
-                          {fmtCount(d.feature_count)}
+                          {fmtCount(g.feature_count)}
                         </span>
                       </button>
                     );
                   })}
-                  {featureDatasets.length > 0 && filteredDatasets.length === 0 && (
+                  {featureGroups.length > 0 && filteredGroups.length === 0 && (
                     <p className="py-2 text-center font-mono text-[10px] text-gotham-500">
                       Keine Treffer.
                     </p>
                   )}
                 </div>
-                <p className="font-mono text-[9px] leading-relaxed text-gotham-500">
-                  Max. 5 000 Objekte je Kartenausschnitt — bei großen Quellen
-                  (z.&nbsp;B. Baumkataster) weiter hineinzoomen.
-                </p>
               </div>
             )}
 
@@ -215,16 +227,16 @@ export default function LayerPanel() {
                     >
                       <option value="ortsteil">Ortsteil</option>
                       <option value="stadtbezirk">Stadtbezirk</option>
-                      <option value="city">Gesamtstadt</option>
+                      <option value="wahlbezirk">Wahlbezirk</option>
                     </select>
                   </div>
                   <div>
                     <p className="hud-label mb-1.5">Jahr</p>
                     <input
                       type="number"
-                      value={selectedYear ?? ""}
-                      onChange={(e) => setYear(e.target.value ? parseInt(e.target.value) : null)}
-                      placeholder="alle"
+                      value={timelineYear ?? ""}
+                      onChange={(e) => setTimelineYear(e.target.value ? parseInt(e.target.value) : null)}
+                      placeholder="neueste"
                       className="field"
                     />
                   </div>

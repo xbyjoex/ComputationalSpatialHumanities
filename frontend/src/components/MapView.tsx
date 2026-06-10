@@ -1,19 +1,22 @@
 import { useRef, useCallback, useState, useEffect, useMemo } from "react";
 import { Map, Source, Layer, Popup } from "@vis.gl/react-maplibre";
 import type { MapRef, MapLayerMouseEvent, ViewStateChangeEvent } from "@vis.gl/react-maplibre";
-import type { StyleSpecification } from "maplibre-gl";
+import type { StyleSpecification, RequestParameters } from "maplibre-gl";
 import { useQuery } from "react-query";
 import { useMapStore } from "../store/mapStore";
+import { useAuthStore } from "../store/authStore";
 import {
   fetchParkRide,
   fetchBicycleCounters,
   fetchRestrictions,
   fetchChoropleth,
   fetchAdminBoundaries,
-  fetchUnifiedFeatures,
+  fetchFeatureDetail,
+  buildTileUrl,
 } from "../api/map";
 import { loadGothamStyle, datasetColor } from "../map/gothamStyle";
 import LayerPanel from "./LayerPanel";
+import TimelineBar from "./TimelineBar";
 import Reticle from "./chrome/Reticle";
 
 const LEIPZIG_CENTER: [number, number] = [12.3731, 51.3397];
@@ -26,17 +29,11 @@ const LEIPZIG_BOUNDS: [[number, number], [number, number]] = [
 interface PopupInfo {
   lng: number;
   lat: number;
+  featureId: number | null;
   properties: Record<string, unknown>;
 }
 
-interface Bbox {
-  xmin: number;
-  ymin: number;
-  xmax: number;
-  ymax: number;
-}
-
-const INITIAL_BBOX: Bbox = { xmin: 12.15, ymin: 51.25, xmax: 12.60, ymax: 51.43 };
+type FilterExpr = unknown[];
 
 export default function MapView() {
   const mapRef = useRef<MapRef>(null);
@@ -46,12 +43,13 @@ export default function MapView() {
     lat: LEIPZIG_CENTER[1],
   });
   const [zoom, setZoom] = useState(11);
-  const [bbox, setBbox] = useState<Bbox>(INITIAL_BBOX);
   const [mapStyle, setMapStyle] = useState<StyleSpecification | null>(null);
   const [styleError, setStyleError] = useState(false);
   const [booted, setBooted] = useState(false);
-  const { activeLayers, choroplethMetric, selectedYear, spatialUnit, selectedDatasetIds } =
-    useMapStore();
+  const {
+    activeLayers, choroplethMetric, timelineYear, spatialUnit,
+    selectedDatasetIds, selectedFamilyIds,
+  } = useMapStore();
 
   useEffect(() => {
     loadGothamStyle()
@@ -78,8 +76,8 @@ export default function MapView() {
   );
 
   const { data: choropleth } = useQuery(
-    ["choropleth", choroplethMetric, spatialUnit, selectedYear],
-    () => fetchChoropleth(choroplethMetric, spatialUnit, selectedYear ?? undefined),
+    ["choropleth", choroplethMetric, spatialUnit, timelineYear],
+    () => fetchChoropleth(choroplethMetric, spatialUnit, timelineYear ?? undefined),
     { enabled: activeLayers.has("choropleth") && !!choroplethMetric }
   );
 
@@ -89,40 +87,63 @@ export default function MapView() {
     { staleTime: 3_600_000 }
   );
 
-  // Vereinheitlichte Datenebene — BBox auf ~100 m gerundet, damit kleine
-  // Kartenbewegungen keinen Refetch auslösen
-  const bboxKey = useMemo(
-    () =>
-      [bbox.xmin, bbox.ymin, bbox.xmax, bbox.ymax]
-        .map((v) => v.toFixed(3))
-        .join(","),
-    [bbox]
-  );
-  const { data: unifiedFeatures, isFetching: featuresLoading } = useQuery(
-    ["unifiedFeatures", bboxKey, [...selectedDatasetIds].sort().join("|")],
-    () => fetchUnifiedFeatures(bbox, selectedDatasetIds),
-    {
-      enabled: activeLayers.has("geo_features") && selectedDatasetIds.length > 0,
-      keepPreviousData: true,
-      staleTime: 30_000,
-    }
+  // Vereinheitlichte Datenebene als Vector Tiles — MapLibre lädt Kacheln
+  // direkt vom Backend (ST_AsMVT), daher kein Feature-Limit mehr.
+  const hasSelection = selectedDatasetIds.length + selectedFamilyIds.length > 0;
+  const tileUrl = useMemo(
+    () => buildTileUrl(selectedDatasetIds, selectedFamilyIds),
+    [selectedDatasetIds, selectedFamilyIds]
   );
 
-  // Farbe je Datensatz als data-driven Expression
+  // Tile-Requests laufen nicht durch den Axios-Interceptor → JWT hier anhängen
+  const transformRequest = useCallback(
+    (url: string): RequestParameters | undefined => {
+      if (url.includes("/api/map/tiles/")) {
+        const token = useAuthStore.getState().accessToken;
+        return {
+          url,
+          headers: token ? { Authorization: `Bearer ${token}` } : {},
+        };
+      }
+      return undefined;
+    },
+    []
+  );
+
+  // Farbe je Gruppe (Familie oder Einzeldatensatz) als data-driven Expression
   const featureColor = useMemo(() => {
-    if (selectedDatasetIds.length === 0) return "#53b9e8";
-    const expr: unknown[] = ["match", ["get", "dataset_id"]];
-    for (const id of selectedDatasetIds) expr.push(id, datasetColor(id));
+    const groupIds = [...selectedFamilyIds, ...selectedDatasetIds];
+    if (groupIds.length === 0) return "#53b9e8";
+    const expr: unknown[] = [
+      "match",
+      ["coalesce", ["get", "family_id"], ["get", "dataset_id"]],
+    ];
+    for (const id of groupIds) expr.push(id, datasetColor(id));
     expr.push("#53b9e8");
     return expr as unknown as string;
-  }, [selectedDatasetIds]);
+  }, [selectedDatasetIds, selectedFamilyIds]);
+
+  // Jahresfilter rein im Style: Features ohne Jahr bleiben immer sichtbar
+  const withYearFilter = useCallback(
+    (geomFilter: FilterExpr): FilterExpr => {
+      if (timelineYear === null) return geomFilter;
+      return [
+        "all",
+        geomFilter,
+        ["any", ["!", ["has", "year"]], ["==", ["get", "year"], timelineYear]],
+      ];
+    },
+    [timelineYear]
+  );
 
   const handleClick = useCallback((e: MapLayerMouseEvent) => {
     const feature = e.features?.[0];
     if (!feature) return;
+    const isUnified = String(feature.layer?.id ?? "").startsWith("unified-");
     setPopup({
       lng: e.lngLat.lng,
       lat: e.lngLat.lat,
+      featureId: isUnified && typeof feature.id === "number" ? feature.id : null,
       properties: feature.properties as Record<string, unknown>,
     });
   }, []);
@@ -138,17 +159,6 @@ export default function MapView() {
     setZoom(e.viewState.zoom);
   }, []);
 
-  const handleMoveEnd = useCallback(() => {
-    const b = mapRef.current?.getBounds();
-    if (!b) return;
-    setBbox({
-      xmin: b.getWest(),
-      ymin: b.getSouth(),
-      xmax: b.getEast(),
-      ymax: b.getNorth(),
-    });
-  }, []);
-
   // Choropleth colour scale (5 quantile breaks → 5 colours)
   const choroplethValues = choropleth?.features?.map((f: { properties: { metric_value: number } }) => f.properties.metric_value).filter(Boolean) ?? [];
   const maxVal = choroplethValues.length ? Math.max(...choroplethValues) : 1;
@@ -162,6 +172,7 @@ export default function MapView() {
           mapStyle={mapStyle}
           maxBounds={LEIPZIG_BOUNDS}
           minZoom={9.5}
+          transformRequest={transformRequest}
           interactiveLayerIds={[
             "park-ride-circles",
             "bicycle-circles",
@@ -174,7 +185,6 @@ export default function MapView() {
           onClick={handleClick}
           onMouseMove={handleMouseMove}
           onMove={handleMove}
-          onMoveEnd={handleMoveEnd}
           onLoad={() => setBooted(true)}
         >
           {/* Admin boundary outlines */}
@@ -215,43 +225,54 @@ export default function MapView() {
             </Source>
           )}
 
-          {/* Vereinheitlichte Datenebene */}
-          {activeLayers.has("geo_features") && unifiedFeatures && (
-            <Source id="unified" type="geojson" data={unifiedFeatures}>
+          {/* Vereinheitlichte Datenebene (Vector Tiles) */}
+          {activeLayers.has("geo_features") && hasSelection && (
+            <Source
+              key={tileUrl}
+              id="unified"
+              type="vector"
+              tiles={[tileUrl]}
+              minzoom={9}
+              maxzoom={16}
+            >
               <Layer
                 id="unified-fill"
                 type="fill"
-                filter={["any",
+                source-layer="features"
+                filter={withYearFilter(["any",
                   ["==", ["geometry-type"], "Polygon"],
                   ["==", ["geometry-type"], "MultiPolygon"],
-                ]}
+                ]) as never}
                 paint={{ "fill-color": featureColor, "fill-opacity": 0.18 }}
               />
               <Layer
                 id="unified-fill-line"
                 type="line"
-                filter={["any",
+                source-layer="features"
+                filter={withYearFilter(["any",
                   ["==", ["geometry-type"], "Polygon"],
                   ["==", ["geometry-type"], "MultiPolygon"],
-                ]}
+                ]) as never}
                 paint={{ "line-color": featureColor, "line-width": 1, "line-opacity": 0.8 }}
               />
               <Layer
                 id="unified-line"
                 type="line"
-                filter={["any",
+                source-layer="features"
+                filter={withYearFilter(["any",
                   ["==", ["geometry-type"], "LineString"],
                   ["==", ["geometry-type"], "MultiLineString"],
-                ]}
+                ]) as never}
                 paint={{ "line-color": featureColor, "line-width": 1.5, "line-opacity": 0.85 }}
               />
               <Layer
                 id="unified-circle"
                 type="circle"
-                filter={["any",
+                source-layer="features"
+                filter={withYearFilter(["any",
                   ["==", ["geometry-type"], "Point"],
                   ["==", ["geometry-type"], "MultiPoint"],
-                ]}
+                ]) as never}
                 paint={{
                   "circle-radius": ["interpolate", ["linear"], ["zoom"], 10, 2, 14, 4.5, 17, 7],
                   "circle-color": featureColor,
@@ -337,7 +358,7 @@ export default function MapView() {
               onClose={() => setPopup(null)}
               maxWidth="300px"
             >
-              <PopupContent properties={popup.properties} />
+              <PopupContent featureId={popup.featureId} properties={popup.properties} />
             </Popup>
           )}
         </Map>
@@ -370,6 +391,9 @@ export default function MapView() {
       {/* Layer control panel */}
       <LayerPanel />
 
+      {/* Jahres-Timeline der Datenebene */}
+      <TimelineBar />
+
       {/* Coordinate readout */}
       <div className="pointer-events-none absolute bottom-5 left-5 z-10 flex items-center gap-4 border border-gotham-700 bg-gotham-900/85 px-3 py-1.5 font-mono text-[10px] tracking-wider text-gotham-300 backdrop-blur-sm">
         <span>
@@ -384,24 +408,14 @@ export default function MapView() {
           <span className="text-gotham-500">Z&nbsp;</span>
           {zoom.toFixed(1)}
         </span>
-        {featuresLoading ? (
-          <span className="flex items-center gap-1.5 text-signal-amber">
-            <span className="led animate-led bg-signal-amber" />
-            Lade Ebene
-          </span>
-        ) : (
-          <span className="flex items-center gap-1.5 text-signal-green">
-            <span className="led animate-led bg-signal-green" />
-            Live
-          </span>
-        )}
-        {activeLayers.has("geo_features") && unifiedFeatures && (
+        <span className="flex items-center gap-1.5 text-signal-green">
+          <span className="led animate-led bg-signal-green" />
+          Live
+        </span>
+        {timelineYear !== null && activeLayers.has("geo_features") && (
           <span>
-            <span className="text-gotham-500">OBJ&nbsp;</span>
-            {unifiedFeatures.features?.length?.toLocaleString() ?? 0}
-            {unifiedFeatures.features?.length >= 5000 && (
-              <span className="text-signal-amber"> (Limit)</span>
-            )}
+            <span className="text-gotham-500">JAHR&nbsp;</span>
+            {timelineYear}
           </span>
         )}
       </div>
@@ -409,9 +423,26 @@ export default function MapView() {
   );
 }
 
-function PopupContent({ properties }: { properties: Record<string, unknown> }) {
+function PopupContent({
+  featureId,
+  properties,
+}: {
+  featureId: number | null;
+  properties: Record<string, unknown>;
+}) {
+  // Tiles enthalten nur dünne Attribute — volle Properties lazy nachladen
+  const { data: detail } = useQuery(
+    ["featureDetail", featureId],
+    () => fetchFeatureDetail(featureId as number),
+    { enabled: featureId !== null, staleTime: 300_000 }
+  );
+
   const skip = new Set(["geometry"]);
-  const entries = Object.entries(properties).filter(([k]) => !skip.has(k));
+  const merged: Record<string, unknown> = {
+    ...properties,
+    ...(detail?.properties ?? {}),
+  };
+  const entries = Object.entries(merged).filter(([k]) => !skip.has(k));
   return (
     <div>
       <div className="flex items-center gap-2 border-b border-gotham-700 px-3 py-2">
@@ -425,6 +456,9 @@ function PopupContent({ properties }: { properties: Record<string, unknown> }) {
             <span className="break-all text-gotham-200">{String(v ?? "–")}</span>
           </div>
         ))}
+        {featureId !== null && !detail && (
+          <p className="text-[10px] text-gotham-500">Lade Details …</p>
+        )}
       </div>
     </div>
   );
