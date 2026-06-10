@@ -118,6 +118,15 @@ def run_dataset(contract: dict[str, Any]) -> tuple[str, int, int]:
 
     try:
         rows_extracted, rows_loaded, target_table = _dispatch(contract, url, fmt)
+        # Data-quality guard: the generic fallback stores only a raw summary
+        # (0 core rows). Surface that in the run log instead of failing silently.
+        dq_note = None
+        if rows_extracted > 0 and rows_loaded == 0 and not target_table:
+            dq_note = "DQ: raw-only ingest (no core rows)"
+            logger.warning(
+                "[DQ] %-60s extracted %d rows but loaded none to core tables (fmt=%s)",
+                title[:60], rows_extracted, fmt,
+            )
         with get_conn() as conn:
             log_etl_finish(
                 conn,
@@ -125,6 +134,7 @@ def run_dataset(contract: dict[str, Any]) -> tuple[str, int, int]:
                 status="success",
                 rows_extracted=rows_extracted,
                 rows_loaded=rows_loaded,
+                error_message=dq_note,
             )
         with get_conn() as conn:
             upsert_dataset_checksum(conn, dataset_id, url, new_etag, new_lm, None)
@@ -152,6 +162,28 @@ def run_dataset(contract: dict[str, Any]) -> tuple[str, int, int]:
         return "failed", 0, 0
 
 
+def _contract_year(contract: dict[str, Any]) -> int | None:
+    """Data vintage for year-variant family members (dataset_families.json)."""
+    hints = contract.get("hints") or {}
+    return hints.get("year") or contract.get("family_year")
+
+
+def _stat_kwargs(contract: dict[str, Any]) -> dict[str, Any]:
+    """Loader overrides from dataset_families.json hints."""
+    hints = contract.get("hints") or {}
+    kwargs: dict[str, Any] = {}
+    if hints.get("spatial_unit"):
+        kwargs["spatial_unit"] = hints["spatial_unit"]
+    if hints.get("spatial_key_column"):
+        kwargs["spatial_key_column"] = hints["spatial_key_column"]
+    if hints.get("skip_columns"):
+        kwargs["skip_columns"] = hints["skip_columns"]
+    year = _contract_year(contract)
+    if year:
+        kwargs["default_year"] = year
+    return kwargs
+
+
 def _dispatch(
     contract: dict[str, Any], url: str, fmt: str
 ) -> tuple[int, int, str]:
@@ -164,6 +196,8 @@ def _dispatch(
     dataset_id = contract["id"]
     name = contract.get("name", "")
     title = contract.get("title", "")
+    year = _contract_year(contract)
+    stat_kwargs = _stat_kwargs(contract)
 
     # ── Park+Ride: three distinct WFS endpoints, distinguished by URL ────────
     # - lastrecord       → live snapshot, one row per site (overwritten)
@@ -215,7 +249,7 @@ def _dispatch(
             stops = ext.extract_stops(url)
             routes = ext.extract_routes(url)
         with get_conn() as conn:
-            loaded = upsert_geo_features(conn, dataset_id, stops, feature_type="gtfs_stop")
+            loaded = upsert_geo_features(conn, dataset_id, stops, feature_type="gtfs_stop", year=year)
             store_raw_payload(conn, dataset_id, url, fmt, {"stops": len(stops), "routes": len(routes)})
         return len(stops) + len(routes), loaded, "core.geo_features"
 
@@ -224,7 +258,7 @@ def _dispatch(
         with ShapefileExtractor() as ext:
             feats = ext.extract(url)
         with get_conn() as conn:
-            loaded = upsert_geo_features(conn, dataset_id, feats, feature_type=name[:64])
+            loaded = upsert_geo_features(conn, dataset_id, feats, feature_type=name[:64], year=year)
             store_raw_payload(conn, dataset_id, url, fmt, {"count": len(feats)})
         return len(feats), loaded, "core.geo_features"
 
@@ -234,12 +268,12 @@ def _dispatch(
             detected_fmt, content = ext.extract(url)
         if detected_fmt == "GeoJSON":
             with get_conn() as conn:
-                loaded = upsert_geo_features(conn, dataset_id, content, feature_type=name[:64])
+                loaded = upsert_geo_features(conn, dataset_id, content, feature_type=name[:64], year=year)
                 store_raw_payload(conn, dataset_id, url, fmt, {"count": len(content)})
             return len(content), loaded, "core.geo_features"
         if detected_fmt == "CSV":
             with get_conn() as conn:
-                loaded = upsert_statistics(conn, dataset_id, content)
+                loaded = upsert_statistics(conn, dataset_id, content, **stat_kwargs)
                 store_raw_payload(conn, dataset_id, url, fmt, {"count": len(content)})
             return len(content), loaded, "core.statistics"
         if detected_fmt == "SHP":
@@ -247,7 +281,7 @@ def _dispatch(
             with ShapefileExtractor() as ext:
                 feats = ext.extract(url)
             with get_conn() as conn:
-                loaded = upsert_geo_features(conn, dataset_id, feats, feature_type=name[:64])
+                loaded = upsert_geo_features(conn, dataset_id, feats, feature_type=name[:64], year=year)
             return len(feats), loaded, "core.geo_features"
         logger.info("ZIP from %s: unrecognised content, storing raw", url)
         with get_conn() as conn:
@@ -259,7 +293,7 @@ def _dispatch(
         with ExcelExtractor() as ext:
             records = ext.extract(url, fmt=fmt)
         with get_conn() as conn:
-            loaded = upsert_statistics(conn, dataset_id, records)
+            loaded = upsert_statistics(conn, dataset_id, records, **stat_kwargs)
             store_raw_payload(conn, dataset_id, url, fmt, {"count": len(records)})
         return len(records), loaded, "core.statistics"
 
@@ -268,7 +302,7 @@ def _dispatch(
         with XmlExtractor() as ext:
             records = ext.extract(url)
         with get_conn() as conn:
-            loaded = upsert_statistics(conn, dataset_id, records)
+            loaded = upsert_statistics(conn, dataset_id, records, **stat_kwargs)
             store_raw_payload(conn, dataset_id, url, fmt, {"count": len(records)})
         return len(records), loaded, "core.statistics"
 
@@ -277,7 +311,7 @@ def _dispatch(
         with GeoJsonExtractor() as ext:
             feats = ext.extract_all(url)
         with get_conn() as conn:
-            loaded = upsert_geo_features(conn, dataset_id, feats, feature_type=name[:64])
+            loaded = upsert_geo_features(conn, dataset_id, feats, feature_type=name[:64], year=year)
             store_raw_payload(conn, dataset_id, url, fmt, {"count": len(feats)})
         return len(feats), loaded, "core.geo_features"
 
@@ -286,7 +320,7 @@ def _dispatch(
         with StatistikApiExtractor() as ext:
             records = ext.extract_values(url)
         with get_conn() as conn:
-            loaded = upsert_statistics(conn, dataset_id, records)
+            loaded = upsert_statistics(conn, dataset_id, records, **stat_kwargs)
             store_raw_payload(conn, dataset_id, url, fmt, {"count": len(records)})
         return len(records), loaded, "core.statistics"
 
@@ -295,7 +329,7 @@ def _dispatch(
         with CsvExtractor() as ext:
             records = ext.extract_all(url)
         with get_conn() as conn:
-            loaded = upsert_statistics(conn, dataset_id, records)
+            loaded = upsert_statistics(conn, dataset_id, records, **stat_kwargs)
             store_raw_payload(conn, dataset_id, url, fmt, {"count": len(records)})
         return len(records), loaded, "core.statistics"
 

@@ -21,9 +21,16 @@ async def list_metrics(
     dataset_id: str | None = Query(None),
     spatial_unit: str | None = Query(None),
 ) -> list[str]:
+    """Metrics that can actually be visualized.
+
+    Only numeric values count as metrics; for a concrete spatial unit
+    (ortsteil/stadtbezirk/wahlbezirk) the metric must additionally have rows
+    with a resolved spatial_code — otherwise it cannot join a boundary and
+    would render an empty choropleth.
+    """
     async with get_conn() as conn:
         async with conn.cursor() as cur:
-            conditions = ["TRUE"]
+            conditions = ["metric_value IS NOT NULL"]
             params: list[Any] = []
             if dataset_id:
                 conditions.append("dataset_id = %s")
@@ -31,6 +38,8 @@ async def list_metrics(
             if spatial_unit:
                 conditions.append("spatial_unit = %s")
                 params.append(spatial_unit)
+                if spatial_unit != "city":
+                    conditions.append("spatial_code IS NOT NULL")
             where = " AND ".join(conditions)
             await cur.execute(
                 f"SELECT DISTINCT metric_name FROM mart.statistics_latest WHERE {where} ORDER BY 1",
@@ -151,28 +160,42 @@ async def choropleth(
     metric_name: str,
     spatial_unit: str = Query("ortsteil"),
     period_year: int | None = Query(None),
+    dataset_id: str | None = Query(None),
 ) -> ORJSONResponse:
+    # Joins on the canonical spatial_code (resolved by ETL); city-level values
+    # have no boundary and intentionally never reach the map. Wahlbezirk
+    # geometries are versioned per election, hence the boundary_year match.
     async with get_conn() as conn:
         async with conn.cursor() as cur:
             await cur.execute(
                 """
-                SELECT
+                SELECT DISTINCT ON (s.spatial_code)
                     s.spatial_key,
+                    s.spatial_code,
                     s.metric_value,
                     s.metric_unit,
                     s.period_year,
                     ST_AsGeoJSON(b.geom)::jsonb AS geometry,
                     b.name AS boundary_name
-                FROM mart.statistics_latest s
-                LEFT JOIN core.admin_boundaries b
+                FROM core.statistics s
+                JOIN core.admin_boundaries b
                     ON b.boundary_type = s.spatial_unit
-                    AND (b.code = s.spatial_key OR b.name = s.spatial_key)
+                    AND b.code = s.spatial_code
+                    AND (b.boundary_year = 0 OR b.boundary_year = s.period_year)
                 WHERE s.metric_name  = %s
                   AND s.spatial_unit = %s
+                  AND s.spatial_unit <> 'city'
+                  AND s.spatial_code IS NOT NULL
                   AND (%s::int IS NULL OR s.period_year = %s)
+                  AND (%s::text IS NULL OR s.dataset_id = %s)
                   AND s.metric_value IS NOT NULL
+                ORDER BY s.spatial_code, s.period_year DESC NULLS LAST
                 """,
-                (metric_name, spatial_unit, period_year, period_year),
+                (
+                    metric_name, spatial_unit,
+                    period_year, period_year,
+                    dataset_id, dataset_id,
+                ),
             )
             rows = await cur.fetchall()
 
@@ -182,6 +205,7 @@ async def choropleth(
             "geometry": r["geometry"],
             "properties": {
                 "spatial_key": r["spatial_key"],
+                "spatial_code": r["spatial_code"],
                 "name": r["boundary_name"],
                 "metric_name": metric_name,
                 "metric_value": r["metric_value"],

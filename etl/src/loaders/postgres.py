@@ -5,6 +5,7 @@ from __future__ import annotations
 import hashlib
 import json
 import logging
+import re
 from datetime import datetime, timezone
 from typing import Any
 
@@ -56,6 +57,81 @@ def upsert_dataset_registry(
             count += 1
         conn.commit()
     return count
+
+
+def sync_dataset_families(
+    conn: psycopg.Connection, families_config: dict[str, Any]
+) -> int:
+    """Sync dataset_families.json into core.dataset_families + core.datasets.
+
+    Family membership is metadata on core.datasets (family_id, family_year);
+    rows in core tables keep their original dataset_id. Backfills the year
+    dimension onto already-ingested geo features and statistics so a config
+    change takes effect without re-ingesting everything.
+    """
+    families = families_config.get("families", [])
+    member_map: dict[str, tuple[str, int | None]] = {}
+    for fam in families:
+        for member in fam.get("members", []):
+            member_map[member["dataset_id"]] = (fam["family_id"], member.get("year"))
+
+    with conn.cursor() as cur:
+        for fam in families:
+            cur.execute(
+                """
+                INSERT INTO core.dataset_families (family_id, title, description)
+                VALUES (%s, %s, %s)
+                ON CONFLICT (family_id) DO UPDATE SET
+                    title       = EXCLUDED.title,
+                    description = EXCLUDED.description,
+                    updated_at  = NOW()
+                """,
+                (fam["family_id"], fam["title"], fam.get("description")),
+            )
+        for dataset_id, (family_id, year) in member_map.items():
+            cur.execute(
+                "UPDATE core.datasets SET family_id = %s, family_year = %s WHERE id = %s",
+                (family_id, year, dataset_id),
+            )
+        cur.execute(
+            """
+            UPDATE core.datasets SET family_id = NULL, family_year = NULL
+            WHERE family_id IS NOT NULL AND id <> ALL(%s)
+            """,
+            (list(member_map.keys()) or [""],),
+        )
+        # Only after stale memberships are cleared (FK on datasets.family_id)
+        cur.execute(
+            "DELETE FROM core.dataset_families WHERE family_id <> ALL(%s)",
+            ([f["family_id"] for f in families] or [""],),
+        )
+
+        # Backfill the year dimension onto rows ingested before the family
+        # config existed (or changed).
+        cur.execute(
+            """
+            UPDATE core.geo_features f SET year = d.family_year
+            FROM core.datasets d
+            WHERE d.id = f.dataset_id
+              AND d.family_year IS NOT NULL
+              AND f.year IS DISTINCT FROM d.family_year
+            """
+        )
+        # period_label is part of the statistics upsert key — only fill it
+        # when empty, never rewrite existing labels.
+        cur.execute(
+            """
+            UPDATE core.statistics s SET
+                period_year  = d.family_year,
+                period_label = COALESCE(NULLIF(s.period_label, ''), d.family_year::text)
+            FROM core.datasets d
+            WHERE d.id = s.dataset_id
+              AND d.family_year IS NOT NULL
+              AND s.period_year IS NULL
+            """
+        )
+        conn.commit()
+    return len(member_map)
 
 
 def log_etl_start(
@@ -159,6 +235,7 @@ def upsert_geo_features(
     dataset_id: str,
     features: list[dict[str, Any]],
     feature_type: str = "",
+    year: int | None = None,
 ) -> int:
     loaded = 0
     with conn.cursor() as cur:
@@ -193,11 +270,12 @@ def upsert_geo_features(
                 """
                 INSERT INTO core.geo_features
                     (dataset_id, feature_id, feature_type, name, description,
-                     geom, properties, dedup_key)
+                     geom, properties, year, dedup_key)
                 VALUES (
                     %s, %s, %s, %s, %s,
                     ST_Force2D(ST_GeomFromText(%s, 4326)),
                     %s::jsonb,
+                    %s,
                     COALESCE(
                         NULLIF(%s, ''),
                         MD5(%s::jsonb::text || ST_AsEWKT(ST_Force2D(ST_GeomFromText(%s, 4326))))
@@ -210,6 +288,7 @@ def upsert_geo_features(
                     description  = EXCLUDED.description,
                     geom         = EXCLUDED.geom,
                     properties   = EXCLUDED.properties,
+                    year         = EXCLUDED.year,
                     updated_at   = NOW()
                 """,
                 (
@@ -220,6 +299,7 @@ def upsert_geo_features(
                     desc or None,
                     geom_wkt,
                     props_json,
+                    year,
                     feature_id,
                     props_json,
                     geom_wkt,
@@ -230,44 +310,94 @@ def upsert_geo_features(
     return loaded
 
 
+_STAT_PERIOD_KEYS = ("Jahr", "year", "Periode", "periode", "period", "Datum", "datum", "date")
+_YEAR_RE = re.compile(r"\b((?:19|20)\d{2})\b")
+_STAT_SPATIAL_KEYS = (
+    "Ortsteil", "ortsteil", "Stadtbezirk", "stadtbezirk",
+    "Wahlbezirk", "wahlbezirk", "Briefwahlbezirk", "briefwahlbezirk",
+    "Gebiet",
+)
+_RESOLVABLE_UNITS = ("ortsteil", "stadtbezirk", "wahlbezirk")
+
+
+def _detect_spatial_unit(key: str, fallback: str) -> str:
+    lowered = key.lower()
+    if "wahlbezirk" in lowered:  # also matches Briefwahlbezirk
+        return "wahlbezirk"
+    if "ortsteil" in lowered:
+        return "ortsteil"
+    if "stadtbezirk" in lowered:
+        return "stadtbezirk"
+    return fallback
+
+
+def _resolve_spatial_codes(
+    conn: psycopg.Connection, pairs: list[tuple[str, str]]
+) -> dict[tuple[str, str], str | None]:
+    """Resolve distinct (unit, raw key) pairs to canonical boundary codes."""
+    if not pairs:
+        return {}
+    with conn.cursor() as cur:
+        cur.execute(
+            """
+            SELECT u, k, core.resolve_spatial_key(u, k) AS code
+            FROM (SELECT unnest(%s::text[]) AS u, unnest(%s::text[]) AS k) p
+            """,
+            ([p[0] for p in pairs], [p[1] for p in pairs]),
+        )
+        return {(r["u"], r["k"]): r["code"] for r in cur.fetchall()}
+
+
 def upsert_statistics(
     conn: psycopg.Connection,
     dataset_id: str,
     records: list[dict[str, Any]],
     spatial_unit: str = "city",
+    spatial_key_column: str | None = None,
+    default_year: int | None = None,
+    skip_columns: list[str] | None = None,
 ) -> int:
     """
     Generic statistics loader. Tries to detect period and value columns
     from the record structure.
+
+    Contract hints (dataset_families.json) can override the heuristics:
+    spatial_key_column pins the spatial key (e.g. 'gebiet-nr' in the
+    standardized election CSVs), default_year stamps year-variant family
+    members that carry no period column, skip_columns drops metadata
+    columns from the metric iteration.
     """
-    _SKIP_KEYS = {
-        "Jahr", "year", "Periode", "periode", "period",
-        "Ortsteil", "ortsteil", "Stadtbezirk", "stadtbezirk", "Gebiet",
-    }
+    _SKIP_KEYS = set(_STAT_PERIOD_KEYS) | set(_STAT_SPATIAL_KEYS) | set(skip_columns or [])
+    if spatial_key_column:
+        _SKIP_KEYS.add(spatial_key_column)
     _BATCH = 500
 
-    rows: list[tuple] = []
+    rows: list[list] = []
     for rec in records:
-        year = None
-        period_label = ""
+        year = default_year
+        period_label = str(default_year) if default_year else ""
         period_type = "year"
         su = spatial_unit
 
-        for k in ("Jahr", "year", "Periode", "periode", "period"):
+        for k in _STAT_PERIOD_KEYS:
             if k in rec:
-                try:
-                    year = int(str(rec[k])[:4])
-                    period_label = str(rec[k])
-                except (ValueError, TypeError):
-                    pass
+                raw = str(rec[k] or "")
+                year_match = _YEAR_RE.search(raw)
+                if year_match:
+                    year = int(year_match.group(1))
+                    period_label = raw
                 break
 
         spatial_key = "Leipzig"
-        for k in ("Ortsteil", "ortsteil", "Stadtbezirk", "stadtbezirk", "Gebiet"):
-            if k in rec and rec[k]:
-                spatial_key = str(rec[k])
-                su = "ortsteil" if "ortsteil" in k.lower() else ("stadtbezirk" if "stadtbezirk" in k.lower() else su)
-                break
+        if spatial_key_column:
+            if rec.get(spatial_key_column):
+                spatial_key = str(rec[spatial_key_column])
+        else:
+            for k in _STAT_SPATIAL_KEYS:
+                if k in rec and rec[k]:
+                    spatial_key = str(rec[k])
+                    su = _detect_spatial_unit(k, su)
+                    break
 
         for metric_name, raw_val in rec.items():
             if metric_name in _SKIP_KEYS:
@@ -275,22 +405,35 @@ def upsert_statistics(
             try:
                 metric_value = float(str(raw_val).replace(",", "."))
             except (ValueError, TypeError):
-                metric_value = None
-            rows.append((
+                # Text columns (names, labels, IDs) are dimensions, not
+                # metrics — storing them as NULL-valued metrics only floods
+                # the metric pickers (see migration 012).
+                continue
+            rows.append([
                 dataset_id, period_type, period_label, year, None, None,
                 su, spatial_key, metric_name, metric_value,
-            ))
+            ])
+
+    # Canonical boundary code per row — resolved once per distinct key.
+    # spatial_key stays raw: it is part of the upsert conflict key.
+    code_map = _resolve_spatial_codes(
+        conn,
+        sorted({(r[6], r[7]) for r in rows if r[6] in _RESOLVABLE_UNITS}),
+    )
+    for r in rows:
+        r.append(code_map.get((r[6], r[7])))
 
     loaded = 0
     with conn.cursor() as cur:
         for i in range(0, len(rows), _BATCH):
-            batch = rows[i : i + _BATCH]
+            batch = [tuple(r) for r in rows[i : i + _BATCH]]
             cur.executemany(
                 """
                 INSERT INTO core.statistics
                     (dataset_id, period_type, period_label, period_year, period_quarter,
-                     period_month, spatial_unit, spatial_key, metric_name, metric_value)
-                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                     period_month, spatial_unit, spatial_key, metric_name, metric_value,
+                     spatial_code)
+                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
                 ON CONFLICT (dataset_id, period_label, spatial_unit, spatial_key, metric_name)
                 DO UPDATE SET
                     period_type    = EXCLUDED.period_type,
@@ -298,6 +441,7 @@ def upsert_statistics(
                     period_quarter = EXCLUDED.period_quarter,
                     period_month   = EXCLUDED.period_month,
                     metric_value   = EXCLUDED.metric_value,
+                    spatial_code   = EXCLUDED.spatial_code,
                     ingested_at    = NOW()
                 """,
                 batch,

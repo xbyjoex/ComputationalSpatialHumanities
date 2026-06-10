@@ -1,9 +1,6 @@
-"""Map-specific endpoints: bbox queries, live layers, geo features."""
+"""Map-specific endpoints: live layers, boundaries, feature-group listing."""
 
 from __future__ import annotations
-
-import json
-from typing import Any
 
 from fastapi import APIRouter, Query
 from fastapi.responses import ORJSONResponse
@@ -15,74 +12,32 @@ from ..db import get_conn
 router = APIRouter(prefix="/map", tags=["map"])
 
 
-@router.get("/features")
-@cached(ttl=30)
-async def get_map_features(
-    _user: CurrentUser,
-    xmin: float = Query(..., description="Bounding box west longitude"),
-    ymin: float = Query(..., description="Bounding box south latitude"),
-    xmax: float = Query(..., description="Bounding box east longitude"),
-    ymax: float = Query(..., description="Bounding box north latitude"),
-    dataset_ids: list[str] | None = Query(None),
-    feature_types: list[str] | None = Query(None),
-    limit: int = Query(2000, le=5000),
-) -> ORJSONResponse:
-    async with get_conn() as conn:
-        async with conn.cursor() as cur:
-            await cur.execute(
-                """
-                SELECT
-                    id, dataset_id, dataset_title, feature_type, name,
-                    ST_AsGeoJSON(geom)::jsonb AS geometry,
-                    properties, valid_from, valid_until
-                FROM mart.geo_features_map
-                WHERE geom && ST_MakeEnvelope(%s, %s, %s, %s, 4326)
-                  AND (%s::text[] IS NULL OR dataset_id = ANY(%s))
-                  AND (%s::text[] IS NULL OR feature_type = ANY(%s))
-                LIMIT %s
-                """,
-                (xmin, ymin, xmax, ymax, dataset_ids, dataset_ids, feature_types, feature_types, limit),
-            )
-            rows = await cur.fetchall()
-
-    features = []
-    for r in rows:
-        features.append(
-            {
-                "type": "Feature",
-                "id": r["id"],
-                "geometry": r["geometry"],
-                "properties": {
-                    "dataset_id": r["dataset_id"],
-                    "dataset_title": r["dataset_title"],
-                    "feature_type": r["feature_type"],
-                    "name": r["name"],
-                    "valid_from": r["valid_from"].isoformat() if r["valid_from"] else None,
-                    "valid_until": r["valid_until"].isoformat() if r["valid_until"] else None,
-                    **(r["properties"] or {}),
-                },
-            }
-        )
-
-    return ORJSONResponse({"type": "FeatureCollection", "features": features})
-
-
 @router.get("/feature-datasets")
 @cached(ttl=600)
 async def get_feature_datasets(_user: CurrentUser) -> ORJSONResponse:
-    """List all datasets that have features in the unified geo layer."""
+    """List selectable groups for the unified geo layer.
+
+    Year-variant dataset families collapse into a single group with the
+    available years; standalone datasets appear as their own group.
+    """
     async with get_conn() as conn:
         async with conn.cursor() as cur:
             await cur.execute(
                 """
                 SELECT
-                    dataset_id,
-                    dataset_title,
-                    COUNT(*) AS feature_count,
-                    ARRAY_AGG(DISTINCT ST_GeometryType(geom)) AS geometry_types
-                FROM mart.geo_features_map
-                GROUP BY dataset_id, dataset_title
-                ORDER BY dataset_title
+                    COALESCE(d.family_id, f.dataset_id)          AS group_id,
+                    COALESCE(fam.title, MIN(d.title))            AS title,
+                    (d.family_id IS NOT NULL)                    AS is_family,
+                    ARRAY_AGG(DISTINCT f.dataset_id)             AS dataset_ids,
+                    ARRAY_AGG(DISTINCT f.year ORDER BY f.year)
+                        FILTER (WHERE f.year IS NOT NULL)        AS years,
+                    COUNT(*)                                     AS feature_count,
+                    ARRAY_AGG(DISTINCT ST_GeometryType(f.geom))  AS geometry_types
+                FROM core.geo_features f
+                JOIN core.datasets d ON d.id = f.dataset_id AND d.is_active
+                LEFT JOIN core.dataset_families fam ON fam.family_id = d.family_id
+                GROUP BY 1, 3, fam.title
+                ORDER BY 2
                 """
             )
             rows = await cur.fetchall()
@@ -90,8 +45,11 @@ async def get_feature_datasets(_user: CurrentUser) -> ORJSONResponse:
     return ORJSONResponse(
         [
             {
-                "dataset_id": r["dataset_id"],
-                "dataset_title": r["dataset_title"],
+                "group_id": r["group_id"],
+                "title": r["title"],
+                "is_family": r["is_family"],
+                "dataset_ids": r["dataset_ids"],
+                "years": r["years"] or [],
                 "feature_count": r["feature_count"],
                 "geometry_types": r["geometry_types"],
             }

@@ -17,10 +17,12 @@ from pathlib import Path
 
 import schedule
 
+from .boundaries import seed_boundaries_safe
+from .cache_bump import bump_tiles_version
 from .config import settings
 from .db import get_conn, run_migrations
 from . import etl_state
-from .loaders.postgres import upsert_dataset_registry
+from .loaders.postgres import sync_dataset_families, upsert_dataset_registry
 from .notifier import (
     notify_mart_refresh_failed,
     notify_nightly_done,
@@ -54,15 +56,48 @@ signal.signal(signal.SIGTERM, _handle_signal)
 signal.signal(signal.SIGINT, _handle_signal)
 
 
-def load_contracts() -> tuple[list[dict], list[dict]]:
-    """Load dataset contracts and split into nightly / live buckets."""
+def load_families() -> dict:
+    """Load the curated dataset_families.json (empty config if absent)."""
+    path = Path(settings.families_path)
+    if not path.exists():
+        # Local dev fallback: repo root next to dataset_contracts.json
+        repo_root_path = Path(__file__).resolve().parents[2] / "dataset_families.json"
+        path = repo_root_path if repo_root_path.exists() else path
+    if not path.exists():
+        logger.warning("No dataset_families.json found — families disabled")
+        return {"families": [], "dataset_hints": {}}
+    with open(path, encoding="utf-8") as f:
+        config = json.load(f)
+    logger.info(
+        "Loaded %d dataset families, %d dataset hints",
+        len(config.get("families", [])), len(config.get("dataset_hints", {})),
+    )
+    return config
+
+
+def load_contracts() -> tuple[list[dict], list[dict], dict]:
+    """Load dataset contracts, stamp family metadata, split nightly / live."""
     path = settings.contracts_path
     with open(path, encoding="utf-8") as f:
         all_contracts = json.load(f)
+
+    families = load_families()
+    member_map = {
+        m["dataset_id"]: (fam["family_id"], m.get("year"))
+        for fam in families.get("families", [])
+        for m in fam.get("members", [])
+    }
+    hints = families.get("dataset_hints", {})
+    for contract in all_contracts:
+        if contract["id"] in member_map:
+            contract["family_id"], contract["family_year"] = member_map[contract["id"]]
+        if contract["id"] in hints:
+            contract["hints"] = hints[contract["id"]]
+
     nightly = [c for c in all_contracts if c["schedule"] == "nightly"]
     live = [c for c in all_contracts if c["schedule"] == "live"]
     logger.info("Loaded %d nightly, %d live contracts", len(nightly), len(live))
-    return nightly, live
+    return nightly, live, families
 
 
 _PROGRESS_INTERVAL = 50  # edit message every N datasets
@@ -70,6 +105,9 @@ _PROGRESS_INTERVAL = 50  # edit message every N datasets
 
 def run_nightly(nightly: list[dict]) -> None:
     logger.info("=== NIGHTLY ETL START (%d datasets) ===", len(nightly))
+    # Refresh admin boundaries + spatial aliases first so statistics ingested
+    # below resolve their spatial_code against current geometries.
+    seed_boundaries_safe(nightly)
     total = len(nightly)
     etl_state.start("nightly", total)
     msg_id = notify_nightly_start(total)
@@ -103,6 +141,9 @@ def run_nightly(nightly: list[dict]) -> None:
                 cur.execute("SELECT mart.refresh_all()")
                 conn.commit()
         logger.info("Mart views refreshed")
+        # Geo features changed → invalidate the per-tile Redis cache.
+        # Live cycles do not bump: live tables are not in the tile path.
+        bump_tiles_version()
     except Exception as exc:
         logger.error("Failed to refresh mart views: %s", exc)
         notify_mart_refresh_failed(str(exc))
@@ -161,12 +202,24 @@ def main() -> None:
     logger.info("Running DB migrations...")
     run_migrations()
 
-    nightly, live = load_contracts()
+    nightly, live, families = load_contracts()
 
     # Sync dataset registry into DB
     with get_conn() as conn:
         n = upsert_dataset_registry(conn, nightly + live)
         logger.info("Dataset registry synced: %d records", n)
+
+    # Family membership + year-dimension backfill
+    try:
+        with get_conn() as conn:
+            members = sync_dataset_families(conn, families)
+            logger.info("Dataset families synced: %d member datasets", members)
+    except Exception as exc:
+        logger.error("Family sync failed: %s", exc)
+
+    # Seed admin boundaries once at startup so choropleths work without
+    # waiting for the 02:00 nightly run.
+    seed_boundaries_safe(nightly + live)
 
     # Schedule nightly at 02:00 UTC
     schedule.every().day.at("02:00").do(run_nightly, nightly)

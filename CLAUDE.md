@@ -78,6 +78,13 @@ opendata.leipzig.de / statistik.leipzig.de
     → frontend/src/api/ (React Query + Axios)
 ```
 
+Geo features are served as **vector tiles** (`/api/map/tiles/{z}/{x}/{y}.pbf`,
+PostGIS `ST_AsMVT` over `core.geo_features`, per-tile Redis cache invalidated
+via `tiles:version` bump after the nightly run). Statistics with
+Ortsteil/Stadtbezirk/Wahlbezirk reference join `core.admin_boundaries` via the
+canonical `spatial_code` (resolved by `core.resolve_spatial_key()` from
+`core.spatial_aliases`); boundaries are seeded by `etl/src/boundaries.py`.
+
 ### Database Schema (PostgreSQL 16 + PostGIS 3.4)
 
 Five schemas with clear separation of concerns:
@@ -93,9 +100,12 @@ Schema migrations are tracked in `public.schema_migrations`.
 
 **`dataset_contracts.json`** (root) is the single source of truth for all 398 datasets — each entry defines `id`, `title`, `schedule` (nightly vs. live), `best_resource` (URL + format), and `has_geo`.
 
-- `src/scheduler.py` — entry point; runs nightly (02:00 UTC) for all datasets, every 5 min for 18 live sources
+**`dataset_families.json`** (root) merges year-variant datasets (e.g. Bundestagswahl 2021 + 2025, Vornamenstatistik 2014–2025) into one logical dataset with a year dimension (`family_id` on `core.datasets`, `year` on rows). `dataset_hints` overrides loader heuristics per dataset (election CSVs: `spatial_key_column`, `skip_columns`). Re-draft with `etl/scripts/generate_dataset_families.py`, then review manually.
+
+- `src/scheduler.py` — entry point; runs nightly (02:00 UTC) for all datasets, every 5 min for 18 live sources; seeds admin boundaries + syncs families on startup and each nightly run
 - `src/pipeline.py` — dispatches per dataset to typed extractors and loaders
-- `src/extractors/` — `GeoJsonExtractor`, `CsvExtractor`, `JsonExtractor` (statistik API), all extending `HttpExtractor`
+- `src/boundaries.py` — seeds `core.admin_boundaries` (Ortsteile, Stadtbezirke, Wahlbezirke 2021/2025) and resolves raw spatial keys to canonical codes
+- `src/extractors/` — `GeoJsonExtractor`, `CsvExtractor` (delimiter sniffing), `JsonExtractor` (statistik API), all extending `HttpExtractor`
 - `src/loaders/postgres.py` — all upsert functions keyed by dataset type
 
 ### Backend Package (`backend/`)
@@ -104,7 +114,7 @@ FastAPI with async psycopg3 pool + Redis cache.
 
 - `src/api/main.py` — app entry point, lifespan, middleware, router registration
 - `src/api/auth.py` — JWT (python-jose, 60-min access tokens) + bcrypt; refresh tokens SHA-256 hashed and stored in DB (30-day TTL)
-- `src/api/routers/` — `auth_router`, `datasets`, `map_router`, `stats_router`
+- `src/api/routers/` — `auth_router`, `datasets`, `map_router`, `stats_router`, `tiles_router` (MVT vector tiles + per-feature detail)
 - All data endpoints require `Authorization: Bearer <token>`; unprotected: `GET /health`, `GET /ready`
 - Uses `orjson` (`ORJSONResponse`) for fast JSON serialization
 
@@ -130,8 +140,11 @@ React 18 SPA with Vite + TypeScript.
 | File | Purpose |
 |------|---------|
 | `dataset_contracts.json` | Source of truth for all 398 datasets |
+| `dataset_families.json` | Year-variant dataset families + loader hints |
 | `etl/src/scheduler.py` | ETL entry point and scheduling |
 | `etl/src/pipeline.py` | Per-dataset dispatch to extractors/loaders |
+| `etl/src/boundaries.py` | Admin-boundary seeding + spatial-code resolution |
+| `backend/src/api/routers/tiles_router.py` | Vector tiles (ST_AsMVT) for the unified geo layer |
 | `backend/src/api/main.py` | FastAPI app setup |
 | `backend/src/api/auth.py` | Auth logic (JWT + bcrypt) |
 | `sql/migrations/001_schemas_and_core.sql` | Full DB schema |
