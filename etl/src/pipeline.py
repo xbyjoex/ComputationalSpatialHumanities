@@ -118,6 +118,15 @@ def run_dataset(contract: dict[str, Any]) -> tuple[str, int, int]:
 
     try:
         rows_extracted, rows_loaded, target_table = _dispatch(contract, url, fmt)
+        # Data-quality guard: the generic fallback stores only a raw summary
+        # (0 core rows). Surface that in the run log instead of failing silently.
+        dq_note = None
+        if rows_extracted > 0 and rows_loaded == 0 and not target_table:
+            dq_note = "DQ: raw-only ingest (no core rows)"
+            logger.warning(
+                "[DQ] %-60s extracted %d rows but loaded none to core tables (fmt=%s)",
+                title[:60], rows_extracted, fmt,
+            )
         with get_conn() as conn:
             log_etl_finish(
                 conn,
@@ -125,6 +134,7 @@ def run_dataset(contract: dict[str, Any]) -> tuple[str, int, int]:
                 status="success",
                 rows_extracted=rows_extracted,
                 rows_loaded=rows_loaded,
+                error_message=dq_note,
             )
         with get_conn() as conn:
             upsert_dataset_checksum(conn, dataset_id, url, new_etag, new_lm, None)

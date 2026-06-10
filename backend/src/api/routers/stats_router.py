@@ -151,28 +151,42 @@ async def choropleth(
     metric_name: str,
     spatial_unit: str = Query("ortsteil"),
     period_year: int | None = Query(None),
+    dataset_id: str | None = Query(None),
 ) -> ORJSONResponse:
+    # Joins on the canonical spatial_code (resolved by ETL); city-level values
+    # have no boundary and intentionally never reach the map. Wahlbezirk
+    # geometries are versioned per election, hence the boundary_year match.
     async with get_conn() as conn:
         async with conn.cursor() as cur:
             await cur.execute(
                 """
-                SELECT
+                SELECT DISTINCT ON (s.spatial_code)
                     s.spatial_key,
+                    s.spatial_code,
                     s.metric_value,
                     s.metric_unit,
                     s.period_year,
                     ST_AsGeoJSON(b.geom)::jsonb AS geometry,
                     b.name AS boundary_name
-                FROM mart.statistics_latest s
-                LEFT JOIN core.admin_boundaries b
+                FROM core.statistics s
+                JOIN core.admin_boundaries b
                     ON b.boundary_type = s.spatial_unit
-                    AND (b.code = s.spatial_key OR b.name = s.spatial_key)
+                    AND b.code = s.spatial_code
+                    AND (b.boundary_year = 0 OR b.boundary_year = s.period_year)
                 WHERE s.metric_name  = %s
                   AND s.spatial_unit = %s
+                  AND s.spatial_unit <> 'city'
+                  AND s.spatial_code IS NOT NULL
                   AND (%s::int IS NULL OR s.period_year = %s)
+                  AND (%s::text IS NULL OR s.dataset_id = %s)
                   AND s.metric_value IS NOT NULL
+                ORDER BY s.spatial_code, s.period_year DESC NULLS LAST
                 """,
-                (metric_name, spatial_unit, period_year, period_year),
+                (
+                    metric_name, spatial_unit,
+                    period_year, period_year,
+                    dataset_id, dataset_id,
+                ),
             )
             rows = await cur.fetchall()
 
@@ -182,6 +196,7 @@ async def choropleth(
             "geometry": r["geometry"],
             "properties": {
                 "spatial_key": r["spatial_key"],
+                "spatial_code": r["spatial_code"],
                 "name": r["boundary_name"],
                 "metric_name": metric_name,
                 "metric_value": r["metric_value"],

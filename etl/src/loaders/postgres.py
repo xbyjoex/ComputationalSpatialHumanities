@@ -230,6 +230,43 @@ def upsert_geo_features(
     return loaded
 
 
+_STAT_PERIOD_KEYS = ("Jahr", "year", "Periode", "periode", "period")
+_STAT_SPATIAL_KEYS = (
+    "Ortsteil", "ortsteil", "Stadtbezirk", "stadtbezirk",
+    "Wahlbezirk", "wahlbezirk", "Briefwahlbezirk", "briefwahlbezirk",
+    "Gebiet",
+)
+_RESOLVABLE_UNITS = ("ortsteil", "stadtbezirk", "wahlbezirk")
+
+
+def _detect_spatial_unit(key: str, fallback: str) -> str:
+    lowered = key.lower()
+    if "wahlbezirk" in lowered:  # also matches Briefwahlbezirk
+        return "wahlbezirk"
+    if "ortsteil" in lowered:
+        return "ortsteil"
+    if "stadtbezirk" in lowered:
+        return "stadtbezirk"
+    return fallback
+
+
+def _resolve_spatial_codes(
+    conn: psycopg.Connection, pairs: list[tuple[str, str]]
+) -> dict[tuple[str, str], str | None]:
+    """Resolve distinct (unit, raw key) pairs to canonical boundary codes."""
+    if not pairs:
+        return {}
+    with conn.cursor() as cur:
+        cur.execute(
+            """
+            SELECT u, k, core.resolve_spatial_key(u, k) AS code
+            FROM (SELECT unnest(%s::text[]) AS u, unnest(%s::text[]) AS k) p
+            """,
+            ([p[0] for p in pairs], [p[1] for p in pairs]),
+        )
+        return {(r["u"], r["k"]): r["code"] for r in cur.fetchall()}
+
+
 def upsert_statistics(
     conn: psycopg.Connection,
     dataset_id: str,
@@ -240,20 +277,17 @@ def upsert_statistics(
     Generic statistics loader. Tries to detect period and value columns
     from the record structure.
     """
-    _SKIP_KEYS = {
-        "Jahr", "year", "Periode", "periode", "period",
-        "Ortsteil", "ortsteil", "Stadtbezirk", "stadtbezirk", "Gebiet",
-    }
+    _SKIP_KEYS = set(_STAT_PERIOD_KEYS) | set(_STAT_SPATIAL_KEYS)
     _BATCH = 500
 
-    rows: list[tuple] = []
+    rows: list[list] = []
     for rec in records:
         year = None
         period_label = ""
         period_type = "year"
         su = spatial_unit
 
-        for k in ("Jahr", "year", "Periode", "periode", "period"):
+        for k in _STAT_PERIOD_KEYS:
             if k in rec:
                 try:
                     year = int(str(rec[k])[:4])
@@ -263,10 +297,10 @@ def upsert_statistics(
                 break
 
         spatial_key = "Leipzig"
-        for k in ("Ortsteil", "ortsteil", "Stadtbezirk", "stadtbezirk", "Gebiet"):
+        for k in _STAT_SPATIAL_KEYS:
             if k in rec and rec[k]:
                 spatial_key = str(rec[k])
-                su = "ortsteil" if "ortsteil" in k.lower() else ("stadtbezirk" if "stadtbezirk" in k.lower() else su)
+                su = _detect_spatial_unit(k, su)
                 break
 
         for metric_name, raw_val in rec.items():
@@ -276,21 +310,31 @@ def upsert_statistics(
                 metric_value = float(str(raw_val).replace(",", "."))
             except (ValueError, TypeError):
                 metric_value = None
-            rows.append((
+            rows.append([
                 dataset_id, period_type, period_label, year, None, None,
                 su, spatial_key, metric_name, metric_value,
-            ))
+            ])
+
+    # Canonical boundary code per row — resolved once per distinct key.
+    # spatial_key stays raw: it is part of the upsert conflict key.
+    code_map = _resolve_spatial_codes(
+        conn,
+        sorted({(r[6], r[7]) for r in rows if r[6] in _RESOLVABLE_UNITS}),
+    )
+    for r in rows:
+        r.append(code_map.get((r[6], r[7])))
 
     loaded = 0
     with conn.cursor() as cur:
         for i in range(0, len(rows), _BATCH):
-            batch = rows[i : i + _BATCH]
+            batch = [tuple(r) for r in rows[i : i + _BATCH]]
             cur.executemany(
                 """
                 INSERT INTO core.statistics
                     (dataset_id, period_type, period_label, period_year, period_quarter,
-                     period_month, spatial_unit, spatial_key, metric_name, metric_value)
-                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                     period_month, spatial_unit, spatial_key, metric_name, metric_value,
+                     spatial_code)
+                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
                 ON CONFLICT (dataset_id, period_label, spatial_unit, spatial_key, metric_name)
                 DO UPDATE SET
                     period_type    = EXCLUDED.period_type,
@@ -298,6 +342,7 @@ def upsert_statistics(
                     period_quarter = EXCLUDED.period_quarter,
                     period_month   = EXCLUDED.period_month,
                     metric_value   = EXCLUDED.metric_value,
+                    spatial_code   = EXCLUDED.spatial_code,
                     ingested_at    = NOW()
                 """,
                 batch,

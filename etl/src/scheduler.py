@@ -17,6 +17,7 @@ from pathlib import Path
 
 import schedule
 
+from .boundaries import seed_boundaries_safe
 from .config import settings
 from .db import get_conn, run_migrations
 from . import etl_state
@@ -70,6 +71,9 @@ _PROGRESS_INTERVAL = 50  # edit message every N datasets
 
 def run_nightly(nightly: list[dict]) -> None:
     logger.info("=== NIGHTLY ETL START (%d datasets) ===", len(nightly))
+    # Refresh admin boundaries + spatial aliases first so statistics ingested
+    # below resolve their spatial_code against current geometries.
+    seed_boundaries_safe(nightly)
     total = len(nightly)
     etl_state.start("nightly", total)
     msg_id = notify_nightly_start(total)
@@ -167,6 +171,10 @@ def main() -> None:
     with get_conn() as conn:
         n = upsert_dataset_registry(conn, nightly + live)
         logger.info("Dataset registry synced: %d records", n)
+
+    # Seed admin boundaries once at startup so choropleths work without
+    # waiting for the 02:00 nightly run.
+    seed_boundaries_safe(nightly + live)
 
     # Schedule nightly at 02:00 UTC
     schedule.every().day.at("02:00").do(run_nightly, nightly)
