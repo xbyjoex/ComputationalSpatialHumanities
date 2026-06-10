@@ -31,6 +31,9 @@ for i in $(seq 1 30); do
   sleep 2
 done
 
+# Nginx config is bind-mounted read-only — reload to pick up changes
+$COMPOSE exec -T nginx nginx -s reload || true
+
 # Prune old images and build cache (builds run with --no-cache, so the
 # BuildKit cache is never read — only written. Without pruning it grows
 # by the full build size on every deploy.)
