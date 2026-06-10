@@ -129,6 +129,168 @@ async def dataset_status(_user: CurrentUser) -> list[dict[str, Any]]:
             return await cur.fetchall()
 
 
+# SQL behind /catalog. One pass over the four data stores tells us, per dataset,
+# WHICH representations it supports. Year-variant families collapse to one group.
+# pg_temp.array_cat_agg (created per request below) flattens the array-valued
+# columns across year-variant family members. GeometryType uses IN-lists, not
+# LIKE, so the SQL carries no literal '%' that the driver would misread.
+_CATALOG_SQL = """
+WITH caps AS (
+  SELECT
+    d.id, d.title, d.name AS slug, d.schedule, d.family_id, d.categories,
+    COALESCE(g.n, 0) geo_n, g.geomkinds, g.ftypes, g.gyears,
+    COALESCE(so.n, 0) ort_n, COALESCE(so.om, 0) ort_metrics,
+    COALESCE(sc.n, 0) city_n, COALESCE(sc.cm, 0) city_metrics,
+    COALESCE(sc.cy, 0) city_years,
+    COALESCE(tr.n, 0) traffic_n,
+    th.category_id theme_id
+  FROM core.datasets d
+  LEFT JOIN (
+    SELECT dataset_id, count(*) n,
+      array_agg(DISTINCT CASE
+        WHEN GeometryType(geom) IN ('POLYGON', 'MULTIPOLYGON')       THEN 'area'
+        WHEN GeometryType(geom) IN ('LINESTRING', 'MULTILINESTRING') THEN 'line'
+        ELSE 'point' END)                                              geomkinds,
+      array_agg(DISTINCT feature_type) FILTER (WHERE feature_type IS NOT NULL) ftypes,
+      array_agg(DISTINCT year)         FILTER (WHERE year IS NOT NULL)         gyears
+    FROM core.geo_features GROUP BY dataset_id
+  ) g ON g.dataset_id = d.id
+  LEFT JOIN (
+    SELECT dataset_id, count(*) n, count(DISTINCT metric_name) om
+    FROM core.statistics
+    WHERE spatial_unit IN ('ortsteil', 'stadtbezirk', 'wahlbezirk')
+      AND spatial_code IS NOT NULL
+    GROUP BY dataset_id
+  ) so ON so.dataset_id = d.id
+  LEFT JOIN (
+    SELECT dataset_id, count(*) n, count(DISTINCT metric_name) cm,
+           count(DISTINCT period_year) cy
+    FROM core.statistics WHERE spatial_unit = 'city' GROUP BY dataset_id
+  ) sc ON sc.dataset_id = d.id
+  LEFT JOIN (
+    SELECT dataset_id, count(*) n FROM core.traffic_restrictions GROUP BY dataset_id
+  ) tr ON tr.dataset_id = d.id
+  LEFT JOIN LATERAL (
+    SELECT dc.category_id FROM unnest(d.categories) cat
+    JOIN core.dataset_categories dc ON dc.category_id = cat
+    ORDER BY (dc.category_id = 'sonstiges'), dc.position LIMIT 1
+  ) th ON true
+  WHERE d.is_active
+)
+SELECT
+  COALESCE(caps.family_id, caps.id)                       AS group_id,
+  bool_or(caps.family_id IS NOT NULL)                     AS is_family,
+  COALESCE(MAX(fam.title), MIN(caps.title))               AS title,
+  MIN(caps.slug)                                          AS slug,
+  COALESCE(MIN(caps.theme_id), 'sonstiges')               AS theme,
+  array_agg(DISTINCT caps.id)                             AS dataset_ids,
+  SUM(caps.geo_n)::bigint                                 AS geo_n,
+  SUM(caps.ort_n)::bigint                                 AS ort_n,
+  SUM(caps.city_n)::bigint                                AS city_n,
+  SUM(caps.traffic_n)::bigint                             AS traffic_n,
+  SUM(caps.ort_metrics)::int                              AS ort_metrics,
+  SUM(caps.city_metrics)::int                             AS city_metrics,
+  MAX(caps.city_years)::int                               AS city_years,
+  bool_or(caps.schedule = 'live')                         AS live,
+  (SELECT array_agg(DISTINCT k)
+     FROM unnest(pg_temp.array_cat_agg(caps.geomkinds)) k) AS geomkinds,
+  (SELECT array_agg(DISTINCT t)
+     FROM unnest(pg_temp.array_cat_agg(caps.ftypes)) t)    AS ftypes,
+  (SELECT array_agg(DISTINCT y ORDER BY y)
+     FROM unnest(pg_temp.array_cat_agg(caps.gyears)) y)    AS years
+FROM caps
+LEFT JOIN core.dataset_families fam ON fam.family_id = caps.family_id
+WHERE caps.geo_n + caps.ort_n + caps.city_n + caps.traffic_n > 0
+GROUP BY 1
+ORDER BY title
+"""
+
+
+def _catalog_kind(r: dict[str, Any]) -> str:
+    """Primary representation, derived from which stores hold data."""
+    if r["geo_n"] or r["traffic_n"]:
+        return "geo"
+    if r["ort_n"]:
+        return "choropleth"
+    if r["city_n"] and (r["city_years"] or 0) > 1:
+        return "timeseries"
+    return "distribution"
+
+
+def _catalog_badges(r: dict[str, Any]) -> list[str]:
+    badges: list[str] = []
+    if r["live"]:
+        badges.append("Live")
+    if r["geo_n"] or r["traffic_n"]:
+        badges.append("Geo")
+    if r["ort_n"]:
+        badges.append("Ortsteil")
+    if r["city_n"]:
+        badges.append("Stadt")
+    if (r["city_years"] or 0) > 1 or len(r["years"] or []) > 1:
+        badges.append("Zeitreihe")
+    return badges
+
+
+def _catalog_geometry(r: dict[str, Any]) -> str | None:
+    kinds = set(r["geomkinds"] or [])
+    if r["traffic_n"]:
+        kinds.add("area")
+    for k in ("area", "line", "point"):  # most-areal wins for styling
+        if k in kinds:
+            return k
+    return None
+
+
+@router.get("/catalog")
+@cached(ttl=600)
+async def dataset_catalog(_user: CurrentUser) -> ORJSONResponse:
+    """Thematic catalog of every dataset that actually carries data.
+
+    One entry per logical dataset (year-variant families collapsed), annotated
+    with the representations it supports (geo / choropleth / timeseries /
+    distribution), capability badges and the spatial granularity — everything
+    the Lagebild left rail needs to group sources by theme and offer only
+    sensible visualisations.
+    """
+    async with get_conn() as conn:
+        async with conn.cursor() as cur:
+            # Session-local helper to flatten array columns across family members.
+            await cur.execute(
+                """
+                CREATE OR REPLACE AGGREGATE pg_temp.array_cat_agg(anycompatiblearray)
+                (sfunc = array_cat, stype = anycompatiblearray, initcond = '{}')
+                """
+            )
+            await cur.execute(_CATALOG_SQL)
+            rows = await cur.fetchall()
+
+    catalog = [
+        {
+            "group_id": r["group_id"],
+            "is_family": r["is_family"],
+            "title": r["title"],
+            "slug": r["slug"],
+            "theme": r["theme"],
+            "dataset_ids": r["dataset_ids"],
+            "kind": _catalog_kind(r),
+            "badges": _catalog_badges(r),
+            "geometry": _catalog_geometry(r),
+            "feature_types": r["ftypes"] or [],
+            "years": r["years"] or [],
+            "feature_count": int(r["geo_n"] + r["traffic_n"]) or None,
+            "ort_metrics": r["ort_metrics"],
+            "city_metrics": r["city_metrics"],
+            "live": r["live"],
+            # Traffic restrictions live in their own table + /map/restrictions
+            # layer, not the unified geo tiles — the UI routes them separately.
+            "traffic": bool(r["traffic_n"]),
+        }
+        for r in rows
+    ]
+    return ORJSONResponse(catalog)
+
+
 # Static routes MUST be declared before the /{dataset_id} catch-all.
 
 

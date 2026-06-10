@@ -15,7 +15,8 @@ import {
 } from "../api/map";
 import { loadGothamStyle, datasetColor } from "../map/gothamStyle";
 import { registerTileProtocol, useTileLoadStore } from "../map/tileProtocol";
-import LayerPanel from "./LayerPanel";
+import CatalogPanel from "./CatalogPanel";
+import ContextDock from "./ContextDock";
 import TimelineBar from "./TimelineBar";
 import Reticle from "./chrome/Reticle";
 
@@ -430,8 +431,11 @@ export default function MapView() {
       {/* HUD frame — corner brackets over the viewport */}
       <div className="corners pointer-events-none absolute inset-3 z-10 opacity-50" style={{ "--bracket-size": "18px" } as React.CSSProperties} />
 
-      {/* Layer control panel */}
-      <LayerPanel />
+      {/* Datenkatalog (Themen-Leiste) */}
+      <CatalogPanel />
+
+      {/* Kontext-Dock für nicht-geo Statistik */}
+      <ContextDock />
 
       {/* Jahres-Timeline der Datenebene */}
       <TimelineBar />

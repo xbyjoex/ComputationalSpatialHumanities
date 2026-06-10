@@ -77,6 +77,30 @@ export const fetchGroupedMetrics = (spatial_unit?: string): Promise<MetricGroup[
     .get("/stats/metrics", { params: { spatial_unit, grouped: true } })
     .then((r) => r.data);
 
+export interface TimeseriesPoint {
+  key: string;
+  period: string;
+  year: number | null;
+  value: number | null;
+  unit: string | null;
+}
+export interface TimeseriesResponse {
+  dataset_id: string;
+  metric: string;
+  spatial_unit: string;
+  series: TimeseriesPoint[];
+}
+
+// Zeit-/Verteilungsreihe eines (nicht-geo) Statistik-Datensatzes für das Dock
+export const fetchTimeseries = (
+  dataset_id: string,
+  metric_name: string,
+  spatial_unit = "city"
+): Promise<TimeseriesResponse> =>
+  apiClient
+    .get("/stats/timeseries", { params: { dataset_id, metric_name, spatial_unit } })
+    .then((r) => r.data);
+
 export const fetchDatasets = (params?: Record<string, unknown>) =>
   apiClient.get("/datasets", { params }).then((r) => r.data);
 
