@@ -1,8 +1,8 @@
+@import "maplibre-gl/dist/maplibre-gl.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-@import "maplibre-gl/dist/maplibre-gl.css";
 
 * {
   box-sizing: border-box;
@@ -14,38 +14,174 @@ body,
   height: 100%;
   margin: 0;
   padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  background-color: #0f1729;
-  color: #e2e8f0;
+  font-family: "IBM Plex Sans", system-ui, sans-serif;
+  background-color: #0a1015;
+  color: #e7f0f6;
 }
 
-/* Custom scrollbar */
+::selection {
+  background: rgba(83, 185, 232, 0.35);
+}
+
+/* ---------- HUD primitives ---------- */
+
+@layer components {
+  /* Micro-caption in Gotham style: tiny, versal, wide tracking */
+  .hud-label {
+    @apply text-[10px] font-medium uppercase tracking-[0.22em] text-gotham-400;
+  }
+
+  /* Floating console panel */
+  .panel {
+    @apply border border-gotham-700 bg-gotham-850/95 backdrop-blur-sm;
+    border-radius: 2px;
+  }
+
+  /* Form field — squared, mono, cyan focus */
+  .field {
+    @apply w-full border border-gotham-600 bg-gotham-800 px-2.5 py-2 font-mono text-xs text-gotham-100 transition-colors placeholder:text-gotham-500 focus:border-signal-cyan focus:outline-none focus:ring-1 focus:ring-signal-cyan/40;
+    border-radius: 2px;
+  }
+
+  .btn-primary {
+    @apply border border-signal-cyan/60 bg-signal-cyan/10 px-4 py-2.5 font-mono text-xs uppercase tracking-[0.2em] text-signal-cyan transition-colors hover:border-signal-cyan hover:bg-signal-cyan/20 disabled:cursor-default disabled:opacity-40;
+    border-radius: 2px;
+  }
+
+  .btn-ghost {
+    @apply border border-gotham-600 bg-gotham-800 px-3 py-1.5 font-mono text-[11px] uppercase tracking-[0.14em] text-gotham-300 transition-colors hover:border-gotham-500 hover:text-gotham-100 disabled:opacity-40;
+    border-radius: 2px;
+  }
+
+  /* Status LED dot */
+  .led {
+    @apply inline-block h-1.5 w-1.5 shrink-0 rounded-full;
+  }
+}
+
+/* Corner brackets — the HUD signature. Drawn on a pseudo element so it
+   layers over any panel background. Override --bracket to recolor. */
+.corners {
+  position: relative;
+  --bracket: rgba(83, 185, 232, 0.65);
+  --bracket-size: 10px;
+}
+.corners::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  pointer-events: none;
+  background:
+    linear-gradient(var(--bracket), var(--bracket)) left top / var(--bracket-size) 1px,
+    linear-gradient(var(--bracket), var(--bracket)) left top / 1px var(--bracket-size),
+    linear-gradient(var(--bracket), var(--bracket)) right top / var(--bracket-size) 1px,
+    linear-gradient(var(--bracket), var(--bracket)) right top / 1px var(--bracket-size),
+    linear-gradient(var(--bracket), var(--bracket)) left bottom / var(--bracket-size) 1px,
+    linear-gradient(var(--bracket), var(--bracket)) left bottom / 1px var(--bracket-size),
+    linear-gradient(var(--bracket), var(--bracket)) right bottom / var(--bracket-size) 1px,
+    linear-gradient(var(--bracket), var(--bracket)) right bottom / 1px var(--bracket-size);
+  background-repeat: no-repeat;
+}
+
+/* Faint blueprint grid for non-map modules */
+.blueprint-bg {
+  background-color: #0a1015;
+  background-image:
+    linear-gradient(rgba(83, 185, 232, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(83, 185, 232, 0.035) 1px, transparent 1px);
+  background-size: 36px 36px;
+}
+
+/* CRT scanlines, used on auth screens */
+.scanlines::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(255, 255, 255, 0.016) 0 1px,
+    transparent 1px 3px
+  );
+}
+
+.vignette {
+  position: relative;
+}
+.vignette::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center, transparent 40%, rgba(4, 7, 9, 0.75) 100%);
+}
+
+/* ---------- Scrollbar ---------- */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 8px;
+  height: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #1e293b;
+  background: #0e151c;
 }
 ::-webkit-scrollbar-thumb {
-  background: #475569;
-  border-radius: 3px;
+  background: #2b4253;
+  border: 2px solid #0e151c;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3d5a6e;
 }
 
+/* ---------- MapLibre ---------- */
 .maplibregl-map {
   height: 100%;
   width: 100%;
+  font-family: "IBM Plex Sans", system-ui, sans-serif;
+}
+
+.maplibregl-canvas {
+  cursor: crosshair;
 }
 
 .maplibregl-popup-content {
-  background: #1e293b;
-  color: #e2e8f0;
-  border: 1px solid #334155;
-  border-radius: 8px;
-  padding: 12px 16px;
-  font-size: 13px;
-  max-width: 280px;
+  background: rgba(14, 21, 28, 0.96);
+  color: #c6d8e2;
+  border: 1px solid #2b4253;
+  border-radius: 2px;
+  padding: 0;
+  font-size: 12px;
+  max-width: 300px;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.6);
 }
 
 .maplibregl-popup-anchor-bottom .maplibregl-popup-tip {
-  border-top-color: #1e293b;
+  border-top-color: #2b4253;
+}
+.maplibregl-popup-anchor-top .maplibregl-popup-tip {
+  border-bottom-color: #2b4253;
+}
+.maplibregl-popup-anchor-left .maplibregl-popup-tip {
+  border-right-color: #2b4253;
+}
+.maplibregl-popup-anchor-right .maplibregl-popup-tip {
+  border-left-color: #2b4253;
+}
+
+.maplibregl-popup-close-button {
+  color: #678599;
+  font-size: 16px;
+  padding: 2px 8px;
+}
+.maplibregl-popup-close-button:hover {
+  color: #e7f0f6;
+  background: transparent;
+}
+
+.maplibregl-ctrl-attrib {
+  background: rgba(10, 16, 21, 0.7) !important;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 9px;
+}
+.maplibregl-ctrl-attrib a {
+  color: #678599 !important;
 }
