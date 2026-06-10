@@ -13,6 +13,7 @@ interface MapState {
   sidebarTab: "layers" | "stats" | "datasets";
   toggleLayer: (key: LayerKey) => void;
   setSelectedDatasets: (ids: string[]) => void;
+  toggleDatasetId: (id: string) => void;
   setChoroplethMetric: (m: string) => void;
   setCorrelationMetrics: (a: string, b: string) => void;
   setYear: (y: number | null) => void;
@@ -39,6 +40,12 @@ export const useMapStore = create<MapState>((set) => ({
     }),
 
   setSelectedDatasets: (ids) => set({ selectedDatasetIds: ids }),
+  toggleDatasetId: (id) =>
+    set((s) => ({
+      selectedDatasetIds: s.selectedDatasetIds.includes(id)
+        ? s.selectedDatasetIds.filter((x) => x !== id)
+        : [...s.selectedDatasetIds, id],
+    })),
   setChoroplethMetric: (m) => set({ choroplethMetric: m }),
   setCorrelationMetrics: (a, b) => set({ correlationMetricA: a, correlationMetricB: b }),
   setYear: (y) => set({ selectedYear: y }),

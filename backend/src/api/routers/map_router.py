@@ -67,6 +67,39 @@ async def get_map_features(
     return ORJSONResponse({"type": "FeatureCollection", "features": features})
 
 
+@router.get("/feature-datasets")
+@cached(ttl=600)
+async def get_feature_datasets(_user: CurrentUser) -> ORJSONResponse:
+    """List all datasets that have features in the unified geo layer."""
+    async with get_conn() as conn:
+        async with conn.cursor() as cur:
+            await cur.execute(
+                """
+                SELECT
+                    dataset_id,
+                    dataset_title,
+                    COUNT(*) AS feature_count,
+                    ARRAY_AGG(DISTINCT ST_GeometryType(geom)) AS geometry_types
+                FROM mart.geo_features_map
+                GROUP BY dataset_id, dataset_title
+                ORDER BY dataset_title
+                """
+            )
+            rows = await cur.fetchall()
+
+    return ORJSONResponse(
+        [
+            {
+                "dataset_id": r["dataset_id"],
+                "dataset_title": r["dataset_title"],
+                "feature_count": r["feature_count"],
+                "geometry_types": r["geometry_types"],
+            }
+            for r in rows
+        ]
+    )
+
+
 @router.get("/park-ride")
 @cached(ttl=60)
 async def get_park_ride(_user: CurrentUser) -> ORJSONResponse:
