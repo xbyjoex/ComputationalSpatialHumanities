@@ -1,10 +1,9 @@
 import { useRef, useCallback, useState, useEffect, useMemo } from "react";
 import { Map, Source, Layer, Popup } from "@vis.gl/react-maplibre";
 import type { MapRef, MapLayerMouseEvent, ViewStateChangeEvent } from "@vis.gl/react-maplibre";
-import type { StyleSpecification, RequestParameters } from "maplibre-gl";
+import type { StyleSpecification, SymbolLayerSpecification } from "maplibre-gl";
 import { useQuery } from "react-query";
 import { useMapStore } from "../store/mapStore";
-import { useAuthStore } from "../store/authStore";
 import {
   fetchParkRide,
   fetchBicycleCounters,
@@ -15,9 +14,12 @@ import {
   buildTileUrl,
 } from "../api/map";
 import { loadGothamStyle, datasetColor } from "../map/gothamStyle";
+import { registerTileProtocol, useTileLoadStore } from "../map/tileProtocol";
 import LayerPanel from "./LayerPanel";
 import TimelineBar from "./TimelineBar";
 import Reticle from "./chrome/Reticle";
+
+registerTileProtocol();
 
 const LEIPZIG_CENTER: [number, number] = [12.3731, 51.3397];
 // Kartengrenzen großzügig um das Stadtgebiet — verhindert Laden der Weltkarte
@@ -95,20 +97,17 @@ export default function MapView() {
     [selectedDatasetIds, selectedFamilyIds]
   );
 
-  // Tile-Requests laufen nicht durch den Axios-Interceptor → JWT hier anhängen
-  const transformRequest = useCallback(
-    (url: string): RequestParameters | undefined => {
-      if (url.includes("/api/map/tiles/")) {
-        const token = useAuthStore.getState().accessToken;
-        return {
-          url,
-          headers: token ? { Authorization: `Bearer ${token}` } : {},
-        };
-      }
-      return undefined;
-    },
-    []
-  );
+  // Ladefortschritt der Kacheln (gefüttert vom leipzig://-Protokoll)
+  const tileLoad = useTileLoadStore();
+
+  // Schriftstack für Cluster-Zahlen aus dem Basemap-Style übernehmen —
+  // eigene Fonts hätten keine Glyphen im CARTO-Glyph-Endpoint
+  const labelFont = useMemo(() => {
+    const fromStyle = (mapStyle?.layers as SymbolLayerSpecification[] | undefined)
+      ?.find((l) => l.type === "symbol" && l.layout?.["text-font"])
+      ?.layout?.["text-font"];
+    return (fromStyle as string[] | undefined) ?? ["Montserrat Regular"];
+  }, [mapStyle]);
 
   // Farbe je Gruppe (Familie oder Einzeldatensatz) als data-driven Expression
   const featureColor = useMemo(() => {
@@ -139,12 +138,24 @@ export default function MapView() {
   const handleClick = useCallback((e: MapLayerMouseEvent) => {
     const feature = e.features?.[0];
     if (!feature) return;
+    const props = feature.properties as Record<string, unknown>;
     const isUnified = String(feature.layer?.id ?? "").startsWith("unified-");
+    // Cluster (aggregierte Punkte der Übersichts-Zoomstufen): hineinzoomen
+    // statt Popup — die Einzelobjekte erscheinen ab Zoom 14
+    const pointCount = Number(props.point_count ?? 1);
+    if (isUnified && pointCount > 1) {
+      mapRef.current?.easeTo({
+        center: [e.lngLat.lng, e.lngLat.lat],
+        zoom: Math.min((mapRef.current?.getZoom() ?? 11) + 2, 15),
+        duration: 500,
+      });
+      return;
+    }
     setPopup({
       lng: e.lngLat.lng,
       lat: e.lngLat.lat,
       featureId: isUnified && typeof feature.id === "number" ? feature.id : null,
-      properties: feature.properties as Record<string, unknown>,
+      properties: props,
     });
   }, []);
 
@@ -172,7 +183,6 @@ export default function MapView() {
           mapStyle={mapStyle}
           maxBounds={LEIPZIG_BOUNDS}
           minZoom={9.5}
-          transformRequest={transformRequest}
           interactiveLayerIds={[
             "park-ride-circles",
             "bicycle-circles",
@@ -274,11 +284,43 @@ export default function MapView() {
                   ["==", ["geometry-type"], "MultiPoint"],
                 ]) as never}
                 paint={{
-                  "circle-radius": ["interpolate", ["linear"], ["zoom"], 10, 2, 14, 4.5, 17, 7],
+                  // Cluster (point_count > 1) wachsen mit der Objektzahl,
+                  // Einzelpunkte behalten die Zoom-Staffelung
+                  "circle-radius": [
+                    "case",
+                    [">", ["coalesce", ["get", "point_count"], 1], 1],
+                    ["interpolate", ["linear"], ["sqrt", ["coalesce", ["get", "point_count"], 1]],
+                      1.5, 6, 10, 12, 40, 22],
+                    ["interpolate", ["linear"], ["zoom"], 10, 2, 14, 4.5, 17, 7],
+                  ],
                   "circle-color": featureColor,
-                  "circle-opacity": 0.85,
+                  "circle-opacity": [
+                    "case",
+                    [">", ["coalesce", ["get", "point_count"], 1], 1],
+                    0.55,
+                    0.85,
+                  ],
                   "circle-stroke-width": 0.8,
                   "circle-stroke-color": "#0a1015",
+                }}
+              />
+              <Layer
+                id="unified-cluster-count"
+                type="symbol"
+                source-layer="features"
+                filter={withYearFilter([
+                  ">", ["coalesce", ["get", "point_count"], 1], 1,
+                ]) as never}
+                layout={{
+                  "text-field": ["to-string", ["get", "point_count"]],
+                  "text-font": labelFont,
+                  "text-size": 10,
+                  "text-allow-overlap": true,
+                }}
+                paint={{
+                  "text-color": "#e6f3fb",
+                  "text-halo-color": "#0a1015",
+                  "text-halo-width": 1,
                 }}
               />
             </Source>
@@ -408,10 +450,30 @@ export default function MapView() {
           <span className="text-gotham-500">Z&nbsp;</span>
           {zoom.toFixed(1)}
         </span>
-        <span className="flex items-center gap-1.5 text-signal-green">
-          <span className="led animate-led bg-signal-green" />
-          Live
-        </span>
+        {tileLoad.inflight > 0 ? (
+          <span className="flex items-center gap-2 text-signal-amber">
+            <span className="led animate-led bg-signal-amber" />
+            Lade {tileLoad.done}/{tileLoad.total}
+            <span className="h-1 w-16 overflow-hidden bg-gotham-700">
+              <span
+                className="block h-1 bg-signal-amber transition-all duration-200"
+                style={{
+                  width: `${Math.round((100 * tileLoad.done) / Math.max(1, tileLoad.total))}%`,
+                }}
+              />
+            </span>
+          </span>
+        ) : (
+          <span className="flex items-center gap-1.5 text-signal-green">
+            <span className="led animate-led bg-signal-green" />
+            Live
+          </span>
+        )}
+        {tileLoad.errors > 0 && (
+          <span className="text-signal-red">
+            {tileLoad.errors} Kachel-Fehler
+          </span>
+        )}
         {timelineYear !== null && activeLayers.has("geo_features") && (
           <span>
             <span className="text-gotham-500">JAHR&nbsp;</span>

@@ -405,7 +405,10 @@ def upsert_statistics(
             try:
                 metric_value = float(str(raw_val).replace(",", "."))
             except (ValueError, TypeError):
-                metric_value = None
+                # Text columns (names, labels, IDs) are dimensions, not
+                # metrics — storing them as NULL-valued metrics only floods
+                # the metric pickers (see migration 012).
+                continue
             rows.append([
                 dataset_id, period_type, period_label, year, None, None,
                 su, spatial_key, metric_name, metric_value,

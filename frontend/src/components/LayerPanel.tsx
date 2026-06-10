@@ -1,7 +1,7 @@
 import { useMapStore, LayerKey } from "../store/mapStore";
 import { Layers, ChevronUp, ChevronDown, Check } from "lucide-react";
 import clsx from "clsx";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { fetchMetrics, fetchFeatureGroups, FeatureGroup } from "../api/map";
 import { datasetColor } from "../map/gothamStyle";
@@ -32,9 +32,19 @@ export default function LayerPanel() {
     selectedFamilyIds, toggleFamilyId,
   } = useMapStore();
 
-  const { data: metrics = [] } = useQuery<string[]>("metrics", () => fetchMetrics(), {
-    staleTime: 300_000,
-  });
+  // Metriken je Raumeinheit — nur was dort auch eine Choroplethe ergibt
+  const { data: metrics = [] } = useQuery<string[]>(
+    ["metrics", spatialUnit],
+    () => fetchMetrics(spatialUnit),
+    { staleTime: 300_000, enabled: activeLayers.has("choropleth") }
+  );
+
+  // Gewählte Metrik zurücksetzen, wenn sie in der neuen Raumeinheit fehlt
+  useEffect(() => {
+    if (choroplethMetric && metrics.length > 0 && !metrics.includes(choroplethMetric)) {
+      setChoroplethMetric("");
+    }
+  }, [metrics, choroplethMetric, setChoroplethMetric]);
 
   const { data: featureGroups = [] } = useQuery<FeatureGroup[]>(
     "featureGroups",

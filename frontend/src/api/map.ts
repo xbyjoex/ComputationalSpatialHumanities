@@ -13,13 +13,13 @@ export interface FeatureGroup {
 export const fetchFeatureGroups = (): Promise<FeatureGroup[]> =>
   apiClient.get("/map/feature-datasets").then((r) => r.data);
 
-// Tile-URL mit literalen {z}/{x}/{y}-Platzhaltern für MapLibre. Muss absolut
-// sein, da MapLibre relative Tile-URLs nicht gegen den Origin auflöst.
+// Tile-URL mit literalen {z}/{x}/{y}-Platzhaltern. Läuft über das eigene
+// leipzig://-Protokoll (src/map/tileProtocol.ts): JWT-Header + Ladefortschritt.
 export const buildTileUrl = (datasetIds: string[], familyIds: string[]): string => {
   const p = new URLSearchParams();
   [...datasetIds].sort().forEach((id) => p.append("dataset_ids", id));
   [...familyIds].sort().forEach((id) => p.append("family_ids", id));
-  return `${window.location.origin}/api/map/tiles/{z}/{x}/{y}.pbf?${p.toString()}`;
+  return `leipzig://api/map/tiles/{z}/{x}/{y}.pbf?${p.toString()}`;
 };
 
 export interface FeatureDetail {
@@ -58,8 +58,10 @@ export const fetchChoropleth = (metric_name: string, spatial_unit = "ortsteil", 
 export const fetchCorrelation = (metric_a: string, metric_b: string, spatial_unit = "ortsteil", period_year?: number) =>
   apiClient.get("/stats/correlation", { params: { metric_a, metric_b, spatial_unit, period_year } }).then((r) => r.data);
 
-export const fetchMetrics = (dataset_id?: string) =>
-  apiClient.get("/stats/metrics", { params: { dataset_id } }).then((r) => r.data);
+// Nur Metriken, die für die Raumeinheit auch kartierbar sind (numerisch +
+// aufgelöster Boundary-Code) — sonst flutet jede CSV-Spalte das Dropdown.
+export const fetchMetrics = (spatial_unit?: string, dataset_id?: string) =>
+  apiClient.get("/stats/metrics", { params: { spatial_unit, dataset_id } }).then((r) => r.data);
 
 export const fetchDatasets = (params?: Record<string, unknown>) =>
   apiClient.get("/datasets", { params }).then((r) => r.data);

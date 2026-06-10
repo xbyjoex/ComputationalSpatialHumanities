@@ -19,9 +19,11 @@ export default function StatsPanel() {
   const [spatialUnit, setSpatialUnit] = useState("ortsteil");
   const [year, setYear] = useState<number | null>(null);
 
-  const { data: metrics = [] } = useQuery<string[]>("metrics", () => fetchMetrics(), {
-    staleTime: 300_000,
-  });
+  const { data: metrics = [] } = useQuery<string[]>(
+    ["metrics", spatialUnit],
+    () => fetchMetrics(spatialUnit),
+    { staleTime: 300_000 }
+  );
 
   const { data: corrData, isLoading } = useQuery(
     ["correlation", metricA, metricB, spatialUnit, year],

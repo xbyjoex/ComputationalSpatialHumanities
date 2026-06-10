@@ -21,9 +21,16 @@ async def list_metrics(
     dataset_id: str | None = Query(None),
     spatial_unit: str | None = Query(None),
 ) -> list[str]:
+    """Metrics that can actually be visualized.
+
+    Only numeric values count as metrics; for a concrete spatial unit
+    (ortsteil/stadtbezirk/wahlbezirk) the metric must additionally have rows
+    with a resolved spatial_code — otherwise it cannot join a boundary and
+    would render an empty choropleth.
+    """
     async with get_conn() as conn:
         async with conn.cursor() as cur:
-            conditions = ["TRUE"]
+            conditions = ["metric_value IS NOT NULL"]
             params: list[Any] = []
             if dataset_id:
                 conditions.append("dataset_id = %s")
@@ -31,6 +38,8 @@ async def list_metrics(
             if spatial_unit:
                 conditions.append("spatial_unit = %s")
                 params.append(spatial_unit)
+                if spatial_unit != "city":
+                    conditions.append("spatial_code IS NOT NULL")
             where = " AND ".join(conditions)
             await cur.execute(
                 f"SELECT DISTINCT metric_name FROM mart.statistics_latest WHERE {where} ORDER BY 1",
