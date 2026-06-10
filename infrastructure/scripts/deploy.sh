@@ -31,7 +31,10 @@ for i in $(seq 1 30); do
   sleep 2
 done
 
-# Prune old images
+# Prune old images and build cache (builds run with --no-cache, so the
+# BuildKit cache is never read — only written. Without pruning it grows
+# by the full build size on every deploy.)
 docker image prune -f
+docker builder prune -af
 
 echo "=== Deploy done ==="
