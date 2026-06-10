@@ -100,7 +100,14 @@ Schema migrations are tracked in `public.schema_migrations`.
 
 **`dataset_contracts.json`** (root) is the single source of truth for all 398 datasets — each entry defines `id`, `title`, `schedule` (nightly vs. live), `best_resource` (URL + format), and `has_geo`.
 
-**`dataset_families.json`** (root) merges year-variant datasets (e.g. Bundestagswahl 2021 + 2025, Vornamenstatistik 2014–2025) into one logical dataset with a year dimension (`family_id` on `core.datasets`, `year` on rows). `dataset_hints` overrides loader heuristics per dataset (election CSVs: `spatial_key_column`, `skip_columns`). Re-draft with `etl/scripts/generate_dataset_families.py`, then review manually.
+**`dataset_families.json`** (root) merges year-variant datasets (e.g. Bundestagswahl 2021 + 2025, Vornamenstatistik 2014–2025) into one logical dataset with a year dimension (`family_id` on `core.datasets`, `year` on rows). `dataset_hints` overrides loader heuristics per dataset (`spatial_key_column`, `skip_columns`). Re-draft with `etl/scripts/generate_dataset_families.py`, then review manually.
+
+**Curated configs (root, each with a generator in `etl/scripts/` and a `sync_*` on scheduler startup):**
+- `dataset_categories.json` — thematic categories mirroring the opendata.leipzig.de CKAN/DCAT groups (+`sonstiges`), enriched via family inheritance and the statistik `kategorie_nr` mapping → `core.dataset_categories` + `categories TEXT[]`
+- `election_definitions.json` — column→party mapping per election for the 'Offene Wahldaten' CSVs (D/F/E columns), verified against the named shares of the statistik API → semantic domain `etl/src/domains/elections.py` loads `core.election_results` (consulted FIRST in dispatch)
+- `indicator_catalog.json` — canonical indicator registry (name/unit/topic, incl. topic 'Demografie') over the statistik metrics → `core.indicators` + `core.indicator_metrics`; powers `/stats/metrics?grouped=true`
+
+**statistik.leipzig.de ingestion**: the API serves wide-by-year layouts — `etl/src/extractors/statistik_transform.py` melts values (Kennziffer × Jahr/Quartal/Schuljahr columns) and kdvalues (Gebiet × Sachmerkmal) into long records before `upsert_statistics`.
 
 - `src/scheduler.py` — entry point; runs nightly (02:00 UTC) for all datasets, every 5 min for 18 live sources; seeds admin boundaries + syncs families on startup and each nightly run
 - `src/pipeline.py` — dispatches per dataset to typed extractors and loaders
@@ -114,7 +121,8 @@ FastAPI with async psycopg3 pool + Redis cache.
 
 - `src/api/main.py` — app entry point, lifespan, middleware, router registration
 - `src/api/auth.py` — JWT (python-jose, 60-min access tokens) + bcrypt; refresh tokens SHA-256 hashed and stored in DB (30-day TTL)
-- `src/api/routers/` — `auth_router`, `datasets`, `map_router`, `stats_router`, `tiles_router` (MVT vector tiles + per-feature detail)
+- `src/api/routers/` — `auth_router`, `datasets` (incl. `/categories`, `/by-slug/{slug}`, `/{id}/profile` data profiler), `map_router`, `stats_router`, `tiles_router` (MVT vector tiles + per-feature detail), `elections_router`, `indicators_router`
+- `src/api/profiling.py` — generic per-dataset column profiles + width_bucket histograms, cached per data generation (`tiles_version`)
 - All data endpoints require `Authorization: Bearer <token>`; unprotected: `GET /health`, `GET /ready`
 - Uses `orjson` (`ORJSONResponse`) for fast JSON serialization
 
@@ -122,7 +130,7 @@ FastAPI with async psycopg3 pool + Redis cache.
 
 React 18 SPA with Vite + TypeScript.
 
-- **Routing**: `App.tsx` → `/login` (LoginPage) or `/*` guarded by `RequireAuth` → `DashboardPage` with nested routes (`/` map, `/stats`, `/datasets`)
+- **Routing**: `App.tsx` → `/login` (LoginPage) or `/*` guarded by `RequireAuth` → `DashboardPage` with nested routes (`/` map, `/stats`, `/datasets` Themenkatalog → `/datasets/c/:categoryId` → `/datasets/d/:slug`; `/datasets/register` technical registry; UUID URLs redirect to slugs)
 - **State**: Zustand — `authStore` (access token, login/logout), `mapStore` (active layers, choropleth metric, selected year, spatial unit)
 - **Data fetching**: React Query with per-layer polling (Park+Ride: 60s, restrictions: 120s, bicycle: 300s)
 - **Map**: MapLibre GL via `@vis.gl/react-maplibre`, CartoDB dark-matter base, centered on Leipzig (12.3731, 51.3397)
