@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useQuery } from "react-query";
 import { Link, useParams } from "react-router-dom";
 import {
-  getDataset,
+  getDatasetBySlug,
   getDatasetHistory,
   getDatasetRows,
   getDatasetStats,
@@ -24,13 +24,17 @@ function fmt(v: unknown): string {
 }
 
 export default function DatasetDetail() {
-  const { datasetId = "" } = useParams<{ datasetId: string }>();
+  const { slug = "" } = useParams<{ slug: string }>();
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(0);
 
-  const { data: detail } = useQuery(["dataset", datasetId], () => getDataset(datasetId), {
-    enabled: !!datasetId,
-  });
+  const { data: detail } = useQuery(
+    ["dataset-by-slug", slug],
+    () => getDatasetBySlug(slug),
+    { enabled: !!slug }
+  );
+  // Sub-Ressourcen laufen intern weiter über die Dataset-ID
+  const datasetId = detail?.dataset.id ?? "";
   const { data: stats } = useQuery(
     ["dataset-stats", datasetId],
     () => getDatasetStats(datasetId),
@@ -59,7 +63,7 @@ export default function DatasetDetail() {
           to="/datasets"
           className="inline-flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-[0.14em] text-signal-cyan hover:text-signal-bright"
         >
-          <ArrowLeft className="h-3.5 w-3.5" /> Zurück zum Register
+          <ArrowLeft className="h-3.5 w-3.5" /> Zum Themenkatalog
         </Link>
         <p className="mt-6 font-mono text-xs text-gotham-500">
           <span className="led mr-2 inline-block animate-led bg-signal-cyan" />
@@ -78,16 +82,37 @@ export default function DatasetDetail() {
         {/* Header */}
         <header className="animate-rise">
           <Link
-            to="/datasets"
+            to={
+              detail.categories?.length
+                ? `/datasets/c/${encodeURIComponent(detail.categories[0].category_id)}`
+                : "/datasets"
+            }
             className="inline-flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-[0.14em] text-signal-cyan hover:text-signal-bright"
           >
-            <ArrowLeft className="h-3.5 w-3.5" /> Zurück zum Register
+            <ArrowLeft className="h-3.5 w-3.5" /> Zur Kategorie
           </Link>
           <p className="hud-label mt-3 text-signal-cyan">Modul 03 // Quellakte</p>
           <h1 className="mt-1 font-display text-2xl font-bold uppercase tracking-[0.1em] text-gotham-100">
             {ds.title}
           </h1>
-          <p className="mt-1 font-mono text-[11px] text-gotham-500">{ds.id}</p>
+          {(detail.categories?.length || ds.family_id) && (
+            <div className="mt-2 flex flex-wrap items-center gap-1.5">
+              {detail.categories?.map((c) => (
+                <Link
+                  key={c.category_id}
+                  to={`/datasets/c/${encodeURIComponent(c.category_id)}`}
+                  className="border border-gotham-600 px-2 py-0.5 font-mono text-[9px] uppercase tracking-[0.1em] text-gotham-300 hover:border-signal-cyan hover:text-signal-cyan"
+                >
+                  {c.title}
+                </Link>
+              ))}
+              {ds.family_id && (
+                <span className="border border-signal-violet/50 px-2 py-0.5 font-mono text-[9px] uppercase tracking-[0.1em] text-signal-violet">
+                  Zeitreihe{ds.family_year ? ` · ${ds.family_year}` : ""}
+                </span>
+              )}
+            </div>
+          )}
         </header>
 
         {/* Metadata */}

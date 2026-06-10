@@ -2,6 +2,7 @@ import { apiClient } from "./client";
 
 export interface DatasetRow {
   id: string;
+  name?: string;
   title: string;
   schedule: "nightly" | "live";
   has_geo: boolean;
@@ -10,6 +11,45 @@ export interface DatasetRow {
   best_url: string | null;
   last_ingested: string | null;
   is_active: boolean;
+  family_id?: string | null;
+  family_year?: number | null;
+  categories?: string[];
+}
+
+export interface Category {
+  category_id: string;
+  title: string;
+  description: string | null;
+  position: number;
+  dataset_count: number;
+  geo_count: number;
+  family_count: number;
+}
+
+export interface CategoryDatasetEntry {
+  id: string;
+  name: string;
+  title: string;
+  schedule: "nightly" | "live";
+  has_geo: boolean;
+  best_format: string | null;
+  family_id: string | null;
+  family_year: number | null;
+  family_title: string | null;
+  last_ingested: string | null;
+  last_run_status: string | null;
+  last_run_at: string | null;
+  last_run_rows: number | null;
+}
+
+export interface CategoryDatasetsResponse {
+  category: { category_id: string; title: string; description: string | null };
+  families: Array<{
+    family_id: string;
+    title: string | null;
+    members: CategoryDatasetEntry[];
+  }>;
+  datasets: CategoryDatasetEntry[];
 }
 
 export interface DatasetListResponse {
@@ -21,6 +61,7 @@ export interface DatasetListResponse {
 
 export interface DatasetDetail {
   dataset: DatasetRow & { metadata?: Record<string, unknown> };
+  categories?: Array<{ category_id: string; title: string }>;
   target_table: string | null;
   row_count: number;
   recent_runs: Array<{
@@ -84,11 +125,25 @@ export const listDatasets = (params: {
   schedule?: string;
   has_geo?: boolean;
   format?: string;
+  category?: string;
   limit?: number;
   offset?: number;
 }) =>
   apiClient
     .get<DatasetListResponse>("/datasets", { params })
+    .then((r) => r.data);
+
+export const listCategories = () =>
+  apiClient.get<Category[]>("/datasets/categories").then((r) => r.data);
+
+export const getCategoryDatasets = (categoryId: string) =>
+  apiClient
+    .get<CategoryDatasetsResponse>(`/datasets/categories/${encodeURIComponent(categoryId)}`)
+    .then((r) => r.data);
+
+export const getDatasetBySlug = (slug: string) =>
+  apiClient
+    .get<DatasetDetail>(`/datasets/by-slug/${encodeURIComponent(slug)}`)
     .then((r) => r.data);
 
 export const getDataset = (id: string) =>
