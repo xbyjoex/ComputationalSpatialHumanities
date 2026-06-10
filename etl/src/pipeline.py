@@ -46,6 +46,18 @@ STATISTIK_API_URL = "statistik.leipzig.de/opendata/api"
 SKIP_FORMATS = {"PDF", "XLS"}
 
 
+def _log_skip(dataset_id: str, title: str, schedule: str, reason: str) -> None:
+    """Skips als Lauf protokollieren, damit der Datensatz-Status nicht auf
+    einem alten Fehlschlag stehen bleibt (z. B. nach einmaliger Quellen-Störung)."""
+    try:
+        with get_conn() as conn:
+            run_id = log_etl_start(conn, dataset_id, title, schedule)
+        with get_conn() as conn:
+            log_etl_finish(conn, run_id, status="skipped", error_message=reason)
+    except Exception as exc:
+        logger.warning("Could not log skip for %s: %s", title, exc)
+
+
 def run_dataset(contract: dict[str, Any]) -> tuple[str, int, int]:
     """
     Run ETL for a single dataset contract.
@@ -61,10 +73,12 @@ def run_dataset(contract: dict[str, Any]) -> tuple[str, int, int]:
 
     if not url:
         logger.info("Skipping %s — no resource URL", title)
+        _log_skip(dataset_id, title, schedule, "no resource URL")
         return "skipped", 0, 0
 
     if fmt in SKIP_FORMATS:
         logger.info("Skipping %s — unsupported format %s", title, fmt)
+        _log_skip(dataset_id, title, schedule, f"unsupported format {fmt}")
         return "skipped", 0, 0
 
     # ── Change detection via HEAD (no body download) ─────────────────────────
@@ -85,6 +99,7 @@ def run_dataset(contract: dict[str, Any]) -> tuple[str, int, int]:
 
         if probe.status_code == 304:
             logger.info("[SKIP] %-60s unchanged (304)", title[:60])
+            _log_skip(dataset_id, title, schedule, "unchanged (304)")
             return "skipped", 0, 0
 
         # ETag present and unchanged → skip without downloading body
@@ -92,6 +107,7 @@ def run_dataset(contract: dict[str, Any]) -> tuple[str, int, int]:
             logger.info("[SKIP] %-60s unchanged (etag)", title[:60])
             with get_conn() as conn:
                 upsert_dataset_checksum(conn, dataset_id, url, new_etag, new_lm, None)
+            _log_skip(dataset_id, title, schedule, "unchanged (etag)")
             return "skipped", 0, 0
     except Exception as exc:
         logger.debug("Change-detection HEAD failed for %s: %s — proceeding", title, exc)
