@@ -1,9 +1,6 @@
-"""Map-specific endpoints: bbox queries, live layers, geo features."""
+"""Map-specific endpoints: live layers, boundaries, feature-group listing."""
 
 from __future__ import annotations
-
-import json
-from typing import Any
 
 from fastapi import APIRouter, Query
 from fastapi.responses import ORJSONResponse
@@ -13,58 +10,6 @@ from ..cache import cached
 from ..db import get_conn
 
 router = APIRouter(prefix="/map", tags=["map"])
-
-
-@router.get("/features")
-@cached(ttl=30)
-async def get_map_features(
-    _user: CurrentUser,
-    xmin: float = Query(..., description="Bounding box west longitude"),
-    ymin: float = Query(..., description="Bounding box south latitude"),
-    xmax: float = Query(..., description="Bounding box east longitude"),
-    ymax: float = Query(..., description="Bounding box north latitude"),
-    dataset_ids: list[str] | None = Query(None),
-    feature_types: list[str] | None = Query(None),
-    limit: int = Query(2000, le=5000),
-) -> ORJSONResponse:
-    async with get_conn() as conn:
-        async with conn.cursor() as cur:
-            await cur.execute(
-                """
-                SELECT
-                    id, dataset_id, dataset_title, feature_type, name,
-                    ST_AsGeoJSON(geom)::jsonb AS geometry,
-                    properties, valid_from, valid_until
-                FROM mart.geo_features_map
-                WHERE geom && ST_MakeEnvelope(%s, %s, %s, %s, 4326)
-                  AND (%s::text[] IS NULL OR dataset_id = ANY(%s))
-                  AND (%s::text[] IS NULL OR feature_type = ANY(%s))
-                LIMIT %s
-                """,
-                (xmin, ymin, xmax, ymax, dataset_ids, dataset_ids, feature_types, feature_types, limit),
-            )
-            rows = await cur.fetchall()
-
-    features = []
-    for r in rows:
-        features.append(
-            {
-                "type": "Feature",
-                "id": r["id"],
-                "geometry": r["geometry"],
-                "properties": {
-                    "dataset_id": r["dataset_id"],
-                    "dataset_title": r["dataset_title"],
-                    "feature_type": r["feature_type"],
-                    "name": r["name"],
-                    "valid_from": r["valid_from"].isoformat() if r["valid_from"] else None,
-                    "valid_until": r["valid_until"].isoformat() if r["valid_until"] else None,
-                    **(r["properties"] or {}),
-                },
-            }
-        )
-
-    return ORJSONResponse({"type": "FeatureCollection", "features": features})
 
 
 @router.get("/feature-datasets")

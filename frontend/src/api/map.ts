@@ -1,17 +1,5 @@
 import { apiClient } from "./client";
 
-export interface BboxParams {
-  xmin: number;
-  ymin: number;
-  xmax: number;
-  ymax: number;
-  dataset_ids?: string[];
-  feature_types?: string[];
-}
-
-export const fetchMapFeatures = (params: BboxParams) =>
-  apiClient.get("/map/features", { params }).then((r) => r.data);
-
 export interface FeatureGroup {
   group_id: string;
   title: string;
@@ -51,24 +39,6 @@ export interface FeatureDetail {
 
 export const fetchFeatureDetail = (id: number): Promise<FeatureDetail> =>
   apiClient.get(`/map/feature/${id}`).then((r) => r.data);
-
-// FastAPI erwartet wiederholte Query-Parameter (dataset_ids=a&dataset_ids=b),
-// Axios serialisiert Arrays aber als dataset_ids[]=… — daher manuell.
-export const fetchUnifiedFeatures = (
-  bbox: { xmin: number; ymin: number; xmax: number; ymax: number },
-  datasetIds: string[],
-  limit = 5000
-) => {
-  const p = new URLSearchParams({
-    xmin: String(bbox.xmin),
-    ymin: String(bbox.ymin),
-    xmax: String(bbox.xmax),
-    ymax: String(bbox.ymax),
-    limit: String(limit),
-  });
-  datasetIds.forEach((id) => p.append("dataset_ids", id));
-  return apiClient.get(`/map/features?${p.toString()}`).then((r) => r.data);
-};
 
 export const fetchParkRide = () =>
   apiClient.get("/map/park-ride").then((r) => r.data);
