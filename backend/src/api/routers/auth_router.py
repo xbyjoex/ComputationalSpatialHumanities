@@ -135,7 +135,7 @@ async def me(user: CurrentUser) -> dict:
     }
 
 
-MAX_USERS = 2
+MAX_USERS = 3
 
 
 @router.post("/register", status_code=201)
