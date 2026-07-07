@@ -54,6 +54,10 @@ class Settings:
         os.getenv("ETL_ELECTIONS_PATH")
         or Path(__file__).parent.parent / "election_definitions.json"
     )
+    parties_path: Path = Path(
+        os.getenv("ETL_PARTIES_PATH")
+        or Path(__file__).parent.parent / "party_registry.json"
+    )
     indicators_path: Path = Path(
         os.getenv("ETL_INDICATORS_PATH")
         or Path(__file__).parent.parent / "indicator_catalog.json"

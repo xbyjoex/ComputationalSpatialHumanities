@@ -225,5 +225,12 @@
         }
       }
     }
-  ]
+  ],
+  "kleinraeumig_sources": {
+    "cbd82a0a-a6e7-45c4-a69a-00e69552fbb4": "bundestagswahl",
+    "1da7d611-5f59-41b6-b62c-5032f9883acf": "europawahl",
+    "2b2f9e42-4c85-470d-a9f3-7e163d23ddb7": "landtagswahl",
+    "dd2024f3-7095-43a2-8817-1ebf9dbbe6a8": "stadtratswahl",
+    "8540fb95-9df3-4c2d-aacc-00ee1510d136": "oberbuergermeisterwahl"
+  }
 }
