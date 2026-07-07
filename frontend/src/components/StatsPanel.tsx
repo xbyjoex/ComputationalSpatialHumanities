@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useQuery } from "react-query";
 import { useSearchParams } from "react-router-dom";
 import clsx from "clsx";
@@ -98,16 +98,24 @@ export default function StatsPanel() {
     [metricGroups, topicFilter]
   );
 
-  const { data: corrData, isLoading } = useQuery<CorrelationResponse>(
+  const { data: corrData, isLoading, isPreviousData } = useQuery<CorrelationResponse>(
     ["correlation", metricA, metricB, spatialUnit, year],
     () => fetchCorrelation(metricA, metricB, spatialUnit, year ?? undefined),
     { enabled: !!(metricA && metricB), keepPreviousData: true }
   );
 
+  // Jahr kann durch keepPreviousData für die neue Kombination ungültig sein,
+  // solange noch die alten Daten angezeigt werden → nach Refetch reconcilen
+  useEffect(() => {
+    if (year != null && corrData && !isPreviousData && !corrData.available_years.includes(year)) {
+      setYear(null);
+    }
+  }, [year, corrData, isPreviousData]);
+
   // Jahr ist nur relativ zur Metrik-/Raumebenen-Wahl gültig → bei Wechsel zurücksetzen
-  const pickMetricA = (v: string) => { setMetricA(v); setYear(null); };
-  const pickMetricB = (v: string) => { setMetricB(v); setYear(null); };
-  const pickSpatialUnit = (v: string) => { setSpatialUnit(v); setYear(null); };
+  const pickMetricA = (v: string) => { setMetricA(v); setYear(null); setTrendDegree(0); };
+  const pickMetricB = (v: string) => { setMetricB(v); setYear(null); setTrendDegree(0); };
+  const pickSpatialUnit = (v: string) => { setSpatialUnit(v); setYear(null); setTrendDegree(0); };
 
   const points = useMemo(() => corrData?.points ?? [], [corrData]);
   const isTimeseries = corrData?.mode === "timeseries";
@@ -325,7 +333,7 @@ export default function StatsPanel() {
                 </p>
               </div>
             ) : points.length > 0 ? (
-              <div className="h-96">
+              <div className={clsx("h-96 transition-opacity", isPreviousData && "opacity-40")}>
                 <ResponsiveContainer width="100%" height="100%">
                   <ScatterChart margin={{ top: 8, right: 16, bottom: 24, left: 8 }}>
                     <CartesianGrid strokeDasharray="2 4" stroke="#1e2e3a" />
