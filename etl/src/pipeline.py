@@ -269,7 +269,12 @@ def _dispatch(
             with GeoJsonExtractor() as ext:
                 feats = ext.extract_all(url)
             with get_conn() as conn:
-                loaded = upsert_traffic_restrictions(conn, dataset_id, feats, restriction_type=rtype)
+                # Full-snapshot WFS (current restrictions only) — sweep rows
+                # this run didn't touch so per-request volatile ids / the
+                # daily fme_tstamp don't duplicate the table forever.
+                loaded = upsert_traffic_restrictions(
+                    conn, dataset_id, feats, restriction_type=rtype, sweep_stale=True
+                )
             return len(feats), loaded, "core.traffic_restrictions"
 
     # ── GTFS (transit feed) ──────────────────────────────────────────────────

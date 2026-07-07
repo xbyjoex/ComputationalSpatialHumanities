@@ -741,12 +741,30 @@ def upsert_bicycle_counts(
     return loaded
 
 
+# fme_tstamp is an FME export timestamp the WFS stamps onto every feature and
+# that bumps daily even when the restriction itself hasn't changed. Left in
+# the MD5 dedup hash below, it would flip dedup_key every day and duplicate
+# the whole snapshot — excluded from the hash inputs only (still stored
+# verbatim in the properties column).
+_VOLATILE_PROP_KEYS = {"fme_tstamp"}
+
+
 def upsert_traffic_restrictions(
     conn: psycopg.Connection,
     dataset_id: str,
     features: list[dict[str, Any]],
     restriction_type: str = "",
+    sweep_stale: bool = False,
 ) -> int:
+    """
+    sweep_stale=True is for full-snapshot sources only: after loading, delete
+    any row for this dataset_id NOT touched by this run. Safe because the
+    whole load + sweep is one transaction (single commit below), so every
+    row inserted/updated above shares this run's NOW() — anything with an
+    older updated_at wasn't in the current snapshot and is stale. This is
+    what keeps sources that hand out new volatile feature ids per request
+    (breaking the ON CONFLICT dedup below) from silently duplicating forever.
+    """
     loaded = 0
     with conn.cursor() as cur:
         for feat in features:
@@ -765,8 +783,15 @@ def upsert_traffic_restrictions(
             if not geom_wkt:
                 continue
 
-            restriction_id = str(props.get("id") or props.get("ID") or "")
+            restriction_id = str(
+                props.get("id") or props.get("ID") or props.get("objectid") or ""
+            )
             props_json = json.dumps(props)
+            # Hash inputs exclude volatile keys (see _VOLATILE_PROP_KEYS) so the
+            # fallback dedup_key doesn't change when only fme_tstamp does.
+            hash_props_json = json.dumps(
+                {k: v for k, v in props.items() if k not in _VOLATILE_PROP_KEYS}
+            )
             cur.execute(
                 """
                 INSERT INTO core.traffic_restrictions
@@ -803,11 +828,21 @@ def upsert_traffic_restrictions(
                     props.get("ende") or props.get("valid_until"),
                     props_json,
                     restriction_id,
-                    props_json,
+                    hash_props_json,
                     geom_wkt,
                 ),
             )
             loaded += 1
+
+        # Never sweep on a failed/empty extraction — that would wipe the
+        # whole dataset instead of leaving it untouched.
+        if sweep_stale and loaded > 0:
+            cur.execute(
+                "DELETE FROM core.traffic_restrictions WHERE dataset_id = %s AND updated_at < NOW()",
+                (dataset_id,),
+            )
+            removed = cur.rowcount
+            logger.info("Stale-row sweep %s: %d rows removed", dataset_id, removed)
         conn.commit()
     return loaded
 
