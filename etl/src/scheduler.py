@@ -258,6 +258,23 @@ def main() -> None:
     except Exception as exc:
         logger.error("Election sync failed: %s", exc)
 
+    # Partei-Register (party_registry.json → core.parties/party_aliases)
+    try:
+        with get_conn() as conn:
+            n_parties = elections.sync_parties(conn, elections.load_party_registry())
+            logger.info("Parties synced: %d", n_parties)
+    except Exception as exc:
+        logger.error("Party sync failed: %s", exc)
+
+    # Spektrum-View einmal beim Start füllen (sonst erst nach dem Nightly)
+    try:
+        with get_conn() as conn:
+            with conn.cursor() as cur:
+                cur.execute("REFRESH MATERIALIZED VIEW mart.election_party_shares")
+                conn.commit()
+    except Exception as exc:
+        logger.warning("election_party_shares startup refresh failed: %s", exc)
+
     # Indicator catalog (canonical metric registry)
     try:
         path = Path(settings.indicators_path)

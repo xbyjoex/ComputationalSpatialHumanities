@@ -209,6 +209,23 @@ def sync_elections(conn: psycopg.Connection, config: dict[str, Any]) -> int:
                 (e["election_id"], e["parties"]),
             )
 
+        # kleinräumig-Statistik-Datensätze → Wahltyp (für mart.election_party_shares)
+        sources = config.get("kleinraeumig_sources", {})
+        cur.execute(
+            "DELETE FROM core.election_sources WHERE dataset_id <> ALL(%s)",
+            (list(sources) or [""],),
+        )
+        for ds_id, etype in sources.items():
+            cur.execute(
+                """
+                INSERT INTO core.election_sources (dataset_id, election_type, kind)
+                VALUES (%s, %s, 'kleinraeumig')
+                ON CONFLICT (dataset_id) DO UPDATE SET
+                    election_type = EXCLUDED.election_type
+                """,
+                (ds_id, etype),
+            )
+
         if dataset_ids:
             cur.execute(
                 "DELETE FROM core.statistics WHERE dataset_id = ANY(%s)",
@@ -221,3 +238,52 @@ def sync_elections(conn: psycopg.Connection, config: dict[str, Any]) -> int:
                 )
         conn.commit()
     return len(elections)
+
+
+def load_party_registry() -> dict[str, Any]:
+    """party_registry.json (kuratiert): Parteien mit Sitzordnungs-Position."""
+    path = Path(settings.parties_path)
+    if not path.exists():
+        repo_root = Path(__file__).resolve().parents[3] / "party_registry.json"
+        path = repo_root if repo_root.exists() else path
+    if not path.exists():
+        logger.warning("No party_registry.json found — party sync disabled")
+        return {"parties": []}
+    with open(path, encoding="utf-8") as f:
+        return json.load(f)
+
+
+def sync_parties(conn: psycopg.Connection, config: dict[str, Any]) -> int:
+    """Sync party_registry.json → core.parties + core.party_aliases."""
+    parties = config.get("parties", [])
+    keys = [p["key"] for p in parties]
+    with conn.cursor() as cur:
+        for p in parties:
+            cur.execute(
+                """
+                INSERT INTO core.parties (key, name, position, color, aliases)
+                VALUES (%s, %s, %s, %s, %s)
+                ON CONFLICT (key) DO UPDATE SET
+                    name     = EXCLUDED.name,
+                    position = EXCLUDED.position,
+                    color    = EXCLUDED.color,
+                    aliases  = EXCLUDED.aliases
+                """,
+                (p["key"], p["name"], p.get("position"), p["color"],
+                 p.get("aliases", [])),
+            )
+        cur.execute("DELETE FROM core.parties WHERE key <> ALL(%s)", (keys or [""],))
+        # Alias-Lookup komplett neu aufbauen (klein, deterministisch)
+        cur.execute("DELETE FROM core.party_aliases")
+        for p in parties:
+            for alias in {p["name"], *p.get("aliases", [])}:
+                cur.execute(
+                    """
+                    INSERT INTO core.party_aliases (alias_norm, party_key)
+                    VALUES (lower(trim(%s)), %s)
+                    ON CONFLICT (alias_norm) DO NOTHING
+                    """,
+                    (alias, p["key"]),
+                )
+        conn.commit()
+    return len(parties)
