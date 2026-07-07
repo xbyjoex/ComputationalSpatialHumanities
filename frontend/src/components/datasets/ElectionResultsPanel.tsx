@@ -3,6 +3,7 @@ import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell,
 } from "recharts";
 import { apiClient } from "../../api/client";
+import { SONSTIGE_COLOR } from "../../api/elections";
 
 interface ElectionSummary {
   election: {
@@ -17,18 +18,9 @@ interface ElectionSummary {
     erststimmen: number | null;
     zweitstimmen: number | null;
     anteil_pct: number | null;
+    party_color: string | null;
   }>;
 }
-
-const PARTY_COLORS: Record<string, string> = {
-  CDU: "#5d7a8d",
-  SPD: "#ff6e5e",
-  AfD: "#53b9e8",
-  "DIE LINKE": "#c45ab3",
-  GRÜNE: "#3dd68c",
-  FDP: "#e8d553",
-  BSW: "#9d8cff",
-};
 
 function voteLabel(mode: ElectionSummary["election"]["vote_mode"]): string {
   if (mode === "erst_zweit") return "Zweitstimmen";
@@ -64,6 +56,7 @@ export default function ElectionResultsPanel({ electionId }: { electionId: strin
   const chartData = relevant.map((p) => ({
     name: p.party,
     Anteil: p.anteil_pct ?? 0,
+    party_color: p.party_color,
   }));
 
   return (
@@ -112,7 +105,7 @@ export default function ElectionResultsPanel({ electionId }: { electionId: strin
           />
           <Bar dataKey="Anteil" barSize={16} isAnimationActive={false}>
             {chartData.map((d) => (
-              <Cell key={d.name} fill={PARTY_COLORS[d.name] ?? "#678599"} />
+              <Cell key={d.name} fill={d.party_color ?? SONSTIGE_COLOR} />
             ))}
           </Bar>
         </BarChart>
