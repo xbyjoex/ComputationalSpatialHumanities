@@ -183,6 +183,19 @@ def run_nightly(nightly: list[dict]) -> None:
          "DELETE FROM core.bicycle_counts WHERE period_start < NOW() - INTERVAL '365 days'"),
         ("etl_runs",
          "DELETE FROM raw_ingest.etl_runs WHERE started_at < NOW() - INTERVAL '90 days'"),
+        # Dauerzählstellen Radverkehr (hourly, 31-day source window) upserts
+        # ~hourly while a row is in-window, so untouched-for-7-days means it
+        # has aged out of the source (or is a dead duplicate batch) and will
+        # never be touched again — left alone it grows ~2.8k rows/day forever.
+        # 7d is >100x the refresh cadence and well below that growth horizon.
+        # Scoped by dataset_id too: feature_type 'bicycle_count' is shared
+        # with the 2-year daily-count variant (fba8708f-3482-4872-8d54-
+        # 9f3f8425d168), whose aging-out cadence hasn't been verified against
+        # this 7-day window, so it must not be swept by this rule.
+        ("bicycle_count_geo_features",
+         "DELETE FROM core.geo_features WHERE feature_type = 'bicycle_count' "
+         "AND dataset_id = '1f7e5e3c-5cda-40f3-877a-d4a3506dd04e' "
+         "AND updated_at < NOW() - INTERVAL '7 days'"),
     ]
     for name, sql in retention_sql:
         try:
