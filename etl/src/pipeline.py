@@ -87,6 +87,21 @@ def run_dataset(contract: dict[str, Any]) -> tuple[str, int, int]:
     with get_conn() as conn:
         stored = get_dataset_checksum(conn, dataset_id)
 
+    # Elections-Datensätze: 304/ETag-Skip nur, wenn die Zieltabelle für diesen
+    # Datensatz auch Zeilen hat. Sonst bleibt core.election_results nach einem
+    # Checksum-Eintrag aus der Vor-Elections-Ära für immer leer (Skip-Schleife).
+    force_reload = False
+    if elections.route_for(dataset_id):
+        with get_conn() as conn:
+            with conn.cursor() as cur:
+                cur.execute(
+                    "SELECT EXISTS(SELECT 1 FROM core.election_results WHERE dataset_id = %s) AS has_rows",
+                    (dataset_id,),
+                )
+                force_reload = not cur.fetchone()["has_rows"]
+        if force_reload:
+            logger.info("[FORCE] %-60s election target empty — bypassing 304 skip", title[:60])
+
     stored_etag = stored.get("etag") if stored else None
     stored_lm = stored.get("last_modified") if stored else None
     new_etag = None
@@ -99,13 +114,13 @@ def run_dataset(contract: dict[str, Any]) -> tuple[str, int, int]:
         new_etag = probe.headers.get("etag")
         new_lm = probe.headers.get("last-modified")
 
-        if probe.status_code == 304:
+        if probe.status_code == 304 and not force_reload:
             logger.info("[SKIP] %-60s unchanged (304)", title[:60])
             _log_skip(dataset_id, title, schedule, "unchanged (304)")
             return "skipped", 0, 0
 
         # ETag present and unchanged → skip without downloading body
-        if new_etag and new_etag == stored_etag:
+        if new_etag and new_etag == stored_etag and not force_reload:
             logger.info("[SKIP] %-60s unchanged (etag)", title[:60])
             with get_conn() as conn:
                 upsert_dataset_checksum(conn, dataset_id, url, new_etag, new_lm, None)
