@@ -336,11 +336,18 @@ def _dispatch(
         return len(records), loaded, "core.statistics"
 
     # ── Generic GeoJSON / WFS ────────────────────────────────────────────────
+    # Full-snapshot semantics: every run should mirror the source exactly, so
+    # sweep_stale removes rows this run didn't touch. Needed because some WFS
+    # sources (e.g. Baumkataster) hand out new volatile feature ids per
+    # request, which defeats the ON CONFLICT dedup and previously caused
+    # unbounded duplicate growth (7M dupes / 12 GB in core.geo_features).
     if fmt in ("GEOJSON", "WFS") or (fmt == "GPKG" and "geojson" in url.lower()):
         with GeoJsonExtractor() as ext:
             feats = ext.extract_all(url)
         with get_conn() as conn:
-            loaded = upsert_geo_features(conn, dataset_id, feats, feature_type=name[:64], year=year)
+            loaded = upsert_geo_features(
+                conn, dataset_id, feats, feature_type=name[:64], year=year, sweep_stale=True,
+            )
             store_raw_payload(conn, dataset_id, url, fmt, {"count": len(feats)})
         return len(feats), loaded, "core.geo_features"
 

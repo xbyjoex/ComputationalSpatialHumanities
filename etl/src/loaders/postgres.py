@@ -326,7 +326,17 @@ def upsert_geo_features(
     features: list[dict[str, Any]],
     feature_type: str = "",
     year: int | None = None,
+    sweep_stale: bool = False,
 ) -> int:
+    """
+    sweep_stale=True is for full-snapshot sources only: after loading, delete
+    any row for this dataset_id NOT touched by this run. Safe because the
+    whole load + sweep is one transaction (single commit below), so every
+    row inserted/updated above shares this run's NOW() — anything with an
+    older updated_at wasn't in the current snapshot and is stale. This is
+    what keeps sources that hand out new volatile feature ids per request
+    (breaking the ON CONFLICT dedup below) from silently duplicating forever.
+    """
     loaded = 0
     with conn.cursor() as cur:
         for feat in features:
@@ -396,6 +406,16 @@ def upsert_geo_features(
                 ),
             )
             loaded += 1
+
+        # Never sweep on a failed/empty extraction — that would wipe the
+        # whole dataset instead of leaving it untouched.
+        if sweep_stale and loaded > 0:
+            cur.execute(
+                "DELETE FROM core.geo_features WHERE dataset_id = %s AND updated_at < NOW()",
+                (dataset_id,),
+            )
+            removed = cur.rowcount
+            logger.info("Stale-row sweep %s: %d rows removed", dataset_id, removed)
         conn.commit()
     return loaded
 
