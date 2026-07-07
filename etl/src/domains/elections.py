@@ -256,6 +256,9 @@ def load_party_registry() -> dict[str, Any]:
 def sync_parties(conn: psycopg.Connection, config: dict[str, Any]) -> int:
     """Sync party_registry.json → core.parties + core.party_aliases."""
     parties = config.get("parties", [])
+    if not parties:
+        logger.warning("Empty party registry — skipping sync (keeping existing core.parties)")
+        return 0
     keys = [p["key"] for p in parties]
     with conn.cursor() as cur:
         for p in parties:

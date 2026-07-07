@@ -99,7 +99,7 @@ export default function ElectionSpectrumTooltip({
       className="pointer-events-none absolute z-20 w-64 border border-gotham-700 bg-gotham-900/95 shadow-xl backdrop-blur-sm"
       style={{
         left: Math.min(hover.x + 14, window.innerWidth - 280),
-        top: hover.y + 14,
+        top: Math.min(hover.y + 14, window.innerHeight - 240),
       }}
     >
       <ElectionTooltipContent props={hover.props} />

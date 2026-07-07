@@ -56,7 +56,14 @@ async def spectrum_options(_user: CurrentUser) -> ORJSONResponse:
                 """
                 SELECT election_type, year,
                        array_agg(DISTINCT level ORDER BY level) AS levels
-                FROM mart.election_party_shares
+                FROM mart.election_party_shares eps
+                -- Nur Ebenen anbieten, für die es Geometrien gibt (Wahlbezirke
+                -- sind nur für die Wahljahre 2021/2025 geseedet)
+                WHERE EXISTS (
+                    SELECT 1 FROM core.admin_boundaries b
+                    WHERE b.boundary_type = eps.level
+                      AND (b.boundary_year = 0 OR b.boundary_year = eps.year)
+                )
                 GROUP BY election_type, year
                 ORDER BY election_type, year DESC
                 """
