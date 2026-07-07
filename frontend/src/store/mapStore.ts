@@ -1,12 +1,19 @@
 import { create } from "zustand";
 
-export type LayerKey = "geo_features" | "park_ride" | "bicycle" | "restrictions" | "choropleth";
+export type LayerKey = "geo_features" | "park_ride" | "bicycle" | "restrictions" | "choropleth" | "elections";
 
 /** A non-geo statistic pinned to the bottom context dock (chart, not map). */
 export interface DockItem {
   datasetId: string;
   title: string;
   kind: "timeseries" | "distribution";
+}
+
+/** Aktive Wahl-Auswahl für die Politisches-Spektrum-Ebene. */
+export interface ElectionSelection {
+  electionType: string;
+  year: number;
+  level: string;
 }
 
 interface MapState {
@@ -21,6 +28,7 @@ interface MapState {
   /** Globales Jahr — filtert Datenebene (Tile-Styles) UND Choroplethen. */
   timelineYear: number | null;
   spatialUnit: string;
+  electionSelection: ElectionSelection | null;
   sidebarTab: "layers" | "stats" | "datasets";
   /** Non-geo statistics shown as charts in the bottom dock. */
   dockItems: DockItem[];
@@ -34,6 +42,7 @@ interface MapState {
   setCorrelationMetrics: (a: string, b: string) => void;
   setTimelineYear: (y: number | null) => void;
   setSpatialUnit: (u: string) => void;
+  setElectionSelection: (sel: ElectionSelection | null) => void;
   setSidebarTab: (t: MapState["sidebarTab"]) => void;
   toggleDockItem: (item: DockItem) => void;
   removeDockItem: (datasetId: string) => void;
@@ -49,6 +58,7 @@ export const useMapStore = create<MapState>((set) => ({
   correlationMetricB: "",
   timelineYear: null,
   spatialUnit: "ortsteil",
+  electionSelection: null,
   sidebarTab: "layers",
   dockItems: [],
 
@@ -87,6 +97,7 @@ export const useMapStore = create<MapState>((set) => ({
   setCorrelationMetrics: (a, b) => set({ correlationMetricA: a, correlationMetricB: b }),
   setTimelineYear: (y) => set({ timelineYear: y }),
   setSpatialUnit: (u) => set({ spatialUnit: u }),
+  setElectionSelection: (sel) => set({ electionSelection: sel }),
   setSidebarTab: (t) => set({ sidebarTab: t }),
   toggleDockItem: (item) =>
     set((s) => ({
