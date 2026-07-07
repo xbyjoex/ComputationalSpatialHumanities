@@ -1,10 +1,13 @@
-"""Telegram bot: long-poll for commands to manually trigger ETL runs."""
+"""Telegram bot: long-poll for commands to manually trigger ETL runs,
+plus inline-keyboard callbacks approving/rejecting pending registrations
+(rows written by the backend's POST /auth/register)."""
 
 from __future__ import annotations
 
 import logging
 import threading
 from concurrent.futures import ThreadPoolExecutor
+from html import escape
 from typing import Callable
 
 import httpx
@@ -167,6 +170,134 @@ def _handle(message: dict, run_nightly: Callable, run_live: Callable) -> None:
         )
 
 
+# ── Registration approval (auth.pending_registrations) ────────────────────────
+
+def parse_registration_callback(data: str) -> tuple[str, str] | None:
+    """Parse 'reg:approve:<uuid>' / 'reg:reject:<uuid>'; None if not ours."""
+    parts = data.split(":")
+    if len(parts) != 3 or parts[0] != "reg" or parts[1] not in ("approve", "reject"):
+        return None
+    return parts[1], parts[2]
+
+
+def _decide_registration(reg_id: str, approve: bool) -> tuple[str, str | None]:
+    """Atomically settle a pending registration; returns (outcome, email).
+
+    Outcome: 'approved' | 'rejected' | 'expired' | previous status if the
+    request was already settled | 'gone' if the id is unknown. An approval
+    that arrives after expires_at marks the row 'expired' and does NOT
+    create a user.
+    """
+    with get_conn() as conn, conn.cursor() as cur:
+        cur.execute(
+            """
+            UPDATE auth.pending_registrations
+            SET status = CASE
+                    WHEN expires_at <= NOW() THEN 'expired'
+                    WHEN %s THEN 'approved'
+                    ELSE 'rejected'
+                END,
+                decided_at = NOW()
+            WHERE id = %s AND status = 'pending'
+            RETURNING status, email, password_hash, full_name
+            """,
+            (approve, reg_id),
+        )
+        row = cur.fetchone()
+        if row is None:
+            cur.execute(
+                "SELECT status, email FROM auth.pending_registrations WHERE id = %s",
+                (reg_id,),
+            )
+            prev = cur.fetchone()
+            conn.commit()
+            if prev is None:
+                return "gone", None
+            return prev["status"], prev["email"]
+
+        if row["status"] == "approved":
+            # Password was bcrypt-hashed by the backend at request time;
+            # we only copy the hash. ON CONFLICT guards the (unlikely)
+            # race of the email having appeared in auth.users meanwhile.
+            cur.execute(
+                "INSERT INTO auth.users (email, password_hash, full_name) "
+                "VALUES (%s, %s, %s) ON CONFLICT (email) DO NOTHING",
+                (row["email"], row["password_hash"], row["full_name"]),
+            )
+            if cur.rowcount == 0:
+                logger.warning(
+                    "Registration %s approved but user %s already exists",
+                    reg_id, row["email"],
+                )
+        conn.commit()
+        return row["status"], row["email"]
+
+
+def _registration_outcome_text(outcome: str, email: str | None) -> str:
+    e = f"<code>{escape(email)}</code>" if email else "Unbekannt"
+    if outcome == "approved":
+        return f"✅ <b>Registrierung freigegeben</b>\n{e} kann sich jetzt anmelden."
+    if outcome == "rejected":
+        return f"🚫 <b>Registrierung abgelehnt</b>\n{e} wurde nicht angelegt."
+    if outcome == "expired":
+        return (
+            f"⏰ <b>Registrierung abgelaufen</b>\n"
+            f"Die Anfrage von {e} war älter als 5 Minuten – kein Nutzer angelegt."
+        )
+    return f"❓ <b>Registrierungsanfrage nicht gefunden</b>\n{e}"
+
+
+def _handle_callback(cb: dict) -> None:
+    """Process an inline-keyboard press on a registration-approval message."""
+    cb_id = cb.get("id")
+    msg = cb.get("message") or {}
+    if not _is_authorized(msg):
+        logger.warning(
+            "Unauthorized Telegram callback from chat_id=%s",
+            msg.get("chat", {}).get("id"),
+        )
+        return
+
+    def _answer(**kwargs) -> None:
+        try:
+            _call("answerCallbackQuery", callback_query_id=cb_id, **kwargs)
+        except Exception as exc:
+            logger.warning("answerCallbackQuery failed: %s", exc)
+
+    parsed = parse_registration_callback(cb.get("data", ""))
+    if parsed is None:
+        _answer()
+        return
+    action, reg_id = parsed
+
+    try:
+        outcome, email = _decide_registration(reg_id, approve=(action == "approve"))
+    except Exception as exc:
+        logger.error("Registration decision failed: %s", exc, exc_info=True)
+        _answer(text="Fehler – bitte erneut versuchen.")
+        return
+
+    toasts = {
+        "approved": "Freigegeben ✅",
+        "rejected": "Abgelehnt 🚫",
+        "expired": "Abgelaufen ⏰ – kein Nutzer angelegt",
+        "gone": "Anfrage nicht gefunden",
+    }
+    _answer(text=toasts.get(outcome, f"Bereits bearbeitet: {outcome}"))
+    try:
+        # Rewrite the request message with the outcome; omitting
+        # reply_markup drops the inline keyboard so it can't be re-pressed.
+        _call(
+            "editMessageText",
+            chat_id=settings.telegram_chat_id,
+            message_id=msg.get("message_id"),
+            text=_registration_outcome_text(outcome, email),
+            parse_mode="HTML",
+        )
+    except Exception as exc:
+        logger.warning("Telegram callback feedback failed: %s", exc)
+
+
 class TelegramPoller(threading.Thread):
     """Background daemon thread that long-polls Telegram for incoming commands."""
 
@@ -192,13 +323,16 @@ class TelegramPoller(threading.Thread):
                     "getUpdates",
                     offset=self._offset,
                     timeout=30,
-                    allowed_updates=["message"],
+                    allowed_updates=["message", "callback_query"],
                 )
                 for update in data.get("result", []):
                     self._offset = update["update_id"] + 1
                     msg = update.get("message")
                     if msg:
                         _handle(msg, self._run_nightly, self._run_live)
+                    cb = update.get("callback_query")
+                    if cb:
+                        _handle_callback(cb)
             except httpx.ReadTimeout:
                 pass  # long-poll expired normally, just retry
             except Exception as exc:

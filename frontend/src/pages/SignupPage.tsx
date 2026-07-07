@@ -25,7 +25,7 @@ export default function SignupPage() {
         full_name: fullName || undefined,
       });
       setSuccess(true);
-      setTimeout(() => navigate("/login"), 2000);
+      setTimeout(() => navigate("/login"), 5000);
     } catch (err) {
       if (axios.isAxiosError(err)) {
         const detail = err.response?.data?.detail;
@@ -74,7 +74,8 @@ export default function SignupPage() {
               style={{ borderRadius: 2 }}
             >
               <CheckCircle className="h-3.5 w-3.5 shrink-0" />
-              Kennung erstellt — du wirst weitergeleitet …
+              Anfrage gesendet — dein Zugang wartet auf Freigabe. Nach der Freigabe kannst du
+              dich anmelden.
             </div>
           )}
 
@@ -119,7 +120,7 @@ export default function SignupPage() {
             </div>
 
             <button type="submit" disabled={loading || success} className="btn-primary w-full">
-              {loading ? "Lege Kennung an …" : "▸ Kennung erstellen"}
+              {loading ? "Sende Anfrage …" : "▸ Zugang anfragen"}
             </button>
           </form>
         </div>

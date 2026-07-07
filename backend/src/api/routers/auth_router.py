@@ -3,8 +3,10 @@ from __future__ import annotations
 from datetime import datetime, timedelta, timezone
 
 from fastapi import APIRouter, HTTPException, status
+from psycopg import errors
 from pydantic import BaseModel, EmailStr
 
+from .. import telegram_approval
 from ..auth import (
     create_access_token,
     create_refresh_token_value,
@@ -135,20 +137,36 @@ async def me(user: CurrentUser) -> dict:
     }
 
 
-MAX_USERS = 3
+PENDING_TTL = timedelta(minutes=5)
 
 
-@router.post("/register", status_code=201)
+@router.post("/register", status_code=status.HTTP_202_ACCEPTED)
 async def register(body: RegisterRequest) -> dict:
+    """Store a pending registration and request approval via Telegram.
+
+    No user row is created here: the ETL service's Telegram bot
+    (etl/src/telegram_bot.py) handles the inline approve/reject buttons and
+    inserts into auth.users on approval — within the 5-minute TTL only.
+    """
+    if not telegram_approval.is_configured():
+        raise HTTPException(
+            status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
+            detail="Registrierung derzeit nicht möglich – Freigabe-Kanal nicht konfiguriert.",
+        )
+
+    requested_at = datetime.now(tz=timezone.utc)
+    expires_at = requested_at + PENDING_TTL
+    password_hash = hash_password(body.password)
+
     async with get_conn() as conn:
         async with conn.cursor() as cur:
-            await cur.execute("SELECT COUNT(*) AS n FROM auth.users")
-            count = (await cur.fetchone())["n"]
-            if count >= MAX_USERS:
-                raise HTTPException(
-                    status_code=status.HTTP_403_FORBIDDEN,
-                    detail="Registrierung nicht möglich – maximale Nutzeranzahl erreicht.",
-                )
+            # Lapse stale requests first so the partial unique index
+            # (one live pending request per email) can't block a retry.
+            await cur.execute(
+                "UPDATE auth.pending_registrations "
+                "SET status = 'expired', decided_at = NOW() "
+                "WHERE status = 'pending' AND expires_at <= NOW()"
+            )
             await cur.execute(
                 "SELECT 1 FROM auth.users WHERE email = %s", (body.email,)
             )
@@ -156,11 +174,39 @@ async def register(body: RegisterRequest) -> dict:
                 raise HTTPException(
                     status_code=status.HTTP_409_CONFLICT, detail="E-Mail bereits registriert."
                 )
-            await cur.execute(
-                "INSERT INTO auth.users (email, password_hash, full_name) VALUES (%s, %s, %s) RETURNING id",
-                (body.email, hash_password(body.password), body.full_name),
-            )
-            new_id = (await cur.fetchone())["id"]
+            try:
+                await cur.execute(
+                    "INSERT INTO auth.pending_registrations "
+                    "(email, password_hash, full_name, requested_at, expires_at) "
+                    "VALUES (%s, %s, %s, %s, %s) RETURNING id",
+                    (body.email, password_hash, body.full_name, requested_at, expires_at),
+                )
+            except errors.UniqueViolation:
+                raise HTTPException(
+                    status_code=status.HTTP_409_CONFLICT,
+                    detail="Registrierung bereits angefragt – Freigabe ausstehend.",
+                )
+            reg_id = str((await cur.fetchone())["id"])
         await conn.commit()
 
-    return {"id": str(new_id), "email": body.email}
+    sent = await telegram_approval.send_registration_request(
+        reg_id, body.email, body.full_name, requested_at, expires_at
+    )
+    if not sent:
+        # Without the admin message nobody can ever approve — discard the row.
+        async with get_conn() as conn:
+            async with conn.cursor() as cur:
+                await cur.execute(
+                    "DELETE FROM auth.pending_registrations WHERE id = %s AND status = 'pending'",
+                    (reg_id,),
+                )
+            await conn.commit()
+        raise HTTPException(
+            status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
+            detail="Registrierung derzeit nicht möglich – Freigabe-Kanal nicht erreichbar.",
+        )
+
+    return {
+        "status": "pending",
+        "detail": "Registrierung angefragt – ein Admin muss sie innerhalb von 5 Minuten freigeben.",
+    }

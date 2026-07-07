@@ -25,6 +25,10 @@ class Settings(BaseSettings):
     # Redis
     redis_url: str = "redis://localhost:6379/0"
 
+    # Telegram (registration approval; same bot/chat as the ETL notifier)
+    telegram_bot_token: str = ""
+    telegram_chat_id: str = ""
+
     @property
     def dsn(self) -> str:
         return (

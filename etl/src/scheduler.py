@@ -196,6 +196,11 @@ def run_nightly(nightly: list[dict]) -> None:
          "DELETE FROM core.geo_features WHERE feature_type = 'bicycle_count' "
          "AND dataset_id = '1f7e5e3c-5cda-40f3-877a-d4a3506dd04e' "
          "AND updated_at < NOW() - INTERVAL '7 days'"),
+        # Registration requests are only actionable for 5 minutes; keep the
+        # settled/expired audit trail for a week, then drop it.
+        ("pending_registrations",
+         "DELETE FROM auth.pending_registrations "
+         "WHERE requested_at < NOW() - INTERVAL '7 days'"),
     ]
     for name, sql in retention_sql:
         try:
