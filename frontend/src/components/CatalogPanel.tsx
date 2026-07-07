@@ -11,6 +11,7 @@ import { fetchMetrics } from "../api/map";
 import { useMapStore } from "../store/mapStore";
 import { datasetColor } from "../map/gothamStyle";
 import { PRESETS, applyEntry, isEntryActive } from "../lagebild/catalog-actions";
+import ElectionsControl from "./ElectionsControl";
 
 const BADGE_CLASS: Record<string, string> = {
   Live: "border-signal-green/40 text-signal-green",
@@ -203,6 +204,8 @@ export default function CatalogPanel() {
                 {store.choroplethDatasetId && <ChoroplethControl />}
               </div>
             )}
+
+            <ElectionsControl />
           </div>
         )}
       </div>
