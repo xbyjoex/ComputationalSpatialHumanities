@@ -132,7 +132,7 @@ WITH a AS (
       AND metric_value IS NOT NULL
       AND period_year = %(year)s
     ORDER BY spatial_code, period_quarter DESC NULLS LAST,
-             period_month DESC NULLS LAST, dataset_id
+             period_month DESC NULLS LAST, dataset_id, spatial_key
 ),
 b AS (
     SELECT DISTINCT ON (spatial_code)
@@ -144,7 +144,7 @@ b AS (
       AND metric_value IS NOT NULL
       AND period_year = %(year)s
     ORDER BY spatial_code, period_quarter DESC NULLS LAST,
-             period_month DESC NULLS LAST, dataset_id
+             period_month DESC NULLS LAST, dataset_id, spatial_key
 )
 SELECT a.spatial_key,
        a.metric_value AS value_a, b.metric_value AS value_b,
@@ -174,7 +174,7 @@ WITH a AS (
     WHERE metric_name = %(metric_a)s AND spatial_unit = 'city'
       AND metric_value IS NOT NULL AND period_year IS NOT NULL
     ORDER BY period_year, period_quarter DESC NULLS LAST,
-             period_month DESC NULLS LAST, dataset_id
+             period_month DESC NULLS LAST, dataset_id, spatial_key
 ),
 b AS (
     SELECT DISTINCT ON (period_year)
@@ -183,7 +183,7 @@ b AS (
     WHERE metric_name = %(metric_b)s AND spatial_unit = 'city'
       AND metric_value IS NOT NULL AND period_year IS NOT NULL
     ORDER BY period_year, period_quarter DESC NULLS LAST,
-             period_month DESC NULLS LAST, dataset_id
+             period_month DESC NULLS LAST, dataset_id, spatial_key
 )
 SELECT a.period_year,
        a.metric_value AS value_a, b.metric_value AS value_b,
