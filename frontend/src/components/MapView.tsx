@@ -15,6 +15,11 @@ import {
 } from "../api/map";
 import { loadGothamStyle, datasetColor } from "../map/gothamStyle";
 import { registerTileProtocol, useTileLoadStore } from "../map/tileProtocol";
+import { fetchSpectrum, SPECTRUM_DOMAIN, SpectrumFeatureProps } from "../api/elections";
+import ElectionSpectrumTooltip, {
+  ElectionTooltipContent,
+  parseSpectrumProps,
+} from "./ElectionSpectrumTooltip";
 import CatalogPanel from "./CatalogPanel";
 import ContextDock from "./ContextDock";
 import TimelineBar from "./TimelineBar";
@@ -34,6 +39,7 @@ interface PopupInfo {
   lat: number;
   featureId: number | null;
   properties: Record<string, unknown>;
+  kind?: "election";
 }
 
 type FilterExpr = unknown[];
@@ -51,8 +57,25 @@ export default function MapView() {
   const [booted, setBooted] = useState(false);
   const {
     activeLayers, choroplethMetric, timelineYear, spatialUnit,
-    selectedDatasetIds, selectedFamilyIds,
+    selectedDatasetIds, selectedFamilyIds, electionSelection,
   } = useMapStore();
+
+  const [electionHover, setElectionHover] = useState<{
+    x: number;
+    y: number;
+    props: SpectrumFeatureProps;
+  } | null>(null);
+
+  const { data: spectrum } = useQuery(
+    ["spectrum", electionSelection],
+    () =>
+      fetchSpectrum(
+        electionSelection!.electionType,
+        electionSelection!.year,
+        electionSelection!.level
+      ),
+    { enabled: activeLayers.has("elections") && !!electionSelection, staleTime: 3_600_000 }
+  );
 
   useEffect(() => {
     loadGothamStyle()
@@ -139,6 +162,16 @@ export default function MapView() {
   const handleClick = useCallback((e: MapLayerMouseEvent) => {
     const feature = e.features?.[0];
     if (!feature) return;
+    if (feature.layer?.id === "elections-fill") {
+      setPopup({
+        lng: e.lngLat.lng,
+        lat: e.lngLat.lat,
+        featureId: null,
+        properties: feature.properties as Record<string, unknown>,
+        kind: "election",
+      });
+      return;
+    }
     const props = feature.properties as Record<string, unknown>;
     const isUnified = String(feature.layer?.id ?? "").startsWith("unified-");
     // Cluster (aggregierte Punkte der Übersichts-Zoomstufen): hineinzoomen
@@ -164,6 +197,16 @@ export default function MapView() {
     setCursor({ lng: e.lngLat.lng, lat: e.lngLat.lat });
     if (mapRef.current) {
       mapRef.current.getCanvas().style.cursor = e.features?.length ? "pointer" : "";
+    }
+    const electionFeature = e.features?.find((f) => f.layer?.id === "elections-fill");
+    if (electionFeature) {
+      setElectionHover({
+        x: e.point.x,
+        y: e.point.y,
+        props: parseSpectrumProps(electionFeature.properties as Record<string, unknown>),
+      });
+    } else {
+      setElectionHover(null);
     }
   }, []);
 
@@ -192,6 +235,7 @@ export default function MapView() {
             "unified-circle",
             "unified-line",
             "unified-fill",
+            "elections-fill",
           ]}
           onClick={handleClick}
           onMouseMove={handleMouseMove}
@@ -232,6 +276,35 @@ export default function MapView() {
                 id="choropleth-line"
                 type="line"
                 paint={{ "line-color": "#53b9e8", "line-width": 0.4, "line-opacity": 0.5 }}
+              />
+            </Source>
+          )}
+
+          {/* Politisches Spektrum (Wahlergebnisse) */}
+          {activeLayers.has("elections") && spectrum && (
+            <Source id="elections-spectrum" type="geojson" data={spectrum}>
+              <Layer
+                id="elections-fill"
+                type="fill"
+                paint={{
+                  "fill-color": [
+                    "case",
+                    ["==", ["typeof", ["get", "score"]], "number"],
+                    [
+                      "interpolate", ["linear"], ["get", "score"],
+                      -SPECTRUM_DOMAIN, "#e5484d",
+                      0, "#3a4048",
+                      SPECTRUM_DOMAIN, "#3b82f6",
+                    ],
+                    "rgba(0,0,0,0)",
+                  ] as never,
+                  "fill-opacity": 0.7,
+                }}
+              />
+              <Layer
+                id="elections-line"
+                type="line"
+                paint={{ "line-color": "#0a1015", "line-width": 0.8, "line-opacity": 0.6 }}
               />
             </Source>
           )}
@@ -401,10 +474,33 @@ export default function MapView() {
               onClose={() => setPopup(null)}
               maxWidth="300px"
             >
-              <PopupContent featureId={popup.featureId} properties={popup.properties} />
+              {popup.kind === "election" ? (
+                <ElectionTooltipContent props={parseSpectrumProps(popup.properties)} />
+              ) : (
+                <PopupContent featureId={popup.featureId} properties={popup.properties} />
+              )}
             </Popup>
           )}
         </Map>
+      )}
+
+      {/* Hover-Tooltip Politisches Spektrum */}
+      {electionHover && <ElectionSpectrumTooltip hover={electionHover} />}
+
+      {/* Legende Politisches Spektrum */}
+      {activeLayers.has("elections") && (
+        <div className="pointer-events-none absolute bottom-16 right-5 z-10 border border-gotham-700 bg-gotham-900/85 px-3 py-2 backdrop-blur-sm">
+          <p className="hud-label mb-1.5 text-gotham-300">Politisches Spektrum</p>
+          <div
+            className="h-2 w-44"
+            style={{ background: "linear-gradient(to right, #e5484d, #3a4048, #3b82f6)" }}
+          />
+          <div className="mt-1 flex justify-between font-mono text-[9px] text-gotham-400">
+            <span>links</span>
+            <span>rechts</span>
+          </div>
+          <p className="mt-0.5 font-mono text-[8px] text-gotham-500">Sitzordnung Bundestag</p>
+        </div>
       )}
 
       {/* Boot-Overlay bis Karte und Style geladen sind */}
