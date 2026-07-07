@@ -46,3 +46,4 @@ etl/logs/
 !dataset_contracts.json
 !leipzig_all_datasets_metadata.json
 infrastructure/certbot/
+.superpowers/
