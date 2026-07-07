@@ -62,7 +62,9 @@ Zeitreihe: city-Werte). Caching bleibt `@cached(ttl=600)`.
 
 1. **Achsen-Fix**: `type="number"` auf X- und Y-Achse, `domain` auto,
    kompakte Tick-Formatierung (`Intl.NumberFormat("de-DE")`).
-   `ScatterChart` → `ComposedChart` (Mischung Scatter + Line).
+   Chart bleibt `ScatterChart`; die Trend-Kurve wird als zweiter `Scatter`
+   mit `line`-Prop und unsichtbaren Punkten gezeichnet (robuster in
+   Recharts 3 als per-Series-`Line` im `ComposedChart`).
 2. **Jahr-Dropdown** statt Zahlenfeld: Optionen aus `available_years`,
    Default-Option „Neuestes (JJJJ)" (`value = null`). Bei Gesamtstadt
    ausgeblendet; stattdessen Hinweis „Punkte = Jahre". Wird ein Jahr
