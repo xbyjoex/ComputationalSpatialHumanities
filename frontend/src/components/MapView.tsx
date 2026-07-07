@@ -77,6 +77,12 @@ export default function MapView() {
     { enabled: activeLayers.has("elections") && !!electionSelection, staleTime: 3_600_000 }
   );
 
+  // Hover-Reste entfernen, wenn Auswahl/Layer wechseln, ohne dass die Maus
+  // die Karte erneut berührt (Toggle sitzt außerhalb des Canvas)
+  useEffect(() => {
+    setElectionHover(null);
+  }, [electionSelection, activeLayers]);
+
   useEffect(() => {
     loadGothamStyle()
       .then(setMapStyle)
@@ -485,7 +491,9 @@ export default function MapView() {
       )}
 
       {/* Hover-Tooltip Politisches Spektrum */}
-      {electionHover && <ElectionSpectrumTooltip hover={electionHover} />}
+      {electionHover && activeLayers.has("elections") && (
+        <ElectionSpectrumTooltip hover={electionHover} />
+      )}
 
       {/* Legende Politisches Spektrum */}
       {activeLayers.has("elections") && (
