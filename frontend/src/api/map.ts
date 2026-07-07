@@ -55,8 +55,33 @@ export const fetchAdminBoundaries = (boundary_type = "ortsteil") =>
 export const fetchChoropleth = (metric_name: string, spatial_unit = "ortsteil", period_year?: number) =>
   apiClient.get("/stats/choropleth", { params: { metric_name, spatial_unit, period_year } }).then((r) => r.data);
 
-export const fetchCorrelation = (metric_a: string, metric_b: string, spatial_unit = "ortsteil", period_year?: number) =>
-  apiClient.get("/stats/correlation", { params: { metric_a, metric_b, spatial_unit, period_year } }).then((r) => r.data);
+export interface CorrelationPoint {
+  key: string;
+  x: number;
+  y: number;
+}
+export interface CorrelationResponse {
+  metric_a: string;
+  metric_b: string;
+  spatial_unit: string;
+  mode: "cross_section" | "timeseries";
+  year_used: number | null;
+  available_years: number[];
+  unit_a: string | null;
+  unit_b: string | null;
+  pearson_r: number | null;
+  points: CorrelationPoint[];
+}
+
+export const fetchCorrelation = (
+  metric_a: string,
+  metric_b: string,
+  spatial_unit = "ortsteil",
+  period_year?: number
+): Promise<CorrelationResponse> =>
+  apiClient
+    .get("/stats/correlation", { params: { metric_a, metric_b, spatial_unit, period_year } })
+    .then((r) => r.data);
 
 // Nur Metriken, die für die Raumeinheit auch kartierbar sind (numerisch +
 // aufgelöster Boundary-Code) — sonst flutet jede CSV-Spalte das Dropdown.

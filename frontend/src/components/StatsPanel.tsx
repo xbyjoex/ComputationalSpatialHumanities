@@ -6,7 +6,19 @@ import {
   ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip,
   ResponsiveContainer,
 } from "recharts";
-import { fetchCorrelation, fetchGroupedMetrics, MetricGroup } from "../api/map";
+import {
+  CorrelationResponse, fetchCorrelation, fetchGroupedMetrics, MetricGroup,
+} from "../api/map";
+import { fitPolynomial } from "../lib/regression";
+
+const TREND_OPTIONS = [
+  { degree: 0, label: "Aus" },
+  { degree: 1, label: "Linear" },
+  { degree: 2, label: "Quadratisch" },
+  { degree: 3, label: "Kubisch" },
+] as const;
+
+const TREND_COLOR = "#ffb02e";
 
 function classify(r: number): { label: string; color: string } {
   const a = Math.abs(r);
@@ -62,6 +74,7 @@ export default function StatsPanel() {
   const [metricB, setMetricB] = useState("");
   const [spatialUnit, setSpatialUnit] = useState("ortsteil");
   const [year, setYear] = useState<number | null>(null);
+  const [trendDegree, setTrendDegree] = useState(0);
   const [topicFilter, setTopicFilter] = useState<string | null>(
     searchParams.get("topic")
   );
@@ -85,14 +98,46 @@ export default function StatsPanel() {
     [metricGroups, topicFilter]
   );
 
-  const { data: corrData, isLoading } = useQuery(
+  const { data: corrData, isLoading } = useQuery<CorrelationResponse>(
     ["correlation", metricA, metricB, spatialUnit, year],
     () => fetchCorrelation(metricA, metricB, spatialUnit, year ?? undefined),
-    { enabled: !!(metricA && metricB) }
+    { enabled: !!(metricA && metricB), keepPreviousData: true }
   );
+
+  // Jahr ist nur relativ zur Metrik-/Raumebenen-Wahl gültig → bei Wechsel zurücksetzen
+  const pickMetricA = (v: string) => { setMetricA(v); setYear(null); };
+  const pickMetricB = (v: string) => { setMetricB(v); setYear(null); };
+  const pickSpatialUnit = (v: string) => { setSpatialUnit(v); setYear(null); };
+
+  const points = useMemo(() => corrData?.points ?? [], [corrData]);
+  const isTimeseries = corrData?.mode === "timeseries";
+  const latestYear = corrData?.available_years?.[0] ?? null;
+
+  const fit = useMemo(
+    () => (trendDegree > 0 ? fitPolynomial(points, trendDegree) : null),
+    [points, trendDegree]
+  );
+  const trendPoints = useMemo(() => {
+    if (!fit || points.length === 0) return [];
+    const xs = points.map((p) => p.x);
+    const min = Math.min(...xs);
+    const max = Math.max(...xs);
+    if (min === max) return [];
+    return Array.from({ length: 101 }, (_, i) => {
+      const x = min + (i * (max - min)) / 100;
+      return { x, y: fit.predict(x) };
+    });
+  }, [fit, points]);
+
+  const nf = useMemo(() => new Intl.NumberFormat("de-DE", { maximumFractionDigits: 2 }), []);
 
   const r: number | null = corrData?.pearson_r ?? null;
   const cls = r != null ? classify(r) : null;
+  const nLabel = isTimeseries
+    ? "Jahre"
+    : spatialUnit === "stadtbezirk"
+      ? "Stadtbezirke"
+      : "Ortsteile";
 
   return (
     <div className="blueprint-bg h-full overflow-y-auto">
@@ -153,18 +198,18 @@ export default function StatsPanel() {
 
             <div>
               <label className="hud-label mb-1.5 block">Metrik A — X-Achse</label>
-              <MetricSelect value={metricA} onChange={setMetricA} groups={visibleGroups} />
+              <MetricSelect value={metricA} onChange={pickMetricA} groups={visibleGroups} />
             </div>
 
             <div>
               <label className="hud-label mb-1.5 block">Metrik B — Y-Achse</label>
-              <MetricSelect value={metricB} onChange={setMetricB} groups={visibleGroups} />
+              <MetricSelect value={metricB} onChange={pickMetricB} groups={visibleGroups} />
             </div>
 
             <div className="grid grid-cols-2 gap-2.5">
               <div>
                 <label className="hud-label mb-1.5 block">Raumebene</label>
-                <select value={spatialUnit} onChange={(e) => setSpatialUnit(e.target.value)} className="field">
+                <select value={spatialUnit} onChange={(e) => pickSpatialUnit(e.target.value)} className="field">
                   <option value="ortsteil">Ortsteil</option>
                   <option value="stadtbezirk">Stadtbezirk</option>
                   <option value="city">Gesamtstadt</option>
@@ -172,13 +217,52 @@ export default function StatsPanel() {
               </div>
               <div>
                 <label className="hud-label mb-1.5 block">Jahr</label>
-                <input
-                  type="number"
-                  value={year ?? ""}
-                  onChange={(e) => setYear(e.target.value ? parseInt(e.target.value) : null)}
-                  placeholder="alle"
-                  className="field"
-                />
+                {spatialUnit === "city" ? (
+                  <p className="flex h-full items-center font-mono text-[10px] text-gotham-400">
+                    Punkte = Jahre
+                  </p>
+                ) : (
+                  <select
+                    value={year ?? ""}
+                    onChange={(e) => setYear(e.target.value ? parseInt(e.target.value) : null)}
+                    className="field"
+                    disabled={!corrData}
+                  >
+                    <option value="">
+                      {latestYear != null ? `Neuestes (${latestYear})` : "Neuestes"}
+                    </option>
+                    {(corrData?.available_years ?? []).map((y) => (
+                      <option key={y} value={y}>{y}</option>
+                    ))}
+                  </select>
+                )}
+              </div>
+            </div>
+
+            {/* Trendlinie */}
+            <div>
+              <label className="hud-label mb-1.5 block">Trend</label>
+              <div className="flex flex-wrap gap-1">
+                {TREND_OPTIONS.map((o) => {
+                  const insufficient = o.degree > 0 && points.length < o.degree + 2;
+                  return (
+                    <button
+                      key={o.degree}
+                      type="button"
+                      disabled={insufficient}
+                      onClick={() => setTrendDegree(o.degree)}
+                      className={clsx(
+                        "border px-2 py-0.5 font-mono text-[9px] uppercase tracking-[0.1em] transition-colors",
+                        trendDegree === o.degree
+                          ? "border-signal-cyan bg-signal-cyan/20 text-signal-cyan"
+                          : "border-gotham-600 text-gotham-400 hover:border-gotham-400",
+                        insufficient && "cursor-not-allowed opacity-40 hover:border-gotham-600"
+                      )}
+                    >
+                      {o.label}
+                    </button>
+                  );
+                })}
               </div>
             </div>
 
@@ -196,11 +280,23 @@ export default function StatsPanel() {
                     style={{ width: `${Math.min(100, Math.abs(r) * 100)}%`, backgroundColor: cls.color }}
                   />
                 </div>
-                <p className="mt-2 font-mono text-[10px] uppercase tracking-[0.14em]" style={{ color: cls.color }}>
-                  {cls.label}
-                </p>
+                {points.length < 3 ? (
+                  <p className="mt-2 font-mono text-[10px] uppercase tracking-[0.14em]" style={{ color: TREND_COLOR }}>
+                    n zu klein für belastbare Korrelation
+                  </p>
+                ) : (
+                  <p className="mt-2 font-mono text-[10px] uppercase tracking-[0.14em]" style={{ color: cls.color }}>
+                    {cls.label}
+                  </p>
+                )}
+                {fit && (
+                  <p className="mt-1 font-mono text-[10px] text-gotham-400">
+                    R² ({TREND_OPTIONS[trendDegree].label}) = {fit.r2.toFixed(3)}
+                  </p>
+                )}
                 <p className="mt-0.5 font-mono text-[10px] text-gotham-500">
-                  n = {corrData.points?.length} Raumeinheiten
+                  n = {points.length} {nLabel}
+                  {!isTimeseries && corrData?.year_used != null ? ` (${corrData.year_used})` : ""}
                 </p>
               </div>
             )}
@@ -228,21 +324,27 @@ export default function StatsPanel() {
                   Berechne Korrelation …
                 </p>
               </div>
-            ) : corrData?.points?.length > 0 ? (
+            ) : points.length > 0 ? (
               <div className="h-96">
                 <ResponsiveContainer width="100%" height="100%">
                   <ScatterChart margin={{ top: 8, right: 16, bottom: 24, left: 8 }}>
                     <CartesianGrid strokeDasharray="2 4" stroke="#1e2e3a" />
                     <XAxis
+                      type="number"
                       dataKey="x"
                       name={metricA}
+                      domain={["auto", "auto"]}
+                      tickFormatter={(v: number) => nf.format(v)}
                       tick={{ fill: "#678599", fontSize: 10, fontFamily: '"IBM Plex Mono", monospace' }}
                       stroke="#2b4253"
                       label={{ value: metricA, position: "insideBottom", offset: -12, fill: "#678599", fontSize: 10 }}
                     />
                     <YAxis
+                      type="number"
                       dataKey="y"
                       name={metricB}
+                      domain={["auto", "auto"]}
+                      tickFormatter={(v: number) => nf.format(v)}
                       tick={{ fill: "#678599", fontSize: 10, fontFamily: '"IBM Plex Mono", monospace' }}
                       stroke="#2b4253"
                       label={{ value: metricB, angle: -90, position: "insideLeft", fill: "#678599", fontSize: 10 }}
@@ -252,23 +354,36 @@ export default function StatsPanel() {
                       content={({ payload }) => {
                         if (!payload?.length) return null;
                         const d = payload[0].payload;
+                        if (!d.key) return null; // Trendlinien-Samples haben keinen key
                         return (
                           <div className="panel corners px-3 py-2 font-mono text-[11px]">
                             <p className="mb-1 font-semibold text-gotham-100">{d.key}</p>
-                            <p className="text-gotham-300">{metricA}: {d.x}</p>
-                            <p className="text-gotham-300">{metricB}: {d.y}</p>
+                            <p className="text-gotham-300">
+                              {metricA}: {nf.format(d.x)}{corrData?.unit_a ? ` ${corrData.unit_a}` : ""}
+                            </p>
+                            <p className="text-gotham-300">
+                              {metricB}: {nf.format(d.y)}{corrData?.unit_b ? ` ${corrData.unit_b}` : ""}
+                            </p>
                           </div>
                         );
                       }}
                     />
-                    <Scatter data={corrData.points} fill="#53b9e8" opacity={0.85} />
+                    <Scatter data={points} fill="#53b9e8" opacity={0.85} isAnimationActive={false} />
+                    {trendPoints.length > 0 && (
+                      <Scatter
+                        data={trendPoints}
+                        line={{ stroke: TREND_COLOR, strokeWidth: 1.5, strokeDasharray: "6 4" }}
+                        shape={() => <g />}
+                        isAnimationActive={false}
+                      />
+                    )}
                   </ScatterChart>
                 </ResponsiveContainer>
               </div>
             ) : (
               <div className="flex h-80 items-center justify-center">
                 <p className="font-mono text-xs text-gotham-500">
-                  Keine Daten für diese Kombination
+                  Keine gemeinsamen Daten für diese Kombination
                 </p>
               </div>
             )}
