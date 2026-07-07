@@ -3,10 +3,17 @@ import { SPECTRUM_DOMAIN, SpectrumFeatureProps, SpectrumPartyShare } from "../ap
 
 /** MapLibre serialisiert verschachtelte GeoJSON-Properties als JSON-String. */
 export function parseSpectrumProps(raw: Record<string, unknown>): SpectrumFeatureProps {
-  const parties: SpectrumPartyShare[] =
-    typeof raw.parties === "string"
-      ? JSON.parse(raw.parties)
-      : ((raw.parties as SpectrumPartyShare[]) ?? []);
+  let parties: SpectrumPartyShare[] = [];
+  if (typeof raw.parties === "string") {
+    try {
+      const parsed: unknown = JSON.parse(raw.parties);
+      if (Array.isArray(parsed)) parties = parsed as SpectrumPartyShare[];
+    } catch {
+      // fehlerhaftes Property → leere Verteilung statt Crash beim Hovern
+    }
+  } else if (Array.isArray(raw.parties)) {
+    parties = raw.parties as SpectrumPartyShare[];
+  }
   return {
     gebiet_code: String(raw.gebiet_code ?? ""),
     name: String(raw.name ?? ""),
