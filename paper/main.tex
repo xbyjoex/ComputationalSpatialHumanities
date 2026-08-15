@@ -49,6 +49,100 @@ with confidence.''}
 
 \section{The Data Landscape and Its Frictions}
 
+By the ordinary standards of open government data, Leipzig's portal is a good
+one. It runs on CKAN, exposes DCAT metadata, and publishes 398 datasets from 37
+municipal offices across 13 thematic groups. Resources arrive in machine-readable
+formats, some are refreshed daily, the catalogue reaches from the tree cadastre
+to election results, and the listed contacts answer. Nothing that follows is a
+complaint about a negligent administration. Every friction we describe is
+compatible with every open-data requirement we are aware of, and that is
+precisely the point: compliance is measured at the moment of publication, not at
+the moment of use.
+
+We drew from two sources with incompatible paradigms. The CKAN catalogue at
+\texttt{opendata.leipzig.de} offers file resources whose format is whatever the
+publishing office exported. The statistical office at
+\texttt{statistik.leipzig.de} serves a JSON API in a wide-by-year layout, with
+years as columns and indicator codes as rows. Neither is wrong. They simply
+cannot be read by the same code.
+
+Table~\ref{tab:frictions} lists the eight classes of friction we encountered
+while bringing all 398 datasets into one queryable model, each with the extent we
+measured. Two deserve emphasis because they are the ones that produced silent
+errors rather than loud ones.
+
+\emph{Metric names are not unique.} A metric is identified in the published data
+by its name alone, but 56 of the 300 Ortsteil-level metric names we loaded occur
+in more than one dataset. The name \texttt{Ausländer} (``foreign nationals'')
+appears in six, denominated once against residents, once against registered
+residents, once against employees, once against the unemployed, once against
+people with a migration background, and once against welfare recipients. Six
+quantities, six base populations, one label. Nothing in the published metadata
+distinguishes them. The unit of identity is the pair (dataset, metric), and a
+consumer has to infer that.
+
+\emph{Administrative levels are mixed without being marked.} A single file
+routinely contains rows for Ortsteile, for the Stadtbezirke that contain them,
+and for the city as a whole, with no column stating which level a row belongs to.
+The level has to be inferred from the area name, and the names do not support the
+inference: the Stadtbezirke \emph{Mitte}, \emph{Südost} and \emph{Nordwest} are
+each a substring of an unrelated Ortsteil name --- \emph{Grünau-Mitte},
+\emph{Zentrum-Südost}, \emph{Zentrum-Nordwest}. Any name-similarity heuristic
+conflates them, and the affected rows then carry the population of a district
+under the code of a neighbourhood. In our own ingestion this misplaced 13{,}862
+rows across 42 datasets; Section~\ref{sec:discussion} returns to what it took to
+notice.
+
+The same file structure makes even the city's population ambiguous. Summed over
+the 63 Ortsteile, Leipzig had 632{,}560 inhabitants in 2024; summed over the 10
+Stadtbezirke, the same 632{,}560; the file's own city row reads 632{,}562. Two
+residents are carried without an Ortsteil assignment and appear only in the
+total. Even the population of a city depends on which row you read.
+
+\begin{table*}[t]
+\caption{Eight classes of friction between published and usable data, with the
+extent measured while ingesting all 398 datasets of Leipzig's open data portal.
+None of them violates an open-data policy.}
+\label{tab:frictions}
+\centering
+\small
+\begin{tabular}{@{}p{0.20\textwidth}p{0.46\textwidth}p{0.28\textwidth}@{}}
+\toprule
+\textbf{Friction} & \textbf{Example} & \textbf{Extent measured} \\
+\midrule
+Format heterogeneity &
+CSV with varying delimiters and encodings, GeoJSON, JSON, XLSX, SHP &
+portal-wide \\[2pt]
+Structural heterogeneity &
+wide-by-year layouts (indicator $\times$ year/quarter/school-year) require
+melting before they can be stored &
+174 datasets initially loaded 0 rows \\[2pt]
+Spatial-reference heterogeneity &
+Ortsteil name, Ortsteil number, electoral district, coordinates, or no spatial
+reference at all &
+no shared key across datasets \\[2pt]
+Temporal heterogeneity &
+update intervals from daily to never; static timetables tagged as live &
+16 marked live, 3 genuinely live \\[2pt]
+Semantic opacity &
+\texttt{Unnamed:~10} as a metric name; identifiers and spatial units stored as
+metrics; election years collapsed to 1994 &
+1{,}351 ``metrics'' at city level \\[2pt]
+Entity fragmentation &
+one phenomenon split across annual datasets (given names 2014--2025,
+federal elections 2021 and 2025) &
+398 datasets overstate the number of distinct phenomena \\[2pt]
+\textbf{Metric-name collision} &
+\texttt{Ausländer} exists in six datasets with six different base populations &
+\textbf{56 of 300} Ortsteil metric names occur in $>$1 dataset \\[2pt]
+\textbf{Unmarked administrative levels} &
+one file holds Ortsteile, Stadtbezirke and the city total with no level column;
+the consumer must guess &
+\textbf{13{,}862 rows in 42 datasets} resolved to the wrong level \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
 \section{System Design}
 
 \begin{figure*}[t]
@@ -88,6 +182,7 @@ read as a finding.}
 \end{figure*}
 
 \section{Discussion: Transparency and Its Infrastructure}
+\label{sec:discussion}
 
 \section{Limitations and Future Work}
 
