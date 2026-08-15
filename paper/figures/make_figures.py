@@ -371,7 +371,7 @@ def make_fig3_scatter():
     ax.set_xlabel("Single-parent share of families (%)")
     ax.set_ylabel("Turnout (%)")
     ax.set_title(
-        f"Turnout vs. single-parent share, {stat['n']} Ortsteile\n"
+        f"Turnout vs. single-parent share of families, {stat['n']} Ortsteile\n"
         "European election 2024",
         fontsize=8.6, pad=6,
     )
@@ -481,7 +481,7 @@ def make_fig4_maup():
     axes[1].set_ylabel("AfD vote share (%)")
 
     fig.suptitle(
-        "AfD vote share vs. unemployment share — same votes, two spatial resolutions",
+        "AfD vote share vs. registered unemployed — same votes, two spatial resolutions",
         fontsize=9.2, y=1.03,
     )
     fig.text(
