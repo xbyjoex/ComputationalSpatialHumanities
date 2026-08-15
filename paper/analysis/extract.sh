@@ -102,5 +102,14 @@ run_query indicators_stadtbezirk_raw.csv "
   ORDER BY sb.code, s.dataset_id, s.metric_name
 "
 
+# Ortsteil geometries for the turnout choropleth (Fig. 2). GeoJSON as text so
+# the plotting code can json.loads() the column directly.
+run_query boundaries_geo.csv "
+  SELECT code, name, ST_AsGeoJSON(geom) AS geom
+  FROM core.admin_boundaries
+  WHERE boundary_type = 'ortsteil'
+  ORDER BY code
+"
+
 echo "Done. Files in ${DATA_DIR}:"
 wc -l "${DATA_DIR}"/*.csv
