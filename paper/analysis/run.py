@@ -76,6 +76,43 @@ def correlate_grid(votes, shares, codes) -> dict:
     return grid
 
 
+def parent_map(rows: list[dict]) -> dict[str, str]:
+    """{ortsteil_code: stadtbezirk_code} from core.admin_boundaries."""
+    return {
+        r["code"]: r["parent_code"]
+        for r in rows
+        if r["boundary_type"] == "ortsteil" and r["parent_code"]
+    }
+
+
+def official_stadtbezirk_counts(rows: list[dict]) -> dict[str, dict[str, float]]:
+    """The city's own Stadtbezirk figures, used only to validate our sums."""
+    out: dict[str, dict[str, float]] = {}
+    for row in rows:
+        key = metric_key(row["dataset_id"], row["metric_name"])
+        out.setdefault(row["stadtbezirk_code"], {})[key] = float(row["metric_value"])
+    return out
+
+
+def validate_aggregation(ours, official) -> dict:
+    """Compare our Ortsteil sums against the official Stadtbezirk rows."""
+    checks = []
+    for code, metrics in sorted(ours.items()):
+        for key, value in sorted(metrics.items()):
+            reference = official.get(code, {}).get(key)
+            if reference is None:
+                continue
+            checks.append({
+                "stadtbezirk": code,
+                "metric": key,
+                "ours": value,
+                "official": reference,
+                "delta": value - reference,
+            })
+    mismatches = [c for c in checks if abs(c["delta"]) > 0.5]
+    return {"compared": len(checks), "mismatches": mismatches}
+
+
 def main() -> None:
     ind_rows = read_csv("indicators_ortsteil.csv")
     counts = build_counts(ind_rows)
@@ -93,6 +130,31 @@ def main() -> None:
     votes_ot = party_shares(read_csv("election_ortsteil.csv"))
     codes_ot = sorted(set(counts) & set(votes_ot))
 
+    results_ot = correlate_grid(votes_ot, shares, codes_ot)
+
+    parents = parent_map(read_csv("boundaries.csv"))
+    counts_sb = aggregate_to_parent(counts, parents)
+    shares_sb = compute_shares(counts_sb)
+    votes_sb = party_shares(read_csv("election_stadtbezirk.csv"))
+    codes_sb = sorted(set(counts_sb) & set(votes_sb))
+
+    if len(counts_sb) != EXPECTED_STADTBEZIRKE:
+        raise SystemExit(
+            f"aggregated to {len(counts_sb)} Stadtbezirke, expected {EXPECTED_STADTBEZIRKE}"
+        )
+
+    validation = validate_aggregation(
+        counts_sb, official_stadtbezirk_counts(read_csv("indicators_stadtbezirk_raw.csv"))
+    )
+    if validation["mismatches"]:
+        raise SystemExit(
+            f"aggregation disagrees with the official Stadtbezirk figures in "
+            f"{len(validation['mismatches'])} of {validation['compared']} checks: "
+            f"{validation['mismatches'][:3]}"
+        )
+
+    corr_sb = correlate_grid(votes_sb, shares_sb, codes_sb)
+
     results = {
         "meta": {
             "year": YEAR,
@@ -105,8 +167,23 @@ def main() -> None:
             "n": len(codes_ot),
             "shares": {c: shares[c] for c in codes_ot},
             "votes": {c: votes_ot[c] for c in codes_ot},
-            "correlations": correlate_grid(votes_ot, shares, codes_ot),
+            "correlations": results_ot,
         },
+        "stadtbezirk": {
+            "n": len(codes_sb),
+            "shares": {c: shares_sb[c] for c in codes_sb},
+            "votes": {c: votes_sb[c] for c in codes_sb},
+            "correlations": corr_sb,
+        },
+        "maup": {
+            key: {
+                "ortsteil": results_ot[key],
+                "stadtbezirk": corr_sb[key],
+                "delta_r": corr_sb[key]["r"] - results_ot[key]["r"],
+            }
+            for key in sorted(set(results_ot) & set(corr_sb))
+        },
+        "validation": validation,
     }
 
     OUT.write_text(json.dumps(results, indent=2, ensure_ascii=False), encoding="utf-8")
@@ -116,6 +193,14 @@ def main() -> None:
         key=lambda kv: -abs(kv[1]["r"]),
     )[:8]:
         print(f"  {key:<28} r={stat['r']:+.3f}  R²={stat['r2']:.3f}  p={stat['p']:.2e}")
+
+    print(f"\nMAUP — same pairing, Ortsteil (n={len(codes_ot)}) vs Stadtbezirk (n={len(codes_sb)}):")
+    for key, cmp in sorted(results["maup"].items(), key=lambda kv: -abs(kv[1]["delta_r"]))[:8]:
+        print(
+            f"  {key:<28} r={cmp['ortsteil']['r']:+.3f} -> {cmp['stadtbezirk']['r']:+.3f}"
+            f"  Δr={cmp['delta_r']:+.3f}"
+        )
+    print(f"\naggregation validated against {results['validation']['compared']} official figures")
 
 
 if __name__ == "__main__":
