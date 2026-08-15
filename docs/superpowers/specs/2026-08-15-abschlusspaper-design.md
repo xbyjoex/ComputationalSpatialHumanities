@@ -463,7 +463,24 @@ paper/
 | **Politische Lesart der Fallstudie.** | Mehrere Parteien berichten, Methodendemonstration in den Vordergrund. |
 | **Zahlen veralten.** | Messpunkt mit Datum benennen („Stand 15. August 2026"), nicht als zeitlos darstellen. |
 
-## 10. Nicht im Scope
+## 10. Zusätzlich im Scope — entschieden 2026-08-15
+
+**Der Stadtbezirks-Kollisionsbug wird behoben, nicht nur umgangen.** Umfang:
+
+1. Ebenenprüfung in `core.resolve_spatial_key()` / `core.spatial_aliases`, damit ein
+   `boundary_type='stadtbezirk'`-Name nie auf einen Ortsteil-Code auflöst.
+2. Neuauflösung der 13.862 betroffenen Zeilen in 42 Datensätzen.
+3. Verifikation: Summe `Einwohner insgesamt` 2024 über Ortsteile = **632.562**.
+4. Der Extraktions-Guard in der Analyse bleibt **trotzdem** bestehen — doppelte
+   Absicherung, und er dokumentiert im Paper, dass die Prüfung stattgefunden hat.
+
+Die Screenshots werden **nicht** neu aufgenommen; die Karte ändert sich in drei von
+63 Flächen. Falls Abb. 2 eine der drei zeigt, gezielt nachziehen.
+
+Reihenfolge: Fix und Verifikation **vor** der Fallstudien-Auswertung, damit die
+Zahlen im Paper vom korrigierten Bestand stammen.
+
+## 11. Nicht im Scope
 
 Keine Kausalanalyse · keine Mehrstädtevergleiche · keine neuen Plattform-Features
 für das Paper · keine Behebung der 48 verbleibenden ungeladenen Datensätze ·
