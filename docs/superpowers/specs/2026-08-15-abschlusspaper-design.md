@@ -56,11 +56,26 @@ sich auf 3.980 — das ist bewusst knapp über dem Ziel, damit beim Kürzen Subs
 bleibt. Wer über 4.200 Wörter kommt, muss nach der Kürzungsreihenfolge in Abschnitt 9
 streichen, nicht überall gleichmäßig verdünnen.
 
+**Titel — entschieden 2026-08-15:**
+
+> **Grey Is All Theory: Spatial Aggregation and the Limits of Civic Evidence
+> in Leipzig's Open Data**
+
 **Epigraph** (vor Abschnitt I):
 > „Denn was man schwarz auf weiß besitzt, / Kann man getrost nach Hause tragen."
 > — Goethe, *Faust I*, V. 1966 f.
 
 Englische Übersetzung im Fließtext oder Fußnote; Originalvers stehen lassen.
+
+**Zwei Verse, eine Szene, getrennte Aufgaben.** Titel und Epigraph stammen beide
+aus *Studierzimmer II* (Schülerszene): V. 2038 f. („Grau, teurer Freund, ist alle
+Theorie, / Und grün des Lebens goldner Baum", Mephistopheles — geprüft am
+2026-08-15) und V. 1966 f. (Schüler). Der **Titel** trägt die methodische Warnung:
+Die saubere Korrelation ist die graue Theorie, die widerspenstige Zonierungs­realität
+der grüne Baum. Das **Epigraph** trägt die Datenkritik: Besitz ist noch kein
+Verständnis. Die Titelherkunft **einmal** auflösen — ein Satz in Abschnitt V, wo das
+MAUP-Argument landet —, nicht zusätzlich in der Einleitung. Zwei Goethe-Zitate sind
+eine Klammer, drei wären Ornament.
 
 ### I. Introduction — ~500 W.
 
@@ -274,8 +289,17 @@ sichtbar zu verschieben.
 kanonischen Ortsteilnamen aus `core.admin_boundaries` passt (bzw. auf eine als
 Ortsteil-Alias bekannte Variante) — Zeilen, deren `spatial_key` exakt einem
 `boundary_type='stadtbezirk'`-Namen entspricht, ausschließen. Plausibilitätsprobe:
-Die Summe `Einwohner insgesamt` über 63 Ortsteile muss **632.562** ergeben (Wert der
-Zeile `Stadt Leipzig` für 2024), nicht 805.218.
+Die Summe `Einwohner insgesamt` über 63 Ortsteile muss **632.560** ergeben, nicht
+805.218.
+
+> Verifiziert am 2026-08-15: Der Datensatz führt 74 Zeilen — 63 Ortsteile,
+> 10 Stadtbezirke, 1 Stadtgesamt. Ortsteile und Stadtbezirke summieren sich
+> **unabhängig voneinander auf exakt 632.560**, die Zeile `Stadt Leipzig` nennt
+> dagegen **632.562**. Die Differenz von 2 sind Einwohner ohne Ortsteilzuordnung,
+> die nur in der Stadtsumme auftauchen. Der Prüfwert ist die Summe der Teile
+> (632.560), **nicht** die Stadtzeile. Fürs Paper zu klein für Tabelle I, aber ein
+> hübsches Detail für Abschnitt III: Selbst die Gesamtzahl der Einwohner hängt
+> davon ab, welche Zeile man liest.
 
 Die restlichen Mehrfachschlüssel je `spatial_code` sind **korrekte** Aliasvarianten
 (Nummer `02`, Umschrift `Zentrum-Suedost`, Abkürzung `Schönef.-Abtnaundorf`) — die
@@ -457,7 +481,7 @@ paper/
 | **Seitenüberlauf.** Der Entwurf ist für 6 Seiten ambitioniert. | Kürzungsreihenfolge festlegen: zuerst Abb. 4 in Abb. 3 falten, dann Abschnitt II straffen, dann Tabelle I auf vier Zeilen. Abschnitte V und VI **nicht** kürzen — sie tragen das Paper. |
 | ~~EuW-Stimmenspalte unklar~~ | **Geklärt 2026-08-15:** `zweitstimmen` / `gueltige_zweit`. |
 | ~~Semantik von `55 Jahre und älter` unklar~~ | **Geklärt 2026-08-15:** SGB-II-Leistungsberechtigte nach Alter, keine Einwohner. Nicht als Indikator verwenden. |
-| **Stadtbezirks-Kollision verfälscht 3 von 63 Ortsteilen.** | Guard bei der Extraktion (Abschnitt 3) **und** Plausibilitätsprobe gegen 632.562 Einwohner. Nicht optional — ohne Guard ist die Fallstudie falsch. |
+| **Stadtbezirks-Kollision verfälscht 3 von 63 Ortsteilen.** | Guard bei der Extraktion (Abschnitt 3) **und** Plausibilitätsprobe gegen 632.560 Einwohner. Nicht optional — ohne Guard ist die Fallstudie falsch. |
 | **Metriknamen sind nicht eindeutig.** | Jeden Indikator als `(dataset_id, metric_name)` festschreiben, nie über den Namen allein selektieren. |
 | **n = 10 bei der MAUP-Demo.** | Kein Mangel, sondern Teil des Arguments — explizit so schreiben, nicht wegerklären. |
 | **Politische Lesart der Fallstudie.** | Mehrere Parteien berichten, Methodendemonstration in den Vordergrund. |
@@ -470,7 +494,7 @@ paper/
 1. Ebenenprüfung in `core.resolve_spatial_key()` / `core.spatial_aliases`, damit ein
    `boundary_type='stadtbezirk'`-Name nie auf einen Ortsteil-Code auflöst.
 2. Neuauflösung der 13.862 betroffenen Zeilen in 42 Datensätzen.
-3. Verifikation: Summe `Einwohner insgesamt` 2024 über Ortsteile = **632.562**.
+3. Verifikation: Summe `Einwohner insgesamt` 2024 über Ortsteile = **632.560**.
 4. Der Extraktions-Guard in der Analyse bleibt **trotzdem** bestehen — doppelte
    Absicherung, und er dokumentiert im Paper, dass die Prüfung stattgefunden hat.
 

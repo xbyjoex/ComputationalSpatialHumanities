@@ -21,7 +21,8 @@
   - `30943d88-4ac9-4968-84bc-35e9b337a85d` — Arbeitslose (Jahreszahlen, kleinräumig)
   - `dcc45e1a-11d1-4922-80c3-f49ba12863fb` — Einwohner (Jahreszahlen, kleinräumig)
   - `aa01ad81-1060-48e9-84f2-8908287ecf5e` — Familien mit Kindern (Jahreszahlen, kleinräumig)
-- **Plausibilitätsanker:** Summe `Einwohner insgesamt` 2024 über die 63 Ortsteile = **632.562**. Weicht sie ab, ist die Extraktion falsch — nicht weiterarbeiten.
+- **Plausibilitätsanker:** Summe `Einwohner insgesamt` 2024 über die 63 Ortsteile = **632.560**. Weicht sie ab, ist die Extraktion falsch — nicht weiterarbeiten.
+  - Verifiziert am 2026-08-15: Der Datensatz enthält 74 Zeilen = 63 Ortsteile + 10 Stadtbezirke + 1 Stadtgesamt. Ortsteile **und** Stadtbezirke summieren sich unabhängig voneinander auf **exakt 632.560**; die Zeile `Stadt Leipzig` nennt **632.562**. Die Differenz von 2 sind Einwohner ohne Ortsteilzuordnung, die das Statistikamt nur in die Stadtsumme faltet — kein Extraktionsverlust. **Nicht** gegen 632.562 prüfen.
 
 ---
 
@@ -90,7 +91,7 @@ Datei `sql/migrations/018_spatial_key_level_guard.sql`:
 -- row with the same spatial_unit and the resolver has to guess.
 --
 -- 13862 rows across 42 datasets carried a wrong Ortsteil code, inflating the 2024
--- population sum to 805218 instead of the correct 632562.
+-- population sum to 805218 instead of the correct 632560.
 --
 -- Guard: never fuzzy-match a raw key that is the exact name of a *different*
 -- boundary type. Exact matches (branches 1-3) are unaffected, so a name that
@@ -166,7 +167,7 @@ ROLLBACK;
 
 Erwartet, alle drei müssen stimmen:
 - `still_wrong` = **0**
-- `einwohner_2024` = **632562**
+- `einwohner_2024` = **632560**
 - `ortsteile` = **63**
 
 Stimmt eine Zahl nicht, **nicht committen** — die Migration korrigieren und Step 3 wiederholen.
@@ -200,7 +201,7 @@ UNION ALL SELECT 'resolver_stadtbezirk_mitte', coalesce(core.resolve_spatial_key
 \""
 ```
 
-Erwartet: `still_wrong=0` · `einwohner_2024=632562` · `resolver_mitte=NULL` · `resolver_gruenau_mitte=62` · `resolver_stadtbezirk_mitte` = der Stadtbezirks-Code für Mitte (nicht NULL — die Auflösung auf der *richtigen* Ebene muss weiter funktionieren).
+Erwartet: `still_wrong=0` · `einwohner_2024=632560` · `resolver_mitte=NULL` · `resolver_gruenau_mitte=62` · `resolver_stadtbezirk_mitte` = der Stadtbezirks-Code für Mitte (nicht NULL — die Auflösung auf der *richtigen* Ebene muss weiter funktionieren).
 
 - [ ] **Step 6: Commit**
 
@@ -215,7 +216,7 @@ files mix Ortsteil, Stadtbezirk and city-total rows without a level column, so
 the resolver had to guess and guessed wrong on three names.
 
 13862 rows across 42 datasets carried a foreign-level code; the 2024 population
-summed to 805218 instead of 632562. The fuzzy branch now refuses any raw key
+summed to 805218 instead of 632560. The fuzzy branch now refuses any raw key
 that exactly names a different boundary type, and the migration clears the
 codes that were already assigned that way."
 ```
@@ -692,7 +693,7 @@ for k, v in sorted(by_metric.items()):
 PY
 ```
 
-Erwartet: `distinct Ortsteile: 63` und für `dcc45e1a Einwohner insgesamt` exakt **632.562**.
+Erwartet: `distinct Ortsteile: 63` und für `dcc45e1a Einwohner insgesamt` exakt **632.560**.
 Weicht der Wert ab, ist Task 1 nicht sauber angewendet — dort zurück, nicht hier weiterbasteln.
 
 - [ ] **Step 4: Commit**
@@ -751,7 +752,7 @@ OUT = Path(__file__).parent / "results.json"
 
 YEAR = 2024
 ELECTION = "ew2024"
-EXPECTED_POPULATION = 632562
+EXPECTED_POPULATION = 632560
 EXPECTED_ORTSTEILE = 63
 EXPECTED_STADTBEZIRKE = 10
 
@@ -878,7 +879,7 @@ git add paper/analysis/run.py paper/analysis/results.json
 git commit -m "Compute the Ortsteil-level case study into results.json
 
 Party shares come from zweitstimmen/gueltige_zweit; the Europawahl carries no
-erststimmen. The run aborts unless the population sums to 632562 across exactly
+erststimmen. The run aborts unless the population sums to 632560 across exactly
 63 Ortsteile, so a regressed spatial-key fix cannot quietly produce plausible
 but wrong correlations."
 ```
