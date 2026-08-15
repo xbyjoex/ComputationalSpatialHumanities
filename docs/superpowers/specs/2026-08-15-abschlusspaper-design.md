@@ -111,6 +111,17 @@ Umfang · Kosten*.
 | 4 | Zeitheterogenität | täglich bis nie; als `live` getaggte statische Daten (GTFS-Sollfahrplan, Straßennetz) | 16 als live markiert, 3 fachlich live |
 | 5 | Semantische Opazität | `Unnamed: 10`, `25 bis unter 55 ahre`, Identifikatoren als Metrik, Raumeinheiten als Metrik, Wahljahr auf 1994 kollabiert | 1.351 „Metriken" auf Stadtebene |
 | 6 | Entitätsfragmentierung | ein Phänomen über Jahre zersplittert (Vornamen 2014–2025, BTW 2021/2025) | die Zahl 398 überzeichnet die Zahl distinkter Phänomene |
+| 7 | **Metriknamen-Kollision** | `Ausländer` existiert in 6 Datensätzen mit je anderer Grundgesamtheit (Einwohner, Wohnberechtigte, Beschäftigte, Arbeitslose, Migrationshintergrund, SGB II); `55 Jahre und älter` in 2 | **56 von 300** Ortsteil-Metriknamen in >1 Datensatz |
+| 8 | **Vermischte Verwaltungsebenen** | eine Datei enthält Ortsteile, Stadtbezirke und Stadtgesamt ohne Ebenen-Spalte; der Konsument muss raten | **13.862 Zeilen in 42 Datensätzen** falsch aufgelöst |
+
+> Zeilen 7 und 8 sind die stärksten Belege der Tabelle, weil sie exakt beziffert sind
+> und beide bei uns real zu Fehlern geführt haben. Beim Kürzen zuletzt streichen.
+>
+> Zeile 8 ehrlich rahmen: Die Fehlauflösung ist **unser** Bug, ausgelöst durch eine
+> Eigenschaft der Quelle. Beides gehört ins Paper — dass die Quelle Ebenen ohne
+> Kennzeichnung mischt, *und* dass unser Resolver daraufhin geraten hat. Genau das
+> ist die These in Miniatur: Wo Bedeutung nicht mitgeliefert wird, rät jeder
+> Konsument — und irrt.
 
 **Schlusssatz des Abschnitts (wichtig):** Keine dieser Reibungen verletzt eine
 Open-Data-Richtlinie. Alle sind konform. Genau das ist der Punkt — Konformität wird
@@ -200,31 +211,75 @@ als LTW/BTW, was der Lesart als Methodendemonstration entgegenkommt.
 Aussage statt als Methodendemonstration — und unterläuft damit die eigene
 Leitplanken-Argumentation. Vorschlag: die vier bis fünf stimmstärksten Listen.
 
-**Indikatoren — nur aus summierbaren Zählgrößen bilden**, dann auf jeder Ebene neu
-normalisieren. Das vermeidet Gewichtungsfehler bei der Aggregation:
+**Stimmenspalte — geklärt am 2026-08-15.** Die Europawahl liegt in `zweitstimmen`
+mit `gueltige_zweit` als Nenner; `erststimmen` und `gueltige_erst` sind für `ew2024`
+durchgängig NULL (0 von 2.142 Zeilen belegt). Ebenfalls verfügbar: `wahlberechtigte`
+und `waehler` → Wahlbeteiligung als vierter Indikator möglich.
 
-| Indikator | Konstruktion |
-|---|---|
-| Arbeitslosenanteil | `Arbeitslose insgesamt` / `Einwohner insgesamt` |
-| Ausländeranteil | `Ausländer` / `Einwohner insgesamt` |
-| Alleinerziehendenanteil | `Alleinerziehende insgesamt` / `Familien insgesamt` |
+```
+Parteianteil = zweitstimmen / gueltige_zweit
+Wahlbeteiligung = waehler / wahlberechtigte
+```
+
+**Indikatoren — nur aus summierbaren Zählgrößen bilden**, dann auf jeder Ebene neu
+normalisieren. Das vermeidet Gewichtungsfehler bei der Aggregation.
+
+**Jeder Indikator MUSS als `(dataset_id, metric_name)`-Paar angegeben werden, nie
+allein über den Metriknamen** — siehe den Kollisionsbefund unten. Alle fünf Größen
+sind für 2024 über alle 63 Ortsteile vollständig belegt (geprüft):
+
+| Indikator | Zähler | Nenner |
+|---|---|---|
+| Arbeitslosenanteil | `Arbeitslose insgesamt` @ `30943d88` | `Einwohner insgesamt` @ `dcc45e1a` |
+| Ausländeranteil | `Ausländer` @ `dcc45e1a` | `Einwohner insgesamt` @ `dcc45e1a` |
+| Alleinerziehendenanteil | `Alleinerziehende insgesamt` @ `aa01ad81` | `Familien insgesamt` @ `aa01ad81` |
+
+Datensätze: `30943d88` = Arbeitslose (Jahreszahlen, kleinräumig) ·
+`dcc45e1a` = Einwohner (Jahreszahlen, kleinräumig) ·
+`aa01ad81` = Familien mit Kindern (Jahreszahlen, kleinräumig).
+Der Arbeitslosenanteil verbindet zwei Datensätze — im Paper so ausweisen.
 
 > **Nicht** die fertigen Quoten (`Ausländeranteil`, `Altenquote`, `Durchschnittsalter`,
 > `Einwohnerdichte`) für die MAUP-Demo verwenden — sie sind Raten und ließen sich nur
 > bevölkerungsgewichtet aggregieren. Für die reine Ortsteil-Korrelation sind sie
 > zulässig, für den Ebenenvergleich nicht.
 
+> **Nicht** `55 Jahre und älter` / `25 bis unter 55 ahre` als Altersgruppen verwenden.
+> Geklärt am 2026-08-15: Sie stammen aus *Grundsicherung für Arbeitssuchende (SGB II)*
+> und zählen **SGB-II-Leistungsberechtigte nach Alter**, keine Einwohner. Derselbe
+> Metrikname existiert zusätzlich in *Bruttomonatsentgelte* mit wieder anderer
+> Bedeutung. Taugt als Belegbeispiel für Reibungstyp 5, nicht als Indikator.
+
 **Statistik:** Pearson r, R², p-Wert. Darstellung als kleine Matrix
 (Parteien × Indikatoren) im Text plus **ein** Scatter als Abbildung.
 
-**Zu verifizieren vor der Auswertung** (offene Implementierungsfragen):
+### Pflicht-Guard bei der Extraktion
 
-- In welcher Spalte liegen die Europawahl-Stimmen — `zweitstimmen`/`gueltige_zweit`
-  oder `erststimmen`/`gueltige_erst`? Die EuW kennt nur eine Stimme.
-- Was zählt `55 Jahre und älter` (Ø 118,7) und `25 bis unter 55 ahre` (Ø 468)
-  tatsächlich? Für Einwohner-Altersgruppen bei Ø 12.052 Einwohnern je Ortsteil sind
-  die Werte zu klein — vermutlich **Arbeitslose nach Altersgruppe**. Vor jeder
-  Verwendung klären. (Nebenbei ein perfektes Belegbeispiel für Reibungstyp 5.)
+`core.statistics` enthält unter `spatial_unit='ortsteil'` auch Zeilen anderer
+Verwaltungsebenen, weil die Quelldateien mehrere Ebenen ohne Ebenen-Spalte mischen.
+Drei **Stadtbezirks**namen kollidieren mit Ortsteilnamen und wurden von
+`resolve_spatial_key()` auf Ortsteil-Codes aufgelöst:
+
+| `spatial_key` (Stadtbezirk) | fälschlich zugewiesener Ortsteil-Code | echter Ortsteil |
+|---|---|---|
+| `Südost` | `02` | Zentrum-Südost |
+| `Mitte` | `62` | Grünau-Mitte |
+| `Nordwest` | `05` | Zentrum-Nordwest |
+
+**Betroffen: 13.862 Zeilen in 42 Datensätzen.** Ohne Guard bekämen genau diese drei
+Ortsteile den vier- bis fünffachen Wert — 3 von 63 Datenpunkten, genug, um ein r
+sichtbar zu verschieben.
+
+**Guard:** Bei der Extraktion nur Zeilen zulassen, deren `spatial_key` auf den
+kanonischen Ortsteilnamen aus `core.admin_boundaries` passt (bzw. auf eine als
+Ortsteil-Alias bekannte Variante) — Zeilen, deren `spatial_key` exakt einem
+`boundary_type='stadtbezirk'`-Namen entspricht, ausschließen. Plausibilitätsprobe:
+Die Summe `Einwohner insgesamt` über 63 Ortsteile muss **632.562** ergeben (Wert der
+Zeile `Stadt Leipzig` für 2024), nicht 805.218.
+
+Die restlichen Mehrfachschlüssel je `spatial_code` sind **korrekte** Aliasvarianten
+(Nummer `02`, Umschrift `Zentrum-Suedost`, Abkürzung `Schönef.-Abtnaundorf`) — die
+Aliasauflösung arbeitet insoweit richtig und darf nicht mitgefiltert werden.
 
 ---
 
@@ -280,6 +335,21 @@ Auf Ortsteilebene: alle außer `btw2025`. Auf Stadtbezirksebene: **nur** `ew2024
 
 **Verwaltungsgrenzen:** 63 Ortsteile (alle mit `parent_code`) · 10 Stadtbezirke ·
 819 Wahlbezirke.
+
+**Semantische Befunde (2026-08-15, alle per Abfrage belegt):**
+
+- **56 von 300** Ortsteil-Metriknamen kommen in mehr als einem Datensatz vor.
+  Spitzenreiter: `Anzahl` (9 Datensätze), `Partei_ID_StatAmtLE` (7), `Ausländer` (6).
+  → Identitätseinheit ist das Paar `(dataset_id, metric_name)`, nicht der Metrikname.
+  Nichts in den publizierten Metadaten sagt das.
+- **13.862 Zeilen in 42 Datensätzen** tragen einen Ortsteil-Code, der aus einem
+  **Stadtbezirks**namen aufgelöst wurde (`Südost`→`02`, `Mitte`→`62`,
+  `Nordwest`→`05`). Ursache: Quelldateien mischen Verwaltungsebenen ohne
+  Ebenen-Spalte. **Offener Plattform-Bug**, unabhängig vom Paper zu beheben.
+- Metriknamen wie `Stimmenanteile AfD`, `Wahlbeteiligung`, `Wahlbezirk`,
+  `Partei_ID_StatAmtLE` liegen als Roh-„Metriken" in `core.statistics` — dasselbe
+  Phänomen, das `core.election_results` sauber und kuratiert führt. Guter Beleg für
+  den Wert der semantischen Domänen-Loader.
 
 ---
 
@@ -385,8 +455,10 @@ paper/
 | Risiko | Umgang |
 |---|---|
 | **Seitenüberlauf.** Der Entwurf ist für 6 Seiten ambitioniert. | Kürzungsreihenfolge festlegen: zuerst Abb. 4 in Abb. 3 falten, dann Abschnitt II straffen, dann Tabelle I auf vier Zeilen. Abschnitte V und VI **nicht** kürzen — sie tragen das Paper. |
-| **EuW-Stimmenspalte unklar.** | Vor der Auswertung verifizieren (Abschnitt 3). |
-| **Semantik von `55 Jahre und älter` unklar.** | Vor Verwendung klären; taugt sonst als Negativbeispiel statt als Indikator. |
+| ~~EuW-Stimmenspalte unklar~~ | **Geklärt 2026-08-15:** `zweitstimmen` / `gueltige_zweit`. |
+| ~~Semantik von `55 Jahre und älter` unklar~~ | **Geklärt 2026-08-15:** SGB-II-Leistungsberechtigte nach Alter, keine Einwohner. Nicht als Indikator verwenden. |
+| **Stadtbezirks-Kollision verfälscht 3 von 63 Ortsteilen.** | Guard bei der Extraktion (Abschnitt 3) **und** Plausibilitätsprobe gegen 632.562 Einwohner. Nicht optional — ohne Guard ist die Fallstudie falsch. |
+| **Metriknamen sind nicht eindeutig.** | Jeden Indikator als `(dataset_id, metric_name)` festschreiben, nie über den Namen allein selektieren. |
 | **n = 10 bei der MAUP-Demo.** | Kein Mangel, sondern Teil des Arguments — explizit so schreiben, nicht wegerklären. |
 | **Politische Lesart der Fallstudie.** | Mehrere Parteien berichten, Methodendemonstration in den Vordergrund. |
 | **Zahlen veralten.** | Messpunkt mit Datum benennen („Stand 15. August 2026"), nicht als zeitlos darstellen. |
