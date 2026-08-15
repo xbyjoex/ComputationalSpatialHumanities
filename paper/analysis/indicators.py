@@ -7,6 +7,9 @@ Metric names in core.statistics are NOT unique — 56 of 300 Ortsteil-level name
 occur in more than one dataset, and 'Ausländer' alone exists in six with six
 different base populations. Every value is therefore keyed by the pair
 (dataset_id, metric_name), never by the metric name alone.
+
+build_counts expects rows pre-filtered to a single period; it rejects
+conflicting duplicates rather than silently keeping the last one.
 """
 
 from __future__ import annotations
@@ -34,7 +37,14 @@ def build_counts(rows) -> dict[str, dict[str, float]]:
     for row in rows:
         code = row["spatial_code"]
         key = metric_key(row["dataset_id"], row["metric_name"])
-        counts.setdefault(code, {})[key] = float(row["metric_value"])
+        value = float(row["metric_value"])
+        bucket = counts.setdefault(code, {})
+        if key in bucket and bucket[key] != value:
+            raise ValueError(
+                f"Conflicting values for spatial_code {code}, metric_key {key}: "
+                f"{bucket[key]} vs {value}"
+            )
+        bucket[key] = value
     return counts
 
 

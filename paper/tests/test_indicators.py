@@ -76,3 +76,30 @@ def test_aggregate_to_parent_ignores_codes_without_a_parent():
     counts = {"01": {EINWOHNER: 10.0}, "99": {EINWOHNER: 999.0}}
     agg = aggregate_to_parent(counts, {"01": "A"})
     assert agg == {"A": {EINWOHNER: 10.0}}
+
+
+def test_build_counts_rejects_conflicting_duplicates():
+    """Same (spatial_code, dataset_id, metric_name) with different values is an error."""
+    rows = [
+        {"spatial_code": "01", "dataset_id": "dcc45e1a-11d1-4922-80c3-f49ba12863fb",
+         "metric_name": "Einwohner insgesamt", "metric_value": "1000"},
+        {"spatial_code": "01", "dataset_id": "dcc45e1a-11d1-4922-80c3-f49ba12863fb",
+         "metric_name": "Einwohner insgesamt", "metric_value": "2000"},
+    ]
+    try:
+        build_counts(rows)
+    except ValueError:
+        return
+    raise AssertionError("expected ValueError for conflicting duplicate")
+
+
+def test_build_counts_allows_identical_duplicates():
+    """Same (spatial_code, dataset_id, metric_name) with identical values is okay."""
+    rows = [
+        {"spatial_code": "01", "dataset_id": "dcc45e1a-11d1-4922-80c3-f49ba12863fb",
+         "metric_name": "Einwohner insgesamt", "metric_value": "1000"},
+        {"spatial_code": "01", "dataset_id": "dcc45e1a-11d1-4922-80c3-f49ba12863fb",
+         "metric_name": "Einwohner insgesamt", "metric_value": "1000"},
+    ]
+    counts = build_counts(rows)
+    assert counts["01"][EINWOHNER] == 1000.0
