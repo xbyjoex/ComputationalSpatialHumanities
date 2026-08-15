@@ -273,6 +273,16 @@ def make_fig2_choropleth():
 
     ax.set_aspect(1 / np.cos(np.radians(51.34)))
     ax.autoscale_view()
+
+    # Reserve blank margins left/right of the city outline so the two
+    # extreme-value callouts below can sit in whitespace instead of on top
+    # of the polygons they describe.
+    x0, x1 = ax.get_xlim()
+    y0, y1 = ax.get_ylim()
+    city_mid_x = (x0 + x1) / 2
+    margin_x = 0.40 * (x1 - x0)
+    ax.set_xlim(x0 - margin_x, x1 + margin_x)
+    ax.set_ylim(y0, y1)
     ax.axis("off")
 
     sm = plt.cm.ScalarMappable(cmap=SEQ_CMAP, norm=plt.Normalize(vmin, vmax))
@@ -284,18 +294,24 @@ def make_fig2_choropleth():
     cbar.outline.set_linewidth(0.6)
 
     # Selectively label only the extremes (never a number on every polygon).
+    # Each callout is pushed into the side margin (left for a western
+    # Ortsteil, right for an eastern one) and connected to its polygon by a
+    # thin leader line, so the box never covers neighbouring polygons.
     max_code = max(turnout_pct, key=turnout_pct.get)
     min_code = min(turnout_pct, key=turnout_pct.get)
     for code, tag in [(max_code, "highest"), (min_code, "lowest")]:
         name = boundaries[code]["name"]
         v = turnout_pct[code]
         cx, cy = polygon_centroid(boundaries[code]["geom"])
+        label_x = (x1 + margin_x / 2) if cx >= city_mid_x else (x0 - margin_x / 2)
         ax.annotate(
-            f"{name}\n{v:.0f}% ({tag})", xy=(cx, cy), xytext=(0, 0),
-            textcoords="offset points", ha="center", va="center",
+            f"{name}\n{v:.0f}% ({tag})", xy=(cx, cy), xytext=(label_x, cy),
+            textcoords="data", ha="center", va="center",
             fontsize=6.6, color=INK,
             bbox=dict(boxstyle="round,pad=0.22", facecolor=SURFACE,
                       edgecolor=BASELINE, linewidth=0.5, alpha=0.92),
+            arrowprops=dict(arrowstyle="-", color=INK_SECONDARY, linewidth=0.6,
+                             shrinkA=3, shrinkB=3),
             zorder=5,
         )
 
@@ -352,7 +368,7 @@ def make_fig3_scatter():
     lx, ly = fitted_line(x, y)
     ax.plot(lx, ly, color=BLUE_DARK_TEXT, linewidth=1.6, zorder=2)
 
-    ax.set_xlabel("Single-parent household share (%)")
+    ax.set_xlabel("Single-parent share of families (%)")
     ax.set_ylabel("Turnout (%)")
     ax.set_title(
         f"Turnout vs. single-parent share, {stat['n']} Ortsteile\n"
@@ -419,8 +435,11 @@ def make_fig4_maup():
     ]
 
     for ax, x, y, stat, title, significant in panels:
-        marker_size = 20 if not significant else 42
-        ax.scatter(x, y, s=marker_size, facecolor=BLUE, edgecolor=SURFACE,
+        # Marker size/style identical across panels — significance is
+        # already encoded by line style (the print-safe channel); giving
+        # the n=10 panel extra marker weight would read as "more real",
+        # which undercuts the honesty caption below.
+        ax.scatter(x, y, s=22, facecolor=BLUE, edgecolor=SURFACE,
                    linewidth=0.6, alpha=0.9, zorder=3)
 
         lx, ly = fitted_line(x, y)
@@ -436,7 +455,7 @@ def make_fig4_maup():
 
         ax.set_xlim(xlim)
         ax.set_ylim(ylim)
-        ax.set_xlabel("Unemployment share (%)")
+        ax.set_xlabel("Registered unemployed (% of residents)")
         ax.set_title(title, fontsize=8.6, pad=5)
 
         for spine in ("top", "right"):
