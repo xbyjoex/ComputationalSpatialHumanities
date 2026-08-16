@@ -74,9 +74,19 @@ bash infrastructure/scripts/deploy.sh
 
 ### TLS certificate
 ```bash
-# Initial certificate (stop nginx first if needed)
-docker run --rm -p 80:80 certbot/certbot certonly \
-  --standalone -d yourdomain.com --agree-tos -m you@email.com
+# Use the init script — it issues the first certificate AND switches renewal
+# to webroot, which is the part that is easy to get wrong.
+bash infrastructure/scripts/certbot-init.sh
+```
+
+The bootstrap has to use `--standalone`, because nginx will not start without a
+certificate and so cannot serve the ACME challenge yet. But certbot stores that
+method permanently, and from then on every renewal fails: nginx holds port 80,
+so certbot's own listener never sees the challenge. Renewal must therefore run
+via `webroot` against `/var/www/certbot`, which nginx serves. Verify with:
+
+```bash
+docker exec leipzig-data-certbot-1 certbot renew --dry-run
 ```
 
 ### Git push → auto-deploy (CI/CD)

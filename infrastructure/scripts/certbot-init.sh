@@ -43,6 +43,26 @@ docker run --rm \
     --no-eff-email \
     -d "$DOMAIN"
 
+# Erneuerung auf webroot umstellen.
+#
+# Der Bootstrap oben MUSS standalone sein: nginx startet ohne vorhandenes
+# Zertifikat nicht, kann die ACME-Challenge also noch nicht ausliefern. Certbot
+# speichert die verwendete Methode aber dauerhaft in der Renewal-Config — und
+# standalone scheitert ab dann bei jeder Erneuerung, weil nginx Port 80 belegt.
+# Genau so lief das Zertifikat am 2026-08-09 unbemerkt ab: certbot versuchte es
+# alle 12h, bekam von nginx eine 404 auf den Challenge-Pfad und gab auf.
+#
+# nginx liefert /.well-known/acme-challenge/ aus /var/www/certbot aus, sobald es
+# läuft. Ab der ersten Erneuerung ist webroot also die richtige Methode.
+RENEWAL_CONF="$CERTBOT_CONF/renewal/$DOMAIN.conf"
+if grep -q '^authenticator = standalone' "$RENEWAL_CONF" 2>/dev/null; then
+  echo "Stelle Erneuerungsmethode auf webroot um..."
+  sed -i \
+    -e 's|^authenticator = standalone|authenticator = webroot\nwebroot_path = /var/www/certbot,|' \
+    "$RENEWAL_CONF"
+  grep -q '^\[\[webroot_map\]\]' "$RENEWAL_CONF" || echo '[[webroot_map]]' >> "$RENEWAL_CONF"
+fi
+
 echo ""
 echo "=== Zertifikat erfolgreich ausgestellt ==="
 echo "Gültig bis: $(openssl x509 -noout -enddate -in "$CERTBOT_CONF/live/$DOMAIN/fullchain.pem")"

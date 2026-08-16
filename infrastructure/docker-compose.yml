@@ -104,6 +104,12 @@ services:
   nginx:
     image: nginx:alpine
     restart: unless-stopped
+    # nginx liest die Zertifikatsdateien nur beim Start und beim Reload. Ohne
+    # diesen Loop erneuert certbot zwar erfolgreich, nginx liefert aber weiter
+    # das alte Zertifikat aus, bis jemand von Hand neu lädt — genau so lief das
+    # Zertifikat am 2026-08-09 ab. Alle 6h neu laden schliesst die Lücke.
+    command: >
+      /bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g "daemon off;"'
     ports:
       - "80:80"
       - "443:443"
