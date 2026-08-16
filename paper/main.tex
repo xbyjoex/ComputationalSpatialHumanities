@@ -1,4 +1,4 @@
-\documentclass[conference]{IEEEtran}
+\documentclass[conference,a4paper]{IEEEtran}
 \IEEEoverridecommandlockouts
 \usepackage{cite}
 \usepackage{amsmath}
@@ -8,6 +8,7 @@
 \usepackage{booktabs}
 \usepackage{url}
 \usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
 
 \begin{document}
 
@@ -23,6 +24,11 @@ Universit\"at Leipzig}
 Universit\"at Leipzig}}
 
 \maketitle
+\thispagestyle{fancy}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
 
 \begin{abstract}
 Leipzig publishes 398 open datasets and satisfies every requirement open-data
@@ -101,13 +107,14 @@ unevenly borne, and that whoever bears it decides what is transparent in
 practice.
 \end{itemize}
 
-The remainder of the paper follows that order: Section~II situates the argument,
-Section~III measures the frictions, Section~IV describes the system built against
-them, Section~V reports coverage and the case study, and
+The remainder of the paper follows that order: Section~\ref{sec:background} situates the argument,
+Section~\ref{sec:frictions} measures the frictions, Section~\ref{sec:system} describes the system built against
+them, Section~\ref{sec:results} reports coverage and the case study, and
 Section~\ref{sec:discussion} takes up what the whole exercise implies for the
 civic promise of open data.
 
 \section{Background and Related Work}
+\label{sec:background}
 
 Open government data rests on a civic premise: publish the administration's
 numbers in machine-readable form and citizens gain the standing to check what
@@ -143,6 +150,7 @@ misleads, but neither measures what it costs to make a municipal catalogue
 comparable in the first place. That measurement is what we report.
 
 \section{The Data Landscape and Its Frictions}
+\label{sec:frictions}
 
 By the ordinary standards of open government data, Leipzig's portal is a good
 one. It runs on CKAN, exposes DCAT metadata, and publishes 398 datasets from 37
@@ -239,8 +247,9 @@ the consumer must guess &
 \end{table*}
 
 \section{System Design}
+\label{sec:system}
 
-Section~III fixes the requirement. If 398 datasets are to be compared rather than
+Section~\ref{sec:frictions} fixes the requirement. If 398 datasets are to be compared rather than
 merely downloaded, they must share one spatial axis, one temporal axis, and one
 semantic registry. Everything in \emph{auerbachs-auge.tech} exists to supply one
 of those three, and Fig.~\ref{fig:architecture} shows the seven services that
@@ -270,7 +279,7 @@ portal's CKAN groups with the statistical office's numeric category scheme.
 election, verified against the named vote shares the statistical API reports
 separately. \texttt{indicator\_catalog.json} is a curated register of indicator
 names, units and topics; the user interface never exposes a raw metric name,
-because Section~III is what raw metric names look like.
+because Section~\ref{sec:frictions} is what raw metric names look like.
 
 We report this plainly because it is the paper's central empirical claim about
 cost. These five files are not configuration in the ordinary sense. They are a
@@ -287,7 +296,7 @@ table holding Leipzig's 63 Ortsteile, 10 Stadtbezirke and 819 electoral
 districts, trying exact alias, exact code and embedded code before falling back
 to fuzzy name matching. Every statistic that carries a spatial reference is
 joined on that canonical code, which is what makes a correlation between two
-unrelated datasets possible at all. It is also, as Section~III noted and
+unrelated datasets possible at all. It is also, as Section~\ref{sec:frictions} noted and
 Section~\ref{sec:discussion} takes up, where our own worst error occurred.
 
 \subsection{Serving}
@@ -314,6 +323,7 @@ dataset takes from the open data portal to the browser.}
 \end{figure}
 
 \section{Results}
+\label{sec:results}
 
 \subsection{Coverage, and what the coverage measures}
 Table~\ref{tab:coverage} reports the state of the ingested corpus at two points
@@ -437,17 +447,17 @@ to make it true.
 
 \subsection{Publication is not the expensive part}
 Leipzig discharged its obligation the moment the 398 datasets went online. What
-remained was the work in Section~IV: five hand-maintained registries, roughly 300
+remained was the work in Section~\ref{sec:system}: five hand-maintained registries, roughly 300
 metric definitions, an alias table for place names, and a resolver deciding what
 a row's spatial reference means. None of that is discoverable from the data. All
 of it is required before two datasets can be compared. Gurstein's objection to
 open data --- that it empowers those already equipped
-\cite{gurstein2011opendata} --- names exactly this gap, and Table~I is a
+\cite{gurstein2011opendata} --- names exactly this gap, and Table~\ref{tab:frictions} is a
 measurement of it. A citizen with a spreadsheet and an afternoon does not clear
 it. Two computer science students with a semester barely did.
 
 \subsection{What it took to notice our own error}
-Section~III described a source property: administrative levels mixed in one file
+Section~\ref{sec:frictions} described a source property: administrative levels mixed in one file
 with no column marking them. We were the consumer that guessed, and we guessed
 wrong. Our resolver's fuzzy fallback matched the Stadtbezirk \emph{Mitte} onto
 the Ortsteil \emph{Grünau-Mitte}, and two of its siblings likewise, putting
@@ -514,7 +524,7 @@ in the shapes we learned.
 
 The obvious extension is a second city, which would separate what is true of
 municipal open data from what is true of Leipzig. Beyond that, the registries in
-Section~IV are the artefact most worth sharing: if a comparable catalogue can be
+Section~\ref{sec:system} are the artefact most worth sharing: if a comparable catalogue can be
 described in the same form, the interpretive layer becomes portable rather than
 rebuilt each time.
 
