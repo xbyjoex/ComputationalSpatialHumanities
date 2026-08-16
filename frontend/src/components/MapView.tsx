@@ -29,9 +29,11 @@ registerTileProtocol();
 
 const LEIPZIG_CENTER: [number, number] = [12.3731, 51.3397];
 // Kartengrenzen großzügig um das Stadtgebiet — verhindert Laden der Weltkarte
-const LEIPZIG_BOUNDS: [[number, number], [number, number]] = [
-  [11.85, 51.13],
-  [12.90, 51.55],
+// Flache [west, south, east, north]-Form: @vis.gl/react-maplibre 8.1.2 hat den
+// maxBounds-Typ auf diese Variante (bzw. LngLatBounds) verengt, die verschachtelte
+// Form fällt seitdem aus dem Typ. Flach ist mit 8.1.1 und 8.1.2 gleichermaßen gültig.
+const LEIPZIG_BOUNDS: [number, number, number, number] = [
+  11.85, 51.13, 12.90, 51.55,
 ];
 
 interface PopupInfo {
