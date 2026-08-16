@@ -47,3 +47,14 @@ etl/logs/
 !leipzig_all_datasets_metadata.json
 infrastructure/certbot/
 .superpowers/
+
+paper/.venv/
+paper/**/__pycache__/
+paper/*.aux
+paper/*.log
+paper/*.out
+paper/*.bbl
+paper/*.blg
+paper/*.fdb_latexmk
+paper/*.fls
+paper/*.synctex.gz

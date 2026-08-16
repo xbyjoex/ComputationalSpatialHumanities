@@ -8,6 +8,20 @@ A self-hosted authenticated web dashboard ingesting, storing, and visualizing **
 
 University project for "Computational Spatial Humanities".
 
+## Git Conventions
+
+**Never add AI attribution or session metadata to anything in this repository.**
+This applies to commit messages, PR titles and bodies, code comments, and documentation.
+
+Specifically forbidden:
+- `Co-Authored-By: Claude ...` or any other AI co-author trailer
+- `Claude-Session:` lines or any `claude.ai/code/session_...` link
+- "Generated with Claude Code" / "🤖 Generated with ..." footers
+- Any other marker identifying an AI as author or contributor
+
+Session links must never be shared — not in commits, not in PRs, not in issues,
+not in any file. Write commit messages as plain, unattributed prose.
+
 ## Development Commands
 
 ### Local Development (without Docker)

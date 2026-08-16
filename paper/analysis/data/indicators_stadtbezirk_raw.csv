@@ -1,0 +1,51 @@
+stadtbezirk_code,stadtbezirk,dataset_id,metric_name,metric_value
+0,Mitte,30943d88-4ac9-4968-84bc-35e9b337a85d,Arbeitslose insgesamt,2463
+0,Mitte,aa01ad81-1060-48e9-84f2-8908287ecf5e,Alleinerziehende insgesamt,1171
+0,Mitte,aa01ad81-1060-48e9-84f2-8908287ecf5e,Familien insgesamt,5158
+0,Mitte,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Ausländer,13905
+0,Mitte,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Einwohner insgesamt,70611
+1,Nordost,30943d88-4ac9-4968-84bc-35e9b337a85d,Arbeitslose insgesamt,2506
+1,Nordost,aa01ad81-1060-48e9-84f2-8908287ecf5e,Alleinerziehende insgesamt,1399
+1,Nordost,aa01ad81-1060-48e9-84f2-8908287ecf5e,Familien insgesamt,4058
+1,Nordost,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Ausländer,9062
+1,Nordost,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Einwohner insgesamt,50653
+2,Ost,30943d88-4ac9-4968-84bc-35e9b337a85d,Arbeitslose insgesamt,5011
+2,Ost,aa01ad81-1060-48e9-84f2-8908287ecf5e,Alleinerziehende insgesamt,2142
+2,Ost,aa01ad81-1060-48e9-84f2-8908287ecf5e,Familien insgesamt,6790
+2,Ost,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Ausländer,17837
+2,Ost,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Einwohner insgesamt,89655
+3,Südost,30943d88-4ac9-4968-84bc-35e9b337a85d,Arbeitslose insgesamt,2112
+3,Südost,aa01ad81-1060-48e9-84f2-8908287ecf5e,Alleinerziehende insgesamt,1440
+3,Südost,aa01ad81-1060-48e9-84f2-8908287ecf5e,Familien insgesamt,5423
+3,Südost,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Ausländer,6924
+3,Südost,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Einwohner insgesamt,65465
+4,Süd,30943d88-4ac9-4968-84bc-35e9b337a85d,Arbeitslose insgesamt,2504
+4,Süd,aa01ad81-1060-48e9-84f2-8908287ecf5e,Alleinerziehende insgesamt,1792
+4,Süd,aa01ad81-1060-48e9-84f2-8908287ecf5e,Familien insgesamt,5911
+4,Süd,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Ausländer,6155
+4,Süd,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Einwohner insgesamt,68077
+5,Südwest,30943d88-4ac9-4968-84bc-35e9b337a85d,Arbeitslose insgesamt,2097
+5,Südwest,aa01ad81-1060-48e9-84f2-8908287ecf5e,Alleinerziehende insgesamt,1429
+5,Südwest,aa01ad81-1060-48e9-84f2-8908287ecf5e,Familien insgesamt,5572
+5,Südwest,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Ausländer,5244
+5,Südwest,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Einwohner insgesamt,57164
+6,West,30943d88-4ac9-4968-84bc-35e9b337a85d,Arbeitslose insgesamt,3582
+6,West,aa01ad81-1060-48e9-84f2-8908287ecf5e,Alleinerziehende insgesamt,1590
+6,West,aa01ad81-1060-48e9-84f2-8908287ecf5e,Familien insgesamt,4183
+6,West,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Ausländer,11266
+6,West,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Einwohner insgesamt,57231
+7,Alt-West,30943d88-4ac9-4968-84bc-35e9b337a85d,Arbeitslose insgesamt,2738
+7,Alt-West,aa01ad81-1060-48e9-84f2-8908287ecf5e,Alleinerziehende insgesamt,1665
+7,Alt-West,aa01ad81-1060-48e9-84f2-8908287ecf5e,Familien insgesamt,5523
+7,Alt-West,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Ausländer,7398
+7,Alt-West,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Einwohner insgesamt,62320
+8,Nordwest,30943d88-4ac9-4968-84bc-35e9b337a85d,Arbeitslose insgesamt,1425
+8,Nordwest,aa01ad81-1060-48e9-84f2-8908287ecf5e,Alleinerziehende insgesamt,820
+8,Nordwest,aa01ad81-1060-48e9-84f2-8908287ecf5e,Familien insgesamt,3061
+8,Nordwest,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Ausländer,5249
+8,Nordwest,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Einwohner insgesamt,36582
+9,Nord,30943d88-4ac9-4968-84bc-35e9b337a85d,Arbeitslose insgesamt,2263
+9,Nord,aa01ad81-1060-48e9-84f2-8908287ecf5e,Alleinerziehende insgesamt,1859
+9,Nord,aa01ad81-1060-48e9-84f2-8908287ecf5e,Familien insgesamt,6928
+9,Nord,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Ausländer,9008
+9,Nord,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Einwohner insgesamt,74802

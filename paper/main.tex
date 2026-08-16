@@ -1,0 +1,550 @@
+\documentclass[conference,a4paper]{IEEEtran}
+\IEEEoverridecommandlockouts
+\usepackage{cite}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{booktabs}
+\usepackage{url}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+
+\begin{document}
+
+\title{Grey Is All Theory: Spatial Aggregation and the Limits of Civic
+Evidence in Leipzig's Open Data}
+
+\author{\IEEEauthorblockN{Jonas Paul}
+\IEEEauthorblockA{Computational Spatial Humanities\\
+Universit\"at Leipzig\\
+ab67ubeb@studserv.uni-leipzig.de}
+\and
+\IEEEauthorblockN{Lucas Berger}
+\IEEEauthorblockA{Computational Spatial Humanities\\
+Universit\"at Leipzig\\
+al29luce@studserv.uni-leipzig.de}}
+
+\maketitle
+\thispagestyle{fancy}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+
+\begin{abstract}
+Leipzig publishes 398 open datasets and satisfies every requirement open-data
+policy imposes. We ingested all of them into a single spatially and temporally
+joinable platform and measured what that took. Over nine weeks in which the
+portal itself did not change, datasets carrying usable data rose from 152 to
+350 and statistical records from 5{,}925 to 377{,}083; the entire difference is
+interpretive labour, delivered as five hand-maintained registries and several
+hundred curated indicator definitions. We report a taxonomy of the frictions
+responsible, including two that fail silently: 56 of 300 spatial metric names
+occur in more than one dataset with different base populations, and files mix
+administrative levels without marking them, which misplaced 13{,}862 rows in our
+own ingestion. A case study over Leipzig's 63 Ortsteile finds electoral turnout
+falling sharply with single-parent share and unemployment, and shows that
+re-aggregating the identical votes into 10 districts reverses the sign of a
+party-level correlation and turns a null result into a significant one. We argue
+that publication is not transparency: the interpretive layer between them has a
+cost, and whoever can pay it decides what is transparent in practice.
+\end{abstract}
+
+\begin{IEEEkeywords}
+open government data, urban dashboards, spatial aggregation, modifiable areal
+unit problem, critical data studies
+\end{IEEEkeywords}
+
+\begin{flushright}
+\itshape
+\small
+``Denn was man schwarz auf wei\ss{} besitzt, / Kann man getrost nach Hause
+tragen.''\footnotemark\\
+--- Goethe, \textit{Faust I}, V.~1966 f.
+\end{flushright}
+\footnotetext{``For what one owns in black and white, one can carry home
+with confidence.''}
+
+\section{Introduction}
+
+The city of Leipzig publishes 398 datasets from 37 municipal offices on an open
+data portal. By the standard any open-data policy applies, the city is
+transparent: the data are online, machine-readable, documented, and free.
+
+We tried to use all of them. This paper reports what stood between the published
+files and a question anyone could answer with them, and it argues that the
+distance is not an implementation detail but the substance of the transparency
+claim. Publication and usability are separate achievements, purchased
+separately. Only the first is what open-data policy measures, and only the second
+is what a citizen needs.
+
+The platform we built to establish this is called \emph{auerbachs-auge.tech},
+after Auerbach's Cellar --- the Leipzig tavern where Goethe set a scene of
+\emph{Faust}, in which Mephistopheles bores a wooden table and pours wine that
+seems abundant until it is touched. It ingests both of Leipzig's data sources
+into a single spatially and temporally joinable model, serves them as vector
+tiles and time series, and computes correlations between any two indicators that
+share a spatial unit and a year.
+
+Our contributions are four.
+
+\begin{itemize}
+\item A production system that brings an entire municipal open data catalogue
+--- 398 datasets from two sources with incompatible paradigms --- into one model
+in which any two indicators can be compared, running on a single 4\,GB server.
+\item An empirical taxonomy of the frictions separating published from usable
+data, each quantified against the full catalogue, including two classes that
+produce silently wrong results rather than visible failures: metric names that
+are not unique, and administrative levels mixed within a file without being
+marked.
+\item A worked spatial case study over Leipzig's 63 Ortsteile, reported together
+with the methodological guardrails it requires --- and with a demonstration, on
+the city's own published election results, that re-aggregating the identical
+data into 10 districts reverses the sign of a party-level correlation and turns
+a null result into a significant one.
+\item An argument, evidenced by our own constraints rather than asserted, that
+the interpretive layer between publication and use has a cost, that the cost is
+unevenly borne, and that whoever bears it decides what is transparent in
+practice.
+\end{itemize}
+
+The remainder of the paper follows that order: Section~\ref{sec:background} situates the argument,
+Section~\ref{sec:frictions} measures the frictions, Section~\ref{sec:system} describes the system built against
+them, Section~\ref{sec:results} reports coverage and the case study, and
+Section~\ref{sec:discussion} takes up what the whole exercise implies for the
+civic promise of open data.
+
+\section{Background and Related Work}
+\label{sec:background}
+
+Open government data rests on a civic premise: publish the administration's
+numbers in machine-readable form and citizens gain the standing to check what
+they are told. European and German policy has largely settled the supply side of
+that premise, and municipal portals are now routine.
+
+The critical literature has attacked the inference from supply to competence.
+Gurstein asks whether open data empowers anyone beyond those already equipped to
+use it, and argues that publication without effective use redistributes advantage
+rather than knowledge \cite{gurstein2011opendata}. Kitchin, Lauriault and McArdle
+show that urban indicator systems and dashboards are not neutral windows but
+instruments that shape the governance reading them \cite{kitchin2015knowing}.
+Mattern traces the dashboard's descent from mission control and its recurring
+promise of mastery through display \cite{mattern2015missioncontrol}. Against the
+same tendency, Drucker argues that humanistic visualisation must treat its inputs
+as \emph{capta} --- taken and constructed rather than given
+\cite{drucker2011humanities}.
+
+Our methodological caveats come from spatial analysis. Tobler's observation that
+near things are more related than distant things \cite{tobler1970computer} is why
+spatial correlation is worth computing at all. Openshaw's modifiable areal unit
+problem is why the result depends on the zoning chosen: aggregating the same
+observations into different areal units changes the coefficients, in both scale
+and shape \cite{openshaw1984maup}. Robinson's demonstration that ecological
+correlations do not transfer to individuals \cite{robinson1950ecological} bounds
+what any of it may be said to mean.
+
+What is missing is the layer between. Leipzig's portal lists fifteen
+applications built on its data; each serves a single dataset or theme, and none
+joins across the catalogue. The critical literature describes what dashboards do
+to their readers, and the methodological literature describes how aggregation
+misleads, but neither measures what it costs to make a municipal catalogue
+comparable in the first place. That measurement is what we report.
+
+\section{The Data Landscape and Its Frictions}
+\label{sec:frictions}
+
+By the ordinary standards of open government data, Leipzig's portal is a good
+one. It runs on CKAN, exposes DCAT metadata, and publishes 398 datasets from 37
+municipal offices across 13 thematic groups. Resources arrive in machine-readable
+formats, some are refreshed daily, the catalogue reaches from the tree cadastre
+to election results, and the listed contacts answer. Nothing that follows is a
+complaint about a negligent administration. Every friction we describe is
+compatible with every open-data requirement we are aware of, and that is
+precisely the point: compliance is measured at the moment of publication, not at
+the moment of use.
+
+We drew from two sources with incompatible paradigms. The CKAN catalogue at
+\texttt{opendata.leipzig.de} offers file resources whose format is whatever the
+publishing office exported. The statistical office at
+\texttt{statistik.leipzig.de} serves a JSON API in a wide-by-year layout, with
+years as columns and indicator codes as rows. Neither is wrong. They simply
+cannot be read by the same code.
+
+Table~\ref{tab:frictions} lists the eight classes of friction we encountered
+while bringing all 398 datasets into one queryable model, each with the extent we
+measured. Two deserve emphasis because they are the ones that produced silent
+errors rather than loud ones.
+
+\emph{Metric names are not unique.} A metric is identified in the published data
+by its name alone, but 56 of the 300 Ortsteil-level metric names we loaded occur
+in more than one dataset. The name \texttt{Ausländer} (``foreign nationals'')
+appears in six, denominated once against residents, once against registered
+residents, once against employees, once against the unemployed, once against
+people with a migration background, and once against welfare recipients. Six
+quantities, six base populations, one label. Nothing in the published metadata
+distinguishes them. The unit of identity is the pair (dataset, metric), and a
+consumer has to infer that.
+
+\emph{Administrative levels are mixed without being marked.} A single file
+routinely contains rows for Ortsteile, for the Stadtbezirke that contain them,
+and for the city as a whole, with no column stating which level a row belongs to.
+The level has to be inferred from the area name, and the names do not support the
+inference: the Stadtbezirke \emph{Mitte}, \emph{Südost} and \emph{Nordwest} are
+each a substring of an unrelated Ortsteil name --- \emph{Grünau-Mitte},
+\emph{Zentrum-Südost}, \emph{Zentrum-Nordwest}. Any name-similarity heuristic
+conflates them, and the affected rows then carry the population of a district
+under the code of a neighbourhood. In our own ingestion this misplaced 13{,}862
+rows across 42 datasets; Section~\ref{sec:discussion} returns to what it took to
+notice.
+
+The same file structure makes even the city's population ambiguous. Summed over
+the 63 Ortsteile, Leipzig had 632{,}560 inhabitants in 2024; summed over the 10
+Stadtbezirke, the same 632{,}560; the file's own city row reads 632{,}562. Two
+residents are carried without an Ortsteil assignment and appear only in the
+total. Even the population of a city depends on which row you read.
+
+\begin{table*}[t]
+\caption{Eight classes of friction between published and usable data, with the
+extent measured while ingesting all 398 datasets of Leipzig's open data portal.
+None of them violates an open-data policy.}
+\label{tab:frictions}
+\centering
+\small
+\begin{tabular}{@{}p{0.20\textwidth}p{0.46\textwidth}p{0.28\textwidth}@{}}
+\toprule
+\textbf{Friction} & \textbf{Example} & \textbf{Extent measured} \\
+\midrule
+Format heterogeneity &
+CSV with varying delimiters and encodings, GeoJSON, JSON, XLSX, SHP &
+portal-wide \\[2pt]
+Structural heterogeneity &
+wide-by-year layouts (indicator $\times$ year/quarter/school-year) require
+melting before they can be stored &
+174 datasets initially loaded 0 rows \\[2pt]
+Spatial-reference heterogeneity &
+Ortsteil name, Ortsteil number, electoral district, coordinates, or no spatial
+reference at all &
+no shared key across datasets \\[2pt]
+Temporal heterogeneity &
+update intervals from daily to never; static timetables tagged as live &
+16 marked live, 3 genuinely live \\[2pt]
+Semantic opacity &
+\texttt{Unnamed:~10} as a metric name; identifiers and spatial units stored as
+metrics; election years collapsed to 1994 &
+1{,}351 ``metrics'' at city level \\[2pt]
+Entity fragmentation &
+one phenomenon split across annual datasets (given names 2014--2025,
+federal elections 2021 and 2025) &
+398 datasets overstate the number of distinct phenomena \\[2pt]
+\textbf{Metric-name collision} &
+\texttt{Ausländer} exists in six datasets with six different base populations &
+\textbf{56 of 300} Ortsteil metric names occur in $>$1 dataset \\[2pt]
+\textbf{Unmarked administrative levels} &
+one file holds Ortsteile, Stadtbezirke and the city total with no level column;
+the consumer must guess &
+\textbf{13{,}862 rows in 42 datasets} resolved to the wrong level \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\section{System Design}
+\label{sec:system}
+
+Section~\ref{sec:frictions} fixes the requirement. If 398 datasets are to be compared rather than
+merely downloaded, they must share one spatial axis, one temporal axis, and one
+semantic registry. Everything in \emph{auerbachs-auge.tech} exists to supply one
+of those three, and Fig.~\ref{fig:architecture} shows the seven services that
+carry a dataset from the portal to a map in a browser.
+
+\subsection{Pipeline}
+Ingestion runs in four stages. Typed extractors fetch each resource over HTTP
+with retry and back-off, and record every attempt in a \texttt{raw\_ingest} audit
+schema, so a dataset that silently stops updating is visible as a run that
+fetched nothing rather than as a chart that stopped moving. A \texttt{staging}
+schema holds intermediate normalisation, including the melt that turns
+wide-by-year statistical layouts into long records. Loaders then upsert into a
+normalised \texttt{core} schema, and materialised views in a \texttt{mart} schema
+are refreshed concurrently after each run. A nightly pass covers all datasets; a
+five-minute loop covers the three that are genuinely live.
+
+\subsection{The registries are the contribution}
+The part of this system that took the most work is not the pipeline. It is five
+hand-maintained JSON registries that supply the meaning the portal does not ship.
+\texttt{dataset\_contracts.json} names, for each of the 398 datasets, which
+resource to fetch, in which format, on which schedule, and whether it carries
+geometry. \texttt{dataset\_families.json} merges annual variants into one logical
+dataset with a year dimension, and carries per-dataset hints where a loader
+heuristic guesses wrong. \texttt{dataset\_categories.json} reconciles the
+portal's CKAN groups with the statistical office's numeric category scheme.
+\texttt{election\_definitions.json} maps result columns onto parties for each
+election, verified against the named vote shares the statistical API reports
+separately. \texttt{indicator\_catalog.json} is a curated register of indicator
+names, units and topics; the user interface never exposes a raw metric name,
+because Section~\ref{sec:frictions} is what raw metric names look like.
+
+We report this plainly because it is the paper's central empirical claim about
+cost. These five files are not configuration in the ordinary sense. They are a
+few thousand lines of human judgement about what published numbers mean, written
+by two people over one semester, and they are the difference between 398
+downloadable files and 398 comparable ones.
+
+\subsection{Resolving space}
+The single most consequential decision in the system is how a spatial reference
+becomes a key. Raw data name places inconsistently: \texttt{Zentrum-Südost},
+\texttt{Zentrum-Suedost}, \texttt{02}, \texttt{Schönef.-Abtnaundorf}. A resolver
+maps each raw key through an alias table onto a canonical code in a boundary
+table holding Leipzig's 63 Ortsteile, 10 Stadtbezirke and 819 electoral
+districts, trying exact alias, exact code and embedded code before falling back
+to fuzzy name matching. Every statistic that carries a spatial reference is
+joined on that canonical code, which is what makes a correlation between two
+unrelated datasets possible at all. It is also, as Section~\ref{sec:frictions} noted and
+Section~\ref{sec:discussion} takes up, where our own worst error occurred.
+
+\subsection{Serving}
+Geometry is served as vector tiles generated in the database with PostGIS
+\texttt{ST\_AsMVT} and cached per tile in Redis, invalidated by a version bump
+after each nightly run; 489{,}011 features across 35 datasets remain
+interactive on modest hardware because the client never receives the underlying
+geometry. Statistics are served as JSON by an asynchronous API. The client is a
+React single-page application drawing MapLibre GL vector tiles.
+
+\subsection{Operating envelope}
+The whole system --- database, cache, API, ETL scheduler, static frontend,
+reverse proxy and monitoring --- runs in Docker Compose on a single virtual
+server with 4\,GB of RAM, deployed from a Git push. Access is authenticated. We
+return to both of these facts in Section~\ref{sec:discussion}, because they are
+not incidental to the argument: they are the argument.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/fig1_architecture.pdf}
+\caption{The seven-service architecture of the dashboard and the path a
+dataset takes from the open data portal to the browser.}
+\label{fig:architecture}
+\end{figure}
+
+\section{Results}
+\label{sec:results}
+
+\subsection{Coverage, and what the coverage measures}
+Table~\ref{tab:coverage} reports the state of the ingested corpus at two points
+nine weeks apart. Datasets carrying usable data rose from 152 to 350 of 398;
+statistical records from 5{,}925 to 377{,}083; election results from none to
+79{,}553.
+
+The portal did not change between those two measurements. No office published
+anything new, no format improved, no schema was fixed. The entire difference is
+interpretive labour: melt rules for wide-by-year layouts, alias entries for place
+names, column-to-party mappings, curated indicator definitions. That is what
+makes the table a measurement rather than a progress report. \emph{The distance
+between published and usable data is the size of that delta.}
+
+Two rows fall rather than rise, and both are corrections. Geometry features drop
+from 4{,}175{,}146 to 489{,}011 and traffic restrictions from 30{,}999 to 1{,}421
+because several sources issue fresh feature identifiers on every fetch, so each
+nightly run re-inserted a full snapshot until the loaders learned to sweep what a
+run did not touch. The smaller numbers are the correct ones.
+
+What survives as an analytical surface is narrower than 350 datasets suggests:
+341{,}945 records across 67 datasets and 300 metrics carry a resolved Ortsteil
+code, and five elections are stored at electoral-district level, four of them
+also aggregated to Ortsteile.
+
+\begin{table}[t]
+\caption{Ingested corpus at two points nine weeks apart. The portal itself did
+not change between them; the difference is interpretive labour.}
+\label{tab:coverage}
+\centering
+\small
+\begin{tabular}{@{}lrr@{}}
+\toprule
+& \textbf{10 Jun 2026} & \textbf{15 Aug 2026} \\
+\midrule
+Registered datasets & 398 & 398 \\
+\quad carrying data & 152 (38\,\%) & \textbf{350 (88\,\%)} \\
+Statistical records & 5{,}925 & \textbf{377{,}083} \\
+\quad across datasets & 122 & \textbf{299} \\
+Election result rows & 0 & \textbf{79{,}553} \\
+Geo datasets & 29 & 35 \\
+Geo features & 4{,}175{,}146 & 489{,}011\rlap{$^{*}$} \\
+Traffic restrictions & 30{,}999 & 1{,}421\rlap{$^{*}$} \\
+\bottomrule
+\multicolumn{3}{@{}l@{}}{\footnotesize $^{*}$ lower after de-duplication; the
+smaller figure is the correct one} \\
+\end{tabular}
+\end{table}
+
+\subsection{A worked case: participation and social structure}
+We pair the 2024 European election with three indicators built from summable
+counts and renormalised at each spatial level: registered unemployed per
+resident, foreign nationals per resident, and single-parent families per family
+with children. Election and indicators share a year and a spatial unit; the
+platform refuses pairings that do not.
+
+The strongest relationships in the grid are not about party choice but about
+participation. Turnout falls as the single-parent share rises ($r=-0.765$,
+$R^2=0.585$, $n=63$; Fig.~\ref{fig:scatter}) and as unemployment rises
+($r=-0.703$). Turnout itself ranges from 51\,\% in Grünau-Nord to 83\,\% in
+Baalsdorf (Fig.~\ref{fig:choropleth}) --- a 32-point spread inside one city in one
+election. Among parties, the clearest signal is a mirror image: CDU vote share
+falls with unemployment ($r=-0.627$) where the Left party's rises ($r=+0.598$).
+
+The pairing a citizen would most likely reach for is the one that fails. AfD
+share against unemployment yields $r=-0.114$ at $p=0.37$: no relationship at all
+across Leipzig's 63 Ortsteile.
+
+\subsection{The same data, zoned differently}
+\label{sec:maup}
+Leipzig's 63 Ortsteile nest into 10 Stadtbezirke, and the 2024 election is
+reported officially at both levels. Recomputing the identical pairing at the
+coarser level moves that null result to $r=+0.646$ at $p=0.04$ ---
+significant, positive, and opposite in sign (Fig.~\ref{fig:maup}). Ten of 21
+pairings reach $p<0.05$ over Ortsteile and seven over Stadtbezirke, but not the
+same seven; several reverse sign.
+
+This is Openshaw's scale effect \cite{openshaw1984maup}, and it is the reason
+this paper is named after Mephistopheles' warning to the student that all theory
+is grey \cite{goethe1808faust}. Neither coefficient is the true one. At $n=10$ a
+single district can carry the fit, we apply no correction for testing 21
+pairings, and no aggregate correlation licenses any claim about individual voters
+\cite{robinson1950ecological}. The finding is not that the relationship reverses.
+It is that a competent analyst, working honestly from published municipal data,
+can obtain either result and has nothing in the data to tell them which zoning to
+choose.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\linewidth]{figures/fig2_choropleth.pdf}
+\caption{Voter turnout per Ortsteil in the 2024 European election. Turnout
+ranges from 51\% in Gr\"unau-Nord to 83\% in Baalsdorf.}
+\label{fig:choropleth}
+\end{figure}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\linewidth]{figures/fig3_scatter.pdf}
+\caption{Turnout against the single-parent share of families across 63
+Ortsteile ($r = -0.765$, $R^2 = 0.585$).}
+\label{fig:scatter}
+\end{figure}
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=0.85\textwidth]{figures/fig4_maup.pdf}
+\caption{AfD vote share against registered unemployment, re-aggregated at
+two spatial scales (Ortsteil, $n=63$, vs.\ Stadtbezirk, $n=10$). Neither
+scale is the correct one, and the resulting $n=10$ coefficient must not be
+read as a finding.}
+\label{fig:maup}
+\end{figure*}
+
+\section{Discussion: Transparency and Its Infrastructure}
+\label{sec:discussion}
+
+Open data is defended on the ground that it makes citizens competent to judge:
+given the numbers, people can form views from evidence rather than from
+assertion. We hold that position. This paper is an argument about what it costs
+to make it true.
+
+\subsection{Publication is not the expensive part}
+Leipzig discharged its obligation the moment the 398 datasets went online. What
+remained was the work in Section~\ref{sec:system}: five hand-maintained registries, roughly 300
+metric definitions, an alias table for place names, and a resolver deciding what
+a row's spatial reference means. None of that is discoverable from the data. All
+of it is required before two datasets can be compared. Gurstein's objection to
+open data --- that it empowers those already equipped
+\cite{gurstein2011opendata} --- names exactly this gap, and Table~\ref{tab:frictions} is a
+measurement of it. A citizen with a spreadsheet and an afternoon does not clear
+it. Two computer science students with a semester barely did.
+
+\subsection{What it took to notice our own error}
+Section~\ref{sec:frictions} described a source property: administrative levels mixed in one file
+with no column marking them. We were the consumer that guessed, and we guessed
+wrong. Our resolver's fuzzy fallback matched the Stadtbezirk \emph{Mitte} onto
+the Ortsteil \emph{Grünau-Mitte}, and two of its siblings likewise, putting
+13{,}862 rows across 42 datasets under the wrong spatial code and inflating
+Leipzig's 2024 population to 805{,}218.
+
+Nothing about the resulting data looked wrong. Every map rendered, every chart
+had a plausible shape, every correlation was finite and interpretable. We found
+the error only because a total we computed disagreed with a total we already
+knew. That is worth stating precisely, because it defines the standard: data
+carrying the wrong meaning is not visibly different from data carrying the right
+one, and no amount of looking at a dashboard reveals the difference. Drucker's
+point that data are \emph{capta} --- taken, not given, constructed as an
+interpretation \cite{drucker2011humanities} --- is not a philosophical caveat
+here. It is an operational one. Someone constructed those spatial codes, that
+someone was us, and we were wrong.
+
+\subsection{Transparency has an infrastructure cost}
+Our platform requires a login, and its metric list is curated rather than
+complete. Both cut against the openness we are arguing for, and neither is
+ideological. The system runs on a single 4\,GB server: we have no budget for
+rate-limiting abuse or absorbing a crawl, and an uncurated metric list surfaces
+\texttt{Unnamed:~10} beside real indicators, which misleads more than it informs.
+They are capacity decisions.
+
+That is the finding, not an apology. Two people who wanted maximal openness could
+not afford it. The interpretive layer that turns published data into usable data
+costs money, skill and continuous maintenance, and whoever can pay for it decides
+what is in practice transparent. Publishing more datasets does not distribute
+that capacity; it presumes it. If open data is to serve the competence it
+promises, the interpretive layer belongs to public infrastructure rather than to
+volunteers, and cities should be measured on whether their data can be used
+rather than on how much of it exists.
+
+Four changes would do more for usability than any additional dataset: a stable
+spatial key shared across datasets; long-format publication instead of
+wide-by-year; machine-readable indicator definitions naming each metric's
+denominator; and one dataset per phenomenon with a year dimension instead of one
+per year.
+
+\subsection{What a dashboard cannot do}
+Mattern's history of the urban dashboard warns against the genre's implicit
+promise of mastery through display \cite{mattern2015missioncontrol}, and Kitchin
+et al. show how indicator systems shape the governance that reads them
+\cite{kitchin2015knowing}. Our own results argue the same way from the inside.
+The platform will happily show a user the correlation in
+Section~\ref{sec:maup} at either spatial scale, and it cannot tell them which to
+believe --- because the data cannot. A dashboard lowers one barrier: it makes
+comparison possible. It does not make comparison sound. Evidence-based
+citizenship needs both, and the second is a harder engineering problem than the
+first.
+
+\section{Limitations and Future Work}
+
+Our platform is authenticated, so it does not itself demonstrate the public
+access it argues for. Forty-eight of the 398 datasets still carry no data, mostly
+statistical layouts our melt rules do not yet recognise. The case study covers
+one election in one city: $n=63$ at the finer scale and $n=10$ at the coarser,
+with no correction for multiple comparisons and no causal claim of any kind. The
+before-and-after coverage figures come from two audits of our own database rather
+than from an independently reproducible baseline. Accessibility of the interface
+is unaddressed. And the whole system depends on the portal continuing to publish
+in the shapes we learned.
+
+The obvious extension is a second city, which would separate what is true of
+municipal open data from what is true of Leipzig. Beyond that, the registries in
+Section~\ref{sec:system} are the artefact most worth sharing: if a comparable catalogue can be
+described in the same form, the interpretive layer becomes portable rather than
+rebuilt each time.
+
+\section{Conclusion}
+
+Leipzig publishes 398 datasets and satisfies every open-data requirement we know
+of. Making them comparable took five hand-maintained registries, several hundred
+curated indicator definitions, and a spatial resolver whose failure we did not
+detect until a computed population disagreed with a known one. Between those two
+states, the portal did not change; the labour did. That labour is the real
+subject of the transparency claim. Our case study finds turnout in Leipzig's
+Ortsteile falling sharply with the single-parent share and with unemployment,
+and finds the same votes yielding opposite conclusions about party support
+depending only on how the city is divided. Both findings are available to any
+citizen who downloads the data. Neither is available to a citizen who only
+downloads it.
+
+\bibliographystyle{IEEEtran}
+\bibliography{refs}
+
+\end{document}

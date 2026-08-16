@@ -1,0 +1,316 @@
+spatial_code,ortsteil,dataset_id,metric_name,metric_value
+00,Zentrum,30943d88-4ac9-4968-84bc-35e9b337a85d,Arbeitslose insgesamt,94
+00,Zentrum,aa01ad81-1060-48e9-84f2-8908287ecf5e,Alleinerziehende insgesamt,11
+00,Zentrum,aa01ad81-1060-48e9-84f2-8908287ecf5e,Familien insgesamt,54
+00,Zentrum,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Ausländer,609
+00,Zentrum,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Einwohner insgesamt,1893
+01,Zentrum-Ost,30943d88-4ac9-4968-84bc-35e9b337a85d,Arbeitslose insgesamt,220
+01,Zentrum-Ost,aa01ad81-1060-48e9-84f2-8908287ecf5e,Alleinerziehende insgesamt,79
+01,Zentrum-Ost,aa01ad81-1060-48e9-84f2-8908287ecf5e,Familien insgesamt,390
+01,Zentrum-Ost,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Ausländer,1141
+01,Zentrum-Ost,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Einwohner insgesamt,6199
+02,Zentrum-Südost,30943d88-4ac9-4968-84bc-35e9b337a85d,Arbeitslose insgesamt,755
+02,Zentrum-Südost,aa01ad81-1060-48e9-84f2-8908287ecf5e,Alleinerziehende insgesamt,212
+02,Zentrum-Südost,aa01ad81-1060-48e9-84f2-8908287ecf5e,Familien insgesamt,826
+02,Zentrum-Südost,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Ausländer,5123
+02,Zentrum-Südost,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Einwohner insgesamt,15620
+03,Zentrum-Süd,30943d88-4ac9-4968-84bc-35e9b337a85d,Arbeitslose insgesamt,424
+03,Zentrum-Süd,aa01ad81-1060-48e9-84f2-8908287ecf5e,Alleinerziehende insgesamt,256
+03,Zentrum-Süd,aa01ad81-1060-48e9-84f2-8908287ecf5e,Familien insgesamt,1134
+03,Zentrum-Süd,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Ausländer,1680
+03,Zentrum-Süd,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Einwohner insgesamt,14297
+04,Zentrum-West,30943d88-4ac9-4968-84bc-35e9b337a85d,Arbeitslose insgesamt,332
+04,Zentrum-West,aa01ad81-1060-48e9-84f2-8908287ecf5e,Alleinerziehende insgesamt,259
+04,Zentrum-West,aa01ad81-1060-48e9-84f2-8908287ecf5e,Familien insgesamt,981
+04,Zentrum-West,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Ausländer,1879
+04,Zentrum-West,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Einwohner insgesamt,11599
+05,Zentrum-Nordwest,30943d88-4ac9-4968-84bc-35e9b337a85d,Arbeitslose insgesamt,306
+05,Zentrum-Nordwest,aa01ad81-1060-48e9-84f2-8908287ecf5e,Alleinerziehende insgesamt,203
+05,Zentrum-Nordwest,aa01ad81-1060-48e9-84f2-8908287ecf5e,Familien insgesamt,1071
+05,Zentrum-Nordwest,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Ausländer,1184
+05,Zentrum-Nordwest,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Einwohner insgesamt,11019
+06,Zentrum-Nord,30943d88-4ac9-4968-84bc-35e9b337a85d,Arbeitslose insgesamt,332
+06,Zentrum-Nord,aa01ad81-1060-48e9-84f2-8908287ecf5e,Alleinerziehende insgesamt,151
+06,Zentrum-Nord,aa01ad81-1060-48e9-84f2-8908287ecf5e,Familien insgesamt,702
+06,Zentrum-Nord,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Ausländer,2289
+06,Zentrum-Nord,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Einwohner insgesamt,9984
+10,Schönefeld-Abtnaundorf,30943d88-4ac9-4968-84bc-35e9b337a85d,Arbeitslose insgesamt,842
+10,Schönefeld-Abtnaundorf,aa01ad81-1060-48e9-84f2-8908287ecf5e,Alleinerziehende insgesamt,410
+10,Schönefeld-Abtnaundorf,aa01ad81-1060-48e9-84f2-8908287ecf5e,Familien insgesamt,1272
+10,Schönefeld-Abtnaundorf,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Ausländer,3054
+10,Schönefeld-Abtnaundorf,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Einwohner insgesamt,14052
+11,Schönefeld-Ost,30943d88-4ac9-4968-84bc-35e9b337a85d,Arbeitslose insgesamt,637
+11,Schönefeld-Ost,aa01ad81-1060-48e9-84f2-8908287ecf5e,Alleinerziehende insgesamt,336
+11,Schönefeld-Ost,aa01ad81-1060-48e9-84f2-8908287ecf5e,Familien insgesamt,747
+11,Schönefeld-Ost,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Ausländer,2231
+11,Schönefeld-Ost,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Einwohner insgesamt,10435
+12,Mockau-Süd,30943d88-4ac9-4968-84bc-35e9b337a85d,Arbeitslose insgesamt,259
+12,Mockau-Süd,aa01ad81-1060-48e9-84f2-8908287ecf5e,Alleinerziehende insgesamt,138
+12,Mockau-Süd,aa01ad81-1060-48e9-84f2-8908287ecf5e,Familien insgesamt,398
+12,Mockau-Süd,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Ausländer,1015
+12,Mockau-Süd,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Einwohner insgesamt,5008
+13,Mockau-Nord,30943d88-4ac9-4968-84bc-35e9b337a85d,Arbeitslose insgesamt,553
+13,Mockau-Nord,aa01ad81-1060-48e9-84f2-8908287ecf5e,Alleinerziehende insgesamt,298
+13,Mockau-Nord,aa01ad81-1060-48e9-84f2-8908287ecf5e,Familien insgesamt,822
+13,Mockau-Nord,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Ausländer,1960
+13,Mockau-Nord,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Einwohner insgesamt,11651
+14,Thekla,30943d88-4ac9-4968-84bc-35e9b337a85d,Arbeitslose insgesamt,188
+14,Thekla,aa01ad81-1060-48e9-84f2-8908287ecf5e,Alleinerziehende insgesamt,157
+14,Thekla,aa01ad81-1060-48e9-84f2-8908287ecf5e,Familien insgesamt,475
+14,Thekla,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Ausländer,686
+14,Thekla,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Einwohner insgesamt,6066
+15,Plaußig-Portitz,30943d88-4ac9-4968-84bc-35e9b337a85d,Arbeitslose insgesamt,27
+15,Plaußig-Portitz,aa01ad81-1060-48e9-84f2-8908287ecf5e,Alleinerziehende insgesamt,60
+15,Plaußig-Portitz,aa01ad81-1060-48e9-84f2-8908287ecf5e,Familien insgesamt,344
+15,Plaußig-Portitz,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Ausländer,116
+15,Plaußig-Portitz,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Einwohner insgesamt,3441
+20,Neustadt-Neuschönefeld,30943d88-4ac9-4968-84bc-35e9b337a85d,Arbeitslose insgesamt,932
+20,Neustadt-Neuschönefeld,aa01ad81-1060-48e9-84f2-8908287ecf5e,Alleinerziehende insgesamt,241
+20,Neustadt-Neuschönefeld,aa01ad81-1060-48e9-84f2-8908287ecf5e,Familien insgesamt,896
+20,Neustadt-Neuschönefeld,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Ausländer,4000
+20,Neustadt-Neuschönefeld,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Einwohner insgesamt,14154
+21,Volkmarsdorf,30943d88-4ac9-4968-84bc-35e9b337a85d,Arbeitslose insgesamt,1262
+21,Volkmarsdorf,aa01ad81-1060-48e9-84f2-8908287ecf5e,Alleinerziehende insgesamt,352
+21,Volkmarsdorf,aa01ad81-1060-48e9-84f2-8908287ecf5e,Familien insgesamt,1030
+21,Volkmarsdorf,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Ausländer,4976
+21,Volkmarsdorf,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Einwohner insgesamt,14158
+22,Anger-Crottendorf,30943d88-4ac9-4968-84bc-35e9b337a85d,Arbeitslose insgesamt,683
+22,Anger-Crottendorf,aa01ad81-1060-48e9-84f2-8908287ecf5e,Alleinerziehende insgesamt,285
+22,Anger-Crottendorf,aa01ad81-1060-48e9-84f2-8908287ecf5e,Familien insgesamt,990
+22,Anger-Crottendorf,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Ausländer,1943
+22,Anger-Crottendorf,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Einwohner insgesamt,12798
+23,Sellerhausen-Stünz,30943d88-4ac9-4968-84bc-35e9b337a85d,Arbeitslose insgesamt,484
+23,Sellerhausen-Stünz,aa01ad81-1060-48e9-84f2-8908287ecf5e,Alleinerziehende insgesamt,282
+23,Sellerhausen-Stünz,aa01ad81-1060-48e9-84f2-8908287ecf5e,Familien insgesamt,786
+23,Sellerhausen-Stünz,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Ausländer,1572
+23,Sellerhausen-Stünz,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Einwohner insgesamt,9723
+24,Paunsdorf,30943d88-4ac9-4968-84bc-35e9b337a85d,Arbeitslose insgesamt,1219
+24,Paunsdorf,aa01ad81-1060-48e9-84f2-8908287ecf5e,Alleinerziehende insgesamt,552
+24,Paunsdorf,aa01ad81-1060-48e9-84f2-8908287ecf5e,Familien insgesamt,1219
+24,Paunsdorf,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Ausländer,4264
+24,Paunsdorf,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Einwohner insgesamt,15946
+25,Heiterblick,30943d88-4ac9-4968-84bc-35e9b337a85d,Arbeitslose insgesamt,74
+25,Heiterblick,aa01ad81-1060-48e9-84f2-8908287ecf5e,Alleinerziehende insgesamt,53
+25,Heiterblick,aa01ad81-1060-48e9-84f2-8908287ecf5e,Familien insgesamt,206
+25,Heiterblick,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Ausländer,253
+25,Heiterblick,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Einwohner insgesamt,3615
+26,Mölkau,30943d88-4ac9-4968-84bc-35e9b337a85d,Arbeitslose insgesamt,97
+26,Mölkau,aa01ad81-1060-48e9-84f2-8908287ecf5e,Alleinerziehende insgesamt,97
+26,Mölkau,aa01ad81-1060-48e9-84f2-8908287ecf5e,Familien insgesamt,471
+26,Mölkau,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Ausländer,275
+26,Mölkau,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Einwohner insgesamt,5917
+27,Engelsdorf,30943d88-4ac9-4968-84bc-35e9b337a85d,Arbeitslose insgesamt,210
+27,Engelsdorf,aa01ad81-1060-48e9-84f2-8908287ecf5e,Alleinerziehende insgesamt,211
+27,Engelsdorf,aa01ad81-1060-48e9-84f2-8908287ecf5e,Familien insgesamt,808
+27,Engelsdorf,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Ausländer,477
+27,Engelsdorf,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Einwohner insgesamt,9318
+28,Baalsdorf,30943d88-4ac9-4968-84bc-35e9b337a85d,Arbeitslose insgesamt,14
+28,Baalsdorf,aa01ad81-1060-48e9-84f2-8908287ecf5e,Alleinerziehende insgesamt,22
+28,Baalsdorf,aa01ad81-1060-48e9-84f2-8908287ecf5e,Familien insgesamt,175
+28,Baalsdorf,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Ausländer,28
+28,Baalsdorf,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Einwohner insgesamt,1832
+29,Althen-Kleinpösna,30943d88-4ac9-4968-84bc-35e9b337a85d,Arbeitslose insgesamt,36
+29,Althen-Kleinpösna,aa01ad81-1060-48e9-84f2-8908287ecf5e,Alleinerziehende insgesamt,47
+29,Althen-Kleinpösna,aa01ad81-1060-48e9-84f2-8908287ecf5e,Familien insgesamt,209
+29,Althen-Kleinpösna,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Ausländer,49
+29,Althen-Kleinpösna,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Einwohner insgesamt,2194
+30,Reudnitz-Thonberg,30943d88-4ac9-4968-84bc-35e9b337a85d,Arbeitslose insgesamt,1016
+30,Reudnitz-Thonberg,aa01ad81-1060-48e9-84f2-8908287ecf5e,Alleinerziehende insgesamt,518
+30,Reudnitz-Thonberg,aa01ad81-1060-48e9-84f2-8908287ecf5e,Familien insgesamt,1843
+30,Reudnitz-Thonberg,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Ausländer,3572
+30,Reudnitz-Thonberg,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Einwohner insgesamt,23955
+31,Stötteritz,30943d88-4ac9-4968-84bc-35e9b337a85d,Arbeitslose insgesamt,556
+31,Stötteritz,aa01ad81-1060-48e9-84f2-8908287ecf5e,Alleinerziehende insgesamt,437
+31,Stötteritz,aa01ad81-1060-48e9-84f2-8908287ecf5e,Familien insgesamt,1604
+31,Stötteritz,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Ausländer,1725
+31,Stötteritz,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Einwohner insgesamt,18249
+32,Probstheida,30943d88-4ac9-4968-84bc-35e9b337a85d,Arbeitslose insgesamt,192
+32,Probstheida,aa01ad81-1060-48e9-84f2-8908287ecf5e,Alleinerziehende insgesamt,139
+32,Probstheida,aa01ad81-1060-48e9-84f2-8908287ecf5e,Familien insgesamt,588
+32,Probstheida,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Ausländer,714
+32,Probstheida,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Einwohner insgesamt,7168
+33,Meusdorf,30943d88-4ac9-4968-84bc-35e9b337a85d,Arbeitslose insgesamt,93
+33,Meusdorf,aa01ad81-1060-48e9-84f2-8908287ecf5e,Alleinerziehende insgesamt,70
+33,Meusdorf,aa01ad81-1060-48e9-84f2-8908287ecf5e,Familien insgesamt,301
+33,Meusdorf,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Ausländer,307
+33,Meusdorf,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Einwohner insgesamt,3896
+34,Liebertwolkwitz,30943d88-4ac9-4968-84bc-35e9b337a85d,Arbeitslose insgesamt,141
+34,Liebertwolkwitz,aa01ad81-1060-48e9-84f2-8908287ecf5e,Alleinerziehende insgesamt,128
+34,Liebertwolkwitz,aa01ad81-1060-48e9-84f2-8908287ecf5e,Familien insgesamt,486
+34,Liebertwolkwitz,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Ausländer,265
+34,Liebertwolkwitz,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Einwohner insgesamt,5469
+35,Holzhausen,30943d88-4ac9-4968-84bc-35e9b337a85d,Arbeitslose insgesamt,114
+35,Holzhausen,aa01ad81-1060-48e9-84f2-8908287ecf5e,Alleinerziehende insgesamt,148
+35,Holzhausen,aa01ad81-1060-48e9-84f2-8908287ecf5e,Familien insgesamt,601
+35,Holzhausen,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Ausländer,341
+35,Holzhausen,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Einwohner insgesamt,6728
+40,Südvorstadt,30943d88-4ac9-4968-84bc-35e9b337a85d,Arbeitslose insgesamt,858
+40,Südvorstadt,aa01ad81-1060-48e9-84f2-8908287ecf5e,Alleinerziehende insgesamt,658
+40,Südvorstadt,aa01ad81-1060-48e9-84f2-8908287ecf5e,Familien insgesamt,2605
+40,Südvorstadt,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Ausländer,2265
+40,Südvorstadt,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Einwohner insgesamt,26708
+41,Connewitz,30943d88-4ac9-4968-84bc-35e9b337a85d,Arbeitslose insgesamt,865
+41,Connewitz,aa01ad81-1060-48e9-84f2-8908287ecf5e,Alleinerziehende insgesamt,578
+41,Connewitz,aa01ad81-1060-48e9-84f2-8908287ecf5e,Familien insgesamt,1761
+41,Connewitz,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Ausländer,1724
+41,Connewitz,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Einwohner insgesamt,19946
+42,Marienbrunn,30943d88-4ac9-4968-84bc-35e9b337a85d,Arbeitslose insgesamt,168
+42,Marienbrunn,aa01ad81-1060-48e9-84f2-8908287ecf5e,Alleinerziehende insgesamt,122
+42,Marienbrunn,aa01ad81-1060-48e9-84f2-8908287ecf5e,Familien insgesamt,433
+42,Marienbrunn,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Ausländer,586
+42,Marienbrunn,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Einwohner insgesamt,6142
+43,Lößnig,30943d88-4ac9-4968-84bc-35e9b337a85d,Arbeitslose insgesamt,437
+43,Lößnig,aa01ad81-1060-48e9-84f2-8908287ecf5e,Alleinerziehende insgesamt,308
+43,Lößnig,aa01ad81-1060-48e9-84f2-8908287ecf5e,Familien insgesamt,665
+43,Lößnig,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Ausländer,1162
+43,Lößnig,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Einwohner insgesamt,10407
+44,Dölitz-Dösen,30943d88-4ac9-4968-84bc-35e9b337a85d,Arbeitslose insgesamt,176
+44,Dölitz-Dösen,aa01ad81-1060-48e9-84f2-8908287ecf5e,Alleinerziehende insgesamt,126
+44,Dölitz-Dösen,aa01ad81-1060-48e9-84f2-8908287ecf5e,Familien insgesamt,447
+44,Dölitz-Dösen,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Ausländer,418
+44,Dölitz-Dösen,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Einwohner insgesamt,4874
+50,Schleußig,30943d88-4ac9-4968-84bc-35e9b337a85d,Arbeitslose insgesamt,335
+50,Schleußig,aa01ad81-1060-48e9-84f2-8908287ecf5e,Alleinerziehende insgesamt,357
+50,Schleußig,aa01ad81-1060-48e9-84f2-8908287ecf5e,Familien insgesamt,1445
+50,Schleußig,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Ausländer,961
+50,Schleußig,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Einwohner insgesamt,12527
+51,Plagwitz,30943d88-4ac9-4968-84bc-35e9b337a85d,Arbeitslose insgesamt,708
+51,Plagwitz,aa01ad81-1060-48e9-84f2-8908287ecf5e,Alleinerziehende insgesamt,416
+51,Plagwitz,aa01ad81-1060-48e9-84f2-8908287ecf5e,Familien insgesamt,1643
+51,Plagwitz,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Ausländer,2110
+51,Plagwitz,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Einwohner insgesamt,17209
+52,Kleinzschocher,30943d88-4ac9-4968-84bc-35e9b337a85d,Arbeitslose insgesamt,600
+52,Kleinzschocher,aa01ad81-1060-48e9-84f2-8908287ecf5e,Alleinerziehende insgesamt,321
+52,Kleinzschocher,aa01ad81-1060-48e9-84f2-8908287ecf5e,Familien insgesamt,1065
+52,Kleinzschocher,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Ausländer,1344
+52,Kleinzschocher,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Einwohner insgesamt,11031
+53,Großzschocher,30943d88-4ac9-4968-84bc-35e9b337a85d,Arbeitslose insgesamt,344
+53,Großzschocher,aa01ad81-1060-48e9-84f2-8908287ecf5e,Alleinerziehende insgesamt,216
+53,Großzschocher,aa01ad81-1060-48e9-84f2-8908287ecf5e,Familien insgesamt,689
+53,Großzschocher,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Ausländer,670
+53,Großzschocher,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Einwohner insgesamt,9293
+54,Knautkleeberg-Knauthain,30943d88-4ac9-4968-84bc-35e9b337a85d,Arbeitslose insgesamt,86
+54,Knautkleeberg-Knauthain,aa01ad81-1060-48e9-84f2-8908287ecf5e,Alleinerziehende insgesamt,98
+54,Knautkleeberg-Knauthain,aa01ad81-1060-48e9-84f2-8908287ecf5e,Familien insgesamt,601
+54,Knautkleeberg-Knauthain,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Ausländer,88
+54,Knautkleeberg-Knauthain,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Einwohner insgesamt,5764
+55,Hartmannsdorf-Knautnaundorf,30943d88-4ac9-4968-84bc-35e9b337a85d,Arbeitslose insgesamt,24
+55,Hartmannsdorf-Knautnaundorf,aa01ad81-1060-48e9-84f2-8908287ecf5e,Alleinerziehende insgesamt,21
+55,Hartmannsdorf-Knautnaundorf,aa01ad81-1060-48e9-84f2-8908287ecf5e,Familien insgesamt,129
+55,Hartmannsdorf-Knautnaundorf,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Ausländer,71
+55,Hartmannsdorf-Knautnaundorf,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Einwohner insgesamt,1340
+60,Schönau,30943d88-4ac9-4968-84bc-35e9b337a85d,Arbeitslose insgesamt,427
+60,Schönau,aa01ad81-1060-48e9-84f2-8908287ecf5e,Alleinerziehende insgesamt,120
+60,Schönau,aa01ad81-1060-48e9-84f2-8908287ecf5e,Familien insgesamt,442
+60,Schönau,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Ausländer,884
+60,Schönau,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Einwohner insgesamt,5786
+61,Grünau-Ost,30943d88-4ac9-4968-84bc-35e9b337a85d,Arbeitslose insgesamt,368
+61,Grünau-Ost,aa01ad81-1060-48e9-84f2-8908287ecf5e,Alleinerziehende insgesamt,270
+61,Grünau-Ost,aa01ad81-1060-48e9-84f2-8908287ecf5e,Familien insgesamt,513
+61,Grünau-Ost,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Ausländer,1329
+61,Grünau-Ost,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Einwohner insgesamt,7832
+62,Grünau-Mitte,30943d88-4ac9-4968-84bc-35e9b337a85d,Arbeitslose insgesamt,1046
+62,Grünau-Mitte,aa01ad81-1060-48e9-84f2-8908287ecf5e,Alleinerziehende insgesamt,401
+62,Grünau-Mitte,aa01ad81-1060-48e9-84f2-8908287ecf5e,Familien insgesamt,1046
+62,Grünau-Mitte,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Ausländer,3835
+62,Grünau-Mitte,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Einwohner insgesamt,14046
+63,Grünau-Siedlung,30943d88-4ac9-4968-84bc-35e9b337a85d,Arbeitslose insgesamt,73
+63,Grünau-Siedlung,aa01ad81-1060-48e9-84f2-8908287ecf5e,Alleinerziehende insgesamt,61
+63,Grünau-Siedlung,aa01ad81-1060-48e9-84f2-8908287ecf5e,Familien insgesamt,258
+63,Grünau-Siedlung,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Ausländer,176
+63,Grünau-Siedlung,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Einwohner insgesamt,3864
+64,Lausen-Grünau,30943d88-4ac9-4968-84bc-35e9b337a85d,Arbeitslose insgesamt,919
+64,Lausen-Grünau,aa01ad81-1060-48e9-84f2-8908287ecf5e,Alleinerziehende insgesamt,391
+64,Lausen-Grünau,aa01ad81-1060-48e9-84f2-8908287ecf5e,Familien insgesamt,1068
+64,Lausen-Grünau,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Ausländer,3028
+64,Lausen-Grünau,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Einwohner insgesamt,14536
+65,Grünau-Nord,30943d88-4ac9-4968-84bc-35e9b337a85d,Arbeitslose insgesamt,713
+65,Grünau-Nord,aa01ad81-1060-48e9-84f2-8908287ecf5e,Alleinerziehende insgesamt,321
+65,Grünau-Nord,aa01ad81-1060-48e9-84f2-8908287ecf5e,Familien insgesamt,734
+65,Grünau-Nord,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Ausländer,1946
+65,Grünau-Nord,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Einwohner insgesamt,9317
+66,Miltitz,30943d88-4ac9-4968-84bc-35e9b337a85d,Arbeitslose insgesamt,36
+66,Miltitz,aa01ad81-1060-48e9-84f2-8908287ecf5e,Alleinerziehende insgesamt,26
+66,Miltitz,aa01ad81-1060-48e9-84f2-8908287ecf5e,Familien insgesamt,122
+66,Miltitz,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Ausländer,68
+66,Miltitz,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Einwohner insgesamt,1850
+70,Lindenau,30943d88-4ac9-4968-84bc-35e9b337a85d,Arbeitslose insgesamt,445
+70,Lindenau,aa01ad81-1060-48e9-84f2-8908287ecf5e,Alleinerziehende insgesamt,268
+70,Lindenau,aa01ad81-1060-48e9-84f2-8908287ecf5e,Familien insgesamt,853
+70,Lindenau,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Ausländer,1268
+70,Lindenau,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Einwohner insgesamt,8794
+71,Altlindenau,30943d88-4ac9-4968-84bc-35e9b337a85d,Arbeitslose insgesamt,1109
+71,Altlindenau,aa01ad81-1060-48e9-84f2-8908287ecf5e,Alleinerziehende insgesamt,476
+71,Altlindenau,aa01ad81-1060-48e9-84f2-8908287ecf5e,Familien insgesamt,1702
+71,Altlindenau,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Ausländer,2984
+71,Altlindenau,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Einwohner insgesamt,19008
+72,Neulindenau,30943d88-4ac9-4968-84bc-35e9b337a85d,Arbeitslose insgesamt,358
+72,Neulindenau,aa01ad81-1060-48e9-84f2-8908287ecf5e,Alleinerziehende insgesamt,275
+72,Neulindenau,aa01ad81-1060-48e9-84f2-8908287ecf5e,Familien insgesamt,790
+72,Neulindenau,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Ausländer,1208
+72,Neulindenau,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Einwohner insgesamt,8431
+73,Leutzsch,30943d88-4ac9-4968-84bc-35e9b337a85d,Arbeitslose insgesamt,449
+73,Leutzsch,aa01ad81-1060-48e9-84f2-8908287ecf5e,Alleinerziehende insgesamt,296
+73,Leutzsch,aa01ad81-1060-48e9-84f2-8908287ecf5e,Familien insgesamt,928
+73,Leutzsch,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Ausländer,1182
+73,Leutzsch,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Einwohner insgesamt,11047
+74,Böhlitz-Ehrenberg,30943d88-4ac9-4968-84bc-35e9b337a85d,Arbeitslose insgesamt,303
+74,Böhlitz-Ehrenberg,aa01ad81-1060-48e9-84f2-8908287ecf5e,Alleinerziehende insgesamt,267
+74,Böhlitz-Ehrenberg,aa01ad81-1060-48e9-84f2-8908287ecf5e,Familien insgesamt,856
+74,Böhlitz-Ehrenberg,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Ausländer,613
+74,Böhlitz-Ehrenberg,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Einwohner insgesamt,10248
+75,Burghausen-Rückmarsdorf,30943d88-4ac9-4968-84bc-35e9b337a85d,Arbeitslose insgesamt,74
+75,Burghausen-Rückmarsdorf,aa01ad81-1060-48e9-84f2-8908287ecf5e,Alleinerziehende insgesamt,83
+75,Burghausen-Rückmarsdorf,aa01ad81-1060-48e9-84f2-8908287ecf5e,Familien insgesamt,394
+75,Burghausen-Rückmarsdorf,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Ausländer,143
+75,Burghausen-Rückmarsdorf,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Einwohner insgesamt,4792
+80,Möckern,30943d88-4ac9-4968-84bc-35e9b337a85d,Arbeitslose insgesamt,854
+80,Möckern,aa01ad81-1060-48e9-84f2-8908287ecf5e,Alleinerziehende insgesamt,448
+80,Möckern,aa01ad81-1060-48e9-84f2-8908287ecf5e,Familien insgesamt,1464
+80,Möckern,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Ausländer,3505
+80,Möckern,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Einwohner insgesamt,17824
+81,Wahren,30943d88-4ac9-4968-84bc-35e9b337a85d,Arbeitslose insgesamt,351
+81,Wahren,aa01ad81-1060-48e9-84f2-8908287ecf5e,Alleinerziehende insgesamt,173
+81,Wahren,aa01ad81-1060-48e9-84f2-8908287ecf5e,Familien insgesamt,629
+81,Wahren,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Ausländer,1156
+81,Wahren,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Einwohner insgesamt,7733
+82,Lützschena-Stahmeln,30943d88-4ac9-4968-84bc-35e9b337a85d,Arbeitslose insgesamt,72
+82,Lützschena-Stahmeln,aa01ad81-1060-48e9-84f2-8908287ecf5e,Alleinerziehende insgesamt,72
+82,Lützschena-Stahmeln,aa01ad81-1060-48e9-84f2-8908287ecf5e,Familien insgesamt,379
+82,Lützschena-Stahmeln,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Ausländer,192
+82,Lützschena-Stahmeln,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Einwohner insgesamt,4272
+83,Lindenthal,30943d88-4ac9-4968-84bc-35e9b337a85d,Arbeitslose insgesamt,148
+83,Lindenthal,aa01ad81-1060-48e9-84f2-8908287ecf5e,Alleinerziehende insgesamt,127
+83,Lindenthal,aa01ad81-1060-48e9-84f2-8908287ecf5e,Familien insgesamt,589
+83,Lindenthal,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Ausländer,396
+83,Lindenthal,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Einwohner insgesamt,6753
+90,Gohlis-Süd,30943d88-4ac9-4968-84bc-35e9b337a85d,Arbeitslose insgesamt,651
+90,Gohlis-Süd,aa01ad81-1060-48e9-84f2-8908287ecf5e,Alleinerziehende insgesamt,435
+90,Gohlis-Süd,aa01ad81-1060-48e9-84f2-8908287ecf5e,Familien insgesamt,1661
+90,Gohlis-Süd,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Ausländer,2570
+90,Gohlis-Süd,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Einwohner insgesamt,18823
+91,Gohlis-Mitte,30943d88-4ac9-4968-84bc-35e9b337a85d,Arbeitslose insgesamt,443
+91,Gohlis-Mitte,aa01ad81-1060-48e9-84f2-8908287ecf5e,Alleinerziehende insgesamt,477
+91,Gohlis-Mitte,aa01ad81-1060-48e9-84f2-8908287ecf5e,Familien insgesamt,1862
+91,Gohlis-Mitte,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Ausländer,1501
+91,Gohlis-Mitte,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Einwohner insgesamt,18011
+92,Gohlis-Nord,30943d88-4ac9-4968-84bc-35e9b337a85d,Arbeitslose insgesamt,417
+92,Gohlis-Nord,aa01ad81-1060-48e9-84f2-8908287ecf5e,Alleinerziehende insgesamt,320
+92,Gohlis-Nord,aa01ad81-1060-48e9-84f2-8908287ecf5e,Familien insgesamt,935
+92,Gohlis-Nord,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Ausländer,1821
+92,Gohlis-Nord,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Einwohner insgesamt,10341
+93,Eutritzsch,30943d88-4ac9-4968-84bc-35e9b337a85d,Arbeitslose insgesamt,520
+93,Eutritzsch,aa01ad81-1060-48e9-84f2-8908287ecf5e,Alleinerziehende insgesamt,383
+93,Eutritzsch,aa01ad81-1060-48e9-84f2-8908287ecf5e,Familien insgesamt,1326
+93,Eutritzsch,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Ausländer,2405
+93,Eutritzsch,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Einwohner insgesamt,15562
+94,Seehausen,30943d88-4ac9-4968-84bc-35e9b337a85d,Arbeitslose insgesamt,34
+94,Seehausen,aa01ad81-1060-48e9-84f2-8908287ecf5e,Alleinerziehende insgesamt,72
+94,Seehausen,aa01ad81-1060-48e9-84f2-8908287ecf5e,Familien insgesamt,305
+94,Seehausen,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Ausländer,196
+94,Seehausen,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Einwohner insgesamt,2835
+95,Wiederitzsch,30943d88-4ac9-4968-84bc-35e9b337a85d,Arbeitslose insgesamt,198
+95,Wiederitzsch,aa01ad81-1060-48e9-84f2-8908287ecf5e,Alleinerziehende insgesamt,172
+95,Wiederitzsch,aa01ad81-1060-48e9-84f2-8908287ecf5e,Familien insgesamt,839
+95,Wiederitzsch,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Ausländer,515
+95,Wiederitzsch,dcc45e1a-11d1-4922-80c3-f49ba12863fb,Einwohner insgesamt,9230

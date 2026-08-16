@@ -1,0 +1,2143 @@
+spatial_code,gebiet_name,party,zweitstimmen,gueltige_zweit,wahlberechtigte,waehler
+00,Zentrum,AfD,110,813,1235,813
+00,Zentrum,BSW,72,813,1235,813
+00,Zentrum,CDU,163,813,1235,813
+00,Zentrum,DIE LINKE,73,813,1235,813
+00,Zentrum,Die PARTEI,26,813,1235,813
+00,Zentrum,FDP,63,813,1235,813
+00,Zentrum,GRÜNE,124,813,1235,813
+00,Zentrum,Liste 10,1,813,1235,813
+00,Zentrum,Liste 12,4,813,1235,813
+00,Zentrum,Liste 14,10,813,1235,813
+00,Zentrum,Liste 15,0,813,1235,813
+00,Zentrum,Liste 16,7,813,1235,813
+00,Zentrum,Liste 17,1,813,1235,813
+00,Zentrum,Liste 18,0,813,1235,813
+00,Zentrum,Liste 19,3,813,1235,813
+00,Zentrum,Liste 20,2,813,1235,813
+00,Zentrum,Liste 21,1,813,1235,813
+00,Zentrum,Liste 22,2,813,1235,813
+00,Zentrum,Liste 23,1,813,1235,813
+00,Zentrum,Liste 24,0,813,1235,813
+00,Zentrum,Liste 25,0,813,1235,813
+00,Zentrum,Liste 26,1,813,1235,813
+00,Zentrum,Liste 27,2,813,1235,813
+00,Zentrum,Liste 29,0,813,1235,813
+00,Zentrum,Liste 30,1,813,1235,813
+00,Zentrum,Liste 31,5,813,1235,813
+00,Zentrum,Liste 32,2,813,1235,813
+00,Zentrum,Liste 33,7,813,1235,813
+00,Zentrum,Liste 34,2,813,1235,813
+00,Zentrum,Liste 7,8,813,1235,813
+00,Zentrum,Liste 9,12,813,1235,813
+00,Zentrum,NPD,0,813,1235,813
+00,Zentrum,SPD,73,813,1235,813
+00,Zentrum,Volt,37,813,1235,813
+01,Zentrum-Ost,AfD,346,3210,4507,3222
+01,Zentrum-Ost,BSW,274,3210,4507,3222
+01,Zentrum-Ost,CDU,511,3210,4507,3222
+01,Zentrum-Ost,DIE LINKE,323,3210,4507,3222
+01,Zentrum-Ost,Die PARTEI,148,3210,4507,3222
+01,Zentrum-Ost,FDP,193,3210,4507,3222
+01,Zentrum-Ost,GRÜNE,555,3210,4507,3222
+01,Zentrum-Ost,Liste 10,9,3210,4507,3222
+01,Zentrum-Ost,Liste 12,12,3210,4507,3222
+01,Zentrum-Ost,Liste 14,34,3210,4507,3222
+01,Zentrum-Ost,Liste 15,4,3210,4507,3222
+01,Zentrum-Ost,Liste 16,17,3210,4507,3222
+01,Zentrum-Ost,Liste 17,5,3210,4507,3222
+01,Zentrum-Ost,Liste 18,9,3210,4507,3222
+01,Zentrum-Ost,Liste 19,22,3210,4507,3222
+01,Zentrum-Ost,Liste 20,2,3210,4507,3222
+01,Zentrum-Ost,Liste 21,1,3210,4507,3222
+01,Zentrum-Ost,Liste 22,1,3210,4507,3222
+01,Zentrum-Ost,Liste 23,1,3210,4507,3222
+01,Zentrum-Ost,Liste 24,1,3210,4507,3222
+01,Zentrum-Ost,Liste 25,0,3210,4507,3222
+01,Zentrum-Ost,Liste 26,5,3210,4507,3222
+01,Zentrum-Ost,Liste 27,12,3210,4507,3222
+01,Zentrum-Ost,Liste 29,1,3210,4507,3222
+01,Zentrum-Ost,Liste 30,6,3210,4507,3222
+01,Zentrum-Ost,Liste 31,36,3210,4507,3222
+01,Zentrum-Ost,Liste 32,3,3210,4507,3222
+01,Zentrum-Ost,Liste 33,25,3210,4507,3222
+01,Zentrum-Ost,Liste 34,10,3210,4507,3222
+01,Zentrum-Ost,Liste 7,40,3210,4507,3222
+01,Zentrum-Ost,Liste 9,68,3210,4507,3222
+01,Zentrum-Ost,NPD,0,3210,4507,3222
+01,Zentrum-Ost,SPD,331,3210,4507,3222
+01,Zentrum-Ost,Volt,205,3210,4507,3222
+02,Zentrum-Südost,AfD,745,6517,9325,6555
+02,Zentrum-Südost,BSW,622,6517,9325,6555
+02,Zentrum-Südost,CDU,846,6517,9325,6555
+02,Zentrum-Südost,DIE LINKE,783,6517,9325,6555
+02,Zentrum-Südost,Die PARTEI,284,6517,9325,6555
+02,Zentrum-Südost,FDP,282,6517,9325,6555
+02,Zentrum-Südost,GRÜNE,1085,6517,9325,6555
+02,Zentrum-Südost,Liste 10,22,6517,9325,6555
+02,Zentrum-Südost,Liste 12,37,6517,9325,6555
+02,Zentrum-Südost,Liste 14,60,6517,9325,6555
+02,Zentrum-Südost,Liste 15,3,6517,9325,6555
+02,Zentrum-Südost,Liste 16,78,6517,9325,6555
+02,Zentrum-Südost,Liste 17,16,6517,9325,6555
+02,Zentrum-Südost,Liste 18,14,6517,9325,6555
+02,Zentrum-Südost,Liste 19,74,6517,9325,6555
+02,Zentrum-Südost,Liste 20,4,6517,9325,6555
+02,Zentrum-Südost,Liste 21,12,6517,9325,6555
+02,Zentrum-Südost,Liste 22,8,6517,9325,6555
+02,Zentrum-Südost,Liste 23,8,6517,9325,6555
+02,Zentrum-Südost,Liste 24,2,6517,9325,6555
+02,Zentrum-Südost,Liste 25,1,6517,9325,6555
+02,Zentrum-Südost,Liste 26,19,6517,9325,6555
+02,Zentrum-Südost,Liste 27,30,6517,9325,6555
+02,Zentrum-Südost,Liste 29,5,6517,9325,6555
+02,Zentrum-Südost,Liste 30,19,6517,9325,6555
+02,Zentrum-Südost,Liste 31,69,6517,9325,6555
+02,Zentrum-Südost,Liste 32,8,6517,9325,6555
+02,Zentrum-Südost,Liste 33,60,6517,9325,6555
+02,Zentrum-Südost,Liste 34,19,6517,9325,6555
+02,Zentrum-Südost,Liste 7,60,6517,9325,6555
+02,Zentrum-Südost,Liste 9,126,6517,9325,6555
+02,Zentrum-Südost,NPD,2,6517,9325,6555
+02,Zentrum-Südost,SPD,664,6517,9325,6555
+02,Zentrum-Südost,Volt,450,6517,9325,6555
+03,Zentrum-Süd,AfD,743,8483,10898,8525
+03,Zentrum-Süd,BSW,840,8483,10898,8525
+03,Zentrum-Süd,CDU,1223,8483,10898,8525
+03,Zentrum-Süd,DIE LINKE,938,8483,10898,8525
+03,Zentrum-Süd,Die PARTEI,420,8483,10898,8525
+03,Zentrum-Süd,FDP,373,8483,10898,8525
+03,Zentrum-Süd,GRÜNE,1717,8483,10898,8525
+03,Zentrum-Süd,Liste 10,30,8483,10898,8525
+03,Zentrum-Süd,Liste 12,38,8483,10898,8525
+03,Zentrum-Süd,Liste 14,65,8483,10898,8525
+03,Zentrum-Süd,Liste 15,5,8483,10898,8525
+03,Zentrum-Süd,Liste 16,78,8483,10898,8525
+03,Zentrum-Süd,Liste 17,17,8483,10898,8525
+03,Zentrum-Süd,Liste 18,8,8483,10898,8525
+03,Zentrum-Süd,Liste 19,50,8483,10898,8525
+03,Zentrum-Süd,Liste 20,19,8483,10898,8525
+03,Zentrum-Süd,Liste 21,9,8483,10898,8525
+03,Zentrum-Süd,Liste 22,6,8483,10898,8525
+03,Zentrum-Süd,Liste 23,5,8483,10898,8525
+03,Zentrum-Süd,Liste 24,2,8483,10898,8525
+03,Zentrum-Süd,Liste 25,7,8483,10898,8525
+03,Zentrum-Süd,Liste 26,22,8483,10898,8525
+03,Zentrum-Süd,Liste 27,28,8483,10898,8525
+03,Zentrum-Süd,Liste 29,2,8483,10898,8525
+03,Zentrum-Süd,Liste 30,12,8483,10898,8525
+03,Zentrum-Süd,Liste 31,83,8483,10898,8525
+03,Zentrum-Süd,Liste 32,10,8483,10898,8525
+03,Zentrum-Süd,Liste 33,57,8483,10898,8525
+03,Zentrum-Süd,Liste 34,21,8483,10898,8525
+03,Zentrum-Süd,Liste 7,75,8483,10898,8525
+03,Zentrum-Süd,Liste 9,87,8483,10898,8525
+03,Zentrum-Süd,NPD,3,8483,10898,8525
+03,Zentrum-Süd,SPD,984,8483,10898,8525
+03,Zentrum-Süd,Volt,506,8483,10898,8525
+04,Zentrum-West,AfD,635,6336,8305,6368
+04,Zentrum-West,BSW,560,6336,8305,6368
+04,Zentrum-West,CDU,968,6336,8305,6368
+04,Zentrum-West,DIE LINKE,620,6336,8305,6368
+04,Zentrum-West,Die PARTEI,253,6336,8305,6368
+04,Zentrum-West,FDP,317,6336,8305,6368
+04,Zentrum-West,GRÜNE,1349,6336,8305,6368
+04,Zentrum-West,Liste 10,26,6336,8305,6368
+04,Zentrum-West,Liste 12,39,6336,8305,6368
+04,Zentrum-West,Liste 14,44,6336,8305,6368
+04,Zentrum-West,Liste 15,5,6336,8305,6368
+04,Zentrum-West,Liste 16,34,6336,8305,6368
+04,Zentrum-West,Liste 17,23,6336,8305,6368
+04,Zentrum-West,Liste 18,9,6336,8305,6368
+04,Zentrum-West,Liste 19,22,6336,8305,6368
+04,Zentrum-West,Liste 20,9,6336,8305,6368
+04,Zentrum-West,Liste 21,3,6336,8305,6368
+04,Zentrum-West,Liste 22,3,6336,8305,6368
+04,Zentrum-West,Liste 23,2,6336,8305,6368
+04,Zentrum-West,Liste 24,1,6336,8305,6368
+04,Zentrum-West,Liste 25,1,6336,8305,6368
+04,Zentrum-West,Liste 26,22,6336,8305,6368
+04,Zentrum-West,Liste 27,34,6336,8305,6368
+04,Zentrum-West,Liste 29,4,6336,8305,6368
+04,Zentrum-West,Liste 30,19,6336,8305,6368
+04,Zentrum-West,Liste 31,61,6336,8305,6368
+04,Zentrum-West,Liste 32,7,6336,8305,6368
+04,Zentrum-West,Liste 33,61,6336,8305,6368
+04,Zentrum-West,Liste 34,18,6336,8305,6368
+04,Zentrum-West,Liste 7,52,6336,8305,6368
+04,Zentrum-West,Liste 9,91,6336,8305,6368
+04,Zentrum-West,NPD,5,6336,8305,6368
+04,Zentrum-West,SPD,702,6336,8305,6368
+04,Zentrum-West,Volt,337,6336,8305,6368
+05,Zentrum-Nordwest,AfD,577,6458,8159,6483
+05,Zentrum-Nordwest,BSW,545,6458,8159,6483
+05,Zentrum-Nordwest,CDU,1090,6458,8159,6483
+05,Zentrum-Nordwest,DIE LINKE,465,6458,8159,6483
+05,Zentrum-Nordwest,Die PARTEI,275,6458,8159,6483
+05,Zentrum-Nordwest,FDP,346,6458,8159,6483
+05,Zentrum-Nordwest,GRÜNE,1570,6458,8159,6483
+05,Zentrum-Nordwest,Liste 10,23,6458,8159,6483
+05,Zentrum-Nordwest,Liste 12,26,6458,8159,6483
+05,Zentrum-Nordwest,Liste 14,40,6458,8159,6483
+05,Zentrum-Nordwest,Liste 15,1,6458,8159,6483
+05,Zentrum-Nordwest,Liste 16,30,6458,8159,6483
+05,Zentrum-Nordwest,Liste 17,11,6458,8159,6483
+05,Zentrum-Nordwest,Liste 18,18,6458,8159,6483
+05,Zentrum-Nordwest,Liste 19,23,6458,8159,6483
+05,Zentrum-Nordwest,Liste 20,6,6458,8159,6483
+05,Zentrum-Nordwest,Liste 21,4,6458,8159,6483
+05,Zentrum-Nordwest,Liste 22,2,6458,8159,6483
+05,Zentrum-Nordwest,Liste 23,2,6458,8159,6483
+05,Zentrum-Nordwest,Liste 24,0,6458,8159,6483
+05,Zentrum-Nordwest,Liste 25,0,6458,8159,6483
+05,Zentrum-Nordwest,Liste 26,17,6458,8159,6483
+05,Zentrum-Nordwest,Liste 27,19,6458,8159,6483
+05,Zentrum-Nordwest,Liste 29,1,6458,8159,6483
+05,Zentrum-Nordwest,Liste 30,6,6458,8159,6483
+05,Zentrum-Nordwest,Liste 31,53,6458,8159,6483
+05,Zentrum-Nordwest,Liste 32,1,6458,8159,6483
+05,Zentrum-Nordwest,Liste 33,50,6458,8159,6483
+05,Zentrum-Nordwest,Liste 34,13,6458,8159,6483
+05,Zentrum-Nordwest,Liste 7,43,6458,8159,6483
+05,Zentrum-Nordwest,Liste 9,65,6458,8159,6483
+05,Zentrum-Nordwest,NPD,4,6458,8159,6483
+05,Zentrum-Nordwest,SPD,803,6458,8159,6483
+05,Zentrum-Nordwest,Volt,329,6458,8159,6483
+06,Zentrum-Nord,AfD,555,4788,6564,4813
+06,Zentrum-Nord,BSW,409,4788,6564,4813
+06,Zentrum-Nord,CDU,776,4788,6564,4813
+06,Zentrum-Nord,DIE LINKE,426,4788,6564,4813
+06,Zentrum-Nord,Die PARTEI,213,4788,6564,4813
+06,Zentrum-Nord,FDP,238,4788,6564,4813
+06,Zentrum-Nord,GRÜNE,848,4788,6564,4813
+06,Zentrum-Nord,Liste 10,26,4788,6564,4813
+06,Zentrum-Nord,Liste 12,32,4788,6564,4813
+06,Zentrum-Nord,Liste 14,46,4788,6564,4813
+06,Zentrum-Nord,Liste 15,4,4788,6564,4813
+06,Zentrum-Nord,Liste 16,29,4788,6564,4813
+06,Zentrum-Nord,Liste 17,14,4788,6564,4813
+06,Zentrum-Nord,Liste 18,6,4788,6564,4813
+06,Zentrum-Nord,Liste 19,24,4788,6564,4813
+06,Zentrum-Nord,Liste 20,8,4788,6564,4813
+06,Zentrum-Nord,Liste 21,3,4788,6564,4813
+06,Zentrum-Nord,Liste 22,2,4788,6564,4813
+06,Zentrum-Nord,Liste 23,2,4788,6564,4813
+06,Zentrum-Nord,Liste 24,0,4788,6564,4813
+06,Zentrum-Nord,Liste 25,3,4788,6564,4813
+06,Zentrum-Nord,Liste 26,15,4788,6564,4813
+06,Zentrum-Nord,Liste 27,25,4788,6564,4813
+06,Zentrum-Nord,Liste 29,3,4788,6564,4813
+06,Zentrum-Nord,Liste 30,13,4788,6564,4813
+06,Zentrum-Nord,Liste 31,39,4788,6564,4813
+06,Zentrum-Nord,Liste 32,3,4788,6564,4813
+06,Zentrum-Nord,Liste 33,36,4788,6564,4813
+06,Zentrum-Nord,Liste 34,16,4788,6564,4813
+06,Zentrum-Nord,Liste 7,55,4788,6564,4813
+06,Zentrum-Nord,Liste 9,80,4788,6564,4813
+06,Zentrum-Nord,NPD,6,4788,6564,4813
+06,Zentrum-Nord,SPD,548,4788,6564,4813
+06,Zentrum-Nord,Volt,285,4788,6564,4813
+10,Schönefeld-Abtnaundorf,AfD,1251,5710,9379,5775
+10,Schönefeld-Abtnaundorf,BSW,557,5710,9379,5775
+10,Schönefeld-Abtnaundorf,CDU,775,5710,9379,5775
+10,Schönefeld-Abtnaundorf,DIE LINKE,721,5710,9379,5775
+10,Schönefeld-Abtnaundorf,Die PARTEI,309,5710,9379,5775
+10,Schönefeld-Abtnaundorf,FDP,131,5710,9379,5775
+10,Schönefeld-Abtnaundorf,GRÜNE,613,5710,9379,5775
+10,Schönefeld-Abtnaundorf,Liste 10,60,5710,9379,5775
+10,Schönefeld-Abtnaundorf,Liste 12,30,5710,9379,5775
+10,Schönefeld-Abtnaundorf,Liste 14,48,5710,9379,5775
+10,Schönefeld-Abtnaundorf,Liste 15,4,5710,9379,5775
+10,Schönefeld-Abtnaundorf,Liste 16,73,5710,9379,5775
+10,Schönefeld-Abtnaundorf,Liste 17,28,5710,9379,5775
+10,Schönefeld-Abtnaundorf,Liste 18,15,5710,9379,5775
+10,Schönefeld-Abtnaundorf,Liste 19,35,5710,9379,5775
+10,Schönefeld-Abtnaundorf,Liste 20,8,5710,9379,5775
+10,Schönefeld-Abtnaundorf,Liste 21,4,5710,9379,5775
+10,Schönefeld-Abtnaundorf,Liste 22,6,5710,9379,5775
+10,Schönefeld-Abtnaundorf,Liste 23,3,5710,9379,5775
+10,Schönefeld-Abtnaundorf,Liste 24,2,5710,9379,5775
+10,Schönefeld-Abtnaundorf,Liste 25,3,5710,9379,5775
+10,Schönefeld-Abtnaundorf,Liste 26,10,5710,9379,5775
+10,Schönefeld-Abtnaundorf,Liste 27,27,5710,9379,5775
+10,Schönefeld-Abtnaundorf,Liste 29,1,5710,9379,5775
+10,Schönefeld-Abtnaundorf,Liste 30,10,5710,9379,5775
+10,Schönefeld-Abtnaundorf,Liste 31,64,5710,9379,5775
+10,Schönefeld-Abtnaundorf,Liste 32,4,5710,9379,5775
+10,Schönefeld-Abtnaundorf,Liste 33,54,5710,9379,5775
+10,Schönefeld-Abtnaundorf,Liste 34,14,5710,9379,5775
+10,Schönefeld-Abtnaundorf,Liste 7,60,5710,9379,5775
+10,Schönefeld-Abtnaundorf,Liste 9,142,5710,9379,5775
+10,Schönefeld-Abtnaundorf,NPD,12,5710,9379,5775
+10,Schönefeld-Abtnaundorf,SPD,426,5710,9379,5775
+10,Schönefeld-Abtnaundorf,Volt,210,5710,9379,5775
+11,Schönefeld-Ost,AfD,1204,4272,7405,4340
+11,Schönefeld-Ost,BSW,654,4272,7405,4340
+11,Schönefeld-Ost,CDU,903,4272,7405,4340
+11,Schönefeld-Ost,DIE LINKE,293,4272,7405,4340
+11,Schönefeld-Ost,Die PARTEI,101,4272,7405,4340
+11,Schönefeld-Ost,FDP,84,4272,7405,4340
+11,Schönefeld-Ost,GRÜNE,174,4272,7405,4340
+11,Schönefeld-Ost,Liste 10,38,4272,7405,4340
+11,Schönefeld-Ost,Liste 12,12,4272,7405,4340
+11,Schönefeld-Ost,Liste 14,18,4272,7405,4340
+11,Schönefeld-Ost,Liste 15,1,4272,7405,4340
+11,Schönefeld-Ost,Liste 16,11,4272,7405,4340
+11,Schönefeld-Ost,Liste 17,23,4272,7405,4340
+11,Schönefeld-Ost,Liste 18,2,4272,7405,4340
+11,Schönefeld-Ost,Liste 19,9,4272,7405,4340
+11,Schönefeld-Ost,Liste 20,3,4272,7405,4340
+11,Schönefeld-Ost,Liste 21,4,4272,7405,4340
+11,Schönefeld-Ost,Liste 22,2,4272,7405,4340
+11,Schönefeld-Ost,Liste 23,4,4272,7405,4340
+11,Schönefeld-Ost,Liste 24,0,4272,7405,4340
+11,Schönefeld-Ost,Liste 25,2,4272,7405,4340
+11,Schönefeld-Ost,Liste 26,6,4272,7405,4340
+11,Schönefeld-Ost,Liste 27,8,4272,7405,4340
+11,Schönefeld-Ost,Liste 29,8,4272,7405,4340
+11,Schönefeld-Ost,Liste 30,3,4272,7405,4340
+11,Schönefeld-Ost,Liste 31,15,4272,7405,4340
+11,Schönefeld-Ost,Liste 32,4,4272,7405,4340
+11,Schönefeld-Ost,Liste 33,25,4272,7405,4340
+11,Schönefeld-Ost,Liste 34,12,4272,7405,4340
+11,Schönefeld-Ost,Liste 7,33,4272,7405,4340
+11,Schönefeld-Ost,Liste 9,68,4272,7405,4340
+11,Schönefeld-Ost,NPD,8,4272,7405,4340
+11,Schönefeld-Ost,SPD,479,4272,7405,4340
+11,Schönefeld-Ost,Volt,61,4272,7405,4340
+12,Mockau-Süd,AfD,589,2025,3482,2052
+12,Mockau-Süd,BSW,228,2025,3482,2052
+12,Mockau-Süd,CDU,349,2025,3482,2052
+12,Mockau-Süd,DIE LINKE,169,2025,3482,2052
+12,Mockau-Süd,Die PARTEI,81,2025,3482,2052
+12,Mockau-Süd,FDP,48,2025,3482,2052
+12,Mockau-Süd,GRÜNE,140,2025,3482,2052
+12,Mockau-Süd,Liste 10,31,2025,3482,2052
+12,Mockau-Süd,Liste 12,8,2025,3482,2052
+12,Mockau-Süd,Liste 14,19,2025,3482,2052
+12,Mockau-Süd,Liste 15,2,2025,3482,2052
+12,Mockau-Süd,Liste 16,8,2025,3482,2052
+12,Mockau-Süd,Liste 17,15,2025,3482,2052
+12,Mockau-Süd,Liste 18,3,2025,3482,2052
+12,Mockau-Süd,Liste 19,6,2025,3482,2052
+12,Mockau-Süd,Liste 20,6,2025,3482,2052
+12,Mockau-Süd,Liste 21,1,2025,3482,2052
+12,Mockau-Süd,Liste 22,2,2025,3482,2052
+12,Mockau-Süd,Liste 23,0,2025,3482,2052
+12,Mockau-Süd,Liste 24,0,2025,3482,2052
+12,Mockau-Süd,Liste 25,2,2025,3482,2052
+12,Mockau-Süd,Liste 26,10,2025,3482,2052
+12,Mockau-Süd,Liste 27,10,2025,3482,2052
+12,Mockau-Süd,Liste 29,2,2025,3482,2052
+12,Mockau-Süd,Liste 30,0,2025,3482,2052
+12,Mockau-Süd,Liste 31,4,2025,3482,2052
+12,Mockau-Süd,Liste 32,4,2025,3482,2052
+12,Mockau-Süd,Liste 33,14,2025,3482,2052
+12,Mockau-Süd,Liste 34,6,2025,3482,2052
+12,Mockau-Süd,Liste 7,21,2025,3482,2052
+12,Mockau-Süd,Liste 9,42,2025,3482,2052
+12,Mockau-Süd,NPD,2,2025,3482,2052
+12,Mockau-Süd,SPD,164,2025,3482,2052
+12,Mockau-Süd,Volt,39,2025,3482,2052
+13,Mockau-Nord,AfD,1656,5192,8672,5261
+13,Mockau-Nord,BSW,677,5192,8672,5261
+13,Mockau-Nord,CDU,1142,5192,8672,5261
+13,Mockau-Nord,DIE LINKE,294,5192,8672,5261
+13,Mockau-Nord,Die PARTEI,142,5192,8672,5261
+13,Mockau-Nord,FDP,127,5192,8672,5261
+13,Mockau-Nord,GRÜNE,208,5192,8672,5261
+13,Mockau-Nord,Liste 10,48,5192,8672,5261
+13,Mockau-Nord,Liste 12,11,5192,8672,5261
+13,Mockau-Nord,Liste 14,34,5192,8672,5261
+13,Mockau-Nord,Liste 15,1,5192,8672,5261
+13,Mockau-Nord,Liste 16,10,5192,8672,5261
+13,Mockau-Nord,Liste 17,27,5192,8672,5261
+13,Mockau-Nord,Liste 18,2,5192,8672,5261
+13,Mockau-Nord,Liste 19,10,5192,8672,5261
+13,Mockau-Nord,Liste 20,15,5192,8672,5261
+13,Mockau-Nord,Liste 21,4,5192,8672,5261
+13,Mockau-Nord,Liste 22,3,5192,8672,5261
+13,Mockau-Nord,Liste 23,2,5192,8672,5261
+13,Mockau-Nord,Liste 24,0,5192,8672,5261
+13,Mockau-Nord,Liste 25,4,5192,8672,5261
+13,Mockau-Nord,Liste 26,21,5192,8672,5261
+13,Mockau-Nord,Liste 27,17,5192,8672,5261
+13,Mockau-Nord,Liste 29,3,5192,8672,5261
+13,Mockau-Nord,Liste 30,7,5192,8672,5261
+13,Mockau-Nord,Liste 31,22,5192,8672,5261
+13,Mockau-Nord,Liste 32,7,5192,8672,5261
+13,Mockau-Nord,Liste 33,24,5192,8672,5261
+13,Mockau-Nord,Liste 34,7,5192,8672,5261
+13,Mockau-Nord,Liste 7,69,5192,8672,5261
+13,Mockau-Nord,Liste 9,84,5192,8672,5261
+13,Mockau-Nord,NPD,14,5192,8672,5261
+13,Mockau-Nord,SPD,429,5192,8672,5261
+13,Mockau-Nord,Volt,71,5192,8672,5261
+14,Thekla,AfD,963,3112,4696,3143
+14,Thekla,BSW,374,3112,4696,3143
+14,Thekla,CDU,797,3112,4696,3143
+14,Thekla,DIE LINKE,181,3112,4696,3143
+14,Thekla,Die PARTEI,49,3112,4696,3143
+14,Thekla,FDP,98,3112,4696,3143
+14,Thekla,GRÜNE,126,3112,4696,3143
+14,Thekla,Liste 10,22,3112,4696,3143
+14,Thekla,Liste 12,4,3112,4696,3143
+14,Thekla,Liste 14,9,3112,4696,3143
+14,Thekla,Liste 15,1,3112,4696,3143
+14,Thekla,Liste 16,6,3112,4696,3143
+14,Thekla,Liste 17,22,3112,4696,3143
+14,Thekla,Liste 18,5,3112,4696,3143
+14,Thekla,Liste 19,1,3112,4696,3143
+14,Thekla,Liste 20,2,3112,4696,3143
+14,Thekla,Liste 21,1,3112,4696,3143
+14,Thekla,Liste 22,2,3112,4696,3143
+14,Thekla,Liste 23,1,3112,4696,3143
+14,Thekla,Liste 24,1,3112,4696,3143
+14,Thekla,Liste 25,1,3112,4696,3143
+14,Thekla,Liste 26,7,3112,4696,3143
+14,Thekla,Liste 27,21,3112,4696,3143
+14,Thekla,Liste 29,1,3112,4696,3143
+14,Thekla,Liste 30,2,3112,4696,3143
+14,Thekla,Liste 31,6,3112,4696,3143
+14,Thekla,Liste 32,1,3112,4696,3143
+14,Thekla,Liste 33,12,3112,4696,3143
+14,Thekla,Liste 34,3,3112,4696,3143
+14,Thekla,Liste 7,36,3112,4696,3143
+14,Thekla,Liste 9,40,3112,4696,3143
+14,Thekla,NPD,2,3112,4696,3143
+14,Thekla,SPD,279,3112,4696,3143
+14,Thekla,Volt,36,3112,4696,3143
+15,Plaußig-Portitz,AfD,520,1937,2695,1958
+15,Plaußig-Portitz,BSW,252,1937,2695,1958
+15,Plaußig-Portitz,CDU,571,1937,2695,1958
+15,Plaußig-Portitz,DIE LINKE,76,1937,2695,1958
+15,Plaußig-Portitz,Die PARTEI,31,1937,2695,1958
+15,Plaußig-Portitz,FDP,66,1937,2695,1958
+15,Plaußig-Portitz,GRÜNE,116,1937,2695,1958
+15,Plaußig-Portitz,Liste 10,23,1937,2695,1958
+15,Plaußig-Portitz,Liste 12,5,1937,2695,1958
+15,Plaußig-Portitz,Liste 14,5,1937,2695,1958
+15,Plaußig-Portitz,Liste 15,0,1937,2695,1958
+15,Plaußig-Portitz,Liste 16,0,1937,2695,1958
+15,Plaußig-Portitz,Liste 17,10,1937,2695,1958
+15,Plaußig-Portitz,Liste 18,0,1937,2695,1958
+15,Plaußig-Portitz,Liste 19,6,1937,2695,1958
+15,Plaußig-Portitz,Liste 20,4,1937,2695,1958
+15,Plaußig-Portitz,Liste 21,0,1937,2695,1958
+15,Plaußig-Portitz,Liste 22,2,1937,2695,1958
+15,Plaußig-Portitz,Liste 23,3,1937,2695,1958
+15,Plaußig-Portitz,Liste 24,0,1937,2695,1958
+15,Plaußig-Portitz,Liste 25,1,1937,2695,1958
+15,Plaußig-Portitz,Liste 26,9,1937,2695,1958
+15,Plaußig-Portitz,Liste 27,13,1937,2695,1958
+15,Plaußig-Portitz,Liste 29,2,1937,2695,1958
+15,Plaußig-Portitz,Liste 30,1,1937,2695,1958
+15,Plaußig-Portitz,Liste 31,1,1937,2695,1958
+15,Plaußig-Portitz,Liste 32,3,1937,2695,1958
+15,Plaußig-Portitz,Liste 33,14,1937,2695,1958
+15,Plaußig-Portitz,Liste 34,3,1937,2695,1958
+15,Plaußig-Portitz,Liste 7,23,1937,2695,1958
+15,Plaußig-Portitz,Liste 9,25,1937,2695,1958
+15,Plaußig-Portitz,NPD,4,1937,2695,1958
+15,Plaußig-Portitz,SPD,123,1937,2695,1958
+15,Plaußig-Portitz,Volt,25,1937,2695,1958
+20,Neustadt-Neuschönefeld,AfD,555,6193,9035,6218
+20,Neustadt-Neuschönefeld,BSW,346,6193,9035,6218
+20,Neustadt-Neuschönefeld,CDU,388,6193,9035,6218
+20,Neustadt-Neuschönefeld,DIE LINKE,1538,6193,9035,6218
+20,Neustadt-Neuschönefeld,Die PARTEI,337,6193,9035,6218
+20,Neustadt-Neuschönefeld,FDP,127,6193,9035,6218
+20,Neustadt-Neuschönefeld,GRÜNE,1205,6193,9035,6218
+20,Neustadt-Neuschönefeld,Liste 10,22,6193,9035,6218
+20,Neustadt-Neuschönefeld,Liste 12,21,6193,9035,6218
+20,Neustadt-Neuschönefeld,Liste 14,51,6193,9035,6218
+20,Neustadt-Neuschönefeld,Liste 15,3,6193,9035,6218
+20,Neustadt-Neuschönefeld,Liste 16,202,6193,9035,6218
+20,Neustadt-Neuschönefeld,Liste 17,22,6193,9035,6218
+20,Neustadt-Neuschönefeld,Liste 18,7,6193,9035,6218
+20,Neustadt-Neuschönefeld,Liste 19,39,6193,9035,6218
+20,Neustadt-Neuschönefeld,Liste 20,11,6193,9035,6218
+20,Neustadt-Neuschönefeld,Liste 21,14,6193,9035,6218
+20,Neustadt-Neuschönefeld,Liste 22,10,6193,9035,6218
+20,Neustadt-Neuschönefeld,Liste 23,3,6193,9035,6218
+20,Neustadt-Neuschönefeld,Liste 24,2,6193,9035,6218
+20,Neustadt-Neuschönefeld,Liste 25,3,6193,9035,6218
+20,Neustadt-Neuschönefeld,Liste 26,6,6193,9035,6218
+20,Neustadt-Neuschönefeld,Liste 27,16,6193,9035,6218
+20,Neustadt-Neuschönefeld,Liste 29,6,6193,9035,6218
+20,Neustadt-Neuschönefeld,Liste 30,15,6193,9035,6218
+20,Neustadt-Neuschönefeld,Liste 31,163,6193,9035,6218
+20,Neustadt-Neuschönefeld,Liste 32,7,6193,9035,6218
+20,Neustadt-Neuschönefeld,Liste 33,25,6193,9035,6218
+20,Neustadt-Neuschönefeld,Liste 34,20,6193,9035,6218
+20,Neustadt-Neuschönefeld,Liste 7,33,6193,9035,6218
+20,Neustadt-Neuschönefeld,Liste 9,103,6193,9035,6218
+20,Neustadt-Neuschönefeld,NPD,4,6193,9035,6218
+20,Neustadt-Neuschönefeld,SPD,424,6193,9035,6218
+20,Neustadt-Neuschönefeld,Volt,465,6193,9035,6218
+21,Volkmarsdorf,AfD,513,5018,7881,5054
+21,Volkmarsdorf,BSW,285,5018,7881,5054
+21,Volkmarsdorf,CDU,281,5018,7881,5054
+21,Volkmarsdorf,DIE LINKE,1229,5018,7881,5054
+21,Volkmarsdorf,Die PARTEI,367,5018,7881,5054
+21,Volkmarsdorf,FDP,71,5018,7881,5054
+21,Volkmarsdorf,GRÜNE,883,5018,7881,5054
+21,Volkmarsdorf,Liste 10,20,5018,7881,5054
+21,Volkmarsdorf,Liste 12,29,5018,7881,5054
+21,Volkmarsdorf,Liste 14,47,5018,7881,5054
+21,Volkmarsdorf,Liste 15,3,5018,7881,5054
+21,Volkmarsdorf,Liste 16,178,5018,7881,5054
+21,Volkmarsdorf,Liste 17,16,5018,7881,5054
+21,Volkmarsdorf,Liste 18,11,5018,7881,5054
+21,Volkmarsdorf,Liste 19,27,5018,7881,5054
+21,Volkmarsdorf,Liste 20,10,5018,7881,5054
+21,Volkmarsdorf,Liste 21,7,5018,7881,5054
+21,Volkmarsdorf,Liste 22,10,5018,7881,5054
+21,Volkmarsdorf,Liste 23,4,5018,7881,5054
+21,Volkmarsdorf,Liste 24,4,5018,7881,5054
+21,Volkmarsdorf,Liste 25,2,5018,7881,5054
+21,Volkmarsdorf,Liste 26,2,5018,7881,5054
+21,Volkmarsdorf,Liste 27,8,5018,7881,5054
+21,Volkmarsdorf,Liste 29,6,5018,7881,5054
+21,Volkmarsdorf,Liste 30,14,5018,7881,5054
+21,Volkmarsdorf,Liste 31,160,5018,7881,5054
+21,Volkmarsdorf,Liste 32,7,5018,7881,5054
+21,Volkmarsdorf,Liste 33,15,5018,7881,5054
+21,Volkmarsdorf,Liste 34,15,5018,7881,5054
+21,Volkmarsdorf,Liste 7,23,5018,7881,5054
+21,Volkmarsdorf,Liste 9,100,5018,7881,5054
+21,Volkmarsdorf,NPD,5,5018,7881,5054
+21,Volkmarsdorf,SPD,338,5018,7881,5054
+21,Volkmarsdorf,Volt,328,5018,7881,5054
+22,Anger-Crottendorf,AfD,905,6417,9350,6469
+22,Anger-Crottendorf,BSW,575,6417,9350,6469
+22,Anger-Crottendorf,CDU,635,6417,9350,6469
+22,Anger-Crottendorf,DIE LINKE,969,6417,9350,6469
+22,Anger-Crottendorf,Die PARTEI,385,6417,9350,6469
+22,Anger-Crottendorf,FDP,158,6417,9350,6469
+22,Anger-Crottendorf,GRÜNE,1078,6417,9350,6469
+22,Anger-Crottendorf,Liste 10,47,6417,9350,6469
+22,Anger-Crottendorf,Liste 12,39,6417,9350,6469
+22,Anger-Crottendorf,Liste 14,56,6417,9350,6469
+22,Anger-Crottendorf,Liste 15,4,6417,9350,6469
+22,Anger-Crottendorf,Liste 16,104,6417,9350,6469
+22,Anger-Crottendorf,Liste 17,28,6417,9350,6469
+22,Anger-Crottendorf,Liste 18,9,6417,9350,6469
+22,Anger-Crottendorf,Liste 19,49,6417,9350,6469
+22,Anger-Crottendorf,Liste 20,16,6417,9350,6469
+22,Anger-Crottendorf,Liste 21,6,6417,9350,6469
+22,Anger-Crottendorf,Liste 22,3,6417,9350,6469
+22,Anger-Crottendorf,Liste 23,8,6417,9350,6469
+22,Anger-Crottendorf,Liste 24,2,6417,9350,6469
+22,Anger-Crottendorf,Liste 25,4,6417,9350,6469
+22,Anger-Crottendorf,Liste 26,17,6417,9350,6469
+22,Anger-Crottendorf,Liste 27,18,6417,9350,6469
+22,Anger-Crottendorf,Liste 29,4,6417,9350,6469
+22,Anger-Crottendorf,Liste 30,14,6417,9350,6469
+22,Anger-Crottendorf,Liste 31,111,6417,9350,6469
+22,Anger-Crottendorf,Liste 32,5,6417,9350,6469
+22,Anger-Crottendorf,Liste 33,50,6417,9350,6469
+22,Anger-Crottendorf,Liste 34,26,6417,9350,6469
+22,Anger-Crottendorf,Liste 7,68,6417,9350,6469
+22,Anger-Crottendorf,Liste 9,127,6417,9350,6469
+22,Anger-Crottendorf,NPD,9,6417,9350,6469
+22,Anger-Crottendorf,SPD,517,6417,9350,6469
+22,Anger-Crottendorf,Volt,371,6417,9350,6469
+23,Sellerhausen-Stünz,AfD,1062,4428,7121,4478
+23,Sellerhausen-Stünz,BSW,516,4428,7121,4478
+23,Sellerhausen-Stünz,CDU,767,4428,7121,4478
+23,Sellerhausen-Stünz,DIE LINKE,413,4428,7121,4478
+23,Sellerhausen-Stünz,Die PARTEI,130,4428,7121,4478
+23,Sellerhausen-Stünz,FDP,99,4428,7121,4478
+23,Sellerhausen-Stünz,GRÜNE,356,4428,7121,4478
+23,Sellerhausen-Stünz,Liste 10,60,4428,7121,4478
+23,Sellerhausen-Stünz,Liste 12,13,4428,7121,4478
+23,Sellerhausen-Stünz,Liste 14,28,4428,7121,4478
+23,Sellerhausen-Stünz,Liste 15,6,4428,7121,4478
+23,Sellerhausen-Stünz,Liste 16,34,4428,7121,4478
+23,Sellerhausen-Stünz,Liste 17,33,4428,7121,4478
+23,Sellerhausen-Stünz,Liste 18,6,4428,7121,4478
+23,Sellerhausen-Stünz,Liste 19,16,4428,7121,4478
+23,Sellerhausen-Stünz,Liste 20,9,4428,7121,4478
+23,Sellerhausen-Stünz,Liste 21,3,4428,7121,4478
+23,Sellerhausen-Stünz,Liste 22,0,4428,7121,4478
+23,Sellerhausen-Stünz,Liste 23,0,4428,7121,4478
+23,Sellerhausen-Stünz,Liste 24,2,4428,7121,4478
+23,Sellerhausen-Stünz,Liste 25,5,4428,7121,4478
+23,Sellerhausen-Stünz,Liste 26,4,4428,7121,4478
+23,Sellerhausen-Stünz,Liste 27,32,4428,7121,4478
+23,Sellerhausen-Stünz,Liste 29,3,4428,7121,4478
+23,Sellerhausen-Stünz,Liste 30,4,4428,7121,4478
+23,Sellerhausen-Stünz,Liste 31,36,4428,7121,4478
+23,Sellerhausen-Stünz,Liste 32,5,4428,7121,4478
+23,Sellerhausen-Stünz,Liste 33,25,4428,7121,4478
+23,Sellerhausen-Stünz,Liste 34,20,4428,7121,4478
+23,Sellerhausen-Stünz,Liste 7,56,4428,7121,4478
+23,Sellerhausen-Stünz,Liste 9,103,4428,7121,4478
+23,Sellerhausen-Stünz,NPD,6,4428,7121,4478
+23,Sellerhausen-Stünz,SPD,445,4428,7121,4478
+23,Sellerhausen-Stünz,Volt,131,4428,7121,4478
+24,Paunsdorf,AfD,1869,5603,10334,5683
+24,Paunsdorf,BSW,757,5603,10334,5683
+24,Paunsdorf,CDU,1096,5603,10334,5683
+24,Paunsdorf,DIE LINKE,363,5603,10334,5683
+24,Paunsdorf,Die PARTEI,128,5603,10334,5683
+24,Paunsdorf,FDP,93,5603,10334,5683
+24,Paunsdorf,GRÜNE,197,5603,10334,5683
+24,Paunsdorf,Liste 10,61,5603,10334,5683
+24,Paunsdorf,Liste 12,12,5603,10334,5683
+24,Paunsdorf,Liste 14,39,5603,10334,5683
+24,Paunsdorf,Liste 15,7,5603,10334,5683
+24,Paunsdorf,Liste 16,12,5603,10334,5683
+24,Paunsdorf,Liste 17,36,5603,10334,5683
+24,Paunsdorf,Liste 18,12,5603,10334,5683
+24,Paunsdorf,Liste 19,23,5603,10334,5683
+24,Paunsdorf,Liste 20,13,5603,10334,5683
+24,Paunsdorf,Liste 21,9,5603,10334,5683
+24,Paunsdorf,Liste 22,4,5603,10334,5683
+24,Paunsdorf,Liste 23,2,5603,10334,5683
+24,Paunsdorf,Liste 24,3,5603,10334,5683
+24,Paunsdorf,Liste 25,10,5603,10334,5683
+24,Paunsdorf,Liste 26,9,5603,10334,5683
+24,Paunsdorf,Liste 27,27,5603,10334,5683
+24,Paunsdorf,Liste 29,4,5603,10334,5683
+24,Paunsdorf,Liste 30,4,5603,10334,5683
+24,Paunsdorf,Liste 31,11,5603,10334,5683
+24,Paunsdorf,Liste 32,3,5603,10334,5683
+24,Paunsdorf,Liste 33,28,5603,10334,5683
+24,Paunsdorf,Liste 34,6,5603,10334,5683
+24,Paunsdorf,Liste 7,72,5603,10334,5683
+24,Paunsdorf,Liste 9,119,5603,10334,5683
+24,Paunsdorf,NPD,7,5603,10334,5683
+24,Paunsdorf,SPD,502,5603,10334,5683
+24,Paunsdorf,Volt,65,5603,10334,5683
+25,Heiterblick,AfD,598,2188,3093,2211
+25,Heiterblick,BSW,304,2188,3093,2211
+25,Heiterblick,CDU,579,2188,3093,2211
+25,Heiterblick,DIE LINKE,109,2188,3093,2211
+25,Heiterblick,Die PARTEI,45,2188,3093,2211
+25,Heiterblick,FDP,46,2188,3093,2211
+25,Heiterblick,GRÜNE,74,2188,3093,2211
+25,Heiterblick,Liste 10,14,2188,3093,2211
+25,Heiterblick,Liste 12,7,2188,3093,2211
+25,Heiterblick,Liste 14,7,2188,3093,2211
+25,Heiterblick,Liste 15,4,2188,3093,2211
+25,Heiterblick,Liste 16,4,2188,3093,2211
+25,Heiterblick,Liste 17,13,2188,3093,2211
+25,Heiterblick,Liste 18,0,2188,3093,2211
+25,Heiterblick,Liste 19,7,2188,3093,2211
+25,Heiterblick,Liste 20,4,2188,3093,2211
+25,Heiterblick,Liste 21,1,2188,3093,2211
+25,Heiterblick,Liste 22,3,2188,3093,2211
+25,Heiterblick,Liste 23,1,2188,3093,2211
+25,Heiterblick,Liste 24,0,2188,3093,2211
+25,Heiterblick,Liste 25,4,2188,3093,2211
+25,Heiterblick,Liste 26,9,2188,3093,2211
+25,Heiterblick,Liste 27,17,2188,3093,2211
+25,Heiterblick,Liste 29,0,2188,3093,2211
+25,Heiterblick,Liste 30,0,2188,3093,2211
+25,Heiterblick,Liste 31,0,2188,3093,2211
+25,Heiterblick,Liste 32,3,2188,3093,2211
+25,Heiterblick,Liste 33,19,2188,3093,2211
+25,Heiterblick,Liste 34,3,2188,3093,2211
+25,Heiterblick,Liste 7,32,2188,3093,2211
+25,Heiterblick,Liste 9,27,2188,3093,2211
+25,Heiterblick,NPD,2,2188,3093,2211
+25,Heiterblick,SPD,226,2188,3093,2211
+25,Heiterblick,Volt,26,2188,3093,2211
+26,Mölkau,AfD,857,3605,4869,3640
+26,Mölkau,BSW,471,3605,4869,3640
+26,Mölkau,CDU,997,3605,4869,3640
+26,Mölkau,DIE LINKE,172,3605,4869,3640
+26,Mölkau,Die PARTEI,71,3605,4869,3640
+26,Mölkau,FDP,99,3605,4869,3640
+26,Mölkau,GRÜNE,251,3605,4869,3640
+26,Mölkau,Liste 10,21,3605,4869,3640
+26,Mölkau,Liste 12,6,3605,4869,3640
+26,Mölkau,Liste 14,16,3605,4869,3640
+26,Mölkau,Liste 15,1,3605,4869,3640
+26,Mölkau,Liste 16,13,3605,4869,3640
+26,Mölkau,Liste 17,14,3605,4869,3640
+26,Mölkau,Liste 18,10,3605,4869,3640
+26,Mölkau,Liste 19,6,3605,4869,3640
+26,Mölkau,Liste 20,3,3605,4869,3640
+26,Mölkau,Liste 21,2,3605,4869,3640
+26,Mölkau,Liste 22,2,3605,4869,3640
+26,Mölkau,Liste 23,1,3605,4869,3640
+26,Mölkau,Liste 24,0,3605,4869,3640
+26,Mölkau,Liste 25,4,3605,4869,3640
+26,Mölkau,Liste 26,4,3605,4869,3640
+26,Mölkau,Liste 27,16,3605,4869,3640
+26,Mölkau,Liste 29,2,3605,4869,3640
+26,Mölkau,Liste 30,3,3605,4869,3640
+26,Mölkau,Liste 31,8,3605,4869,3640
+26,Mölkau,Liste 32,5,3605,4869,3640
+26,Mölkau,Liste 33,27,3605,4869,3640
+26,Mölkau,Liste 34,3,3605,4869,3640
+26,Mölkau,Liste 7,59,3605,4869,3640
+26,Mölkau,Liste 9,44,3605,4869,3640
+26,Mölkau,NPD,3,3605,4869,3640
+26,Mölkau,SPD,361,3605,4869,3640
+26,Mölkau,Volt,53,3605,4869,3640
+27,Engelsdorf,AfD,1490,5331,7644,5384
+27,Engelsdorf,BSW,745,5331,7644,5384
+27,Engelsdorf,CDU,1403,5331,7644,5384
+27,Engelsdorf,DIE LINKE,206,5331,7644,5384
+27,Engelsdorf,Die PARTEI,137,5331,7644,5384
+27,Engelsdorf,FDP,141,5331,7644,5384
+27,Engelsdorf,GRÜNE,268,5331,7644,5384
+27,Engelsdorf,Liste 10,69,5331,7644,5384
+27,Engelsdorf,Liste 12,17,5331,7644,5384
+27,Engelsdorf,Liste 14,16,5331,7644,5384
+27,Engelsdorf,Liste 15,6,5331,7644,5384
+27,Engelsdorf,Liste 16,15,5331,7644,5384
+27,Engelsdorf,Liste 17,21,5331,7644,5384
+27,Engelsdorf,Liste 18,10,5331,7644,5384
+27,Engelsdorf,Liste 19,10,5331,7644,5384
+27,Engelsdorf,Liste 20,9,5331,7644,5384
+27,Engelsdorf,Liste 21,3,5331,7644,5384
+27,Engelsdorf,Liste 22,0,5331,7644,5384
+27,Engelsdorf,Liste 23,3,5331,7644,5384
+27,Engelsdorf,Liste 24,2,5331,7644,5384
+27,Engelsdorf,Liste 25,4,5331,7644,5384
+27,Engelsdorf,Liste 26,10,5331,7644,5384
+27,Engelsdorf,Liste 27,22,5331,7644,5384
+27,Engelsdorf,Liste 29,0,5331,7644,5384
+27,Engelsdorf,Liste 30,4,5331,7644,5384
+27,Engelsdorf,Liste 31,11,5331,7644,5384
+27,Engelsdorf,Liste 32,5,5331,7644,5384
+27,Engelsdorf,Liste 33,34,5331,7644,5384
+27,Engelsdorf,Liste 34,6,5331,7644,5384
+27,Engelsdorf,Liste 7,66,5331,7644,5384
+27,Engelsdorf,Liste 9,67,5331,7644,5384
+27,Engelsdorf,NPD,11,5331,7644,5384
+27,Engelsdorf,SPD,435,5331,7644,5384
+27,Engelsdorf,Volt,85,5331,7644,5384
+28,Baalsdorf,AfD,257,1241,1519,1256
+28,Baalsdorf,BSW,152,1241,1519,1256
+28,Baalsdorf,CDU,360,1241,1519,1256
+28,Baalsdorf,DIE LINKE,55,1241,1519,1256
+28,Baalsdorf,Die PARTEI,20,1241,1519,1256
+28,Baalsdorf,FDP,56,1241,1519,1256
+28,Baalsdorf,GRÜNE,112,1241,1519,1256
+28,Baalsdorf,Liste 10,9,1241,1519,1256
+28,Baalsdorf,Liste 12,4,1241,1519,1256
+28,Baalsdorf,Liste 14,2,1241,1519,1256
+28,Baalsdorf,Liste 15,1,1241,1519,1256
+28,Baalsdorf,Liste 16,0,1241,1519,1256
+28,Baalsdorf,Liste 17,4,1241,1519,1256
+28,Baalsdorf,Liste 18,4,1241,1519,1256
+28,Baalsdorf,Liste 19,5,1241,1519,1256
+28,Baalsdorf,Liste 20,4,1241,1519,1256
+28,Baalsdorf,Liste 21,0,1241,1519,1256
+28,Baalsdorf,Liste 22,0,1241,1519,1256
+28,Baalsdorf,Liste 23,0,1241,1519,1256
+28,Baalsdorf,Liste 24,0,1241,1519,1256
+28,Baalsdorf,Liste 25,0,1241,1519,1256
+28,Baalsdorf,Liste 26,5,1241,1519,1256
+28,Baalsdorf,Liste 27,9,1241,1519,1256
+28,Baalsdorf,Liste 29,1,1241,1519,1256
+28,Baalsdorf,Liste 30,0,1241,1519,1256
+28,Baalsdorf,Liste 31,1,1241,1519,1256
+28,Baalsdorf,Liste 32,0,1241,1519,1256
+28,Baalsdorf,Liste 33,10,1241,1519,1256
+28,Baalsdorf,Liste 34,2,1241,1519,1256
+28,Baalsdorf,Liste 7,22,1241,1519,1256
+28,Baalsdorf,Liste 9,12,1241,1519,1256
+28,Baalsdorf,NPD,0,1241,1519,1256
+28,Baalsdorf,SPD,112,1241,1519,1256
+28,Baalsdorf,Volt,22,1241,1519,1256
+29,Althen-Kleinpösna,AfD,430,1204,1791,1218
+29,Althen-Kleinpösna,BSW,138,1204,1791,1218
+29,Althen-Kleinpösna,CDU,337,1204,1791,1218
+29,Althen-Kleinpösna,DIE LINKE,42,1204,1791,1218
+29,Althen-Kleinpösna,Die PARTEI,16,1204,1791,1218
+29,Althen-Kleinpösna,FDP,25,1204,1791,1218
+29,Althen-Kleinpösna,GRÜNE,34,1204,1791,1218
+29,Althen-Kleinpösna,Liste 10,18,1204,1791,1218
+29,Althen-Kleinpösna,Liste 12,0,1204,1791,1218
+29,Althen-Kleinpösna,Liste 14,6,1204,1791,1218
+29,Althen-Kleinpösna,Liste 15,1,1204,1791,1218
+29,Althen-Kleinpösna,Liste 16,1,1204,1791,1218
+29,Althen-Kleinpösna,Liste 17,6,1204,1791,1218
+29,Althen-Kleinpösna,Liste 18,1,1204,1791,1218
+29,Althen-Kleinpösna,Liste 19,0,1204,1791,1218
+29,Althen-Kleinpösna,Liste 20,0,1204,1791,1218
+29,Althen-Kleinpösna,Liste 21,1,1204,1791,1218
+29,Althen-Kleinpösna,Liste 22,0,1204,1791,1218
+29,Althen-Kleinpösna,Liste 23,0,1204,1791,1218
+29,Althen-Kleinpösna,Liste 24,1,1204,1791,1218
+29,Althen-Kleinpösna,Liste 25,2,1204,1791,1218
+29,Althen-Kleinpösna,Liste 26,4,1204,1791,1218
+29,Althen-Kleinpösna,Liste 27,9,1204,1791,1218
+29,Althen-Kleinpösna,Liste 29,0,1204,1791,1218
+29,Althen-Kleinpösna,Liste 30,1,1204,1791,1218
+29,Althen-Kleinpösna,Liste 31,5,1204,1791,1218
+29,Althen-Kleinpösna,Liste 32,1,1204,1791,1218
+29,Althen-Kleinpösna,Liste 33,12,1204,1791,1218
+29,Althen-Kleinpösna,Liste 34,1,1204,1791,1218
+29,Althen-Kleinpösna,Liste 7,15,1204,1791,1218
+29,Althen-Kleinpösna,Liste 9,17,1204,1791,1218
+29,Althen-Kleinpösna,NPD,0,1204,1791,1218
+29,Althen-Kleinpösna,SPD,63,1204,1791,1218
+29,Althen-Kleinpösna,Volt,17,1204,1791,1218
+30,Reudnitz-Thonberg,AfD,1171,12461,17437,12523
+30,Reudnitz-Thonberg,BSW,890,12461,17437,12523
+30,Reudnitz-Thonberg,CDU,1162,12461,17437,12523
+30,Reudnitz-Thonberg,DIE LINKE,1984,12461,17437,12523
+30,Reudnitz-Thonberg,Die PARTEI,790,12461,17437,12523
+30,Reudnitz-Thonberg,FDP,361,12461,17437,12523
+30,Reudnitz-Thonberg,GRÜNE,2618,12461,17437,12523
+30,Reudnitz-Thonberg,Liste 10,68,12461,17437,12523
+30,Reudnitz-Thonberg,Liste 12,65,12461,17437,12523
+30,Reudnitz-Thonberg,Liste 14,93,12461,17437,12523
+30,Reudnitz-Thonberg,Liste 15,11,12461,17437,12523
+30,Reudnitz-Thonberg,Liste 16,196,12461,17437,12523
+30,Reudnitz-Thonberg,Liste 17,37,12461,17437,12523
+30,Reudnitz-Thonberg,Liste 18,20,12461,17437,12523
+30,Reudnitz-Thonberg,Liste 19,108,12461,17437,12523
+30,Reudnitz-Thonberg,Liste 20,28,12461,17437,12523
+30,Reudnitz-Thonberg,Liste 21,17,12461,17437,12523
+30,Reudnitz-Thonberg,Liste 22,11,12461,17437,12523
+30,Reudnitz-Thonberg,Liste 23,6,12461,17437,12523
+30,Reudnitz-Thonberg,Liste 24,1,12461,17437,12523
+30,Reudnitz-Thonberg,Liste 25,2,12461,17437,12523
+30,Reudnitz-Thonberg,Liste 26,28,12461,17437,12523
+30,Reudnitz-Thonberg,Liste 27,37,12461,17437,12523
+30,Reudnitz-Thonberg,Liste 29,4,12461,17437,12523
+30,Reudnitz-Thonberg,Liste 30,27,12461,17437,12523
+30,Reudnitz-Thonberg,Liste 31,240,12461,17437,12523
+30,Reudnitz-Thonberg,Liste 32,10,12461,17437,12523
+30,Reudnitz-Thonberg,Liste 33,108,12461,17437,12523
+30,Reudnitz-Thonberg,Liste 34,37,12461,17437,12523
+30,Reudnitz-Thonberg,Liste 7,91,12461,17437,12523
+30,Reudnitz-Thonberg,Liste 9,250,12461,17437,12523
+30,Reudnitz-Thonberg,NPD,10,12461,17437,12523
+30,Reudnitz-Thonberg,SPD,1088,12461,17437,12523
+30,Reudnitz-Thonberg,Volt,892,12461,17437,12523
+31,Stötteritz,AfD,1550,10005,14060,10075
+31,Stötteritz,BSW,1099,10005,14060,10075
+31,Stötteritz,CDU,1645,10005,14060,10075
+31,Stötteritz,DIE LINKE,849,10005,14060,10075
+31,Stötteritz,Die PARTEI,510,10005,14060,10075
+31,Stötteritz,FDP,335,10005,14060,10075
+31,Stötteritz,GRÜNE,1455,10005,14060,10075
+31,Stötteritz,Liste 10,96,10005,14060,10075
+31,Stötteritz,Liste 12,67,10005,14060,10075
+31,Stötteritz,Liste 14,76,10005,14060,10075
+31,Stötteritz,Liste 15,6,10005,14060,10075
+31,Stötteritz,Liste 16,47,10005,14060,10075
+31,Stötteritz,Liste 17,39,10005,14060,10075
+31,Stötteritz,Liste 18,38,10005,14060,10075
+31,Stötteritz,Liste 19,47,10005,14060,10075
+31,Stötteritz,Liste 20,18,10005,14060,10075
+31,Stötteritz,Liste 21,6,10005,14060,10075
+31,Stötteritz,Liste 22,5,10005,14060,10075
+31,Stötteritz,Liste 23,5,10005,14060,10075
+31,Stötteritz,Liste 24,1,10005,14060,10075
+31,Stötteritz,Liste 25,8,10005,14060,10075
+31,Stötteritz,Liste 26,26,10005,14060,10075
+31,Stötteritz,Liste 27,53,10005,14060,10075
+31,Stötteritz,Liste 29,4,10005,14060,10075
+31,Stötteritz,Liste 30,18,10005,14060,10075
+31,Stötteritz,Liste 31,80,10005,14060,10075
+31,Stötteritz,Liste 32,8,10005,14060,10075
+31,Stötteritz,Liste 33,94,10005,14060,10075
+31,Stötteritz,Liste 34,25,10005,14060,10075
+31,Stötteritz,Liste 7,86,10005,14060,10075
+31,Stötteritz,Liste 9,213,10005,14060,10075
+31,Stötteritz,NPD,14,10005,14060,10075
+31,Stötteritz,SPD,1020,10005,14060,10075
+31,Stötteritz,Volt,462,10005,14060,10075
+32,Probstheida,AfD,850,3933,5560,3959
+32,Probstheida,BSW,489,3933,5560,3959
+32,Probstheida,CDU,928,3933,5560,3959
+32,Probstheida,DIE LINKE,257,3933,5560,3959
+32,Probstheida,Die PARTEI,76,3933,5560,3959
+32,Probstheida,FDP,120,3933,5560,3959
+32,Probstheida,GRÜNE,353,3933,5560,3959
+32,Probstheida,Liste 10,35,3933,5560,3959
+32,Probstheida,Liste 12,11,3933,5560,3959
+32,Probstheida,Liste 14,13,3933,5560,3959
+32,Probstheida,Liste 15,1,3933,5560,3959
+32,Probstheida,Liste 16,11,3933,5560,3959
+32,Probstheida,Liste 17,22,3933,5560,3959
+32,Probstheida,Liste 18,13,3933,5560,3959
+32,Probstheida,Liste 19,5,3933,5560,3959
+32,Probstheida,Liste 20,7,3933,5560,3959
+32,Probstheida,Liste 21,0,3933,5560,3959
+32,Probstheida,Liste 22,2,3933,5560,3959
+32,Probstheida,Liste 23,0,3933,5560,3959
+32,Probstheida,Liste 24,1,3933,5560,3959
+32,Probstheida,Liste 25,1,3933,5560,3959
+32,Probstheida,Liste 26,9,3933,5560,3959
+32,Probstheida,Liste 27,23,3933,5560,3959
+32,Probstheida,Liste 29,4,3933,5560,3959
+32,Probstheida,Liste 30,3,3933,5560,3959
+32,Probstheida,Liste 31,8,3933,5560,3959
+32,Probstheida,Liste 32,1,3933,5560,3959
+32,Probstheida,Liste 33,36,3933,5560,3959
+32,Probstheida,Liste 34,4,3933,5560,3959
+32,Probstheida,Liste 7,52,3933,5560,3959
+32,Probstheida,Liste 9,65,3933,5560,3959
+32,Probstheida,NPD,6,3933,5560,3959
+32,Probstheida,SPD,468,3933,5560,3959
+32,Probstheida,Volt,59,3933,5560,3959
+33,Meusdorf,AfD,596,2029,2976,2045
+33,Meusdorf,BSW,271,2029,2976,2045
+33,Meusdorf,CDU,469,2029,2976,2045
+33,Meusdorf,DIE LINKE,98,2029,2976,2045
+33,Meusdorf,Die PARTEI,44,2029,2976,2045
+33,Meusdorf,FDP,59,2029,2976,2045
+33,Meusdorf,GRÜNE,142,2029,2976,2045
+33,Meusdorf,Liste 10,13,2029,2976,2045
+33,Meusdorf,Liste 12,4,2029,2976,2045
+33,Meusdorf,Liste 14,7,2029,2976,2045
+33,Meusdorf,Liste 15,0,2029,2976,2045
+33,Meusdorf,Liste 16,4,2029,2976,2045
+33,Meusdorf,Liste 17,12,2029,2976,2045
+33,Meusdorf,Liste 18,5,2029,2976,2045
+33,Meusdorf,Liste 19,5,2029,2976,2045
+33,Meusdorf,Liste 20,3,2029,2976,2045
+33,Meusdorf,Liste 21,1,2029,2976,2045
+33,Meusdorf,Liste 22,0,2029,2976,2045
+33,Meusdorf,Liste 23,0,2029,2976,2045
+33,Meusdorf,Liste 24,0,2029,2976,2045
+33,Meusdorf,Liste 25,5,2029,2976,2045
+33,Meusdorf,Liste 26,6,2029,2976,2045
+33,Meusdorf,Liste 27,6,2029,2976,2045
+33,Meusdorf,Liste 29,2,2029,2976,2045
+33,Meusdorf,Liste 30,1,2029,2976,2045
+33,Meusdorf,Liste 31,9,2029,2976,2045
+33,Meusdorf,Liste 32,3,2029,2976,2045
+33,Meusdorf,Liste 33,15,2029,2976,2045
+33,Meusdorf,Liste 34,2,2029,2976,2045
+33,Meusdorf,Liste 7,40,2029,2976,2045
+33,Meusdorf,Liste 9,23,2029,2976,2045
+33,Meusdorf,NPD,4,2029,2976,2045
+33,Meusdorf,SPD,146,2029,2976,2045
+33,Meusdorf,Volt,34,2029,2976,2045
+34,Liebertwolkwitz,AfD,1011,3021,4451,3048
+34,Liebertwolkwitz,BSW,363,3021,4451,3048
+34,Liebertwolkwitz,CDU,744,3021,4451,3048
+34,Liebertwolkwitz,DIE LINKE,95,3021,4451,3048
+34,Liebertwolkwitz,Die PARTEI,46,3021,4451,3048
+34,Liebertwolkwitz,FDP,98,3021,4451,3048
+34,Liebertwolkwitz,GRÜNE,148,3021,4451,3048
+34,Liebertwolkwitz,Liste 10,42,3021,4451,3048
+34,Liebertwolkwitz,Liste 12,5,3021,4451,3048
+34,Liebertwolkwitz,Liste 14,10,3021,4451,3048
+34,Liebertwolkwitz,Liste 15,2,3021,4451,3048
+34,Liebertwolkwitz,Liste 16,6,3021,4451,3048
+34,Liebertwolkwitz,Liste 17,15,3021,4451,3048
+34,Liebertwolkwitz,Liste 18,2,3021,4451,3048
+34,Liebertwolkwitz,Liste 19,5,3021,4451,3048
+34,Liebertwolkwitz,Liste 20,0,3021,4451,3048
+34,Liebertwolkwitz,Liste 21,1,3021,4451,3048
+34,Liebertwolkwitz,Liste 22,0,3021,4451,3048
+34,Liebertwolkwitz,Liste 23,1,3021,4451,3048
+34,Liebertwolkwitz,Liste 24,0,3021,4451,3048
+34,Liebertwolkwitz,Liste 25,1,3021,4451,3048
+34,Liebertwolkwitz,Liste 26,4,3021,4451,3048
+34,Liebertwolkwitz,Liste 27,20,3021,4451,3048
+34,Liebertwolkwitz,Liste 29,0,3021,4451,3048
+34,Liebertwolkwitz,Liste 30,3,3021,4451,3048
+34,Liebertwolkwitz,Liste 31,6,3021,4451,3048
+34,Liebertwolkwitz,Liste 32,1,3021,4451,3048
+34,Liebertwolkwitz,Liste 33,12,3021,4451,3048
+34,Liebertwolkwitz,Liste 34,4,3021,4451,3048
+34,Liebertwolkwitz,Liste 7,38,3021,4451,3048
+34,Liebertwolkwitz,Liste 9,56,3021,4451,3048
+34,Liebertwolkwitz,NPD,3,3021,4451,3048
+34,Liebertwolkwitz,SPD,247,3021,4451,3048
+34,Liebertwolkwitz,Volt,32,3021,4451,3048
+35,Holzhausen,AfD,1063,4021,5418,4067
+35,Holzhausen,BSW,466,4021,5418,4067
+35,Holzhausen,CDU,1058,4021,5418,4067
+35,Holzhausen,DIE LINKE,173,4021,5418,4067
+35,Holzhausen,Die PARTEI,91,4021,5418,4067
+35,Holzhausen,FDP,126,4021,5418,4067
+35,Holzhausen,GRÜNE,305,4021,5418,4067
+35,Holzhausen,Liste 10,27,4021,5418,4067
+35,Holzhausen,Liste 12,13,4021,5418,4067
+35,Holzhausen,Liste 14,18,4021,5418,4067
+35,Holzhausen,Liste 15,3,4021,5418,4067
+35,Holzhausen,Liste 16,5,4021,5418,4067
+35,Holzhausen,Liste 17,15,4021,5418,4067
+35,Holzhausen,Liste 18,10,4021,5418,4067
+35,Holzhausen,Liste 19,6,4021,5418,4067
+35,Holzhausen,Liste 20,9,4021,5418,4067
+35,Holzhausen,Liste 21,2,4021,5418,4067
+35,Holzhausen,Liste 22,3,4021,5418,4067
+35,Holzhausen,Liste 23,5,4021,5418,4067
+35,Holzhausen,Liste 24,0,4021,5418,4067
+35,Holzhausen,Liste 25,0,4021,5418,4067
+35,Holzhausen,Liste 26,5,4021,5418,4067
+35,Holzhausen,Liste 27,23,4021,5418,4067
+35,Holzhausen,Liste 29,2,4021,5418,4067
+35,Holzhausen,Liste 30,4,4021,5418,4067
+35,Holzhausen,Liste 31,6,4021,5418,4067
+35,Holzhausen,Liste 32,9,4021,5418,4067
+35,Holzhausen,Liste 33,25,4021,5418,4067
+35,Holzhausen,Liste 34,6,4021,5418,4067
+35,Holzhausen,Liste 7,44,4021,5418,4067
+35,Holzhausen,Liste 9,61,4021,5418,4067
+35,Holzhausen,NPD,8,4021,5418,4067
+35,Holzhausen,SPD,365,4021,5418,4067
+35,Holzhausen,Volt,65,4021,5418,4067
+40,Südvorstadt,AfD,1060,16386,20442,16473
+40,Südvorstadt,BSW,1270,16386,20442,16473
+40,Südvorstadt,CDU,1605,16386,20442,16473
+40,Südvorstadt,DIE LINKE,2451,16386,20442,16473
+40,Südvorstadt,Die PARTEI,1059,16386,20442,16473
+40,Südvorstadt,FDP,522,16386,20442,16473
+40,Südvorstadt,GRÜNE,4108,16386,20442,16473
+40,Südvorstadt,Liste 10,55,16386,20442,16473
+40,Südvorstadt,Liste 12,65,16386,20442,16473
+40,Südvorstadt,Liste 14,115,16386,20442,16473
+40,Südvorstadt,Liste 15,9,16386,20442,16473
+40,Südvorstadt,Liste 16,156,16386,20442,16473
+40,Südvorstadt,Liste 17,45,16386,20442,16473
+40,Südvorstadt,Liste 18,26,16386,20442,16473
+40,Südvorstadt,Liste 19,81,16386,20442,16473
+40,Südvorstadt,Liste 20,23,16386,20442,16473
+40,Südvorstadt,Liste 21,15,16386,20442,16473
+40,Südvorstadt,Liste 22,7,16386,20442,16473
+40,Südvorstadt,Liste 23,5,16386,20442,16473
+40,Südvorstadt,Liste 24,4,16386,20442,16473
+40,Südvorstadt,Liste 25,5,16386,20442,16473
+40,Südvorstadt,Liste 26,36,16386,20442,16473
+40,Südvorstadt,Liste 27,53,16386,20442,16473
+40,Südvorstadt,Liste 29,4,16386,20442,16473
+40,Südvorstadt,Liste 30,30,16386,20442,16473
+40,Südvorstadt,Liste 31,271,16386,20442,16473
+40,Südvorstadt,Liste 32,7,16386,20442,16473
+40,Südvorstadt,Liste 33,99,16386,20442,16473
+40,Südvorstadt,Liste 34,37,16386,20442,16473
+40,Südvorstadt,Liste 7,128,16386,20442,16473
+40,Südvorstadt,Liste 9,273,16386,20442,16473
+40,Südvorstadt,NPD,14,16386,20442,16473
+40,Südvorstadt,SPD,1721,16386,20442,16473
+40,Südvorstadt,Volt,1027,16386,20442,16473
+41,Connewitz,AfD,801,11985,15500,12048
+41,Connewitz,BSW,921,11985,15500,12048
+41,Connewitz,CDU,1150,11985,15500,12048
+41,Connewitz,DIE LINKE,2751,11985,15500,12048
+41,Connewitz,Die PARTEI,988,11985,15500,12048
+41,Connewitz,FDP,233,11985,15500,12048
+41,Connewitz,GRÜNE,2253,11985,15500,12048
+41,Connewitz,Liste 10,32,11985,15500,12048
+41,Connewitz,Liste 12,55,11985,15500,12048
+41,Connewitz,Liste 14,77,11985,15500,12048
+41,Connewitz,Liste 15,6,11985,15500,12048
+41,Connewitz,Liste 16,125,11985,15500,12048
+41,Connewitz,Liste 17,54,11985,15500,12048
+41,Connewitz,Liste 18,15,11985,15500,12048
+41,Connewitz,Liste 19,35,11985,15500,12048
+41,Connewitz,Liste 20,19,11985,15500,12048
+41,Connewitz,Liste 21,24,11985,15500,12048
+41,Connewitz,Liste 22,12,11985,15500,12048
+41,Connewitz,Liste 23,4,11985,15500,12048
+41,Connewitz,Liste 24,10,11985,15500,12048
+41,Connewitz,Liste 25,4,11985,15500,12048
+41,Connewitz,Liste 26,28,11985,15500,12048
+41,Connewitz,Liste 27,28,11985,15500,12048
+41,Connewitz,Liste 29,2,11985,15500,12048
+41,Connewitz,Liste 30,20,11985,15500,12048
+41,Connewitz,Liste 31,277,11985,15500,12048
+41,Connewitz,Liste 32,9,11985,15500,12048
+41,Connewitz,Liste 33,65,11985,15500,12048
+41,Connewitz,Liste 34,30,11985,15500,12048
+41,Connewitz,Liste 7,63,11985,15500,12048
+41,Connewitz,Liste 9,210,11985,15500,12048
+41,Connewitz,NPD,9,11985,15500,12048
+41,Connewitz,SPD,1130,11985,15500,12048
+41,Connewitz,Volt,545,11985,15500,12048
+42,Marienbrunn,AfD,551,3603,4835,3625
+42,Marienbrunn,BSW,485,3603,4835,3625
+42,Marienbrunn,CDU,739,3603,4835,3625
+42,Marienbrunn,DIE LINKE,313,3603,4835,3625
+42,Marienbrunn,Die PARTEI,133,3603,4835,3625
+42,Marienbrunn,FDP,115,3603,4835,3625
+42,Marienbrunn,GRÜNE,361,3603,4835,3625
+42,Marienbrunn,Liste 10,28,3603,4835,3625
+42,Marienbrunn,Liste 12,13,3603,4835,3625
+42,Marienbrunn,Liste 14,25,3603,4835,3625
+42,Marienbrunn,Liste 15,4,3603,4835,3625
+42,Marienbrunn,Liste 16,20,3603,4835,3625
+42,Marienbrunn,Liste 17,11,3603,4835,3625
+42,Marienbrunn,Liste 18,12,3603,4835,3625
+42,Marienbrunn,Liste 19,12,3603,4835,3625
+42,Marienbrunn,Liste 20,4,3603,4835,3625
+42,Marienbrunn,Liste 21,7,3603,4835,3625
+42,Marienbrunn,Liste 22,0,3603,4835,3625
+42,Marienbrunn,Liste 23,2,3603,4835,3625
+42,Marienbrunn,Liste 24,3,3603,4835,3625
+42,Marienbrunn,Liste 25,5,3603,4835,3625
+42,Marienbrunn,Liste 26,11,3603,4835,3625
+42,Marienbrunn,Liste 27,21,3603,4835,3625
+42,Marienbrunn,Liste 29,2,3603,4835,3625
+42,Marienbrunn,Liste 30,6,3603,4835,3625
+42,Marienbrunn,Liste 31,24,3603,4835,3625
+42,Marienbrunn,Liste 32,4,3603,4835,3625
+42,Marienbrunn,Liste 33,24,3603,4835,3625
+42,Marienbrunn,Liste 34,5,3603,4835,3625
+42,Marienbrunn,Liste 7,32,3603,4835,3625
+42,Marienbrunn,Liste 9,67,3603,4835,3625
+42,Marienbrunn,NPD,4,3603,4835,3625
+42,Marienbrunn,SPD,461,3603,4835,3625
+42,Marienbrunn,Volt,99,3603,4835,3625
+43,Lößnig,AfD,1076,5427,8346,5488
+43,Lößnig,BSW,811,5427,8346,5488
+43,Lößnig,CDU,990,5427,8346,5488
+43,Lößnig,DIE LINKE,579,5427,8346,5488
+43,Lößnig,Die PARTEI,186,5427,8346,5488
+43,Lößnig,FDP,105,5427,8346,5488
+43,Lößnig,GRÜNE,423,5427,8346,5488
+43,Lößnig,Liste 10,43,5427,8346,5488
+43,Lößnig,Liste 12,21,5427,8346,5488
+43,Lößnig,Liste 14,35,5427,8346,5488
+43,Lößnig,Liste 15,2,5427,8346,5488
+43,Lößnig,Liste 16,20,5427,8346,5488
+43,Lößnig,Liste 17,25,5427,8346,5488
+43,Lößnig,Liste 18,16,5427,8346,5488
+43,Lößnig,Liste 19,20,5427,8346,5488
+43,Lößnig,Liste 20,9,5427,8346,5488
+43,Lößnig,Liste 21,10,5427,8346,5488
+43,Lößnig,Liste 22,6,5427,8346,5488
+43,Lößnig,Liste 23,6,5427,8346,5488
+43,Lößnig,Liste 24,6,5427,8346,5488
+43,Lößnig,Liste 25,6,5427,8346,5488
+43,Lößnig,Liste 26,14,5427,8346,5488
+43,Lößnig,Liste 27,25,5427,8346,5488
+43,Lößnig,Liste 29,2,5427,8346,5488
+43,Lößnig,Liste 30,3,5427,8346,5488
+43,Lößnig,Liste 31,39,5427,8346,5488
+43,Lößnig,Liste 32,0,5427,8346,5488
+43,Lößnig,Liste 33,27,5427,8346,5488
+43,Lößnig,Liste 34,10,5427,8346,5488
+43,Lößnig,Liste 7,59,5427,8346,5488
+43,Lößnig,Liste 9,93,5427,8346,5488
+43,Lößnig,NPD,8,5427,8346,5488
+43,Lößnig,SPD,624,5427,8346,5488
+43,Lößnig,Volt,128,5427,8346,5488
+44,Dölitz-Dösen,AfD,575,2698,3779,2710
+44,Dölitz-Dösen,BSW,344,2698,3779,2710
+44,Dölitz-Dösen,CDU,501,2698,3779,2710
+44,Dölitz-Dösen,DIE LINKE,241,2698,3779,2710
+44,Dölitz-Dösen,Die PARTEI,128,2698,3779,2710
+44,Dölitz-Dösen,FDP,63,2698,3779,2710
+44,Dölitz-Dösen,GRÜNE,291,2698,3779,2710
+44,Dölitz-Dösen,Liste 10,22,2698,3779,2710
+44,Dölitz-Dösen,Liste 12,20,2698,3779,2710
+44,Dölitz-Dösen,Liste 14,11,2698,3779,2710
+44,Dölitz-Dösen,Liste 15,1,2698,3779,2710
+44,Dölitz-Dösen,Liste 16,5,2698,3779,2710
+44,Dölitz-Dösen,Liste 17,13,2698,3779,2710
+44,Dölitz-Dösen,Liste 18,7,2698,3779,2710
+44,Dölitz-Dösen,Liste 19,10,2698,3779,2710
+44,Dölitz-Dösen,Liste 20,8,2698,3779,2710
+44,Dölitz-Dösen,Liste 21,2,2698,3779,2710
+44,Dölitz-Dösen,Liste 22,2,2698,3779,2710
+44,Dölitz-Dösen,Liste 23,1,2698,3779,2710
+44,Dölitz-Dösen,Liste 24,1,2698,3779,2710
+44,Dölitz-Dösen,Liste 25,4,2698,3779,2710
+44,Dölitz-Dösen,Liste 26,6,2698,3779,2710
+44,Dölitz-Dösen,Liste 27,14,2698,3779,2710
+44,Dölitz-Dösen,Liste 29,1,2698,3779,2710
+44,Dölitz-Dösen,Liste 30,2,2698,3779,2710
+44,Dölitz-Dösen,Liste 31,10,2698,3779,2710
+44,Dölitz-Dösen,Liste 32,5,2698,3779,2710
+44,Dölitz-Dösen,Liste 33,14,2698,3779,2710
+44,Dölitz-Dösen,Liste 34,4,2698,3779,2710
+44,Dölitz-Dösen,Liste 7,31,2698,3779,2710
+44,Dölitz-Dösen,Liste 9,53,2698,3779,2710
+44,Dölitz-Dösen,NPD,3,2698,3779,2710
+44,Dölitz-Dösen,SPD,239,2698,3779,2710
+44,Dölitz-Dösen,Volt,66,2698,3779,2710
+50,Schleußig,AfD,555,7652,9370,7672
+50,Schleußig,BSW,641,7652,9370,7672
+50,Schleußig,CDU,866,7652,9370,7672
+50,Schleußig,DIE LINKE,960,7652,9370,7672
+50,Schleußig,Die PARTEI,404,7652,9370,7672
+50,Schleußig,FDP,217,7652,9370,7672
+50,Schleußig,GRÜNE,2105,7652,9370,7672
+50,Schleußig,Liste 10,29,7652,9370,7672
+50,Schleußig,Liste 12,40,7652,9370,7672
+50,Schleußig,Liste 14,46,7652,9370,7672
+50,Schleußig,Liste 15,3,7652,9370,7672
+50,Schleußig,Liste 16,96,7652,9370,7672
+50,Schleußig,Liste 17,25,7652,9370,7672
+50,Schleußig,Liste 18,14,7652,9370,7672
+50,Schleußig,Liste 19,20,7652,9370,7672
+50,Schleußig,Liste 20,14,7652,9370,7672
+50,Schleußig,Liste 21,9,7652,9370,7672
+50,Schleußig,Liste 22,3,7652,9370,7672
+50,Schleußig,Liste 23,4,7652,9370,7672
+50,Schleußig,Liste 24,1,7652,9370,7672
+50,Schleußig,Liste 25,7,7652,9370,7672
+50,Schleußig,Liste 26,30,7652,9370,7672
+50,Schleußig,Liste 27,24,7652,9370,7672
+50,Schleußig,Liste 29,2,7652,9370,7672
+50,Schleußig,Liste 30,18,7652,9370,7672
+50,Schleußig,Liste 31,125,7652,9370,7672
+50,Schleußig,Liste 32,6,7652,9370,7672
+50,Schleußig,Liste 33,60,7652,9370,7672
+50,Schleußig,Liste 34,25,7652,9370,7672
+50,Schleußig,Liste 7,40,7652,9370,7672
+50,Schleußig,Liste 9,92,7652,9370,7672
+50,Schleußig,NPD,3,7652,9370,7672
+50,Schleußig,SPD,823,7652,9370,7672
+50,Schleußig,Volt,345,7652,9370,7672
+51,Plagwitz,AfD,852,9395,12667,9435
+51,Plagwitz,BSW,700,9395,12667,9435
+51,Plagwitz,CDU,1045,9395,12667,9435
+51,Plagwitz,DIE LINKE,1252,9395,12667,9435
+51,Plagwitz,Die PARTEI,616,9395,12667,9435
+51,Plagwitz,FDP,277,9395,12667,9435
+51,Plagwitz,GRÜNE,2270,9395,12667,9435
+51,Plagwitz,Liste 10,33,9395,12667,9435
+51,Plagwitz,Liste 12,61,9395,12667,9435
+51,Plagwitz,Liste 14,69,9395,12667,9435
+51,Plagwitz,Liste 15,3,9395,12667,9435
+51,Plagwitz,Liste 16,101,9395,12667,9435
+51,Plagwitz,Liste 17,34,9395,12667,9435
+51,Plagwitz,Liste 18,14,9395,12667,9435
+51,Plagwitz,Liste 19,41,9395,12667,9435
+51,Plagwitz,Liste 20,27,9395,12667,9435
+51,Plagwitz,Liste 21,9,9395,12667,9435
+51,Plagwitz,Liste 22,4,9395,12667,9435
+51,Plagwitz,Liste 23,4,9395,12667,9435
+51,Plagwitz,Liste 24,7,9395,12667,9435
+51,Plagwitz,Liste 25,1,9395,12667,9435
+51,Plagwitz,Liste 26,27,9395,12667,9435
+51,Plagwitz,Liste 27,22,9395,12667,9435
+51,Plagwitz,Liste 29,3,9395,12667,9435
+51,Plagwitz,Liste 30,19,9395,12667,9435
+51,Plagwitz,Liste 31,155,9395,12667,9435
+51,Plagwitz,Liste 32,8,9395,12667,9435
+51,Plagwitz,Liste 33,60,9395,12667,9435
+51,Plagwitz,Liste 34,34,9395,12667,9435
+51,Plagwitz,Liste 7,87,9395,12667,9435
+51,Plagwitz,Liste 9,146,9395,12667,9435
+51,Plagwitz,NPD,3,9395,12667,9435
+51,Plagwitz,SPD,885,9395,12667,9435
+51,Plagwitz,Volt,526,9395,12667,9435
+52,Kleinzschocher,AfD,959,5426,8074,5457
+52,Kleinzschocher,BSW,524,5426,8074,5457
+52,Kleinzschocher,CDU,573,5426,8074,5457
+52,Kleinzschocher,DIE LINKE,731,5426,8074,5457
+52,Kleinzschocher,Die PARTEI,291,5426,8074,5457
+52,Kleinzschocher,FDP,130,5426,8074,5457
+52,Kleinzschocher,GRÜNE,836,5426,8074,5457
+52,Kleinzschocher,Liste 10,49,5426,8074,5457
+52,Kleinzschocher,Liste 12,24,5426,8074,5457
+52,Kleinzschocher,Liste 14,50,5426,8074,5457
+52,Kleinzschocher,Liste 15,5,5426,8074,5457
+52,Kleinzschocher,Liste 16,52,5426,8074,5457
+52,Kleinzschocher,Liste 17,37,5426,8074,5457
+52,Kleinzschocher,Liste 18,9,5426,8074,5457
+52,Kleinzschocher,Liste 19,17,5426,8074,5457
+52,Kleinzschocher,Liste 20,11,5426,8074,5457
+52,Kleinzschocher,Liste 21,7,5426,8074,5457
+52,Kleinzschocher,Liste 22,3,5426,8074,5457
+52,Kleinzschocher,Liste 23,3,5426,8074,5457
+52,Kleinzschocher,Liste 24,0,5426,8074,5457
+52,Kleinzschocher,Liste 25,5,5426,8074,5457
+52,Kleinzschocher,Liste 26,21,5426,8074,5457
+52,Kleinzschocher,Liste 27,29,5426,8074,5457
+52,Kleinzschocher,Liste 29,4,5426,8074,5457
+52,Kleinzschocher,Liste 30,11,5426,8074,5457
+52,Kleinzschocher,Liste 31,102,5426,8074,5457
+52,Kleinzschocher,Liste 32,5,5426,8074,5457
+52,Kleinzschocher,Liste 33,42,5426,8074,5457
+52,Kleinzschocher,Liste 34,13,5426,8074,5457
+52,Kleinzschocher,Liste 7,46,5426,8074,5457
+52,Kleinzschocher,Liste 9,122,5426,8074,5457
+52,Kleinzschocher,NPD,8,5426,8074,5457
+52,Kleinzschocher,SPD,482,5426,8074,5457
+52,Kleinzschocher,Volt,225,5426,8074,5457
+53,Großzschocher,AfD,1370,5168,7664,5215
+53,Großzschocher,BSW,676,5168,7664,5215
+53,Großzschocher,CDU,1113,5168,7664,5215
+53,Großzschocher,DIE LINKE,339,5168,7664,5215
+53,Großzschocher,Die PARTEI,153,5168,7664,5215
+53,Großzschocher,FDP,112,5168,7664,5215
+53,Großzschocher,GRÜNE,368,5168,7664,5215
+53,Großzschocher,Liste 10,36,5168,7664,5215
+53,Großzschocher,Liste 12,26,5168,7664,5215
+53,Großzschocher,Liste 14,23,5168,7664,5215
+53,Großzschocher,Liste 15,4,5168,7664,5215
+53,Großzschocher,Liste 16,15,5168,7664,5215
+53,Großzschocher,Liste 17,30,5168,7664,5215
+53,Großzschocher,Liste 18,8,5168,7664,5215
+53,Großzschocher,Liste 19,8,5168,7664,5215
+53,Großzschocher,Liste 20,6,5168,7664,5215
+53,Großzschocher,Liste 21,0,5168,7664,5215
+53,Großzschocher,Liste 22,1,5168,7664,5215
+53,Großzschocher,Liste 23,2,5168,7664,5215
+53,Großzschocher,Liste 24,0,5168,7664,5215
+53,Großzschocher,Liste 25,6,5168,7664,5215
+53,Großzschocher,Liste 26,10,5168,7664,5215
+53,Großzschocher,Liste 27,24,5168,7664,5215
+53,Großzschocher,Liste 29,5,5168,7664,5215
+53,Großzschocher,Liste 30,6,5168,7664,5215
+53,Großzschocher,Liste 31,17,5168,7664,5215
+53,Großzschocher,Liste 32,3,5168,7664,5215
+53,Großzschocher,Liste 33,25,5168,7664,5215
+53,Großzschocher,Liste 34,6,5168,7664,5215
+53,Großzschocher,Liste 7,89,5168,7664,5215
+53,Großzschocher,Liste 9,68,5168,7664,5215
+53,Großzschocher,NPD,7,5168,7664,5215
+53,Großzschocher,SPD,512,5168,7664,5215
+53,Großzschocher,Volt,100,5168,7664,5215
+54,Knautkleeberg-Knauthain,AfD,886,3569,4661,3592
+54,Knautkleeberg-Knauthain,BSW,433,3569,4661,3592
+54,Knautkleeberg-Knauthain,CDU,837,3569,4661,3592
+54,Knautkleeberg-Knauthain,DIE LINKE,190,3569,4661,3592
+54,Knautkleeberg-Knauthain,Die PARTEI,90,3569,4661,3592
+54,Knautkleeberg-Knauthain,FDP,110,3569,4661,3592
+54,Knautkleeberg-Knauthain,GRÜNE,332,3569,4661,3592
+54,Knautkleeberg-Knauthain,Liste 10,39,3569,4661,3592
+54,Knautkleeberg-Knauthain,Liste 12,6,3569,4661,3592
+54,Knautkleeberg-Knauthain,Liste 14,11,3569,4661,3592
+54,Knautkleeberg-Knauthain,Liste 15,3,3569,4661,3592
+54,Knautkleeberg-Knauthain,Liste 16,1,3569,4661,3592
+54,Knautkleeberg-Knauthain,Liste 17,12,3569,4661,3592
+54,Knautkleeberg-Knauthain,Liste 18,13,3569,4661,3592
+54,Knautkleeberg-Knauthain,Liste 19,10,3569,4661,3592
+54,Knautkleeberg-Knauthain,Liste 20,4,3569,4661,3592
+54,Knautkleeberg-Knauthain,Liste 21,0,3569,4661,3592
+54,Knautkleeberg-Knauthain,Liste 22,2,3569,4661,3592
+54,Knautkleeberg-Knauthain,Liste 23,0,3569,4661,3592
+54,Knautkleeberg-Knauthain,Liste 24,0,3569,4661,3592
+54,Knautkleeberg-Knauthain,Liste 25,5,3569,4661,3592
+54,Knautkleeberg-Knauthain,Liste 26,7,3569,4661,3592
+54,Knautkleeberg-Knauthain,Liste 27,30,3569,4661,3592
+54,Knautkleeberg-Knauthain,Liste 29,1,3569,4661,3592
+54,Knautkleeberg-Knauthain,Liste 30,3,3569,4661,3592
+54,Knautkleeberg-Knauthain,Liste 31,16,3569,4661,3592
+54,Knautkleeberg-Knauthain,Liste 32,5,3569,4661,3592
+54,Knautkleeberg-Knauthain,Liste 33,27,3569,4661,3592
+54,Knautkleeberg-Knauthain,Liste 34,9,3569,4661,3592
+54,Knautkleeberg-Knauthain,Liste 7,44,3569,4661,3592
+54,Knautkleeberg-Knauthain,Liste 9,52,3569,4661,3592
+54,Knautkleeberg-Knauthain,NPD,2,3569,4661,3592
+54,Knautkleeberg-Knauthain,SPD,326,3569,4661,3592
+54,Knautkleeberg-Knauthain,Volt,63,3569,4661,3592
+55,Hartmannsdorf-Knautnaundorf,AfD,242,800,1067,810
+55,Hartmannsdorf-Knautnaundorf,BSW,102,800,1067,810
+55,Hartmannsdorf-Knautnaundorf,CDU,203,800,1067,810
+55,Hartmannsdorf-Knautnaundorf,DIE LINKE,24,800,1067,810
+55,Hartmannsdorf-Knautnaundorf,Die PARTEI,10,800,1067,810
+55,Hartmannsdorf-Knautnaundorf,FDP,33,800,1067,810
+55,Hartmannsdorf-Knautnaundorf,GRÜNE,62,800,1067,810
+55,Hartmannsdorf-Knautnaundorf,Liste 10,6,800,1067,810
+55,Hartmannsdorf-Knautnaundorf,Liste 12,0,800,1067,810
+55,Hartmannsdorf-Knautnaundorf,Liste 14,3,800,1067,810
+55,Hartmannsdorf-Knautnaundorf,Liste 15,0,800,1067,810
+55,Hartmannsdorf-Knautnaundorf,Liste 16,2,800,1067,810
+55,Hartmannsdorf-Knautnaundorf,Liste 17,6,800,1067,810
+55,Hartmannsdorf-Knautnaundorf,Liste 18,1,800,1067,810
+55,Hartmannsdorf-Knautnaundorf,Liste 19,1,800,1067,810
+55,Hartmannsdorf-Knautnaundorf,Liste 20,2,800,1067,810
+55,Hartmannsdorf-Knautnaundorf,Liste 21,1,800,1067,810
+55,Hartmannsdorf-Knautnaundorf,Liste 22,0,800,1067,810
+55,Hartmannsdorf-Knautnaundorf,Liste 23,0,800,1067,810
+55,Hartmannsdorf-Knautnaundorf,Liste 24,0,800,1067,810
+55,Hartmannsdorf-Knautnaundorf,Liste 25,0,800,1067,810
+55,Hartmannsdorf-Knautnaundorf,Liste 26,2,800,1067,810
+55,Hartmannsdorf-Knautnaundorf,Liste 27,5,800,1067,810
+55,Hartmannsdorf-Knautnaundorf,Liste 29,0,800,1067,810
+55,Hartmannsdorf-Knautnaundorf,Liste 30,0,800,1067,810
+55,Hartmannsdorf-Knautnaundorf,Liste 31,5,800,1067,810
+55,Hartmannsdorf-Knautnaundorf,Liste 32,1,800,1067,810
+55,Hartmannsdorf-Knautnaundorf,Liste 33,4,800,1067,810
+55,Hartmannsdorf-Knautnaundorf,Liste 34,5,800,1067,810
+55,Hartmannsdorf-Knautnaundorf,Liste 7,11,800,1067,810
+55,Hartmannsdorf-Knautnaundorf,Liste 9,10,800,1067,810
+55,Hartmannsdorf-Knautnaundorf,NPD,0,800,1067,810
+55,Hartmannsdorf-Knautnaundorf,SPD,45,800,1067,810
+55,Hartmannsdorf-Knautnaundorf,Volt,14,800,1067,810
+60,Schönau,AfD,693,2650,4245,2685
+60,Schönau,BSW,376,2650,4245,2685
+60,Schönau,CDU,544,2650,4245,2685
+60,Schönau,DIE LINKE,210,2650,4245,2685
+60,Schönau,Die PARTEI,63,2650,4245,2685
+60,Schönau,FDP,70,2650,4245,2685
+60,Schönau,GRÜNE,178,2650,4245,2685
+60,Schönau,Liste 10,26,2650,4245,2685
+60,Schönau,Liste 12,3,2650,4245,2685
+60,Schönau,Liste 14,12,2650,4245,2685
+60,Schönau,Liste 15,2,2650,4245,2685
+60,Schönau,Liste 16,7,2650,4245,2685
+60,Schönau,Liste 17,13,2650,4245,2685
+60,Schönau,Liste 18,2,2650,4245,2685
+60,Schönau,Liste 19,8,2650,4245,2685
+60,Schönau,Liste 20,6,2650,4245,2685
+60,Schönau,Liste 21,1,2650,4245,2685
+60,Schönau,Liste 22,1,2650,4245,2685
+60,Schönau,Liste 23,3,2650,4245,2685
+60,Schönau,Liste 24,0,2650,4245,2685
+60,Schönau,Liste 25,3,2650,4245,2685
+60,Schönau,Liste 26,2,2650,4245,2685
+60,Schönau,Liste 27,21,2650,4245,2685
+60,Schönau,Liste 29,1,2650,4245,2685
+60,Schönau,Liste 30,3,2650,4245,2685
+60,Schönau,Liste 31,12,2650,4245,2685
+60,Schönau,Liste 32,3,2650,4245,2685
+60,Schönau,Liste 33,19,2650,4245,2685
+60,Schönau,Liste 34,5,2650,4245,2685
+60,Schönau,Liste 7,28,2650,4245,2685
+60,Schönau,Liste 9,46,2650,4245,2685
+60,Schönau,NPD,4,2650,4245,2685
+60,Schönau,SPD,242,2650,4245,2685
+60,Schönau,Volt,43,2650,4245,2685
+61,Grünau-Ost,AfD,997,3331,5846,3374
+61,Grünau-Ost,BSW,511,3331,5846,3374
+61,Grünau-Ost,CDU,657,3331,5846,3374
+61,Grünau-Ost,DIE LINKE,299,3331,5846,3374
+61,Grünau-Ost,Die PARTEI,59,3331,5846,3374
+61,Grünau-Ost,FDP,56,3331,5846,3374
+61,Grünau-Ost,GRÜNE,114,3331,5846,3374
+61,Grünau-Ost,Liste 10,26,3331,5846,3374
+61,Grünau-Ost,Liste 12,1,3331,5846,3374
+61,Grünau-Ost,Liste 14,16,3331,5846,3374
+61,Grünau-Ost,Liste 15,0,3331,5846,3374
+61,Grünau-Ost,Liste 16,7,3331,5846,3374
+61,Grünau-Ost,Liste 17,27,3331,5846,3374
+61,Grünau-Ost,Liste 18,4,3331,5846,3374
+61,Grünau-Ost,Liste 19,2,3331,5846,3374
+61,Grünau-Ost,Liste 20,7,3331,5846,3374
+61,Grünau-Ost,Liste 21,7,3331,5846,3374
+61,Grünau-Ost,Liste 22,4,3331,5846,3374
+61,Grünau-Ost,Liste 23,1,3331,5846,3374
+61,Grünau-Ost,Liste 24,1,3331,5846,3374
+61,Grünau-Ost,Liste 25,4,3331,5846,3374
+61,Grünau-Ost,Liste 26,8,3331,5846,3374
+61,Grünau-Ost,Liste 27,14,3331,5846,3374
+61,Grünau-Ost,Liste 29,0,3331,5846,3374
+61,Grünau-Ost,Liste 30,6,3331,5846,3374
+61,Grünau-Ost,Liste 31,5,3331,5846,3374
+61,Grünau-Ost,Liste 32,3,3331,5846,3374
+61,Grünau-Ost,Liste 33,17,3331,5846,3374
+61,Grünau-Ost,Liste 34,4,3331,5846,3374
+61,Grünau-Ost,Liste 7,30,3331,5846,3374
+61,Grünau-Ost,Liste 9,52,3331,5846,3374
+61,Grünau-Ost,NPD,4,3331,5846,3374
+61,Grünau-Ost,SPD,351,3331,5846,3374
+61,Grünau-Ost,Volt,37,3331,5846,3374
+62,Grünau-Mitte,AfD,1370,4675,8783,4747
+62,Grünau-Mitte,BSW,713,4675,8783,4747
+62,Grünau-Mitte,CDU,853,4675,8783,4747
+62,Grünau-Mitte,DIE LINKE,478,4675,8783,4747
+62,Grünau-Mitte,Die PARTEI,103,4675,8783,4747
+62,Grünau-Mitte,FDP,79,4675,8783,4747
+62,Grünau-Mitte,GRÜNE,128,4675,8783,4747
+62,Grünau-Mitte,Liste 10,47,4675,8783,4747
+62,Grünau-Mitte,Liste 12,17,4675,8783,4747
+62,Grünau-Mitte,Liste 14,22,4675,8783,4747
+62,Grünau-Mitte,Liste 15,7,4675,8783,4747
+62,Grünau-Mitte,Liste 16,14,4675,8783,4747
+62,Grünau-Mitte,Liste 17,27,4675,8783,4747
+62,Grünau-Mitte,Liste 18,13,4675,8783,4747
+62,Grünau-Mitte,Liste 19,16,4675,8783,4747
+62,Grünau-Mitte,Liste 20,7,4675,8783,4747
+62,Grünau-Mitte,Liste 21,5,4675,8783,4747
+62,Grünau-Mitte,Liste 22,3,4675,8783,4747
+62,Grünau-Mitte,Liste 23,3,4675,8783,4747
+62,Grünau-Mitte,Liste 24,3,4675,8783,4747
+62,Grünau-Mitte,Liste 25,3,4675,8783,4747
+62,Grünau-Mitte,Liste 26,13,4675,8783,4747
+62,Grünau-Mitte,Liste 27,15,4675,8783,4747
+62,Grünau-Mitte,Liste 29,5,4675,8783,4747
+62,Grünau-Mitte,Liste 30,1,4675,8783,4747
+62,Grünau-Mitte,Liste 31,16,4675,8783,4747
+62,Grünau-Mitte,Liste 32,4,4675,8783,4747
+62,Grünau-Mitte,Liste 33,19,4675,8783,4747
+62,Grünau-Mitte,Liste 34,11,4675,8783,4747
+62,Grünau-Mitte,Liste 7,57,4675,8783,4747
+62,Grünau-Mitte,Liste 9,69,4675,8783,4747
+62,Grünau-Mitte,NPD,7,4675,8783,4747
+62,Grünau-Mitte,SPD,482,4675,8783,4747
+62,Grünau-Mitte,Volt,65,4675,8783,4747
+63,Grünau-Siedlung,AfD,510,2233,3289,2245
+63,Grünau-Siedlung,BSW,308,2233,3289,2245
+63,Grünau-Siedlung,CDU,653,2233,3289,2245
+63,Grünau-Siedlung,DIE LINKE,146,2233,3289,2245
+63,Grünau-Siedlung,Die PARTEI,43,2233,3289,2245
+63,Grünau-Siedlung,FDP,68,2233,3289,2245
+63,Grünau-Siedlung,GRÜNE,130,2233,3289,2245
+63,Grünau-Siedlung,Liste 10,7,2233,3289,2245
+63,Grünau-Siedlung,Liste 12,5,2233,3289,2245
+63,Grünau-Siedlung,Liste 14,6,2233,3289,2245
+63,Grünau-Siedlung,Liste 15,0,2233,3289,2245
+63,Grünau-Siedlung,Liste 16,1,2233,3289,2245
+63,Grünau-Siedlung,Liste 17,7,2233,3289,2245
+63,Grünau-Siedlung,Liste 18,4,2233,3289,2245
+63,Grünau-Siedlung,Liste 19,2,2233,3289,2245
+63,Grünau-Siedlung,Liste 20,3,2233,3289,2245
+63,Grünau-Siedlung,Liste 21,3,2233,3289,2245
+63,Grünau-Siedlung,Liste 22,3,2233,3289,2245
+63,Grünau-Siedlung,Liste 23,2,2233,3289,2245
+63,Grünau-Siedlung,Liste 24,0,2233,3289,2245
+63,Grünau-Siedlung,Liste 25,3,2233,3289,2245
+63,Grünau-Siedlung,Liste 26,7,2233,3289,2245
+63,Grünau-Siedlung,Liste 27,12,2233,3289,2245
+63,Grünau-Siedlung,Liste 29,0,2233,3289,2245
+63,Grünau-Siedlung,Liste 30,2,2233,3289,2245
+63,Grünau-Siedlung,Liste 31,7,2233,3289,2245
+63,Grünau-Siedlung,Liste 32,2,2233,3289,2245
+63,Grünau-Siedlung,Liste 33,4,2233,3289,2245
+63,Grünau-Siedlung,Liste 34,1,2233,3289,2245
+63,Grünau-Siedlung,Liste 7,34,2233,3289,2245
+63,Grünau-Siedlung,Liste 9,12,2233,3289,2245
+63,Grünau-Siedlung,NPD,5,2233,3289,2245
+63,Grünau-Siedlung,SPD,217,2233,3289,2245
+63,Grünau-Siedlung,Volt,26,2233,3289,2245
+64,Lausen-Grünau,AfD,1889,5891,10151,5985
+64,Lausen-Grünau,BSW,807,5891,10151,5985
+64,Lausen-Grünau,CDU,1188,5891,10151,5985
+64,Lausen-Grünau,DIE LINKE,430,5891,10151,5985
+64,Lausen-Grünau,Die PARTEI,116,5891,10151,5985
+64,Lausen-Grünau,FDP,147,5891,10151,5985
+64,Lausen-Grünau,GRÜNE,252,5891,10151,5985
+64,Lausen-Grünau,Liste 10,68,5891,10151,5985
+64,Lausen-Grünau,Liste 12,6,5891,10151,5985
+64,Lausen-Grünau,Liste 14,21,5891,10151,5985
+64,Lausen-Grünau,Liste 15,4,5891,10151,5985
+64,Lausen-Grünau,Liste 16,6,5891,10151,5985
+64,Lausen-Grünau,Liste 17,34,5891,10151,5985
+64,Lausen-Grünau,Liste 18,5,5891,10151,5985
+64,Lausen-Grünau,Liste 19,15,5891,10151,5985
+64,Lausen-Grünau,Liste 20,14,5891,10151,5985
+64,Lausen-Grünau,Liste 21,0,5891,10151,5985
+64,Lausen-Grünau,Liste 22,1,5891,10151,5985
+64,Lausen-Grünau,Liste 23,5,5891,10151,5985
+64,Lausen-Grünau,Liste 24,0,5891,10151,5985
+64,Lausen-Grünau,Liste 25,7,5891,10151,5985
+64,Lausen-Grünau,Liste 26,10,5891,10151,5985
+64,Lausen-Grünau,Liste 27,36,5891,10151,5985
+64,Lausen-Grünau,Liste 29,3,5891,10151,5985
+64,Lausen-Grünau,Liste 30,5,5891,10151,5985
+64,Lausen-Grünau,Liste 31,11,5891,10151,5985
+64,Lausen-Grünau,Liste 32,5,5891,10151,5985
+64,Lausen-Grünau,Liste 33,30,5891,10151,5985
+64,Lausen-Grünau,Liste 34,10,5891,10151,5985
+64,Lausen-Grünau,Liste 7,81,5891,10151,5985
+64,Lausen-Grünau,Liste 9,91,5891,10151,5985
+64,Lausen-Grünau,NPD,8,5891,10151,5985
+64,Lausen-Grünau,SPD,540,5891,10151,5985
+64,Lausen-Grünau,Volt,46,5891,10151,5985
+65,Grünau-Nord,AfD,1084,3181,6342,3233
+65,Grünau-Nord,BSW,401,3181,6342,3233
+65,Grünau-Nord,CDU,517,3181,6342,3233
+65,Grünau-Nord,DIE LINKE,306,3181,6342,3233
+65,Grünau-Nord,Die PARTEI,77,3181,6342,3233
+65,Grünau-Nord,FDP,47,3181,6342,3233
+65,Grünau-Nord,GRÜNE,107,3181,6342,3233
+65,Grünau-Nord,Liste 10,49,3181,6342,3233
+65,Grünau-Nord,Liste 12,6,3181,6342,3233
+65,Grünau-Nord,Liste 14,24,3181,6342,3233
+65,Grünau-Nord,Liste 15,3,3181,6342,3233
+65,Grünau-Nord,Liste 16,8,3181,6342,3233
+65,Grünau-Nord,Liste 17,28,3181,6342,3233
+65,Grünau-Nord,Liste 18,2,3181,6342,3233
+65,Grünau-Nord,Liste 19,13,3181,6342,3233
+65,Grünau-Nord,Liste 20,4,3181,6342,3233
+65,Grünau-Nord,Liste 21,5,3181,6342,3233
+65,Grünau-Nord,Liste 22,2,3181,6342,3233
+65,Grünau-Nord,Liste 23,1,3181,6342,3233
+65,Grünau-Nord,Liste 24,0,3181,6342,3233
+65,Grünau-Nord,Liste 25,7,3181,6342,3233
+65,Grünau-Nord,Liste 26,5,3181,6342,3233
+65,Grünau-Nord,Liste 27,11,3181,6342,3233
+65,Grünau-Nord,Liste 29,2,3181,6342,3233
+65,Grünau-Nord,Liste 30,5,3181,6342,3233
+65,Grünau-Nord,Liste 31,10,3181,6342,3233
+65,Grünau-Nord,Liste 32,4,3181,6342,3233
+65,Grünau-Nord,Liste 33,19,3181,6342,3233
+65,Grünau-Nord,Liste 34,6,3181,6342,3233
+65,Grünau-Nord,Liste 7,38,3181,6342,3233
+65,Grünau-Nord,Liste 9,77,3181,6342,3233
+65,Grünau-Nord,NPD,10,3181,6342,3233
+65,Grünau-Nord,SPD,256,3181,6342,3233
+65,Grünau-Nord,Volt,47,3181,6342,3233
+66,Miltitz,AfD,348,1225,1609,1238
+66,Miltitz,BSW,174,1225,1609,1238
+66,Miltitz,CDU,276,1225,1609,1238
+66,Miltitz,DIE LINKE,50,1225,1609,1238
+66,Miltitz,Die PARTEI,44,1225,1609,1238
+66,Miltitz,FDP,26,1225,1609,1238
+66,Miltitz,GRÜNE,63,1225,1609,1238
+66,Miltitz,Liste 10,7,1225,1609,1238
+66,Miltitz,Liste 12,2,1225,1609,1238
+66,Miltitz,Liste 14,3,1225,1609,1238
+66,Miltitz,Liste 15,1,1225,1609,1238
+66,Miltitz,Liste 16,1,1225,1609,1238
+66,Miltitz,Liste 17,9,1225,1609,1238
+66,Miltitz,Liste 18,5,1225,1609,1238
+66,Miltitz,Liste 19,0,1225,1609,1238
+66,Miltitz,Liste 20,2,1225,1609,1238
+66,Miltitz,Liste 21,2,1225,1609,1238
+66,Miltitz,Liste 22,0,1225,1609,1238
+66,Miltitz,Liste 23,1,1225,1609,1238
+66,Miltitz,Liste 24,0,1225,1609,1238
+66,Miltitz,Liste 25,0,1225,1609,1238
+66,Miltitz,Liste 26,3,1225,1609,1238
+66,Miltitz,Liste 27,11,1225,1609,1238
+66,Miltitz,Liste 29,0,1225,1609,1238
+66,Miltitz,Liste 30,0,1225,1609,1238
+66,Miltitz,Liste 31,5,1225,1609,1238
+66,Miltitz,Liste 32,2,1225,1609,1238
+66,Miltitz,Liste 33,1,1225,1609,1238
+66,Miltitz,Liste 34,0,1225,1609,1238
+66,Miltitz,Liste 7,15,1225,1609,1238
+66,Miltitz,Liste 9,22,1225,1609,1238
+66,Miltitz,NPD,1,1225,1609,1238
+66,Miltitz,SPD,139,1225,1609,1238
+66,Miltitz,Volt,12,1225,1609,1238
+70,Lindenau,AfD,348,4722,6290,4735
+70,Lindenau,BSW,321,4722,6290,4735
+70,Lindenau,CDU,326,4722,6290,4735
+70,Lindenau,DIE LINKE,866,4722,6290,4735
+70,Lindenau,Die PARTEI,335,4722,6290,4735
+70,Lindenau,FDP,101,4722,6290,4735
+70,Lindenau,GRÜNE,1153,4722,6290,4735
+70,Lindenau,Liste 10,16,4722,6290,4735
+70,Lindenau,Liste 12,23,4722,6290,4735
+70,Lindenau,Liste 14,39,4722,6290,4735
+70,Lindenau,Liste 15,0,4722,6290,4735
+70,Lindenau,Liste 16,78,4722,6290,4735
+70,Lindenau,Liste 17,27,4722,6290,4735
+70,Lindenau,Liste 18,3,4722,6290,4735
+70,Lindenau,Liste 19,11,4722,6290,4735
+70,Lindenau,Liste 20,4,4722,6290,4735
+70,Lindenau,Liste 21,8,4722,6290,4735
+70,Lindenau,Liste 22,0,4722,6290,4735
+70,Lindenau,Liste 23,3,4722,6290,4735
+70,Lindenau,Liste 24,2,4722,6290,4735
+70,Lindenau,Liste 25,4,4722,6290,4735
+70,Lindenau,Liste 26,14,4722,6290,4735
+70,Lindenau,Liste 27,17,4722,6290,4735
+70,Lindenau,Liste 29,1,4722,6290,4735
+70,Lindenau,Liste 30,7,4722,6290,4735
+70,Lindenau,Liste 31,99,4722,6290,4735
+70,Lindenau,Liste 32,3,4722,6290,4735
+70,Lindenau,Liste 33,28,4722,6290,4735
+70,Lindenau,Liste 34,16,4722,6290,4735
+70,Lindenau,Liste 7,27,4722,6290,4735
+70,Lindenau,Liste 9,87,4722,6290,4735
+70,Lindenau,NPD,3,4722,6290,4735
+70,Lindenau,SPD,476,4722,6290,4735
+70,Lindenau,Volt,276,4722,6290,4735
+71,Altlindenau,AfD,996,9806,13667,9865
+71,Altlindenau,BSW,650,9806,13667,9865
+71,Altlindenau,CDU,870,9806,13667,9865
+71,Altlindenau,DIE LINKE,1678,9806,13667,9865
+71,Altlindenau,Die PARTEI,713,9806,13667,9865
+71,Altlindenau,FDP,256,9806,13667,9865
+71,Altlindenau,GRÜNE,2228,9806,13667,9865
+71,Altlindenau,Liste 10,52,9806,13667,9865
+71,Altlindenau,Liste 12,47,9806,13667,9865
+71,Altlindenau,Liste 14,85,9806,13667,9865
+71,Altlindenau,Liste 15,4,9806,13667,9865
+71,Altlindenau,Liste 16,141,9806,13667,9865
+71,Altlindenau,Liste 17,27,9806,13667,9865
+71,Altlindenau,Liste 18,17,9806,13667,9865
+71,Altlindenau,Liste 19,33,9806,13667,9865
+71,Altlindenau,Liste 20,15,9806,13667,9865
+71,Altlindenau,Liste 21,9,9806,13667,9865
+71,Altlindenau,Liste 22,8,9806,13667,9865
+71,Altlindenau,Liste 23,5,9806,13667,9865
+71,Altlindenau,Liste 24,3,9806,13667,9865
+71,Altlindenau,Liste 25,1,9806,13667,9865
+71,Altlindenau,Liste 26,17,9806,13667,9865
+71,Altlindenau,Liste 27,32,9806,13667,9865
+71,Altlindenau,Liste 29,5,9806,13667,9865
+71,Altlindenau,Liste 30,27,9806,13667,9865
+71,Altlindenau,Liste 31,176,9806,13667,9865
+71,Altlindenau,Liste 32,5,9806,13667,9865
+71,Altlindenau,Liste 33,61,9806,13667,9865
+71,Altlindenau,Liste 34,23,9806,13667,9865
+71,Altlindenau,Liste 7,74,9806,13667,9865
+71,Altlindenau,Liste 9,192,9806,13667,9865
+71,Altlindenau,NPD,8,9806,13667,9865
+71,Altlindenau,SPD,756,9806,13667,9865
+71,Altlindenau,Volt,592,9806,13667,9865
+72,Neulindenau,AfD,923,3707,5966,3744
+72,Neulindenau,BSW,443,3707,5966,3744
+72,Neulindenau,CDU,551,3707,5966,3744
+72,Neulindenau,DIE LINKE,418,3707,5966,3744
+72,Neulindenau,Die PARTEI,159,3707,5966,3744
+72,Neulindenau,FDP,83,3707,5966,3744
+72,Neulindenau,GRÜNE,318,3707,5966,3744
+72,Neulindenau,Liste 10,43,3707,5966,3744
+72,Neulindenau,Liste 12,15,3707,5966,3744
+72,Neulindenau,Liste 14,25,3707,5966,3744
+72,Neulindenau,Liste 15,2,3707,5966,3744
+72,Neulindenau,Liste 16,30,3707,5966,3744
+72,Neulindenau,Liste 17,16,3707,5966,3744
+72,Neulindenau,Liste 18,4,3707,5966,3744
+72,Neulindenau,Liste 19,8,3707,5966,3744
+72,Neulindenau,Liste 20,8,3707,5966,3744
+72,Neulindenau,Liste 21,1,3707,5966,3744
+72,Neulindenau,Liste 22,1,3707,5966,3744
+72,Neulindenau,Liste 23,0,3707,5966,3744
+72,Neulindenau,Liste 24,1,3707,5966,3744
+72,Neulindenau,Liste 25,5,3707,5966,3744
+72,Neulindenau,Liste 26,6,3707,5966,3744
+72,Neulindenau,Liste 27,14,3707,5966,3744
+72,Neulindenau,Liste 29,1,3707,5966,3744
+72,Neulindenau,Liste 30,3,3707,5966,3744
+72,Neulindenau,Liste 31,32,3707,5966,3744
+72,Neulindenau,Liste 32,7,3707,5966,3744
+72,Neulindenau,Liste 33,21,3707,5966,3744
+72,Neulindenau,Liste 34,4,3707,5966,3744
+72,Neulindenau,Liste 7,44,3707,5966,3744
+72,Neulindenau,Liste 9,85,3707,5966,3744
+72,Neulindenau,NPD,5,3707,5966,3744
+72,Neulindenau,SPD,325,3707,5966,3744
+72,Neulindenau,Volt,106,3707,5966,3744
+73,Leutzsch,AfD,1082,5683,8448,5723
+73,Leutzsch,BSW,663,5683,8448,5723
+73,Leutzsch,CDU,1013,5683,8448,5723
+73,Leutzsch,DIE LINKE,514,5683,8448,5723
+73,Leutzsch,Die PARTEI,279,5683,8448,5723
+73,Leutzsch,FDP,194,5683,8448,5723
+73,Leutzsch,GRÜNE,650,5683,8448,5723
+73,Leutzsch,Liste 10,48,5683,8448,5723
+73,Leutzsch,Liste 12,20,5683,8448,5723
+73,Leutzsch,Liste 14,43,5683,8448,5723
+73,Leutzsch,Liste 15,6,5683,8448,5723
+73,Leutzsch,Liste 16,39,5683,8448,5723
+73,Leutzsch,Liste 17,25,5683,8448,5723
+73,Leutzsch,Liste 18,10,5683,8448,5723
+73,Leutzsch,Liste 19,17,5683,8448,5723
+73,Leutzsch,Liste 20,12,5683,8448,5723
+73,Leutzsch,Liste 21,1,5683,8448,5723
+73,Leutzsch,Liste 22,2,5683,8448,5723
+73,Leutzsch,Liste 23,2,5683,8448,5723
+73,Leutzsch,Liste 24,0,5683,8448,5723
+73,Leutzsch,Liste 25,4,5683,8448,5723
+73,Leutzsch,Liste 26,17,5683,8448,5723
+73,Leutzsch,Liste 27,21,5683,8448,5723
+73,Leutzsch,Liste 29,5,5683,8448,5723
+73,Leutzsch,Liste 30,2,5683,8448,5723
+73,Leutzsch,Liste 31,35,5683,8448,5723
+73,Leutzsch,Liste 32,3,5683,8448,5723
+73,Leutzsch,Liste 33,45,5683,8448,5723
+73,Leutzsch,Liste 34,13,5683,8448,5723
+73,Leutzsch,Liste 7,69,5683,8448,5723
+73,Leutzsch,Liste 9,109,5683,8448,5723
+73,Leutzsch,NPD,5,5683,8448,5723
+73,Leutzsch,SPD,558,5683,8448,5723
+73,Leutzsch,Volt,177,5683,8448,5723
+74,Böhlitz-Ehrenberg,AfD,1551,5701,8326,5764
+74,Böhlitz-Ehrenberg,BSW,669,5701,8326,5764
+74,Böhlitz-Ehrenberg,CDU,1384,5701,8326,5764
+74,Böhlitz-Ehrenberg,DIE LINKE,303,5701,8326,5764
+74,Böhlitz-Ehrenberg,Die PARTEI,148,5701,8326,5764
+74,Böhlitz-Ehrenberg,FDP,154,5701,8326,5764
+74,Böhlitz-Ehrenberg,GRÜNE,370,5701,8326,5764
+74,Böhlitz-Ehrenberg,Liste 10,63,5701,8326,5764
+74,Böhlitz-Ehrenberg,Liste 12,17,5701,8326,5764
+74,Böhlitz-Ehrenberg,Liste 14,26,5701,8326,5764
+74,Böhlitz-Ehrenberg,Liste 15,0,5701,8326,5764
+74,Böhlitz-Ehrenberg,Liste 16,12,5701,8326,5764
+74,Böhlitz-Ehrenberg,Liste 17,39,5701,8326,5764
+74,Böhlitz-Ehrenberg,Liste 18,10,5701,8326,5764
+74,Böhlitz-Ehrenberg,Liste 19,11,5701,8326,5764
+74,Böhlitz-Ehrenberg,Liste 20,8,5701,8326,5764
+74,Böhlitz-Ehrenberg,Liste 21,5,5701,8326,5764
+74,Böhlitz-Ehrenberg,Liste 22,3,5701,8326,5764
+74,Böhlitz-Ehrenberg,Liste 23,2,5701,8326,5764
+74,Böhlitz-Ehrenberg,Liste 24,0,5701,8326,5764
+74,Böhlitz-Ehrenberg,Liste 25,8,5701,8326,5764
+74,Böhlitz-Ehrenberg,Liste 26,11,5701,8326,5764
+74,Böhlitz-Ehrenberg,Liste 27,19,5701,8326,5764
+74,Böhlitz-Ehrenberg,Liste 29,2,5701,8326,5764
+74,Böhlitz-Ehrenberg,Liste 30,8,5701,8326,5764
+74,Böhlitz-Ehrenberg,Liste 31,32,5701,8326,5764
+74,Böhlitz-Ehrenberg,Liste 32,5,5701,8326,5764
+74,Böhlitz-Ehrenberg,Liste 33,43,5701,8326,5764
+74,Böhlitz-Ehrenberg,Liste 34,17,5701,8326,5764
+74,Böhlitz-Ehrenberg,Liste 7,90,5701,8326,5764
+74,Böhlitz-Ehrenberg,Liste 9,85,5701,8326,5764
+74,Böhlitz-Ehrenberg,NPD,13,5701,8326,5764
+74,Böhlitz-Ehrenberg,SPD,522,5701,8326,5764
+74,Böhlitz-Ehrenberg,Volt,71,5701,8326,5764
+75,Burghausen-Rückmarsdorf,AfD,879,3041,4035,3071
+75,Burghausen-Rückmarsdorf,BSW,372,3041,4035,3071
+75,Burghausen-Rückmarsdorf,CDU,871,3041,4035,3071
+75,Burghausen-Rückmarsdorf,DIE LINKE,125,3041,4035,3071
+75,Burghausen-Rückmarsdorf,Die PARTEI,54,3041,4035,3071
+75,Burghausen-Rückmarsdorf,FDP,102,3041,4035,3071
+75,Burghausen-Rückmarsdorf,GRÜNE,143,3041,4035,3071
+75,Burghausen-Rückmarsdorf,Liste 10,33,3041,4035,3071
+75,Burghausen-Rückmarsdorf,Liste 12,5,3041,4035,3071
+75,Burghausen-Rückmarsdorf,Liste 14,5,3041,4035,3071
+75,Burghausen-Rückmarsdorf,Liste 15,0,3041,4035,3071
+75,Burghausen-Rückmarsdorf,Liste 16,1,3041,4035,3071
+75,Burghausen-Rückmarsdorf,Liste 17,15,3041,4035,3071
+75,Burghausen-Rückmarsdorf,Liste 18,2,3041,4035,3071
+75,Burghausen-Rückmarsdorf,Liste 19,5,3041,4035,3071
+75,Burghausen-Rückmarsdorf,Liste 20,7,3041,4035,3071
+75,Burghausen-Rückmarsdorf,Liste 21,3,3041,4035,3071
+75,Burghausen-Rückmarsdorf,Liste 22,1,3041,4035,3071
+75,Burghausen-Rückmarsdorf,Liste 23,2,3041,4035,3071
+75,Burghausen-Rückmarsdorf,Liste 24,0,3041,4035,3071
+75,Burghausen-Rückmarsdorf,Liste 25,0,3041,4035,3071
+75,Burghausen-Rückmarsdorf,Liste 26,3,3041,4035,3071
+75,Burghausen-Rückmarsdorf,Liste 27,18,3041,4035,3071
+75,Burghausen-Rückmarsdorf,Liste 29,0,3041,4035,3071
+75,Burghausen-Rückmarsdorf,Liste 30,3,3041,4035,3071
+75,Burghausen-Rückmarsdorf,Liste 31,10,3041,4035,3071
+75,Burghausen-Rückmarsdorf,Liste 32,6,3041,4035,3071
+75,Burghausen-Rückmarsdorf,Liste 33,19,3041,4035,3071
+75,Burghausen-Rückmarsdorf,Liste 34,3,3041,4035,3071
+75,Burghausen-Rückmarsdorf,Liste 7,33,3041,4035,3071
+75,Burghausen-Rückmarsdorf,Liste 9,39,3041,4035,3071
+75,Burghausen-Rückmarsdorf,NPD,6,3041,4035,3071
+75,Burghausen-Rückmarsdorf,SPD,252,3041,4035,3071
+75,Burghausen-Rückmarsdorf,Volt,24,3041,4035,3071
+80,Möckern,AfD,1813,7701,12377,7763
+80,Möckern,BSW,934,7701,12377,7763
+80,Möckern,CDU,1423,7701,12377,7763
+80,Möckern,DIE LINKE,585,7701,12377,7763
+80,Möckern,Die PARTEI,266,7701,12377,7763
+80,Möckern,FDP,246,7701,12377,7763
+80,Möckern,GRÜNE,682,7701,12377,7763
+80,Möckern,Liste 10,88,7701,12377,7763
+80,Möckern,Liste 12,39,7701,12377,7763
+80,Möckern,Liste 14,54,7701,12377,7763
+80,Möckern,Liste 15,10,7701,12377,7763
+80,Möckern,Liste 16,31,7701,12377,7763
+80,Möckern,Liste 17,39,7701,12377,7763
+80,Möckern,Liste 18,12,7701,12377,7763
+80,Möckern,Liste 19,23,7701,12377,7763
+80,Möckern,Liste 20,21,7701,12377,7763
+80,Möckern,Liste 21,7,7701,12377,7763
+80,Möckern,Liste 22,3,7701,12377,7763
+80,Möckern,Liste 23,5,7701,12377,7763
+80,Möckern,Liste 24,4,7701,12377,7763
+80,Möckern,Liste 25,3,7701,12377,7763
+80,Möckern,Liste 26,14,7701,12377,7763
+80,Möckern,Liste 27,43,7701,12377,7763
+80,Möckern,Liste 29,4,7701,12377,7763
+80,Möckern,Liste 30,6,7701,12377,7763
+80,Möckern,Liste 31,29,7701,12377,7763
+80,Möckern,Liste 32,18,7701,12377,7763
+80,Möckern,Liste 33,59,7701,12377,7763
+80,Möckern,Liste 34,15,7701,12377,7763
+80,Möckern,Liste 7,77,7701,12377,7763
+80,Möckern,Liste 9,167,7701,12377,7763
+80,Möckern,NPD,14,7701,12377,7763
+80,Möckern,SPD,752,7701,12377,7763
+80,Möckern,Volt,215,7701,12377,7763
+81,Wahren,AfD,977,3623,5618,3655
+81,Wahren,BSW,446,3623,5618,3655
+81,Wahren,CDU,735,3623,5618,3655
+81,Wahren,DIE LINKE,221,3623,5618,3655
+81,Wahren,Die PARTEI,105,3623,5618,3655
+81,Wahren,FDP,108,3623,5618,3655
+81,Wahren,GRÜNE,282,3623,5618,3655
+81,Wahren,Liste 10,30,3623,5618,3655
+81,Wahren,Liste 12,13,3623,5618,3655
+81,Wahren,Liste 14,22,3623,5618,3655
+81,Wahren,Liste 15,3,3623,5618,3655
+81,Wahren,Liste 16,7,3623,5618,3655
+81,Wahren,Liste 17,16,3623,5618,3655
+81,Wahren,Liste 18,10,3623,5618,3655
+81,Wahren,Liste 19,10,3623,5618,3655
+81,Wahren,Liste 20,7,3623,5618,3655
+81,Wahren,Liste 21,1,3623,5618,3655
+81,Wahren,Liste 22,1,3623,5618,3655
+81,Wahren,Liste 23,1,3623,5618,3655
+81,Wahren,Liste 24,0,3623,5618,3655
+81,Wahren,Liste 25,3,3623,5618,3655
+81,Wahren,Liste 26,8,3623,5618,3655
+81,Wahren,Liste 27,29,3623,5618,3655
+81,Wahren,Liste 29,1,3623,5618,3655
+81,Wahren,Liste 30,5,3623,5618,3655
+81,Wahren,Liste 31,11,3623,5618,3655
+81,Wahren,Liste 32,1,3623,5618,3655
+81,Wahren,Liste 33,29,3623,5618,3655
+81,Wahren,Liste 34,5,3623,5618,3655
+81,Wahren,Liste 7,49,3623,5618,3655
+81,Wahren,Liste 9,69,3623,5618,3655
+81,Wahren,NPD,8,3623,5618,3655
+81,Wahren,SPD,339,3623,5618,3655
+81,Wahren,Volt,71,3623,5618,3655
+82,Lützschena-Stahmeln,AfD,722,2648,3475,2683
+82,Lützschena-Stahmeln,BSW,348,2648,3475,2683
+82,Lützschena-Stahmeln,CDU,682,2648,3475,2683
+82,Lützschena-Stahmeln,DIE LINKE,116,2648,3475,2683
+82,Lützschena-Stahmeln,Die PARTEI,57,2648,3475,2683
+82,Lützschena-Stahmeln,FDP,104,2648,3475,2683
+82,Lützschena-Stahmeln,GRÜNE,169,2648,3475,2683
+82,Lützschena-Stahmeln,Liste 10,20,2648,3475,2683
+82,Lützschena-Stahmeln,Liste 12,4,2648,3475,2683
+82,Lützschena-Stahmeln,Liste 14,10,2648,3475,2683
+82,Lützschena-Stahmeln,Liste 15,1,2648,3475,2683
+82,Lützschena-Stahmeln,Liste 16,1,2648,3475,2683
+82,Lützschena-Stahmeln,Liste 17,16,2648,3475,2683
+82,Lützschena-Stahmeln,Liste 18,1,2648,3475,2683
+82,Lützschena-Stahmeln,Liste 19,6,2648,3475,2683
+82,Lützschena-Stahmeln,Liste 20,3,2648,3475,2683
+82,Lützschena-Stahmeln,Liste 21,2,2648,3475,2683
+82,Lützschena-Stahmeln,Liste 22,0,2648,3475,2683
+82,Lützschena-Stahmeln,Liste 23,1,2648,3475,2683
+82,Lützschena-Stahmeln,Liste 24,0,2648,3475,2683
+82,Lützschena-Stahmeln,Liste 25,1,2648,3475,2683
+82,Lützschena-Stahmeln,Liste 26,6,2648,3475,2683
+82,Lützschena-Stahmeln,Liste 27,10,2648,3475,2683
+82,Lützschena-Stahmeln,Liste 29,0,2648,3475,2683
+82,Lützschena-Stahmeln,Liste 30,1,2648,3475,2683
+82,Lützschena-Stahmeln,Liste 31,5,2648,3475,2683
+82,Lützschena-Stahmeln,Liste 32,1,2648,3475,2683
+82,Lützschena-Stahmeln,Liste 33,13,2648,3475,2683
+82,Lützschena-Stahmeln,Liste 34,6,2648,3475,2683
+82,Lützschena-Stahmeln,Liste 7,34,2648,3475,2683
+82,Lützschena-Stahmeln,Liste 9,35,2648,3475,2683
+82,Lützschena-Stahmeln,NPD,5,2648,3475,2683
+82,Lützschena-Stahmeln,SPD,236,2648,3475,2683
+82,Lützschena-Stahmeln,Volt,32,2648,3475,2683
+83,Lindenthal,AfD,1235,3690,5469,3729
+83,Lindenthal,BSW,455,3690,5469,3729
+83,Lindenthal,CDU,839,3690,5469,3729
+83,Lindenthal,DIE LINKE,155,3690,5469,3729
+83,Lindenthal,Die PARTEI,60,3690,5469,3729
+83,Lindenthal,FDP,103,3690,5469,3729
+83,Lindenthal,GRÜNE,199,3690,5469,3729
+83,Lindenthal,Liste 10,29,3690,5469,3729
+83,Lindenthal,Liste 12,15,3690,5469,3729
+83,Lindenthal,Liste 14,15,3690,5469,3729
+83,Lindenthal,Liste 15,2,3690,5469,3729
+83,Lindenthal,Liste 16,3,3690,5469,3729
+83,Lindenthal,Liste 17,20,3690,5469,3729
+83,Lindenthal,Liste 18,8,3690,5469,3729
+83,Lindenthal,Liste 19,7,3690,5469,3729
+83,Lindenthal,Liste 20,5,3690,5469,3729
+83,Lindenthal,Liste 21,0,3690,5469,3729
+83,Lindenthal,Liste 22,2,3690,5469,3729
+83,Lindenthal,Liste 23,2,3690,5469,3729
+83,Lindenthal,Liste 24,1,3690,5469,3729
+83,Lindenthal,Liste 25,4,3690,5469,3729
+83,Lindenthal,Liste 26,10,3690,5469,3729
+83,Lindenthal,Liste 27,18,3690,5469,3729
+83,Lindenthal,Liste 29,0,3690,5469,3729
+83,Lindenthal,Liste 30,3,3690,5469,3729
+83,Lindenthal,Liste 31,7,3690,5469,3729
+83,Lindenthal,Liste 32,5,3690,5469,3729
+83,Lindenthal,Liste 33,18,3690,5469,3729
+83,Lindenthal,Liste 34,8,3690,5469,3729
+83,Lindenthal,Liste 7,47,3690,5469,3729
+83,Lindenthal,Liste 9,82,3690,5469,3729
+83,Lindenthal,NPD,7,3690,5469,3729
+83,Lindenthal,SPD,266,3690,5469,3729
+83,Lindenthal,Volt,60,3690,5469,3729
+90,Gohlis-Süd,AfD,1373,10249,13978,10294
+90,Gohlis-Süd,BSW,977,10249,13978,10294
+90,Gohlis-Süd,CDU,1738,10249,13978,10294
+90,Gohlis-Süd,DIE LINKE,796,10249,13978,10294
+90,Gohlis-Süd,Die PARTEI,465,10249,13978,10294
+90,Gohlis-Süd,FDP,474,10249,13978,10294
+90,Gohlis-Süd,GRÜNE,1778,10249,13978,10294
+90,Gohlis-Süd,Liste 10,72,10249,13978,10294
+90,Gohlis-Süd,Liste 12,60,10249,13978,10294
+90,Gohlis-Süd,Liste 14,76,10249,13978,10294
+90,Gohlis-Süd,Liste 15,6,10249,13978,10294
+90,Gohlis-Süd,Liste 16,45,10249,13978,10294
+90,Gohlis-Süd,Liste 17,38,10249,13978,10294
+90,Gohlis-Süd,Liste 18,15,10249,13978,10294
+90,Gohlis-Süd,Liste 19,43,10249,13978,10294
+90,Gohlis-Süd,Liste 20,18,10249,13978,10294
+90,Gohlis-Süd,Liste 21,7,10249,13978,10294
+90,Gohlis-Süd,Liste 22,8,10249,13978,10294
+90,Gohlis-Süd,Liste 23,8,10249,13978,10294
+90,Gohlis-Süd,Liste 24,3,10249,13978,10294
+90,Gohlis-Süd,Liste 25,4,10249,13978,10294
+90,Gohlis-Süd,Liste 26,40,10249,13978,10294
+90,Gohlis-Süd,Liste 27,47,10249,13978,10294
+90,Gohlis-Süd,Liste 29,1,10249,13978,10294
+90,Gohlis-Süd,Liste 30,13,10249,13978,10294
+90,Gohlis-Süd,Liste 31,92,10249,13978,10294
+90,Gohlis-Süd,Liste 32,18,10249,13978,10294
+90,Gohlis-Süd,Liste 33,88,10249,13978,10294
+90,Gohlis-Süd,Liste 34,30,10249,13978,10294
+90,Gohlis-Süd,Liste 7,116,10249,13978,10294
+90,Gohlis-Süd,Liste 9,185,10249,13978,10294
+90,Gohlis-Süd,NPD,7,10249,13978,10294
+90,Gohlis-Süd,SPD,1135,10249,13978,10294
+90,Gohlis-Süd,Volt,473,10249,13978,10294
+91,Gohlis-Mitte,AfD,1446,10034,13721,10092
+91,Gohlis-Mitte,BSW,1101,10034,13721,10092
+91,Gohlis-Mitte,CDU,1714,10034,13721,10092
+91,Gohlis-Mitte,DIE LINKE,776,10034,13721,10092
+91,Gohlis-Mitte,Die PARTEI,420,10034,13721,10092
+91,Gohlis-Mitte,FDP,425,10034,13721,10092
+91,Gohlis-Mitte,GRÜNE,1480,10034,13721,10092
+91,Gohlis-Mitte,Liste 10,84,10034,13721,10092
+91,Gohlis-Mitte,Liste 12,54,10034,13721,10092
+91,Gohlis-Mitte,Liste 14,77,10034,13721,10092
+91,Gohlis-Mitte,Liste 15,15,10034,13721,10092
+91,Gohlis-Mitte,Liste 16,43,10034,13721,10092
+91,Gohlis-Mitte,Liste 17,37,10034,13721,10092
+91,Gohlis-Mitte,Liste 18,21,10034,13721,10092
+91,Gohlis-Mitte,Liste 19,41,10034,13721,10092
+91,Gohlis-Mitte,Liste 20,20,10034,13721,10092
+91,Gohlis-Mitte,Liste 21,6,10034,13721,10092
+91,Gohlis-Mitte,Liste 22,9,10034,13721,10092
+91,Gohlis-Mitte,Liste 23,5,10034,13721,10092
+91,Gohlis-Mitte,Liste 24,0,10034,13721,10092
+91,Gohlis-Mitte,Liste 25,5,10034,13721,10092
+91,Gohlis-Mitte,Liste 26,30,10034,13721,10092
+91,Gohlis-Mitte,Liste 27,44,10034,13721,10092
+91,Gohlis-Mitte,Liste 29,3,10034,13721,10092
+91,Gohlis-Mitte,Liste 30,10,10034,13721,10092
+91,Gohlis-Mitte,Liste 31,72,10034,13721,10092
+91,Gohlis-Mitte,Liste 32,15,10034,13721,10092
+91,Gohlis-Mitte,Liste 33,108,10034,13721,10092
+91,Gohlis-Mitte,Liste 34,26,10034,13721,10092
+91,Gohlis-Mitte,Liste 7,167,10034,13721,10092
+91,Gohlis-Mitte,Liste 9,180,10034,13721,10092
+91,Gohlis-Mitte,NPD,12,10034,13721,10092
+91,Gohlis-Mitte,SPD,1137,10034,13721,10092
+91,Gohlis-Mitte,Volt,451,10034,13721,10092
+92,Gohlis-Nord,AfD,1109,4610,7384,4666
+92,Gohlis-Nord,BSW,667,4610,7384,4666
+92,Gohlis-Nord,CDU,831,4610,7384,4666
+92,Gohlis-Nord,DIE LINKE,349,4610,7384,4666
+92,Gohlis-Nord,Die PARTEI,124,4610,7384,4666
+92,Gohlis-Nord,FDP,126,4610,7384,4666
+92,Gohlis-Nord,GRÜNE,336,4610,7384,4666
+92,Gohlis-Nord,Liste 10,45,4610,7384,4666
+92,Gohlis-Nord,Liste 12,20,4610,7384,4666
+92,Gohlis-Nord,Liste 14,20,4610,7384,4666
+92,Gohlis-Nord,Liste 15,1,4610,7384,4666
+92,Gohlis-Nord,Liste 16,9,4610,7384,4666
+92,Gohlis-Nord,Liste 17,24,4610,7384,4666
+92,Gohlis-Nord,Liste 18,7,4610,7384,4666
+92,Gohlis-Nord,Liste 19,8,4610,7384,4666
+92,Gohlis-Nord,Liste 20,9,4610,7384,4666
+92,Gohlis-Nord,Liste 21,2,4610,7384,4666
+92,Gohlis-Nord,Liste 22,7,4610,7384,4666
+92,Gohlis-Nord,Liste 23,1,4610,7384,4666
+92,Gohlis-Nord,Liste 24,1,4610,7384,4666
+92,Gohlis-Nord,Liste 25,5,4610,7384,4666
+92,Gohlis-Nord,Liste 26,7,4610,7384,4666
+92,Gohlis-Nord,Liste 27,22,4610,7384,4666
+92,Gohlis-Nord,Liste 29,6,4610,7384,4666
+92,Gohlis-Nord,Liste 30,0,4610,7384,4666
+92,Gohlis-Nord,Liste 31,19,4610,7384,4666
+92,Gohlis-Nord,Liste 32,4,4610,7384,4666
+92,Gohlis-Nord,Liste 33,39,4610,7384,4666
+92,Gohlis-Nord,Liste 34,7,4610,7384,4666
+92,Gohlis-Nord,Liste 7,69,4610,7384,4666
+92,Gohlis-Nord,Liste 9,98,4610,7384,4666
+92,Gohlis-Nord,NPD,6,4610,7384,4666
+92,Gohlis-Nord,SPD,522,4610,7384,4666
+92,Gohlis-Nord,Volt,110,4610,7384,4666
+93,Eutritzsch,AfD,1556,7388,11349,7446
+93,Eutritzsch,BSW,847,7388,11349,7446
+93,Eutritzsch,CDU,1297,7388,11349,7446
+93,Eutritzsch,DIE LINKE,560,7388,11349,7446
+93,Eutritzsch,Die PARTEI,298,7388,11349,7446
+93,Eutritzsch,FDP,254,7388,11349,7446
+93,Eutritzsch,GRÜNE,758,7388,11349,7446
+93,Eutritzsch,Liste 10,60,7388,11349,7446
+93,Eutritzsch,Liste 12,46,7388,11349,7446
+93,Eutritzsch,Liste 14,58,7388,11349,7446
+93,Eutritzsch,Liste 15,9,7388,11349,7446
+93,Eutritzsch,Liste 16,38,7388,11349,7446
+93,Eutritzsch,Liste 17,31,7388,11349,7446
+93,Eutritzsch,Liste 18,26,7388,11349,7446
+93,Eutritzsch,Liste 19,31,7388,11349,7446
+93,Eutritzsch,Liste 20,21,7388,11349,7446
+93,Eutritzsch,Liste 21,2,7388,11349,7446
+93,Eutritzsch,Liste 22,4,7388,11349,7446
+93,Eutritzsch,Liste 23,7,7388,11349,7446
+93,Eutritzsch,Liste 24,2,7388,11349,7446
+93,Eutritzsch,Liste 25,5,7388,11349,7446
+93,Eutritzsch,Liste 26,21,7388,11349,7446
+93,Eutritzsch,Liste 27,31,7388,11349,7446
+93,Eutritzsch,Liste 29,6,7388,11349,7446
+93,Eutritzsch,Liste 30,8,7388,11349,7446
+93,Eutritzsch,Liste 31,50,7388,11349,7446
+93,Eutritzsch,Liste 32,12,7388,11349,7446
+93,Eutritzsch,Liste 33,95,7388,11349,7446
+93,Eutritzsch,Liste 34,23,7388,11349,7446
+93,Eutritzsch,Liste 7,95,7388,11349,7446
+93,Eutritzsch,Liste 9,155,7388,11349,7446
+93,Eutritzsch,NPD,10,7388,11349,7446
+93,Eutritzsch,SPD,722,7388,11349,7446
+93,Eutritzsch,Volt,250,7388,11349,7446
+94,Seehausen,AfD,474,1572,2151,1591
+94,Seehausen,BSW,200,1572,2151,1591
+94,Seehausen,CDU,413,1572,2151,1591
+94,Seehausen,DIE LINKE,57,1572,2151,1591
+94,Seehausen,Die PARTEI,36,1572,2151,1591
+94,Seehausen,FDP,55,1572,2151,1591
+94,Seehausen,GRÜNE,71,1572,2151,1591
+94,Seehausen,Liste 10,15,1572,2151,1591
+94,Seehausen,Liste 12,5,1572,2151,1591
+94,Seehausen,Liste 14,2,1572,2151,1591
+94,Seehausen,Liste 15,0,1572,2151,1591
+94,Seehausen,Liste 16,1,1572,2151,1591
+94,Seehausen,Liste 17,9,1572,2151,1591
+94,Seehausen,Liste 18,1,1572,2151,1591
+94,Seehausen,Liste 19,4,1572,2151,1591
+94,Seehausen,Liste 20,2,1572,2151,1591
+94,Seehausen,Liste 21,1,1572,2151,1591
+94,Seehausen,Liste 22,0,1572,2151,1591
+94,Seehausen,Liste 23,0,1572,2151,1591
+94,Seehausen,Liste 24,0,1572,2151,1591
+94,Seehausen,Liste 25,0,1572,2151,1591
+94,Seehausen,Liste 26,2,1572,2151,1591
+94,Seehausen,Liste 27,9,1572,2151,1591
+94,Seehausen,Liste 29,0,1572,2151,1591
+94,Seehausen,Liste 30,3,1572,2151,1591
+94,Seehausen,Liste 31,6,1572,2151,1591
+94,Seehausen,Liste 32,0,1572,2151,1591
+94,Seehausen,Liste 33,11,1572,2151,1591
+94,Seehausen,Liste 34,1,1572,2151,1591
+94,Seehausen,Liste 7,30,1572,2151,1591
+94,Seehausen,Liste 9,31,1572,2151,1591
+94,Seehausen,NPD,3,1572,2151,1591
+94,Seehausen,SPD,112,1572,2151,1591
+94,Seehausen,Volt,18,1572,2151,1591
+95,Wiederitzsch,AfD,1381,5297,7401,5345
+95,Wiederitzsch,BSW,674,5297,7401,5345
+95,Wiederitzsch,CDU,1367,5297,7401,5345
+95,Wiederitzsch,DIE LINKE,239,5297,7401,5345
+95,Wiederitzsch,Die PARTEI,126,5297,7401,5345
+95,Wiederitzsch,FDP,197,5297,7401,5345
+95,Wiederitzsch,GRÜNE,373,5297,7401,5345
+95,Wiederitzsch,Liste 10,51,5297,7401,5345
+95,Wiederitzsch,Liste 12,21,5297,7401,5345
+95,Wiederitzsch,Liste 14,17,5297,7401,5345
+95,Wiederitzsch,Liste 15,3,5297,7401,5345
+95,Wiederitzsch,Liste 16,10,5297,7401,5345
+95,Wiederitzsch,Liste 17,26,5297,7401,5345
+95,Wiederitzsch,Liste 18,12,5297,7401,5345
+95,Wiederitzsch,Liste 19,9,5297,7401,5345
+95,Wiederitzsch,Liste 20,15,5297,7401,5345
+95,Wiederitzsch,Liste 21,1,5297,7401,5345
+95,Wiederitzsch,Liste 22,1,5297,7401,5345
+95,Wiederitzsch,Liste 23,2,5297,7401,5345
+95,Wiederitzsch,Liste 24,1,5297,7401,5345
+95,Wiederitzsch,Liste 25,7,5297,7401,5345
+95,Wiederitzsch,Liste 26,12,5297,7401,5345
+95,Wiederitzsch,Liste 27,50,5297,7401,5345
+95,Wiederitzsch,Liste 29,1,5297,7401,5345
+95,Wiederitzsch,Liste 30,2,5297,7401,5345
+95,Wiederitzsch,Liste 31,9,5297,7401,5345
+95,Wiederitzsch,Liste 32,6,5297,7401,5345
+95,Wiederitzsch,Liste 33,31,5297,7401,5345
+95,Wiederitzsch,Liste 34,7,5297,7401,5345
+95,Wiederitzsch,Liste 7,73,5297,7401,5345
+95,Wiederitzsch,Liste 9,72,5297,7401,5345
+95,Wiederitzsch,NPD,2,5297,7401,5345
+95,Wiederitzsch,SPD,424,5297,7401,5345
+95,Wiederitzsch,Volt,75,5297,7401,5345
