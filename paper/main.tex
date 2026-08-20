@@ -43,17 +43,18 @@ hundred curated indicator definitions. We report a taxonomy of the frictions
 responsible, including two that fail silently: 56 of 300 spatial metric names
 occur in more than one dataset with different base populations, and files mix
 administrative levels without marking them, which misplaced 13{,}862 rows in our
-own ingestion. A case study over Leipzig's 63 Ortsteile finds electoral turnout
-falling sharply with single-parent share and unemployment, and shows that
-re-aggregating the identical votes into 10 districts reverses the sign of a
-party-level correlation and turns a null result into a significant one. We argue
+own ingestion. A case study over Leipzig's 63 districts pairs 2023 housing,
+rent and income indicators: average residential floor area rises strongly with
+household income, while reported rents and floor area fall with welfare receipt.
+Recomputing one housing--social pairing at district scale changes the coefficient
+and the evidential force of the result. We argue
 that publication is not transparency: the interpretive layer between them has a
 cost, and whoever can pay it decides what is transparent in practice.
 \end{abstract}
 
 \begin{IEEEkeywords}
 open government data, urban dashboards, spatial aggregation, modifiable areal
-unit problem, critical data studies
+unit problem, urban housing, critical data studies
 \end{IEEEkeywords}
 
 \begin{flushright}
@@ -98,11 +99,10 @@ data, each quantified against the full catalogue, including two classes that
 produce silently wrong results rather than visible failures: metric names that
 are not unique, and administrative levels mixed within a file without being
 marked.
-\item A worked spatial case study over Leipzig's 63 Ortsteile, reported together
+\item A worked spatial case study over Leipzig's 63 districts, reported together
 with the methodological guardrails it requires --- and with a demonstration, on
-the city's own published election results, that re-aggregating the identical
-data into 10 districts reverses the sign of a party-level correlation and turns
-a null result into a significant one.
+the city's own housing and social indicators, that re-aggregating the analysis
+to 10 districts changes what a correlation appears to support.
 \item An argument, evidenced by our own constraints rather than asserted, that
 the interpretive layer between publication and use has a cost, that the cost is
 unevenly borne, and that whoever bears it decides what is transparent in
@@ -158,7 +158,8 @@ By the ordinary standards of open government data, Leipzig's portal is a good
 one. It runs on CKAN, exposes DCAT metadata, and publishes 398 datasets from 37
 municipal offices across 13 thematic groups. Resources arrive in machine-readable
 formats, some are refreshed daily, the catalogue reaches from the tree cadastre
-to election results, and the listed contacts answer. Nothing that follows is a
+to housing, social and mobility indicators, and the listed contacts answer.
+Nothing that follows is a
 complaint about a negligent administration. Every friction we describe is
 compatible with every open-data requirement we are aware of, and that is
 precisely the point: compliance is measured at the moment of publication, not at
@@ -177,7 +178,7 @@ measured. Two deserve emphasis because they are the ones that produced silent
 errors rather than loud ones.
 
 \emph{Metric names are not unique.} A metric is identified in the published data
-by its name alone, but 56 of the 300 Ortsteil-level metric names we loaded occur
+by its name alone, but 56 of the 300 district-level metric names we loaded occur
 in more than one dataset. The name \texttt{Ausländer} (``foreign nationals'')
 appears in six, denominated once against residents, once against registered
 residents, once against employees, once against the unemployed, once against
@@ -187,11 +188,11 @@ distinguishes them. The unit of identity is the pair (dataset, metric), and a
 consumer has to infer that.
 
 \emph{Administrative levels are mixed without being marked.} A single file
-routinely contains rows for Ortsteile, for the Stadtbezirke that contain them,
+routinely contains rows for districts, for the city districts that contain them,
 and for the city as a whole, with no column stating which level a row belongs to.
 The level has to be inferred from the area name, and the names do not support the
-inference: the Stadtbezirke \emph{Mitte}, \emph{Südost} and \emph{Nordwest} are
-each a substring of an unrelated Ortsteil name --- \emph{Grünau-Mitte},
+inference: the city districts \emph{Mitte}, \emph{Südost} and \emph{Nordwest} are
+each a substring of an unrelated district name --- \emph{Grünau-Mitte},
 \emph{Zentrum-Südost}, \emph{Zentrum-Nordwest}. Any name-similarity heuristic
 conflates them, and the affected rows then carry the population of a district
 under the code of a neighbourhood. In our own ingestion this misplaced 13{,}862
@@ -199,9 +200,9 @@ rows across 42 datasets; Section~\ref{sec:discussion} returns to what it took to
 notice.
 
 The same file structure makes even the city's population ambiguous. Summed over
-the 63 Ortsteile, Leipzig had 632{,}560 inhabitants in 2024; summed over the 10
-Stadtbezirke, the same 632{,}560; the file's own city row reads 632{,}562. Two
-residents are carried without an Ortsteil assignment and appear only in the
+the 63 districts, Leipzig had 632{,}560 inhabitants in 2024; summed over the 10
+city districts, the same 632{,}560; the file's own city row reads 632{,}562. Two
+residents are carried without an district assignment and appear only in the
 total. Even the population of a city depends on which row you read.
 
 \begin{table*}[t]
@@ -223,7 +224,7 @@ wide-by-year layouts (indicator $\times$ year/quarter/school-year) require
 melting before they can be stored &
 174 datasets initially loaded 0 rows \\[2pt]
 Spatial-reference heterogeneity &
-Ortsteil name, Ortsteil number, electoral district, coordinates, or no spatial
+district name, district number, electoral district, coordinates, or no spatial
 reference at all &
 no shared key across datasets \\[2pt]
 Temporal heterogeneity &
@@ -239,9 +240,9 @@ federal elections 2021 and 2025) &
 398 datasets overstate the number of distinct phenomena \\[2pt]
 \textbf{Metric-name collision} &
 \texttt{Ausländer} exists in six datasets with six different base populations &
-\textbf{56 of 300} Ortsteil metric names occur in $>$1 dataset \\[2pt]
+\textbf{56 of 300} district metric names occur in $>$1 dataset \\[2pt]
 \textbf{Unmarked administrative levels} &
-one file holds Ortsteile, Stadtbezirke and the city total with no level column;
+one file holds districts, city districts and the city total with no level column;
 the consumer must guess &
 \textbf{13{,}862 rows in 42 datasets} resolved to the wrong level \\
 \bottomrule
@@ -294,7 +295,7 @@ The single most consequential decision in the system is how a spatial reference
 becomes a key. Raw data name places inconsistently: \texttt{Zentrum-Südost},
 \texttt{Zentrum-Suedost}, \texttt{02}, \texttt{Schönef.-Abtnaundorf}. A resolver
 maps each raw key through an alias table onto a canonical code in a boundary
-table holding Leipzig's 63 Ortsteile, 10 Stadtbezirke and 819 electoral
+table holding Leipzig's 63 districts, 10 city districts and 819 electoral
 districts, trying exact alias, exact code and embedded code before falling back
 to fuzzy name matching. Every statistic that carries a spatial reference is
 joined on that canonical code, which is what makes a correlation between two
@@ -347,9 +348,9 @@ nightly run re-inserted a full snapshot until the loaders learned to sweep what 
 run did not touch. The smaller numbers are the correct ones.
 
 What survives as an analytical surface is narrower than 350 datasets suggests:
-341{,}945 records across 67 datasets and 300 metrics carry a resolved Ortsteil
+341{,}945 records across 67 datasets and 300 metrics carry a resolved district
 code, and five elections are stored at electoral-district level, four of them
-also aggregated to Ortsteile.
+also aggregated to districts.
 
 \begin{table}[t]
 \caption{Ingested corpus at two points nine weeks apart. The portal itself did
@@ -375,67 +376,78 @@ smaller figure is the correct one} \\
 \end{tabular}
 \end{table}
 
-\subsection{A worked case: participation and social structure}
-We pair the 2024 European election with three indicators built from summable
-counts and renormalised at each spatial level: registered unemployed per
-resident, foreign nationals per resident, and single-parent families per family
-with children. Election and indicators share a year and a spatial unit; the
-platform refuses pairings that do not.
+\subsection{A worked case: housing, rent and income}
+We pair 2023 indicators from four small-area statistical datasets: reported
+apartment rents, household and personal net income, residential floor area, and
+SGB-II welfare receipt. The platform only compares observations with the same
+year and the same spatial unit, and it keys every metric by both dataset and
+name; the labels \emph{Haushaltseinkommen} and \emph{Gesamtmiete} are otherwise
+too little context to be safe.
 
-The strongest relationships in the grid are not about party choice but about
-participation. Turnout falls as the single-parent share rises ($r=-0.765$,
-$R^2=0.585$, $n=63$; Fig.~\ref{fig:scatter}) and as unemployment rises
-($r=-0.703$). Turnout itself ranges from 51\,\% in Grünau-Nord to 83\,\% in
-Baalsdorf (Fig.~\ref{fig:choropleth}) --- a 32-point spread inside one city in one
-election. Among parties, the clearest signal is a mirror image: CDU vote share
-falls with unemployment ($r=-0.627$) where the Left party's rises ($r=+0.598$).
+The strongest relationship in this housing grid links average residential floor
+area per dwelling to household income ($r=+0.772$, $R^2=0.596$, $n=63$). Larger
+dwellings are concentrated in higher-income districts, from 51.9\,m$^2$ per
+dwelling in Zentrum to 110.7\,m$^2$ in Baalsdorf. Rent indicators show the same
+social gradient, but with survey missingness made visible by the smaller sample:
+the reported total rent metric rises with personal income ($r=+0.677$,
+$R^2=0.458$, $n=51$; Fig.~\ref{fig:scatter}) and falls with the SGB-II quote
+($r=-0.667$, $n=51$). The rent surface itself ranges from 8.08 in Gr\"unau-Ost
+to 12.60 in Zentrum, with missing districts left uncoloured in
+Fig.~\ref{fig:choropleth}.
 
-The pairing a citizen would most likely reach for is the one that fails. AfD
-share against unemployment yields $r=-0.114$ at $p=0.37$: no relationship at all
-across Leipzig's 63 Ortsteile.
+Two further pairings show why the dashboard must report the denominator and the
+sample size next to the coefficient. Wohneigentum rises with household income
+($r=+0.615$, $n=62$), while rent burden falls only moderately with household
+income ($r=-0.386$, $n=50$). A user who saw only the coefficients could mistake
+survey coverage, base populations and metric definitions for substantive urban
+structure. The point of the platform is to make the comparison possible without
+letting those caveats disappear.
 
 \subsection{The same data, zoned differently}
 \label{sec:maup}
-Leipzig's 63 Ortsteile nest into 10 Stadtbezirke, and the 2024 election is
-reported officially at both levels. Recomputing the identical pairing at the
-coarser level moves that null result to $r=+0.646$ at $p=0.04$ ---
-significant, positive, and opposite in sign (Fig.~\ref{fig:maup}). Ten of 21
-pairings reach $p<0.05$ over Ortsteile and seven over Stadtbezirke, but not the
-same seven; several reverse sign.
+Leipzig's 63 districts nest into 10 city districts, but not every published metric
+survives that move. The public API contains Stadtbezirk rows for rent, income
+and survey-based housing variables, yet those rows carry missing values in 2023;
+the platform therefore refuses a district-level rent--income correlation instead
+of silently manufacturing one. The housing--social pairing available at both
+levels is residential floor area per dwelling against the SGB-II quote:
+$r=-0.667$ over districts ($n=63$) and $r=-0.758$ over city districts ($n=10$;
+Fig.~\ref{fig:maup}).
 
 This is Openshaw's scale effect \cite{openshaw1984maup}, and it is the reason
 this paper is named after Mephistopheles' warning to the student that all theory
 is grey \cite{goethe1808faust}. Neither coefficient is the true one. At $n=10$ a
-single district can carry the fit, we apply no correction for testing 21
-pairings, and no aggregate correlation licenses any claim about individual voters
-\cite{robinson1950ecological}. The finding is not that the relationship reverses.
-It is that a competent analyst, working honestly from published municipal data,
-can obtain either result and has nothing in the data to tell them which zoning to
-choose.
+single district can carry the fit, the coarser unit suppresses within-district
+variation, and no aggregate correlation licenses any claim about individual
+households \cite{robinson1950ecological}. The finding is not that floor area
+causes income or welfare receipt. It is that a competent analyst, working
+honestly from published municipal data, must choose a zoning before the
+coefficient exists.
 
 \begin{figure}[t]
 \centering
 \includegraphics[width=\linewidth]{figures/fig2_choropleth.pdf}
-\caption{Voter turnout per Ortsteil in the 2024 European election. Turnout
-ranges from 51\% in Gr\"unau-Nord to 83\% in Baalsdorf.}
+\caption{Reported total rent metric per district in 2023. Survey missingness
+leaves 12 districts uncoloured; numeric values range from 8.08 in Gr\"unau-Ost
+to 12.60 in Zentrum.}
 \label{fig:choropleth}
 \end{figure}
 
 \begin{figure}[t]
 \centering
 \includegraphics[width=\linewidth]{figures/fig3_scatter.pdf}
-\caption{Turnout against the single-parent share of families across 63
-Ortsteile ($r = -0.765$, $R^2 = 0.585$).}
+\caption{Reported total rent metric against personal net income across 51
+districts with numeric 2023 survey values ($r=+0.677$, $R^2=0.458$).}
 \label{fig:scatter}
 \end{figure}
 
 \begin{figure*}[t]
 \centering
 \includegraphics[width=0.85\textwidth]{figures/fig4_maup.pdf}
-\caption{AfD vote share against registered unemployment, re-aggregated at
-two spatial scales (Ortsteil, $n=63$, vs.\ Stadtbezirk, $n=10$). Neither
-scale is the correct one, and the resulting $n=10$ coefficient must not be
-read as a finding.}
+\caption{Residential floor area per dwelling against the SGB-II quote at two
+spatial scales (district, $n=63$, vs.\ Stadtbezirk, $n=10$). Neither scale is
+the correct one, and the resulting $n=10$ coefficient must not be read as a
+more authoritative finding.}
 \label{fig:maup}
 \end{figure*}
 
@@ -462,7 +474,7 @@ it. Two computer science students with a semester barely did.
 Section~\ref{sec:frictions} described a source property: administrative levels mixed in one file
 with no column marking them. We were the consumer that guessed, and we guessed
 wrong. Our resolver's fuzzy fallback matched the Stadtbezirk \emph{Mitte} onto
-the Ortsteil \emph{Grünau-Mitte}, and two of its siblings likewise, putting
+the district \emph{Grünau-Mitte}, and two of its siblings likewise, putting
 13{,}862 rows across 42 datasets under the wrong spatial code and inflating
 Leipzig's 2024 population to 805{,}218.
 
@@ -517,12 +529,13 @@ first.
 Our platform is authenticated, so it does not itself demonstrate the public
 access it argues for. Forty-eight of the 398 datasets still carry no data, mostly
 statistical layouts our melt rules do not yet recognise. The case study covers
-one election in one city: $n=63$ at the finer scale and $n=10$ at the coarser,
-with no correction for multiple comparisons and no causal claim of any kind. The
-before-and-after coverage figures come from two audits of our own database rather
-than from an independently reproducible baseline. Accessibility of the interface
-is unaddressed. And the whole system depends on the portal continuing to publish
-in the shapes we learned.
+one city and one reporting year; depending on the pairing, $n$ ranges from 49 to
+63 districts, and the district-scale comparison has only $n=10$. Several rent
+and income variables are survey estimates with missing small-area values, and no
+correlation is a causal claim. The before-and-after coverage figures come from
+two audits of our own database rather than from an independently reproducible
+baseline. Accessibility of the interface is unaddressed. And the whole system
+depends on the portal continuing to publish in the shapes we learned.
 
 The obvious extension is a second city, which would separate what is true of
 municipal open data from what is true of Leipzig. Beyond that, the registries in
@@ -537,12 +550,11 @@ of. Making them comparable took five hand-maintained registries, several hundred
 curated indicator definitions, and a spatial resolver whose failure we did not
 detect until a computed population disagreed with a known one. Between those two
 states, the portal did not change; the labour did. That labour is the real
-subject of the transparency claim. Our case study finds turnout in Leipzig's
-Ortsteile falling sharply with the single-parent share and with unemployment,
-and finds the same votes yielding opposite conclusions about party support
-depending only on how the city is divided. Both findings are available to any
-citizen who downloads the data. Neither is available to a citizen who only
-downloads it.
+subject of the transparency claim. Our case study finds Leipzig's housing
+surface stratified by income and welfare receipt, and finds the same
+housing--social relationship changing strength when the city is divided into
+larger districts. Both findings are available to any citizen who downloads the
+data. Neither is available to a citizen who only downloads it.
 
 \bibliographystyle{IEEEtran}
 \bibliography{refs}

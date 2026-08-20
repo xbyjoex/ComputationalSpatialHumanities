@@ -2,7 +2,7 @@ PY := .venv/bin/python
 
 .PHONY: all analysis figures paper test clean
 
-all: analysis figures paper
+all: figures paper
 
 analysis:
 	./analysis/extract.sh
