@@ -48,7 +48,7 @@ rent and income indicators: average residential floor area rises strongly with
 household income, while reported rents and floor area fall with welfare receipt.
 Recomputing one housing--social pairing at district scale changes the coefficient
 and the evidential force of the result. We argue
-that publication is not transparency: the interpretive layer between them has a
+that the publication is not transparency: the interpretive layer between them has a
 cost, and whoever can pay it decides what is transparent in practice.
 \end{abstract}
 
@@ -77,22 +77,22 @@ We tried to use all of them. This paper reports what stood between the published
 files and a question anyone could answer with them, and it argues that the
 distance is not an implementation detail but the substance of the transparency
 claim. Publication and usability are separate achievements, purchased
-separately. Only the first is what open-data policy measures, and only the second
+separately. Only the first is what open-data policy measures, and the second
 is what a citizen needs.
 
 The platform we built to establish this is called \emph{auerbachs-auge.tech},
-after Auerbach's Cellar --- the Leipzig tavern where Goethe set a scene of
+after Auerbach's Cellar, the Leipzig tavern where Goethe set a scene of
 \emph{Faust}, in which Mephistopheles bores a wooden table and pours wine that
 seems abundant until it is touched. It ingests both of Leipzig's data sources
 into a single spatially and temporally joinable model, serves them as vector
 tiles and time series, and computes correlations between any two indicators that
 share a spatial unit and a year.
 
-Our contributions are four.
+So we contribute:
 
 \begin{itemize}
 \item A production system that brings an entire municipal open data catalogue
---- 398 datasets from two sources with incompatible paradigms --- into one model
+(398 datasets from two sources with incompatible paradigms) into one model
 in which any two indicators can be compared, running on a single 4\,GB server.
 \item An empirical taxonomy of the frictions separating published from usable
 data, each quantified against the full catalogue, including two classes that
@@ -100,7 +100,7 @@ produce silently wrong results rather than visible failures: metric names that
 are not unique, and administrative levels mixed within a file without being
 marked.
 \item A worked spatial case study over Leipzig's 63 districts, reported together
-with the methodological guardrails it requires --- and with a demonstration, on
+with the methodological guardrails it requires and with a demonstration, on
 the city's own housing and social indicators, that re-aggregating the analysis
 to 10 districts changes what a correlation appears to support.
 \item An argument, evidenced by our own constraints rather than asserted, that
@@ -132,7 +132,7 @@ instruments that shape the governance reading them \cite{kitchin2015knowing}.
 Mattern traces the dashboard's descent from mission control and its recurring
 promise of mastery through display \cite{mattern2015missioncontrol}. Against the
 same tendency, Drucker argues that humanistic visualisation must treat its inputs
-as \emph{capta} --- taken and constructed rather than given
+as \emph{capta} - taken and constructed rather than given
 \cite{drucker2011humanities}.
 
 Our methodological caveats come from spatial analysis. Tobler's observation that
@@ -179,7 +179,7 @@ errors rather than loud ones.
 
 \emph{Metric names are not unique.} A metric is identified in the published data
 by its name alone, but 56 of the 300 district-level metric names we loaded occur
-in more than one dataset. The name \texttt{Ausländer} (``foreign nationals'')
+in more than one dataset. For example the name \texttt{Ausländer} (``foreign nationals'')
 appears in six, denominated once against residents, once against registered
 residents, once against employees, once against the unemployed, once against
 people with a migration background, and once against welfare recipients. Six
@@ -192,8 +192,8 @@ routinely contains rows for districts, for the city districts that contain them,
 and for the city as a whole, with no column stating which level a row belongs to.
 The level has to be inferred from the area name, and the names do not support the
 inference: the city districts \emph{Mitte}, \emph{Südost} and \emph{Nordwest} are
-each a substring of an unrelated district name --- \emph{Grünau-Mitte},
-\emph{Zentrum-Südost}, \emph{Zentrum-Nordwest}. Any name-similarity heuristic
+each a substring of an unrelated district name \emph{Grünau-Mitte},
+\emph{Zentrum-Südost} and \emph{Zentrum-Nordwest}. Any name-similarity heuristic
 conflates them, and the affected rows then carry the population of a district
 under the code of a neighbourhood. In our own ingestion this misplaced 13{,}862
 rows across 42 datasets; Section~\ref{sec:discussion} returns to what it took to
@@ -311,11 +311,10 @@ geometry. Statistics are served as JSON by an asynchronous API. The client is a
 React single-page application drawing MapLibre GL vector tiles.
 
 \subsection{Operating envelope}
-The whole system --- database, cache, API, ETL scheduler, static frontend,
-reverse proxy and monitoring --- runs in Docker Compose on a single virtual
-server with 4\,GB of RAM, deployed from a Git push. Access is authenticated. We
-return to both of these facts in Section~\ref{sec:discussion}, because they are
-not incidental to the argument: they are the argument.
+The whole system, what means database, cache, API, ETL scheduler, static frontend,
+reverse proxy and monitoring runs in Docker Compose on a single virtual
+server with 4\,GB of RAM, deployed from a Git. Access is authenticated. We
+return to these facts in the Section~\ref{sec:discussion}.
 
 \begin{figure}[t]
 \centering
@@ -424,6 +423,14 @@ causes income or welfare receipt. It is that a competent analyst, working
 honestly from published municipal data, must choose a zoning before the
 coefficient exists.
 
+The same machinery supports other civic questions without changing the data
+model: election results can be compared with social or housing indicators;
+mobility layers with population density or air-quality measurements; tree,
+green-space and land-use data with heat, rents or traffic exposure; and public
+services such as schools or childcare with demographic change. These are not
+separate applications. They are different pairings on the same resolved spatial
+and temporal axes.
+
 \begin{figure}[t]
 \centering
 \includegraphics[width=\linewidth]{figures/fig2_choropleth.pdf}
@@ -465,8 +472,8 @@ remained was the work in Section~\ref{sec:system}: five hand-maintained registri
 metric definitions, an alias table for place names, and a resolver deciding what
 a row's spatial reference means. None of that is discoverable from the data. All
 of it is required before two datasets can be compared. Gurstein's objection to
-open data --- that it empowers those already equipped
-\cite{gurstein2011opendata} --- names exactly this gap, and Table~\ref{tab:frictions} is a
+open data (that it empowers those already equipped
+\cite{gurstein2011opendata}) names exactly this gap, and Table~\ref{tab:frictions} is a
 measurement of it. A citizen with a spreadsheet and an afternoon does not clear
 it. Two computer science students with a semester barely did.
 
@@ -484,8 +491,8 @@ the error only because a total we computed disagreed with a total we already
 knew. That is worth stating precisely, because it defines the standard: data
 carrying the wrong meaning is not visibly different from data carrying the right
 one, and no amount of looking at a dashboard reveals the difference. Drucker's
-point that data are \emph{capta} --- taken, not given, constructed as an
-interpretation \cite{drucker2011humanities} --- is not a philosophical caveat
+point that data are \emph{capta} (taken, not given, constructed as an
+interpretation \cite{drucker2011humanities}) is not a philosophical caveat
 here. It is an operational one. Someone constructed those spatial codes, that
 someone was us, and we were wrong.
 
@@ -519,7 +526,7 @@ et al. show how indicator systems shape the governance that reads them
 \cite{kitchin2015knowing}. Our own results argue the same way from the inside.
 The platform will happily show a user the correlation in
 Section~\ref{sec:maup} at either spatial scale, and it cannot tell them which to
-believe --- because the data cannot. A dashboard lowers one barrier: it makes
+believe, because the data cannot. A dashboard lowers one barrier: it makes
 comparison possible. It does not make comparison sound. Evidence-based
 citizenship needs both, and the second is a harder engineering problem than the
 first.
