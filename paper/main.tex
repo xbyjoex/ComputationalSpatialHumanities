@@ -35,12 +35,12 @@ al29luce@studserv.uni-leipzig.de}}
 \begin{abstract}
 Leipzig publishes 398 open datasets and satisfies every requirement open-data
 policy imposes. We ingested all of them into a single spatially and temporally
-joinable platform and measured what that took. Over nine weeks in which the
-portal itself did not change, datasets carrying usable data rose from 152 to
-350 and statistical records from 5{,}925 to 377{,}083; the entire difference is
-interpretive labour, delivered as five hand-maintained registries and several
-hundred curated indicator definitions. We report a taxonomy of the frictions
-responsible, including two that fail silently: 56 of 300 spatial metric names
+joinable platform and measured what that took. Over nine weeks in which we
+ingested nothing the portal newly published, datasets carrying usable data rose
+from 152 to 350 and statistical records from 5{,}925 to 377{,}083; the
+difference is interpretive labour, delivered as five hand-maintained registries
+and several hundred curated indicator definitions. We report a taxonomy of the
+frictions responsible, including two that fail silently: 56 of 300 spatial metric names
 occur in more than one dataset with different base populations, and files mix
 administrative levels without marking them, which misplaced 13{,}862 rows in our
 own ingestion. A case study over Leipzig's 63 districts pairs 2023 housing,
@@ -333,12 +333,20 @@ nine weeks apart. Datasets carrying usable data rose from 152 to 350 of 398;
 statistical records from 5{,}925 to 377{,}083; election results from none to
 79{,}553.
 
-The portal did not change between those two measurements. No office published
-anything new, no format improved, no schema was fixed. The entire difference is
-interpretive labour: melt rules for wide-by-year layouts, alias entries for place
-names, column-to-party mappings, curated indicator definitions. That is what
-makes the table a measurement rather than a progress report. \emph{The distance
-between published and usable data is the size of that delta.}
+Almost none of that came from the portal. It was not idle in those nine weeks:
+it created 15 datasets and modified 86. But our registry stayed frozen at the
+398 entries of the first audit, so 13 of the 15 new datasets never entered the
+platform at all, and the two whose names we already carried are fetched from the
+statistical API rather than from the portal record. Of the 86 modified datasets,
+69 were already registered with us, and 58 of those are likewise API-fetched,
+where a changed portal record cannot affect how they load. At most 11 datasets
+could have been helped by anything the city did in that window. The corpus grew
+by 198.
+
+The remainder is interpretive labour: melt rules for wide-by-year layouts, alias
+entries for place names, column-to-party mappings, curated indicator definitions.
+That is what makes the table a measurement rather than a progress report.
+\emph{The distance between published and usable data is the size of that delta.}
 
 Two rows fall rather than rise, and both are corrections. Geometry features drop
 from 4{,}175{,}146 to 489{,}011 and traffic restrictions from 30{,}999 to 1{,}421
@@ -352,8 +360,9 @@ code, and five elections are stored at electoral-district level, four of them
 also aggregated to districts.
 
 \begin{table}[t]
-\caption{Ingested corpus at two points nine weeks apart. The portal itself did
-not change between them; the difference is interpretive labour.}
+\caption{Ingested corpus at two points nine weeks apart, measured against a
+registry frozen at 398 entries. The portal published 15 further datasets in that
+window; none of them entered the platform.}
 \label{tab:coverage}
 \centering
 \small
@@ -361,7 +370,7 @@ not change between them; the difference is interpretive labour.}
 \toprule
 & \textbf{10 Jun 2026} & \textbf{15 Aug 2026} \\
 \midrule
-Registered datasets & 398 & 398 \\
+Datasets in our registry & 398 & 398 \\
 \quad carrying data & 152 (38\,\%) & \textbf{350 (88\,\%)} \\
 Statistical records & 5{,}925 & \textbf{377{,}083} \\
 \quad across datasets & 122 & \textbf{299} \\
@@ -541,8 +550,11 @@ one city and one reporting year; depending on the pairing, $n$ ranges from 49 to
 and income variables are survey estimates with missing small-area values, and no
 correlation is a causal claim. The before-and-after coverage figures come from
 two audits of our own database rather than from an independently reproducible
-baseline. Accessibility of the interface is unaddressed. And the whole system
-depends on the portal continuing to publish in the shapes we learned.
+baseline; the portal-side counts beside them are reproducible, from the CKAN
+\texttt{package\_search} API on \texttt{metadata\_created} and
+\texttt{metadata\_modified}. Accessibility of the interface is unaddressed. And
+the whole system depends on the portal continuing to publish in the shapes we
+learned.
 
 The obvious extension is a second city, which would separate what is true of
 municipal open data from what is true of Leipzig. Beyond that, the registries in
@@ -556,8 +568,8 @@ Leipzig publishes 398 datasets and satisfies every open-data requirement we know
 of. Making them comparable took five hand-maintained registries, several hundred
 curated indicator definitions, and a spatial resolver whose failure we did not
 detect until a computed population disagreed with a known one. Between those two
-states, the portal did not change; the labour did. That labour is the real
-subject of the transparency claim. Our case study finds Leipzig's housing
+states we took nothing new from the portal; the labour did the work. That labour
+is the real subject of the transparency claim. Our case study finds Leipzig's housing
 surface stratified by income and welfare receipt, and finds the same
 housing--social relationship changing strength when the city is divided into
 larger districts. Both findings are available to any citizen who downloads the
